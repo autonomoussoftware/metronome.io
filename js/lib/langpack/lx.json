@@ -1,0 +1,39 @@
+{
+	"token": {
+		"titleHome" : "VeriBlock - X_ipsum dolor set amit Bitcoin",
+		"pageTitle" : "X_Suspendisse varius augue fringilla sem lobortis",
+		"stayConnected" : "Aenean vitae X_maximus, gravida eros sed, blandit augue. Nunc odio ante, 00, 2017 at 00:00 pm EST.",
+
+		"About VeriBlock" : "X_Lobortis VeriBlock",
+		"Bitcoin Security for all Bockchains" : "X_Bitcoin Security for all Bockchains",
+		"aboutPoP" : "X_Using our novel Proof-of-Proof (PoP) consensus protocol, the Veriblock blockchain acts as a fully distributed, trustless, transparent, and permissionless (DTTP) security adapter which allows every blockchain to operate with the full security of Bitcoin.",
+		"aboutSecurity" : "X_This security encourages the adoption of these blockchains which address Bitcoin’s feature limitations. The transition of transactions from Bitcoin to these more specialized blockchains addresses Bitcoin’s scaling problems, while continuing to drive value back to Bitcoin miners and token holders. As this value is channeled back to Bitcoin, more miners allocate more hashing power to securing Bitcoin and competing for the block reward, further strengthening Bitcoin’s dominance as the world’s greatest utility of immutable proof.",
+		"READ OUR WHITEPAPER" : "X_ OUR WHITEPAPER",
+		"Ecosystem Benefits" : "X_Ecosystem Benefits",
+
+		"Bitcoin" : "Bitcoin",
+		"Bitcoin miners receive higher fees" : "X_Bitcoin miners receive higher fees",
+		"Higher buy-demand for Bitcoin" : "X_Higher buy-demand for Bitcoin",
+		"Bitcoin’s PoW becomes eco-friendly" : "X_Bitcoin’s PoW becomes eco-friendly",
+		"Alternative scaling mechanism" : "X_Alternative scaling mechanism",
+		"Protection against double-spend attacks" : "X_Protection against double-spend attacks",
+		"Better user security assurances" : "X_Better user security assurances",
+		"More exchanges willing to list" : "X_More exchanges willing to list",
+		"Solves weak subjectivity" : "X_Solves weak subjectivity",
+		"Exchanges" : "X_Exchanges",
+		"Merchants" : "X_Merchants",
+		"Blockchains" : "X_Blockchains",
+		"Drastically decreases token theft risk from double-spend attacks" : "X_Drastically decreases token theft risk from double-spend attacks",
+		"Early attach detection for listed tokens" : "X_Early attach detection for listed tokens",
+		"Users can mine from their wallet" : "X_Users can mine from their wallet",
+		"Users experience lower effective Bitcoin transaction fees" : "X_Users experience lower effective Bitcoin transaction fees",
+
+		"About" : "X_About",
+		"Terms" : "X_Terms",
+		"Key Dates" : "X_Key Dates",
+		"Team" : "X_Team",
+		"FAQ" : "X_FAQ",
+		"Privacy" : "X_Privacy"
+
+	}
+}
