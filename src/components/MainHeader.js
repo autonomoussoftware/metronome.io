@@ -35,7 +35,7 @@ export default function () {
                 <a className="nav-link" href="/features" lang="en">Features</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md" id="s-owners-manual" lang="en" target="_blank" rel="noopener noreferrer">Owner's Manual</a>
+                <a className="nav-link" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md" id="s-owners-manual" lang="en" target="_blank" rel="noopener noreferrer">Owner&apos;s Manual</a>
               </li>
               <li data-toggle="collapse" data-target=".navbar-collapse.show" className="nav-item">
                 <a className="nav-link" href="#token-sale" id="s-token-sale" lang="en">Token Sale</a>

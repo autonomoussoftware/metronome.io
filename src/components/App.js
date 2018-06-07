@@ -31,7 +31,7 @@ function App ({ genesisTime, loading }) {
             : <div>Countdown</div>}
         </div> */}
         <Route exact path="/" component={MainPage}/>
-        <Route exact path="/auction" component={AuctionInProgress}/>
+        <Route exact path="/auctions" component={AuctionInProgress}/>
 
         <MainFooter />
       </div>
