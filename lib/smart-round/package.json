@@ -1,0 +1,8 @@
+{
+  "name": "smart-round",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "bignumber.js": "^7.2.1"
+  }
+}
