@@ -1,20 +1,5 @@
 jQuery(function($) {
-
-  // Smooth scrolling & navigation #hash
-  $('.navbar a').on('click', function(event) {
-    if (this.hash !== '') {
-      event.preventDefault();
-      var hash = this.hash;
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top - navHeight
-      }, 500, function(){
-        //
-      });
-      window.location.hash = hash;
-    }
-  });
-
-    // Check our viewport width and set a var
+  // Check our viewport width and set a var
     var viewportWidth = $(window).width();
     // console.log(viewportWidth);
 

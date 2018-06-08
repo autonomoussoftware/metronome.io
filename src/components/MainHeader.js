@@ -1,14 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { HashLink } from 'react-router-hash-link'
 
 export default function () {
   return (
     <header>
       <nav className="navbar navbar-expand-xl navbar-dark fixed-top">
         <div className="container">
-          <a data-toggle="collapse" data-target=".navbar-collapse.show" className="navbar-brand" href="#start">
+          <HashLink to="/#start" smooth data-target=".navbar-collapse.show" className="navbar-brand">
             <img src="images/logo.png" alt="Metronome" />
-          </a>
+          </HashLink>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
             aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -16,20 +17,20 @@ export default function () {
 
           <div className="collapse navbar-collapse" id="navbarCollapse">
 
-            <div className="dropdown language-switcher">
+            {/* <div className="dropdown language-switcher">
               <button className="btn btn-language dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false" lang="en">
                 Languages
               </button>
-              {/* <div className="dropdown-menu" aria-labelledby="languageDropdown">
+              <div className="dropdown-menu" aria-labelledby="languageDropdown">
                 <a className="dropdown-item" href="#" onclick="window.lang.change('en'); return false;">English</a>
                 <a className="dropdown-item" href="#" onclick="window.lang.change('li'); return false;">Lorem Ipsum</a>
                 <a className="dropdown-item" href="#" onclick="window.lang.change('lx'); return false;">Language X</a>
-              </div> */}
-            </div>
+              </div>
+            </div> */}
             <ul className="navbar-nav ml-auto">
-              <li data-toggle="collapse" data-target=".navbar-collapse.show" className="nav-item" id="n-about">
-                <a className="nav-link" href="#about" lang="en">About</a>
+              <li data-target=".navbar-collapse.show" className="nav-item" id="n-about">
+                <HashLink to="/#about" smooth className="nav-link" href="#about" lang="en">About</HashLink>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/features" lang="en">Features</a>
@@ -53,7 +54,7 @@ export default function () {
                 <a className="nav-link" href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md" target="_blank" rel="noopener noreferrer" lang="en">FAQ</a>
               </li>
               <li className="nav-item">
-                <Link to="/auctions" className="nav-link" lang="en">Auctions</Link>
+                <Link to="/auction" className="nav-link" lang="en">Auction</Link>
               </li>
             </ul>
           </div>

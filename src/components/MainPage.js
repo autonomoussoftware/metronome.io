@@ -501,6 +501,7 @@ function MainPage ({ currentAuction, genesisTime, loading }) {
           </div>
         </div>
       </div>
+      <script src="/js/home.js"></script>
     </div>
   )
 }
