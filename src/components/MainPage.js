@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import AuctionInProgress from './AuctionInProgress'
+import AuctionSummary from './AuctionSummary'
 import TokenSaleCountdown from './TokenSaleCountdown'
 
 function MainPage ({ currentAuction, genesisTime, loading }) {
@@ -28,7 +28,7 @@ function MainPage ({ currentAuction, genesisTime, loading }) {
             ? isInitialAuction
               ? loadingAuctionStatus
                 ? <div>{/* Loading... */}</div>
-                : <AuctionInProgress />
+                : <AuctionSummary />
               : <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 162, marginTop: 37 }}>
                 <a className="btn">Buy Metronome</a>
               </div>

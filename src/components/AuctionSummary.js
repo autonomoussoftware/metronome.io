@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import BigNumber from 'bignumber.js'
 import React from 'react'
 
 import AuctionCounterSm from './AuctionCounterSm'
@@ -7,13 +8,13 @@ import AuctionMetAvailableSm from './AuctionMetAvailableSm'
 import EthValue from './EthValue'
 import metIcon from '../img/light.svg'
 
-function AuctionInProgress (props) {
+function AuctionSummary (props) {
   const {
-    currentAuction,
     currentPrice,
-    nextAuctionStartTime,
     tokensRemaining
   } = props
+
+  const isAuctionInProgress = !(new BigNumber(tokensRemaining).eq(0))
 
   return (
     <div className="AuctionInProgress" style={{ height: 430, marginBottom: 154 }}>
@@ -40,30 +41,18 @@ function AuctionInProgress (props) {
           <div className="overview__time-left-container">
             <div className="overview__time-left-remaining">
               <div className="overview__time-left-remaining--inner">
-                <AuctionCounterSm
-                  currentAuction={currentAuction}
-                  nextAuctionStartTime={nextAuctionStartTime}
-                />
-                <span className="auction__counter-sm-remaining">
-                  Remaining
-                </span>
+                <AuctionCounterSm />
               </div>
             </div>
             <div className="overview__time-left-available">
               <div className="overview__time-left-available--inner">
-                <AuctionMetAvailableSm
-                  currentAuction={currentAuction}
-                  tokensRemaining={tokensRemaining}
-                />
-                <span className="auction__counter-sm-remaining">
-                  Available
-                </span>
+                <AuctionMetAvailableSm />
               </div>
             </div>
           </div>
           <div className="overview__buy-met">
             <div className="overview__buy-met--inner">
-              <a className="btn" style={{ borderColor: '#fff', color: '#7e61f8' }}>Buy Metronome</a>
+              <a className={`btn ${isAuctionInProgress ? '' : 'btn-disabled'}`} style={{ borderColor: '#fff', color: '#7e61f8' }}>Buy Metronome</a>
             </div>
           </div>
           <div className="overview__visit-dashboard">
@@ -79,4 +68,4 @@ function mapStateToProps (state) {
   return state.auction.status
 }
 
-export default connect(mapStateToProps)(AuctionInProgress)
+export default connect(mapStateToProps)(AuctionSummary)
