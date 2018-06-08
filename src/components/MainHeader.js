@@ -39,13 +39,13 @@ export default function () {
                 <a className="nav-link" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md" id="s-owners-manual" lang="en" target="_blank" rel="noopener noreferrer">Owner&apos;s Manual</a>
               </li>
               <li data-toggle="collapse" data-target=".navbar-collapse.show" className="nav-item">
-                <a className="nav-link" href="#token-sale" id="s-token-sale" lang="en">Token Sale</a>
+                <NavHashLink to="/#token-sale" smooth activeClassName="active" className="nav-link" lang="en">Token Sale</NavHashLink>
               </li>
               <li data-toggle="collapse" data-target=".navbar-collapse.show" className="nav-item">
-                <a className="nav-link" href="#timeline" id="s-timeline" lang="en">Timeline</a>
+                <NavHashLink to="/#timeline" smooth activeClassName="active" className="nav-link" lang="en">Timeline</NavHashLink>
               </li>
               <li data-toggle="collapse" data-target=".navbar-collapse.show" className="nav-item">
-                <a className="nav-link" href="#team-content" id="s-team" lang="en">Team</a>
+                <NavHashLink to="/#team-content" smooth activeClassName="active" className="nav-link" lang="en">Team</NavHashLink>
               </li>
               <li className="nav-item">
                 <NavLink to="/media-kit" activeClassName="active" className="nav-link" lang="en">Media Kit</NavLink>
