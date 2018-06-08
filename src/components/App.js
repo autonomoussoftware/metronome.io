@@ -4,9 +4,11 @@ import { connect } from 'react-redux'
 
 import AuctionStatus from './AuctionStatus'
 import AuctionsPage from './AuctionsPage'
+import FeaturesPage from './FeaturesPage'
+import MainPage from './MainPage'
+
 import MainHeader from './MainHeader'
 import MainFooter from './MainFooter'
-import MainPage from './MainPage'
 
 function App ({ currentAuction }) {
   const isDailyAuction = currentAuction > 0
@@ -18,6 +20,7 @@ function App ({ currentAuction }) {
         <MainHeader />
 
         <Route exact path="/" component={MainPage}/>
+        <Route exact path="/feautres" component={FeaturesPage} />
 
         {isDailyAuction
           ? <Route exact path="/auctions" component={AuctionsPage}/>

@@ -33,7 +33,7 @@ export default function () {
                 <HashLink to="/#about" smooth className="nav-link" href="#about" lang="en">About</HashLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/features" lang="en">Features</a>
+                <Link to="/feautres" className="nav-link" lang="en">Features</Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md" id="s-owners-manual" lang="en" target="_blank" rel="noopener noreferrer">Owner&apos;s Manual</a>

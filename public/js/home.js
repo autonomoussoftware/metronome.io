@@ -1,3 +1,5 @@
+document.getElementsByTagName('body')[0].className = 'home'
+
 jQuery(function($) {
   // Check our viewport width and set a var
     var viewportWidth = $(window).width();
