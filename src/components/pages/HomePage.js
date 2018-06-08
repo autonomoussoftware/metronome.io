@@ -1,17 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import AuctionSummary from './AuctionSummary'
-import TokenSaleCountdown from './TokenSaleCountdown'
+import AuctionSummary from '../AuctionSummary'
+import TokenSaleCountdown from '../TokenSaleCountdown'
 
 function MainPage ({ currentAuction, genesisTime, loading }) {
   const now = Date.now()
   const auctionsStarted = genesisTime * 1000 <= now
-  const isInitialAuction = currentAuction === 0
+  const isInitialAuction = true // currentAuction === 0
   const loadingAuctionStatus = loading
 
   return (
-    <div>
+    <div className="home" >
       <div id="top" className="site-section">
         <div id="top-particle"></div>
         <div className="container">

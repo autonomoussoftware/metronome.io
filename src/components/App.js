@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import AuctionStatus from './AuctionStatus'
-import AuctionsPage from './AuctionsPage'
-import FeaturesPage from './FeaturesPage'
-import MediaKitPage from './MediaKitPage'
-import MainPage from './MainPage'
+import AuctionsPage from './pages/AuctionsPage'
+import FeaturesPage from './pages/FeaturesPage'
+import MediaKitPage from './pages/MediaKitPage'
+import HomePage from './pages/HomePage'
 
-import MainHeader from './MainHeader'
-import MainFooter from './MainFooter'
+import PageHeader from './PageHeader'
+import PageFooter from './PageFooter'
 
 function App ({ currentAuction }) {
   const isDailyAuction = currentAuction > 0
@@ -18,9 +18,9 @@ function App ({ currentAuction }) {
     <Router>
       <div>
         <AuctionStatus />
-        <MainHeader />
+        <PageHeader />
 
-        <Route exact path="/" component={MainPage}/>
+        <Route exact path="/" component={HomePage}/>
         <Route exact path="/features" component={FeaturesPage} />
         <Route exact path="/media-kit" component={MediaKitPage} />
 
@@ -28,7 +28,7 @@ function App ({ currentAuction }) {
           ? <Route exact path="/auction" component={AuctionsPage}/>
           : null}
 
-        <MainFooter />
+        <PageFooter />
       </div>
     </Router>
   )

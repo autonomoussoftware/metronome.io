@@ -2,11 +2,11 @@ import React from 'react'
 
 export default function () {
   return (
-    <div>
+    <div className="features">
       <div id="top" className="site-section">
         <div id="top-particle"></div>
         <div className="container">
-          <h1 lang="en" className="text-center extra-bold">Metronome's Unique Features</h1>
+          <h1 lang="en" className="text-center extra-bold">Metronome&acute;s Unique Features</h1>
         </div>
       </div>
 
@@ -14,7 +14,7 @@ export default function () {
         <div className="container">
           <div className="row">
             <div className="col-sm-11">
-              <p className="lead" lang="en">Metronome's core design principles of self-governance, reliability, and portability are supported by a host of innovative features.</p>
+              <p className="lead" lang="en">Metronome&acute;s core design principles of self-governance, reliability, and portability are supported by a host of innovative features.</p>
               <h3>Self-Governance</h3>
             </div>
           </div>
@@ -86,7 +86,7 @@ export default function () {
             </div>
             <div className="col-md-3 order-3 order-md-2 additional">
               <p>&nbsp;</p>
-              <p><strong>For a more comprehensive explanation of these features and other aspects of Metronome, please see the <a href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md" target="_blank" rel="noopener noreferrer">Owner's Manual</a>.</strong></p>
+              <p><strong>For a more comprehensive explanation of these features and other aspects of Metronome, please see the <a href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md" target="_blank" rel="noopener noreferrer">Owner&acute;s Manual</a>.</strong></p>
             </div>
             <div className="col-md-5 order-1 order-md-3">
               <img className="illustration-last" src="../images/features-illustration-3.png" alt=""/>
