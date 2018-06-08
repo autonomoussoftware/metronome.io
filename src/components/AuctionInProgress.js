@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import React from 'react'
 
 import AuctionCounterSm from './AuctionCounterSm'
@@ -15,9 +16,9 @@ function AuctionInProgress (props) {
   } = props
 
   return (
-    <div className="AuctionInProgress" style={{ height: 400 }}>
+    <div className="AuctionInProgress" style={{ height: 420 }}>
       <div>
-        <div className="overview__met-container" style={{ bottom: 0 }}>
+        <div className="overview__met-container" style={{ bottom: 310 }}>
           <div className="overview__price-container">
             <span className="overview__current-auction-price">
               Current Auction Price
@@ -63,12 +64,12 @@ function AuctionInProgress (props) {
             </div>
             <div className="overview__buy-met">
               <div className="overview__buy-met--inner">
-                <a className="btn">Buy Metronome</a>
+                <a className="btn" style={{ borderColor: '#fff', color: '#7e61f8' }}>Buy Metronome</a>
               </div>
             </div>
-          </div>
-          <div className="overview__visit-dashboard">
-            <a to="/dashboard">Visit dashboard</a>
+            <div className="overview__visit-dashboard">
+              <Link to="/dashboard">Visit Dashboard</Link>
+            </div>
           </div>
         </div>
       </div>
