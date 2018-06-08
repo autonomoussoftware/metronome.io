@@ -29,7 +29,7 @@ function MainPage ({ currentAuction, genesisTime, loading }) {
               ? loadingAuctionStatus
                 ? <div>{/* Loading... */}</div>
                 : <AuctionInProgress />
-              : <div style={{ marginTop: 37, marginBottom: 162 }}>
+              : <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 162, marginTop: 37 }}>
                 <a className="btn">Buy Metronome</a>
               </div>
             : <TokenSaleCountdown />}

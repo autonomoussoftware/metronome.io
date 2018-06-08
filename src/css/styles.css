@@ -193,7 +193,7 @@
     display: inherit;
   }
 }
-html,
+/* html,
 body {
   height: 100%;
   width: 100%;
@@ -207,7 +207,7 @@ body {
 }
 a {
   cursor: pointer;
-}
+} */
 .App,
 #root {
   height: 100%;
@@ -256,12 +256,12 @@ a {
 .container__mobile-navigation ul li a:hover {
   color: #7e61f8;
 }
-h2 {
+/* h2 {
   color: #fff;
   margin: 10px 0 0 0;
   padding: 0px;
   font-weight: 300;
-}
+} */
 .label__title {
   position: relative;
   display: block;
