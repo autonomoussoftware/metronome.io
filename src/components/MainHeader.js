@@ -1,15 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { HashLink } from 'react-router-hash-link'
+import { NavLink } from 'react-router-dom'
+import { NavHashLink } from 'react-router-hash-link'
 
 export default function () {
   return (
     <header>
       <nav className="navbar navbar-expand-xl navbar-dark fixed-top">
         <div className="container">
-          <HashLink to="/#start" smooth data-target=".navbar-collapse.show" className="navbar-brand">
+          <NavHashLink to="/#start" smooth data-target=".navbar-collapse.show" className="navbar-brand">
             <img src="images/logo.png" alt="Metronome" />
-          </HashLink>
+          </NavHashLink>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
             aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -30,10 +30,10 @@ export default function () {
             </div> */}
             <ul className="navbar-nav ml-auto">
               <li data-target=".navbar-collapse.show" className="nav-item" id="n-about">
-                <HashLink to="/#about" smooth className="nav-link" href="#about" lang="en">About</HashLink>
+                <NavHashLink to="/#about" smooth activeClassName="active" className="nav-link" lang="en">About</NavHashLink>
               </li>
               <li className="nav-item">
-                <Link to="/feautres" className="nav-link" lang="en">Features</Link>
+                <NavLink to="/features" activeClassName="active" className="nav-link" lang="en">Features</NavLink>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md" id="s-owners-manual" lang="en" target="_blank" rel="noopener noreferrer">Owner&apos;s Manual</a>
@@ -54,7 +54,7 @@ export default function () {
                 <a className="nav-link" href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md" target="_blank" rel="noopener noreferrer" lang="en">FAQ</a>
               </li>
               <li className="nav-item">
-                <Link to="/auction" className="nav-link" lang="en">Auction</Link>
+                <NavLink to="/auction" activeClassName="active" className="nav-link" lang="en">Auction</NavLink>
               </li>
             </ul>
           </div>
