@@ -48,7 +48,7 @@ export default function () {
                 <a className="nav-link" href="#team-content" id="s-team" lang="en">Team</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/media-kit" lang="en">Media Kit</a>
+                <NavLink to="/media-kit" activeClassName="active" className="nav-link" lang="en">Media Kit</NavLink>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md" target="_blank" rel="noopener noreferrer" lang="en">FAQ</a>

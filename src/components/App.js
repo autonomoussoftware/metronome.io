@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import AuctionStatus from './AuctionStatus'
 import AuctionsPage from './AuctionsPage'
 import FeaturesPage from './FeaturesPage'
+import MediaKitPage from './MediaKitPage'
 import MainPage from './MainPage'
 
 import MainHeader from './MainHeader'
@@ -21,6 +22,7 @@ function App ({ currentAuction }) {
 
         <Route exact path="/" component={MainPage}/>
         <Route exact path="/features" component={FeaturesPage} />
+        <Route exact path="/media-kit" component={MediaKitPage} />
 
         {isDailyAuction
           ? <Route exact path="/auction" component={AuctionsPage}/>
