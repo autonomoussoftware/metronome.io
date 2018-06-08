@@ -32,26 +32,29 @@ function MainPage ({ currentAuction, genesisTime, loading }) {
               : <div>buy button</div>
             : <TokenSaleCountdown />}
 
-          <div className="mailchimp">
-            {/* Begin MailChimp Signup Form */}
-            <div id="mc_embed_signup">
-              <form action="https://bloq.us16.list-manage.com/subscribe/post?u=d664bfca56b2d1c386e0cbe5c&amp;id=7837b91f1d" method="post"
-                id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" rel='noopener noreferrer' noValidate>
-                <div className="row justify-content-center no-gutters">
-                  <div className="col col-sm-4">
-                    <input type="email" value="" name="EMAIL" className="required email" id="mce-EMAIL" placeholder="Email Address" />
-                  </div>
-                  <div className="col col-sm-4">
-                    <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
-                      <input type="text" name="b_d664bfca56b2d1c386e0cbe5c_7837b91f1d" tabIndex="-1" value="" />
+          {!auctionsStarted &&
+            <div className="mailchimp">
+              {/* Begin MailChimp Signup Form */}
+              <div id="mc_embed_signup">
+                <form action="https://bloq.us16.list-manage.com/subscribe/post?u=d664bfca56b2d1c386e0cbe5c&amp;id=7837b91f1d" method="post"
+                  id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" rel='noopener noreferrer' noValidate>
+                  <div className="row justify-content-center no-gutters">
+                    <div className="col col-sm-4">
+                      <input type="email" value="" name="EMAIL" className="required email" id="mce-EMAIL" placeholder="Email Address" />
                     </div>
-                    <input type="submit" value="SIGN UP FOR UPDATES" name="subscribe" id="mc-embedded-subscribe" className="btn" />
+                    <div className="col col-sm-4">
+                      <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
+                        <input type="text" name="b_d664bfca56b2d1c386e0cbe5c_7837b91f1d" tabIndex="-1" value="" />
+                      </div>
+                      <input type="submit" value="SIGN UP FOR UPDATES" name="subscribe" id="mc-embedded-subscribe" className="btn" style={{ display: 'flex' }} />
+                    </div>
                   </div>
-                </div>
-              </form>
+                </form>
+              </div>
+              {/* End mc_embed_signup */}
             </div>
-            {/* End mc_embed_signup */}
-          </div>
+          }
+
           <div className="text-center social">
             <a href="https://github.com/autonomoussoftware" target="_blank" rel='noopener noreferrer'>
               <i className="fa fa-github" aria-hidden="true"></i>
