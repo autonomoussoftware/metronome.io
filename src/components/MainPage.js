@@ -1,8 +1,15 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
+import AuctionInProgress from './AuctionInProgress'
 import TokenSaleCountdown from './TokenSaleCountdown'
 
-function MainPage () {
+function MainPage ({ currentAuction, genesisTime, loading }) {
+  const now = Date.now()
+  const auctionsStarted = genesisTime * 1000 <= now
+  const isInitialAuction = currentAuction === 0
+  const loadingAuctionStatus = loading
+
   return (
     <div>
       <div id="top" className="site-section">
@@ -17,7 +24,13 @@ function MainPage () {
             <span>Self-Governance. Reliability. Portability.</span>
           </h1>
 
-          <TokenSaleCountdown />
+          {auctionsStarted
+            ? isInitialAuction
+              ? loadingAuctionStatus
+                ? <div>Loading status</div>
+                : <AuctionInProgress />
+              : <div>buy button</div>
+            : <TokenSaleCountdown />}
 
           <div className="mailchimp">
             {/* Begin MailChimp Signup Form */}
@@ -492,4 +505,12 @@ function MainPage () {
   )
 }
 
-export default MainPage
+function mapStateToProps (state) {
+  return {
+    currentAuction: state.auction.status.currentAuction,
+    genesisTime: state.auction.status.genesisTime,
+    loading: state.auction.loading
+  }
+}
+
+export default connect(mapStateToProps)(MainPage)

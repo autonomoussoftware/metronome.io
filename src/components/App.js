@@ -1,37 +1,27 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import AuctionStatus from './AuctionStatus'
+import AuctionsPage from './AuctionsPage'
 import MainHeader from './MainHeader'
 import MainFooter from './MainFooter'
 import MainPage from './MainPage'
-import AuctionInProgress from './AuctionInProgress'
 
-const MS_PER_DAY = 24 * 60 * 60 * 1000
-
-function App ({ genesisTime, loading }) {
-  const now = Date.now()
-  const auctionsStarted = genesisTime * 1000 <= now
-  const isInitialAuctionTime = genesisTime * 1000 + 7 * MS_PER_DAY <= now
-  const loadingAuctionStatus = loading
+function App ({ currentAuction }) {
+  const isDailyAuction = currentAuction > 0
 
   return (
     <Router>
       <div>
         <AuctionStatus />
         <MainHeader />
-        {/* <div style={{ height: '100%' }}>
-          {auctionsStarted
-            ? isInitialAuctionTime
-              ? loadingAuctionStatus
-                ? <div>Loading status</div>
-                : <AuctionInProgress />
-              : <div>buy button</div>
-            : <div>Countdown</div>}
-        </div> */}
+
         <Route exact path="/" component={MainPage}/>
-        <Route exact path="/auctions" component={AuctionInProgress}/>
+
+        {isDailyAuction
+          ? <Route exact path="/auctions" component={AuctionsPage}/>
+          : null}
 
         <MainFooter />
       </div>
@@ -41,8 +31,7 @@ function App ({ genesisTime, loading }) {
 
 function mapStateToProps (state) {
   return {
-    genesisTime: state.auction.status.genesisTime,
-    loading: state.auction.loading
+    currentAuction: state.auction.status.currentAuction
   }
 }
 
