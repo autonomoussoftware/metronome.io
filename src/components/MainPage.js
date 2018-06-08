@@ -27,9 +27,11 @@ function MainPage ({ currentAuction, genesisTime, loading }) {
           {auctionsStarted
             ? isInitialAuction
               ? loadingAuctionStatus
-                ? <div>Loading status</div>
+                ? <div>{/* Loading... */}</div>
                 : <AuctionInProgress />
-              : <div>buy button</div>
+              : <div style={{ marginTop: 37, marginBottom: 162 }}>
+                <a className="btn">Buy Metronome</a>
+              </div>
             : <TokenSaleCountdown />}
 
           {!auctionsStarted &&
