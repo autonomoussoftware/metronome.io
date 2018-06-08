@@ -1,5 +1,7 @@
 import React from 'react'
 
+import TokenSaleCountdown from './TokenSaleCountdown'
+
 function MainPage () {
   return (
     <div>
@@ -15,15 +17,7 @@ function MainPage () {
             <span>Self-Governance. Reliability. Portability.</span>
           </h1>
 
-          <div className="final-countdown" style={{ display: 'flex' }}>
-            <div className="final-countdown__label">TOKEN SALE COUNTDOWN:</div>
-            <div className="final-countdown__counter">
-              <div className="counter-item fc-day"></div>
-              <div className="counter-item fc-hour"></div>
-              <div className="counter-item fc-minute"></div>
-              <div className="counter-item fc-second"></div>
-            </div>
-          </div>
+          <TokenSaleCountdown />
 
           <div className="mailchimp">
             {/* Begin MailChimp Signup Form */}
