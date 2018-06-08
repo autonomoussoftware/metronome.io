@@ -20,7 +20,7 @@ function App ({ currentAuction }) {
         <Route exact path="/" component={MainPage}/>
 
         {isDailyAuction
-        <Route exact path="/auctions" component={AuctionInProgress}/>
+          ? <Route exact path="/auctions" component={AuctionsPage}/>
           : null}
 
         <MainFooter />
