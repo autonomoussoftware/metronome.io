@@ -5,15 +5,23 @@ import BigNumber from 'bignumber.js'
 import MetValue from './MetValue'
 
 function AuctionMetAvailableSm (props) {
-  const { currentAuction, lastPurchasePrice, tokensRemaining } = props
+  const {
+    currentAuction,
+    isAuctionInProgress,
+    nextAuctionStartPrice,
+    tokensRemaining
+  } = props
 
-  const metSupply = currentAuction === 0 ? 8000000 : 2880
-  const auctionSupply = new BigNumber(metSupply).times(1e18)
+  // We don't have a "stateless" way to know how much tokens were available at
+  // the beginnig of the daily auctions because of the eventual carryover of the
+  // previous one. Therefore, let's assume all auctions are depleted and new
+  // ones start with 2880 tokens.
+  const auctionSupply = new BigNumber(currentAuction === 0 ? 8000000 : 2880)
+    .times(1e18)
   const remainingPercentage = new BigNumber(tokensRemaining)
     .div(auctionSupply)
     .times(100)
     .toNumber()
-  const isAuctionInProgress = remainingPercentage > 0
 
   const divStyle = {
     height: `${Math.min(remainingPercentage, 100)}%`
@@ -30,7 +38,7 @@ function AuctionMetAvailableSm (props) {
         <MetValue>
           {isAuctionInProgress
             ? tokensRemaining
-            : new BigNumber(lastPurchasePrice).times(2).toString()}
+            : nextAuctionStartPrice}
         </MetValue>
       </span>
       <span className="auction__counter-sm-remaining">

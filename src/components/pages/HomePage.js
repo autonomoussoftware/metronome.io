@@ -4,18 +4,17 @@ import { connect } from 'react-redux'
 import AuctionSummary from '../AuctionSummary'
 import TokenSaleCountdown from '../TokenSaleCountdown'
 
-function MainPage ({ currentAuction, genesisTime, loading }) {
+function MainPage ({ currentAuction, genesisTime, isInitialAuction, loading }) {
   const now = Date.now()
-  const auctionsStarted = genesisTime * 1000 <= now
-  const isInitialAuction = true // currentAuction === 0
+  const auctionsStarted = genesisTime <= now
   const loadingAuctionStatus = loading
 
   return (
     <div className="home" >
       <div id="top" className="site-section">
         <div id="top-particle"></div>
-        <div className="container">
 
+        <div className="container">
           <h1 lang="en" className="text-center">
             <img className="img-fluid" src="images/metronome-logo-purple.png" alt="Metronome" />
             <br />
@@ -77,7 +76,6 @@ function MainPage ({ currentAuction, genesisTime, loading }) {
               <i className="fa fa-medium" aria-hidden="true"></i>
             </a>
           </div>
-
         </div>
       </div>
 
@@ -149,7 +147,6 @@ function MainPage ({ currentAuction, genesisTime, loading }) {
           </p>
         </div>
       </div>
-      {/* /about */}
 
       <div id="video" className="site-section">
         <div className="container squeeze">
@@ -506,17 +503,14 @@ function MainPage ({ currentAuction, genesisTime, loading }) {
           </div>
         </div>
       </div>
+
       <script src="/js/home.js"></script>
     </div>
   )
 }
 
 function mapStateToProps (state) {
-  return {
-    currentAuction: state.auction.status.currentAuction,
-    genesisTime: state.auction.status.genesisTime,
-    loading: state.auction.loading
-  }
+  return state.auction.status
 }
 
 export default connect(mapStateToProps)(MainPage)

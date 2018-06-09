@@ -11,9 +11,7 @@ import HomePage from './pages/HomePage'
 import PageHeader from './PageHeader'
 import PageFooter from './PageFooter'
 
-function App ({ currentAuction }) {
-  const isDailyAuction = currentAuction > 0
-
+function App ({ isDailyAuction }) {
   return (
     <Router>
       <div>
@@ -35,9 +33,7 @@ function App ({ currentAuction }) {
 }
 
 function mapStateToProps (state) {
-  return {
-    currentAuction: state.auction.status.currentAuction
-  }
+  return state.auction.status
 }
 
 export default connect(mapStateToProps)(App)

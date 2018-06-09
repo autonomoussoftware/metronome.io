@@ -11,6 +11,7 @@ import metIcon from '../img/light.svg'
 function AuctionSummary (props) {
   const {
     currentPrice,
+    lastPurchasePrice,
     tokensRemaining
   } = props
 
@@ -21,10 +22,10 @@ function AuctionSummary (props) {
       <div className="overview__met-container" style={{ bottom: 'auto' }}>
         <div className="overview__price-container">
           <span className="overview__current-auction-price">
-            Current Auction Price
+            {isAuctionInProgress ? 'Current Auction Price' : 'Last Purchase Price'}
           </span>
           <span className="overview__eth-price">
-            <EthValue>{currentPrice}</EthValue>
+            <EthValue>{isAuctionInProgress ? currentPrice : lastPurchasePrice}</EthValue>
           </span>
         </div>
         <div className="overview__met-container--inner">

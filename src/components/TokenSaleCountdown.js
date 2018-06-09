@@ -10,7 +10,7 @@ function TokenSaleCountdown ({ genesisTime }) {
       <div className="final-countdown__label">TOKEN SALE COUNTDOWN:</div>
       <div className="final-countdown__counter">
         <Countdown
-          date={genesisTime * 1000}
+          date={genesisTime}
           renderer={TokenSaleCountdownDigits}
         />
       </div>

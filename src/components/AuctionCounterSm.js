@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import { VictoryPie } from 'victory'
-import BigNumber from 'bignumber.js'
 import Countdown from 'react-countdown-now'
 import React from 'react'
 
@@ -9,14 +8,22 @@ import TimeString from './TimeString'
 const MS_PER_DAY = 24 * 60 * 60 * 1000
 
 function AuctionCounterSm (props) {
-  const { currentAuction, nextAuctionStartTime, tokensRemaining } = props
+  const {
+    currentAuction,
+    genesisTime,
+    isAuctionInProgress,
+    nextAuctionStartTime
+  } = props
 
-  const endTime = nextAuctionStartTime * 1000
-  const remainingTime = endTime - Date.now()
-  const totalTime = (currentAuction === 0 ? 7 : 1) * MS_PER_DAY
-  const auctionTime = totalTime - remainingTime
-  const isAuctionInProgress = !(new BigNumber(tokensRemaining).eq(0))
+  const now = Date.now()
+  const remainingTime = nextAuctionStartTime - now
+  const consumedTime = currentAuction === 0
+    ? now - genesisTime
+    : MS_PER_DAY - remainingTime
 
+  // The pie will only be updated when a new block arrives. Since that happens
+  // in average 4 times per minute and the pie shows time in days timespan, this
+  // should be a non-issue.
   return (
     <div className="AuctionCounterSm">
       {isAuctionInProgress && <VictoryPie
@@ -25,13 +32,13 @@ function AuctionCounterSm (props) {
           '#7e61f8'
         ]}
         data={[
-          { y: auctionTime },
+          { y: consumedTime },
           { y: remainingTime }
         ]}
       />}
       <span className="auction__counter-sm">
         <Countdown
-          date={endTime}
+          date={nextAuctionStartTime}
           renderer={TimeString}
         />
       </span>
