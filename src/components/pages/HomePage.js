@@ -4,7 +4,14 @@ import React from 'react'
 import AuctionSummary from '../AuctionSummary'
 import TokenSaleCountdown from '../TokenSaleCountdown'
 
-function MainPage ({ currentAuction, genesisTime, isInitialAuction, loading }) {
+function MainPage (props) {
+  const {
+    genesisTime,
+    isInitialAuction,
+    loading,
+    onBuyMetronomeClick
+  } = props
+
   const now = Date.now()
   const auctionsStarted = genesisTime <= now
   const loadingAuctionStatus = loading
@@ -29,7 +36,11 @@ function MainPage ({ currentAuction, genesisTime, isInitialAuction, loading }) {
                 ? <div>{/* Loading... */}</div>
                 : <AuctionSummary />
               : <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 162, marginTop: 37 }}>
-                <a className="btn">Buy Metronome</a>
+                <button
+                  className="btn"
+                  onClick={onBuyMetronomeClick}>
+                  Buy Metronome
+                </button>
               </div>
             : <TokenSaleCountdown />}
 
@@ -168,7 +179,14 @@ function MainPage ({ currentAuction, genesisTime, isInitialAuction, loading }) {
           </div>
 
           <div className="video-wrapper">
-            <iframe src="https://player.vimeo.com/video/268585326" width="640" height="360" frameBorder="0" allowFullScreen></iframe>
+            <iframe
+              title="Metronome Initial Supply Auction"
+              src="https://player.vimeo.com/video/268585326"
+              width="640"
+              height="360"
+              frameBorder="0"
+              allowFullScreen>
+            </iframe>
           </div>
         </div>
 
@@ -509,8 +527,10 @@ function MainPage ({ currentAuction, genesisTime, isInitialAuction, loading }) {
   )
 }
 
-function mapStateToProps (state) {
-  return state.auction.status
-}
+const mapStateToProps = state => state.auction.status
 
-export default connect(mapStateToProps)(MainPage)
+const mapDispatchToProps = dispatch => ({
+  onBuyMetronomeClick: () => dispatch({ type: 'SHOW_BUY_PANEL', payload: true })
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage)

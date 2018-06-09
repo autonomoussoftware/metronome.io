@@ -12,6 +12,7 @@ function AuctionSummary (props) {
   const {
     currentPrice,
     lastPurchasePrice,
+    onBuyMetronomeClick,
     tokensRemaining
   } = props
 
@@ -53,7 +54,12 @@ function AuctionSummary (props) {
           </div>
           <div className="overview__buy-met">
             <div className="overview__buy-met--inner">
-              <a className={`btn ${isAuctionInProgress ? '' : 'btn-disabled'}`} style={{ borderColor: '#fff', color: '#7e61f8' }}>Buy Metronome</a>
+              <button
+                className={`btn ${isAuctionInProgress ? '' : 'btn-disabled'}`}
+                style={{ borderColor: '#fff', color: '#7e61f8' }}
+                onClick={onBuyMetronomeClick}>
+                Buy Metronome
+              </button>
             </div>
           </div>
           <div className="overview__visit-dashboard">
@@ -69,4 +75,8 @@ function mapStateToProps (state) {
   return state.auction.status
 }
 
-export default connect(mapStateToProps)(AuctionSummary)
+const mapDispatchToProps = dispatch => ({
+  onBuyMetronomeClick: () => dispatch({ type: 'SHOW_BUY_PANEL', payload: true })
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuctionSummary)

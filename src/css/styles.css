@@ -142,6 +142,21 @@
   html body .AuctionPanel {
     width: 90%;
   }
+  html body h1.downloads__header-title {
+    font-size: 32px!important;
+  }
+  html body .downloads__app-screenshot {
+    transform: translateZ(-0.1px) !important;
+  }
+  html body .downloads__app-screenshot img {
+    position: relative;
+    width: 400px;
+  }
+  html body .envelope__footer-downloads li {
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+  }
 }
 @media only screen and (max-device-width: 1150px), only screen and (max-device-width: 1150px), only screen and (max-width: 1130px) {
   body .tokens-percentage,
@@ -844,6 +859,62 @@ ul.price__compare li {
   position: relative;
   margin: 0px;
   padding: 15px;
+  display: inline-block;
+  float: left;
+}
+.chart__dropdown-time-selector {
+  float: right;
+  display: inline-block;
+  position: relative;
+  margin: 15px 15px 0 0;
+  padding: 0px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.chart__dropdown-time-selector .label__selector {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.14;
+  letter-spacing: 1.6px;
+  color: #fff;
+}
+.chart__dropdown-time-selector .arrow-down {
+  float: right;
+  display: inline-block;
+  margin: 3px 0 0 7px;
+  position: relative;
+  top: 6px;
+}
+.chart__dropdown-time-selector .chart__dropdown-time-selector--dropdown {
+  background-color: #fff;
+  display: block;
+  position: absolute;
+  margin: 0px;
+  padding: 0px;
+  border-radius: 5px;
+  text-transform: none;
+  width: 200px;
+  z-index: 20;
+  left: -70px;
+}
+.chart__dropdown-time-selector .chart__dropdown-time-selector--dropdown li {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+}
+.chart__dropdown-time-selector .chart__dropdown-time-selector--dropdown li a.--active {
+  background-color: #e5e0fd;
+}
+.chart__dropdown-time-selector .chart__dropdown-time-selector--dropdown li a {
+  width: calc(100% - 30px);
+  display: block;
+  margin: 0px;
+  padding: 15px;
+}
+.chart__dropdown-time-selector .chart__dropdown-time-selector--dropdown li a:hover {
+  background-color: #f6f4fe;
 }
 .label__Auction-Price {
   margin: 0 10px 0 0;
@@ -1244,7 +1315,7 @@ a.overview__current-auction-error-link {
   right: 0px;
   top: 0px;
   width: 460px;
-  z-index: 100;
+  z-index: 10000;
   background-color: #343434;
   box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.2);
 }
@@ -1789,4 +1860,162 @@ a.overview__current-auction-error-link {
   right: 0px;
   border-bottom: 300px solid #fff;
   border-left: 1200px solid transparent;
+}
+.downloads__main-container {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-perspective: 1px;
+  perspective: 1px;
+}
+.downloads__main-container .parallax__layer {
+  padding: 5vh 0;
+}
+.downloads__main-container .parallax__layer--back {
+  transform: translateZ(-0.1px);
+}
+.downloads__main-container .parallax__layer {
+  position: relative;
+}
+.downloads__main-container h1.downloads__header-title {
+  font-family: Muli;
+  font-size: 64px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  color: #7e61f8;
+  margin: 0px;
+  padding: 0px;
+}
+.downloads__main-container .downloads__content-container {
+  width: 100%;
+  padding-top: 20px;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  clear: both;
+}
+.downloads__main-container .downloads__met-icon {
+  display: inline-block;
+  margin: 0 auto;
+  position: relative;
+}
+.downloads__main-container .downloads__title-container {
+  position: relative;
+  top: -25px;
+  margin-bottom: 25px;
+}
+.downloads__main-container .btn {
+  width: 220px;
+  display: block;
+  padding: 18px 10px 18px 10px;
+  background-color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.14;
+  letter-spacing: 1.6px;
+  text-align: center;
+  color: #7e61f8;
+  margin: 0 auto;
+  positin: relative;
+}
+.downloads__main-container .link__sm {
+  color: #fff;
+  text-decoration: underline;
+  font-size: 13px;
+  position: relative;
+  display: block;
+  margin-top: 15px;
+}
+.downloads__main-container .downloads__app-screenshot {
+  z-index: 10;
+  margin-top: 25px;
+  padding: 5vh 0;
+  position: relative;
+  transform: translateZ(-0.1px);
+}
+.downloads__main-container .envelope {
+  position: relative;
+  bottom: 0px;
+}
+.downloads__main-container .envelope__footer {
+  background-color: #F4F4F5;
+  width: 100%;
+  padding: 25px 0 25px 0;
+  display: inline-block;
+  clear: both;
+}
+.downloads__main-container .envelope__footer h2 {
+  color: #525252;
+  font-size: 28px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  margin-bottom: 25px;
+}
+.downloads__main-container .envelope__footer .envelope__footer-downloads {
+  position: relative;
+  display: inline-block;
+  clear: both;
+}
+.downloads__main-container .envelope__footer .envelope__footer-downloads .btn {
+  width: inherit;
+  padding-right: 25px;
+  padding-left: 25px;
+}
+.downloads__main-container .envelope__footer .envelope__footer-downloads ul {
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+.downloads__main-container .envelope__footer .envelope__footer-downloads ul li {
+  float: left;
+  margin-right: 10px;
+}
+.downloads__main-container .envelope__footer .envelope__footer-coming-soon {
+  font-size: 16px;
+  display: block;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #525252;
+  margin-top: 45px;
+  margin-bottom: 85px;
+}
+.downloads__main-container .envelope__footer span.span__strong {
+  color: #7e61f8;
+}
+.--slideUp {
+  animation-name: slideUp;
+  -webkit-animation-name: slideUp;
+  animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+  animation-timing-function: ease;
+  -webkit-animation-timing-function: ease;
+  visibility: visible !important;
+}
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+@-webkit-keyframes slideUp {
+  0% {
+    -webkit-transform: translateY(100%);
+  }
+  100% {
+    -webkit-transform: translateY(0%);
+  }
 }

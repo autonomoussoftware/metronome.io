@@ -1,21 +1,23 @@
-import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
+import React from 'react'
 
-import AuctionStatus from './AuctionStatus'
+import AuctionPanel from './AuctionPanel'
 import AuctionsPage from './pages/AuctionsPage'
+import AuctionStatus from './AuctionStatus'
 import FeaturesPage from './pages/FeaturesPage'
-import MediaKitPage from './pages/MediaKitPage'
 import HomePage from './pages/HomePage'
+import MediaKitPage from './pages/MediaKitPage'
 
 import PageHeader from './PageHeader'
 import PageFooter from './PageFooter'
 
-function App ({ isDailyAuction }) {
+function App ({ isDailyAuction, showBuyPanel }) {
   return (
-    <Router>
-      <div>
+    <BrowserRouter>
+      <React.Fragment>
         <AuctionStatus />
+
         <PageHeader />
 
         <Route exact path="/" component={HomePage}/>
@@ -27,13 +29,18 @@ function App ({ isDailyAuction }) {
           : null}
 
         <PageFooter />
-      </div>
-    </Router>
+
+        <AuctionPanel showBuyPanelEdit={showBuyPanel} />
+      </React.Fragment>
+    </BrowserRouter>
   )
 }
 
 function mapStateToProps (state) {
-  return state.auction.status
+  return {
+    isDailyAuction: state.auction.status.isDailyAuction,
+    showBuyPanel: state.buyPanel.show
+  }
 }
 
 export default connect(mapStateToProps)(App)

@@ -25,12 +25,12 @@ export default function () {
             </div>
             <div className="col-sm-4">
               <h4>Jeff Garzik</h4>
-              <img className="img-fluid" src="../images/media-jeff-garzik.jpg" alt="Jeff Garzik Photo"/>
+              <img className="img-fluid" src="../images/media-jeff-garzik.jpg" alt="Jeff Garzik"/>
               <p><a className="dl-link" href="/download/JeffGarzik.zip" lang="en">Download Photo & Bio &raquo;</a></p>
             </div>
             <div className="col-sm-4">
               <h4>Matthew Roszak</h4>
-              <img className="img-fluid" src="../images/media-matt-roszak.jpg" alt="Matthew Roszak Photo"/>
+              <img className="img-fluid" src="../images/media-matt-roszak.jpg" alt="Matthew Roszak"/>
               <p><a className="dl-link" href="/download/MatthewRoszak.zip" lang="en">Download Photo & Bio &raquo;</a></p>
             </div>
           </div>
