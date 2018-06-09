@@ -1,21 +1,21 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 
-import AuctionPanelBuyMet from './AuctionPanelBuyMet'
-import AuctionPanelBuyMetHeader from './AuctionPanelBuyMetHeader'
-import AuctionPanelMetaMask from './AuctionPanelMetaMask'
-import AuctionPanelMetaMaskHeader from './AuctionPanelMetaMaskHeader'
+import AuctionBuyForm from './AuctionBuyForm'
+import AuctionBuyOptions from './AuctionBuyOptions'
+import AuctionBuyOptionsHeader from './AuctionBuyOptionsHeader'
+import AuctionBuyFormHeader from './AuctionBuyFormHeader'
 
 class AuctionPanel extends Component {
   render () {
     return (
       <div className={this.props.showBuyPanelEdit ? 'AuctionPanel --slideOut' : 'AuctionPanel'}>
-        <AuctionPanelBuyMetHeader showPanelMetaMask={this.props.showPanelMetaMask} hideBuyPanel={this.props.hideBuyPanel} />
-        <AuctionPanelMetaMaskHeader backBuyMetPanel={this.props.backBuyMetPanel} showPanelMetaMask={this.props.showPanelMetaMask} hideBuyPanel={this.props.hideBuyPanel} />
+        <AuctionBuyOptionsHeader showPanelMetaMask={this.props.showPanelMetaMask} hideBuyPanel={this.props.hideBuyPanel} />
+        <AuctionBuyFormHeader backBuyMetPanel={this.props.backBuyMetPanel} showPanelMetaMask={this.props.showPanelMetaMask} hideBuyPanel={this.props.hideBuyPanel} />
         <div className="auction-panel__body">
           <div className="auction-panel__body--inner">
-            <AuctionPanelBuyMet showPanelBuyMet={this.props.showPanelBuyMet} buyMetaMask={this.props.buyMetaMask} />
-            <AuctionPanelMetaMask showPanelMetaMask={this.props.showPanelMetaMask} />
+            <AuctionBuyOptions showPanelBuyMet={this.props.showPanelBuyMet} buyMetaMask={this.props.buyMetaMask} />
+            <AuctionBuyForm showPanelMetaMask={this.props.showPanelMetaMask} />
           </div>
         </div>
       </div>

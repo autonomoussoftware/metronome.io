@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import metIcon from '../img/light.svg'
 import closeIcon from '../img/close.svg'
 
-class AuctionPanelBuyMetHeader extends Component {
+class AuctionBuyOptionsHeader extends Component {
   render () {
     return (
       <div className={this.props.showPanelMetaMask ? 'auction-panel__header header__buy-met ' : 'auction-panel__header header__buy-met --showBuyMetHeader'}>
@@ -16,4 +16,4 @@ class AuctionPanelBuyMetHeader extends Component {
     )
   }
 }
-export default AuctionPanelBuyMetHeader
+export default AuctionBuyOptionsHeader

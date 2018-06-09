@@ -22,7 +22,7 @@ class AuctionCopyClipboard extends Component {
   }
 
   render () {
-    const { publicAddress } = this.props
+    const { address } = this.props
 
     return (
       <div className="AuctionCopyClipboard">
@@ -39,7 +39,7 @@ class AuctionCopyClipboard extends Component {
           id="copyAddress"
           type="text"
           className="auction__address-input"
-          value={publicAddress}
+          value={address}
           readOnly>
         </input>
 

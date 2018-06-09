@@ -3,33 +3,32 @@ import React, { Component } from 'react'
 
 import arrowIcon from '../img/arrow-forward-24-px.svg'
 import AuctionCopyClipboard from './AuctionCopyClipboard'
-import AuctionPanelDetectOS from './AuctionPanelDetectOS'
+import DownloadWalletForm from './DownloadWalletForm'
 
-class AuctionPanelBuyMet extends Component {
+const isWeb3Available = !!(window.web3 && window.web3.currentProvider)
+
+class AuctionBuyOptions extends Component {
   render () {
-    const { publicAddress } = this.props
-
-    const QRcode = `https://chart.googleapis.com/chart?chs=160x160&cht=qr&chl=${publicAddress}&choe=UTF-8`
+    const { auctionsAddress } = this.props
 
     return (
       <div className={this.props.showPanelBuyMet ? 'panel__buy-metronome --showBuyMet' : 'panel__buy-metronome'}>
-        <section>
-          <h2>How would you like to buy Metronome?</h2>
+        <h2>How would you like to buy Metronome?</h2>
+        {isWeb3Available && <section>
           <a onClick={this.props.buyMetaMask} className="btn btn-lrg"><span className="btn-text">Buy with Metamask</span> <span className="btn-icon"><img alt="" src={arrowIcon} /></span></a>
-        </section>
+        </section>}
         <section className="auction__option-section">
-          <a className="btn btn-lrg"><span className="btn-text">Download Metronome Wallet</span> <span className="btn-icon --down"><img alt="" src={arrowIcon} /></span></a>
-          <AuctionPanelDetectOS />
+          <DownloadWalletForm />
           <div className="auction--or-oval"><span className="auction--or-text">or</span></div>
         </section>
         <section className="auction__contact-address">
           <h2>Use the Metronome Contract Address</h2>
-          <p>To make a purchase, send ETH to the address below. Make sure the address is correct. We reccomend using “Copy Address to Clipboard”, or scanning the barcode.</p>
-          <AuctionCopyClipboard publicAddress={publicAddress}/>
+          <p>To make a purchase, send ETH to the address below. Make sure the address is correct. We reccomend using "Copy Address to Clipboard", or scanning the QR code.</p>
+          <AuctionCopyClipboard address={auctionsAddress}/>
         </section>
         <section className="auction__qr-code-scanner" style={{ textAlign: 'center' }}>
           <div className="auction__qr-code">
-            <img alt="" src={QRcode} />
+            <img alt="" src={`https://chart.googleapis.com/chart?chs=160x160&cht=qr&chl=${auctionsAddress}&choe=UTF-8`} />
           </div>
           <div className="auction__qr-code-label">
             <span>Scan Address</span>
@@ -41,7 +40,7 @@ class AuctionPanelBuyMet extends Component {
 }
 
 const mapStateToProps = state => ({
-  publicAddress: state.config.auctionsAddress
+  auctionsAddress: state.config.auctionsAddress
 })
 
-export default connect(mapStateToProps)(AuctionPanelBuyMet)
+export default connect(mapStateToProps)(AuctionBuyOptions)

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import closeIcon from '../img/close.svg'
 import arrowIcon from '../img/arrow-forward-24-px.svg'
 
-class AuctionPanelMetaMaskHeader extends Component {
+class AuctionBuyFormHeader extends Component {
   constructor (props) {
     super(props)
 
@@ -24,4 +24,4 @@ class AuctionPanelMetaMaskHeader extends Component {
     )
   }
 }
-export default AuctionPanelMetaMaskHeader
+export default AuctionBuyFormHeader

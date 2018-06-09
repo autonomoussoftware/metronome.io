@@ -23,6 +23,7 @@
     "redux": "4.0.0",
     "redux-actions": "2.4.0",
     "smart-round": "file:lib/smart-round",
+    "ua-parser-js": "0.7.18",
     "victory": "0.27.0",
     "web3-utils": "1.0.0-beta.34"
   },

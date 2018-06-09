@@ -1,14 +1,6 @@
 import React, { Component } from 'react'
 
-class AuctionPanelMetaMask extends Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      showPanelMetaMask: true
-    }
-  }
-
+class AuctionBuyForm extends Component {
   render () {
     return (
       <div className={this.props.showPanelMetaMask ? 'panel__buy-meta-mask --showMetaMask' : 'panel__buy-meta-mask'}>
@@ -47,4 +39,4 @@ class AuctionPanelMetaMask extends Component {
     )
   }
 }
-export default AuctionPanelMetaMask
+export default AuctionBuyForm
