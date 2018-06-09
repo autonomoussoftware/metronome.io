@@ -23,7 +23,7 @@ function App ({ isDailyAuction }) {
         <Route exact path="/media-kit" component={MediaKitPage} />
 
         {isDailyAuction
-          ? <Route exact path="/auction" component={AuctionsPage}/>
+          ? <Route exact path="/auctions" component={AuctionsPage}/>
           : null}
 
         <PageFooter />

@@ -1,8 +1,9 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { NavHashLink } from 'react-router-hash-link'
+import { NavLink } from 'react-router-dom'
+import React from 'react'
 
-export default function () {
+function PageHeader ({ isDailyAuction }) {
   return (
     <header>
       <nav className="navbar navbar-expand-xl navbar-dark fixed-top">
@@ -10,24 +11,13 @@ export default function () {
           <NavHashLink to="/#start" smooth data-target=".navbar-collapse.show" className="navbar-brand">
             <img src="images/logo.png" alt="Metronome" />
           </NavHashLink>
+
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
             aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
 
           <div className="collapse navbar-collapse" id="navbarCollapse">
-
-            {/* <div className="dropdown language-switcher">
-              <button className="btn btn-language dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false" lang="en">
-                Languages
-              </button>
-              <div className="dropdown-menu" aria-labelledby="languageDropdown">
-                <a className="dropdown-item" href="#" onclick="window.lang.change('en'); return false;">English</a>
-                <a className="dropdown-item" href="#" onclick="window.lang.change('li'); return false;">Lorem Ipsum</a>
-                <a className="dropdown-item" href="#" onclick="window.lang.change('lx'); return false;">Language X</a>
-              </div>
-            </div> */}
             <ul className="navbar-nav ml-auto">
               <li data-target=".navbar-collapse.show" className="nav-item" id="n-about">
                 <NavHashLink to="/#about" smooth activeClassName="active" className="nav-link" lang="en">About</NavHashLink>
@@ -53,9 +43,9 @@ export default function () {
               <li className="nav-item">
                 <a className="nav-link" href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md" target="_blank" rel="noopener noreferrer" lang="en">FAQ</a>
               </li>
-              <li className="nav-item">
-                <NavLink to="/auction" activeClassName="active" className="nav-link" lang="en">Auction</NavLink>
-              </li>
+              {isDailyAuction && <li className="nav-item">
+                <NavLink to="/auctions" activeClassName="active" className="nav-link" lang="en">Auction</NavLink>
+              </li>}
             </ul>
           </div>
         </div>
@@ -63,3 +53,7 @@ export default function () {
     </header>
   )
 }
+
+const mapStateToProps = state => state.auction.status
+
+export default connect(mapStateToProps)(PageHeader)
