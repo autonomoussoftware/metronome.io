@@ -580,19 +580,19 @@
     var launchDate = '2018/06/17 20:01:00';
     $('.fc-day').countdown(launchDate).on('update.countdown', function (event) {
       var $this = $(this).html(event.strftime(''
-        + '<span>%D</span> day%!d'));
+        + '<span>%D</span> day%!D'));
     });
     $('.fc-hour').countdown(launchDate).on('update.countdown', function (event) {
       var $this = $(this).html(event.strftime(''
-        + '<span>%H</span> hour%!d'));
+        + '<span>%H</span> hour%!H'));
     });
     $('.fc-minute').countdown(launchDate).on('update.countdown', function (event) {
       var $this = $(this).html(event.strftime(''
-        + '<span>%M</span> minute%!d'));
+        + '<span>%M</span> minute%!M'));
     });
     $('.fc-second').countdown(launchDate).on('update.countdown', function (event) {
       var $this = $(this).html(event.strftime(''
-        + '<span>%S</span> second%!d'));
+        + '<span>%S</span> second%!S'));
     });
   </script>
 
