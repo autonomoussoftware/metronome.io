@@ -12,7 +12,7 @@ function MainPage ({ currentAuction, genesisTime, isInitialAuction, loading }) {
   return (
     <div className="home" >
       <div id="top" className="site-section">
-        <div id="top-particle"></div>
+        {/* <div id="top-particle"></div> */}
 
         <div className="container">
           <h1 lang="en" className="text-center">
