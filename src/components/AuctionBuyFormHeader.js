@@ -1,3 +1,4 @@
+import { connect } from 'react-redux'
 import React, { Component } from 'react'
 
 import closeIcon from '../img/close.svg'
@@ -18,4 +19,8 @@ class AuctionBuyFormHeader extends Component {
   }
 }
 
-export default AuctionBuyFormHeader
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+export default connect(mapStateToProps)(AuctionBuyFormHeader)

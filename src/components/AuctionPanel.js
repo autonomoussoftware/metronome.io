@@ -5,20 +5,23 @@ import AuctionBuyForm from './AuctionBuyForm'
 import AuctionBuyOptions from './AuctionBuyOptions'
 import AuctionBuyOptionsHeader from './AuctionBuyOptionsHeader'
 import AuctionBuyFormHeader from './AuctionBuyFormHeader'
-import withUserInfo from './withUserInfo'
+import UserInfo from './UserInfo'
+import withWeb3 from './withWeb3'
 
-const AuctionBuyFormHeaderWithUserInfo = withUserInfo(AuctionBuyFormHeader)
+const AuctionBuyFormWithWeb3 = withWeb3(AuctionBuyForm)
+const UserInfoWithWeb3 = withWeb3(UserInfo)
 
 class AuctionPanel extends Component {
   render () {
     return (
       <div className={this.props.showBuyPanelEdit ? 'AuctionPanel --slideOut' : 'AuctionPanel'}>
+        <UserInfoWithWeb3 onAccounts={this.props.updateAccounts} />
         <AuctionBuyOptionsHeader showPanelMetaMask={this.props.showPanelMetaMask} hideBuyPanel={this.props.hideBuyPanel} />
-        <AuctionBuyFormHeaderWithUserInfo backBuyMetPanel={this.props.backBuyMetPanel} showPanelMetaMask={this.props.showPanelMetaMask} hideBuyPanel={this.props.hideBuyPanel} />
+        <AuctionBuyFormHeader backBuyMetPanel={this.props.backBuyMetPanel} showPanelMetaMask={this.props.showPanelMetaMask} hideBuyPanel={this.props.hideBuyPanel} />
         <div className="auction-panel__body">
           <div className="auction-panel__body--inner">
             <AuctionBuyOptions showPanelBuyMet={this.props.showPanelBuyMet} buyMetaMask={this.props.buyMetaMask} />
-            <AuctionBuyForm showPanelMetaMask={this.props.showPanelMetaMask} />
+            <AuctionBuyFormWithWeb3 showPanelMetaMask={this.props.showPanelMetaMask} />
           </div>
         </div>
       </div>
@@ -32,9 +35,22 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  hideBuyPanel: () => dispatch({ type: 'SHOW_BUY_PANEL', payload: false }),
-  buyMetaMask: () => dispatch({ type: 'SHOW_BUY_FORM', payload: true }),
-  backBuyMetPanel: () => dispatch({ type: 'SHOW_BUY_FORM', payload: false })
+  backBuyMetPanel: () => dispatch({
+    type: 'SHOW_BUY_FORM',
+    payload: false
+  }),
+  buyMetaMask: () => dispatch({
+    type: 'SHOW_BUY_FORM',
+    payload: true
+  }),
+  hideBuyPanel: () => dispatch({
+    type: 'SHOW_BUY_PANEL',
+    payload: false
+  }),
+  updateAccounts: accounts => dispatch({
+    type: 'UPDATE_USER_ACCOUNTS',
+    payload: accounts
+  })
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuctionPanel)

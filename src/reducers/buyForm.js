@@ -2,8 +2,8 @@ import { handleActions } from 'redux-actions'
 import BigNumber from 'bignumber.js'
 
 const initialState = {
-  eth: '',
-  met: ''
+  eth: '0',
+  met: '0'
 }
 
 const reducer = handleActions(
