@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
+import BigNumber from 'bignumber.js'
 
 import EthValue from './EthValue'
 import FiatValue from './FiatValue'
@@ -8,8 +9,26 @@ import MetValue from './MetValue'
 class AuctionBuyForm extends Component {
   render () {
     const {
-      status: { currentPrice }
+      currentPrice,
+      eth,
+      met,
+      updateEth,
+      updateMet
     } = this.props
+
+    // TODO get rate from CoinCap
+    const fiatValue = new BigNumber(eth).times('575.33').toString()
+
+    const allowBuy = !(new BigNumber(eth || 0).eq(0))
+
+    function withRate (eventHandler) {
+      return function (ev) {
+        eventHandler({
+          value: ev.target.value,
+          rate: currentPrice
+        })
+      }
+    }
 
     return (
       <div className={this.props.showPanelMetaMask ? 'panel__buy-meta-mask --showMetaMask' : 'panel__buy-meta-mask'}>
@@ -26,22 +45,22 @@ class AuctionBuyForm extends Component {
             <div className="buy-meta-mask__form-group">
               <label>Amount (MET)</label>
               {/* <label className="right">MAX</label> */}
-              <input type="number" placeholder="0" />
+              <input type="number" placeholder="0" value={met} onChange={withRate(updateMet)}/>
               <span className="label_overlay">MET</span>
             </div>
             <div className="buy-meta-mask__form-group">
               <label>Cost (ETH)</label>
-              <input type="number" placeholder="0" />
+              <input type="number" placeholder="0" value={eth} onChange={withRate(updateEth)}/>
               <span className="label_overlay">ETH</span>
             </div>
           </form>
         </section>
         <section className="buy-meta-mask__form-totals">
-          <span>Buying <MetValue>{20}</MetValue> @ <EthValue>{currentPrice}</EthValue> = <FiatValue suffix="USD">1534.04</FiatValue></span>
+          <span>Buying <MetValue unit="ether">{met}</MetValue> @ <EthValue>{currentPrice}</EthValue> = <FiatValue suffix="USD">{fiatValue}</FiatValue></span>
         </section>
         <section className="buy-meta-mask__review-order">
           <span> By choosing "Review Purchase" you are agreeing to our disclaimer and terms of service</span>
-          <a className="btn --disabled">Review Purchase</a>
+          <a className={`btn ${allowBuy ? '' : '--disabled'}`}>Review Purchase</a>
           <span className="buy-meta-mask__review-disclaimer"> You will be see a review of this purchase in your web wallet</span>
         </section>
       </div>
@@ -50,7 +69,13 @@ class AuctionBuyForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  status: state.auction.status
+  currentPrice: state.auction.status.currentPrice,
+  ...state.buyForm
 })
 
-export default connect(mapStateToProps)(AuctionBuyForm)
+const mapDispatchToProps = dispatch => ({
+  updateEth: payload => dispatch({ type: 'UPDATE_BUY_ETH', payload }),
+  updateMet: payload => dispatch({ type: 'UPDATE_BUY_MET', payload })
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuctionBuyForm)
