@@ -15,7 +15,9 @@ class AuctionBuyOptions extends Component {
       <div className={this.props.showPanelBuyMet ? 'panel__buy-metronome --showBuyMet' : 'panel__buy-metronome'}>
         <h2>How would you like to buy Metronome?</h2>
         {isWeb3Available && <section>
-          <a onClick={this.props.buyMetaMask} className="btn btn-lrg"><span className="btn-text">Buy with Metamask</span> <span className="btn-icon"><img alt="" src={arrowIcon} /></span></a>
+          <a onClick={this.props.buyMetaMask} className="btn btn-lrg">
+            <span className="btn-text">Buy with Web Wallet</span> <span className="btn-icon"><img alt="" src={arrowIcon} /></span>
+          </a>
         </section>}
         <section className="auction__option-section">
           <DownloadWalletForm />
