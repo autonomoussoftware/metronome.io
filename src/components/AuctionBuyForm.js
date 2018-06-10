@@ -50,12 +50,13 @@ class AuctionBuyForm extends Component {
       rates,
       updateEth,
       updateEthUsdRate,
-      updateMet
+      updateMet,
+      userAccount
     } = this.props
 
     const fiatValue = new BigNumber(eth).times(rates.ETH_USD).toString()
 
-    const allowBuy = !(new BigNumber(eth).eq(0))
+    const allowBuy = !(new BigNumber(eth).eq(0)) && userAccount
 
     function withRate (eventHandler) {
       return function (ev) {
