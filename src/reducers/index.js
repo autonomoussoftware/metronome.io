@@ -4,6 +4,7 @@ import auction from './auction'
 import buyForm from './buyForm'
 import buyPanel from './buyPanel'
 import config from './config'
+import rates from './rates'
 import user from './user'
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   buyForm,
   buyPanel,
   config,
+  rates,
   user
 })
 

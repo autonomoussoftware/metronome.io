@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "bignumber.js": "7.2.1",
+    "coincap-lib": "1.0.0",
+    "lodash.throttle": "4.1.1",
     "metronome-auction-status": "file:lib/metronome-auction-status-js",
     "react": "16.4.0",
     "react-app-rewired": "1.5.2",
@@ -22,6 +24,7 @@
     "react-scripts": "1.1.4",
     "redux": "4.0.0",
     "redux-actions": "2.4.0",
+    "redux-localstorage": "0.4.1",
     "smart-round": "file:lib/smart-round",
     "startinterval2": "1.0.1",
     "ua-parser-js": "0.7.18",
