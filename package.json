@@ -14,6 +14,7 @@
     "coincap-lib": "1.0.0",
     "lodash.throttle": "4.1.1",
     "metronome-auction-status": "file:lib/metronome-auction-status-js",
+    "metronome-contracts": "1.2.0",
     "react": "16.4.0",
     "react-app-rewired": "1.5.2",
     "react-countdown-now": "1.3.0",
