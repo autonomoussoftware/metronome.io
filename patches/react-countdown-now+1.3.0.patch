@@ -1,0 +1,13 @@
+patch-package
+--- a/node_modules/react-countdown-now/dist/Countdown.js
++++ b/node_modules/react-countdown-now/dist/Countdown.js
+@@ -132,6 +132,9 @@ var Countdown = function (_React$Component) {
+         precision: precision,
+         controlled: controlled
+       }));
++      if (!this.props.controlled) {
++        this.interval = setInterval(this.tick, this.props.intervalDelay);
++      }
+     }
+   }, {
+     key: 'componentWillUnmount',
