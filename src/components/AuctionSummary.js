@@ -56,6 +56,7 @@ function AuctionSummary (props) {
             <div className="overview__buy-met--inner">
               <button
                 className={`btn ${isAuctionInProgress ? '' : 'btn-disabled'}`}
+                disabled={!isAuctionInProgress}
                 style={{ borderColor: '#fff', color: '#7e61f8' }}
                 onClick={onBuyMetronomeClick}>
                 Buy Metronome
