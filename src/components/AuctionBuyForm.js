@@ -28,18 +28,22 @@ class AuctionBuyForm extends Component {
       value: web3.utils.toWei(eth, 'ether')
     }
 
-    web3.eth.sendTransaction(txObject)
-      .on('transactionHash', function (hash) {
-        // TODO switch to "awaiting confirmation"
-      })
-      .on('receipt', function (recepit) {
-        // TODO swith to "recepit" & clear form
-      })
-      .on('error', function (e) {
-        // TODO switch to "error"
-      })
+    try {
+      web3.eth.sendTransaction(txObject)
+        .on('transactionHash', function (hash) {
+          // TODO switch to "awaiting confirmation"
+        })
+        .on('receipt', function (recepit) {
+          // TODO swith to "recepit" & clear form
+        })
+        .on('error', function (e) {
+          // TODO switch to "error"
+        })
+    } catch (e) {
+      // TODO switch to "error"
+    }
 
-    // TODO switch to "awaiting submition" panel
+    // TODO switch to "awaiting user" panel
   }
 
   render () {
