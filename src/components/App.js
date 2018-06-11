@@ -1,42 +1,23 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import React from 'react'
 
 import AuctionPanel from './AuctionPanel'
 import AuctionStatus from './AuctionStatus'
-
-import HomePage from './pages/HomePage'
-import ErrorPage from './pages/ErrorPage'
 import AuctionsPage from './pages/AuctionsPage'
-import FeaturesPage from './pages/FeaturesPage'
-import MediaKitPage from './pages/MediaKitPage'
-
-import PageHeader from './PageHeader'
-import PageFooter from './PageFooter'
 
 function App ({ isDailyAuction, showBuyPanel }) {
   return (
-    <BrowserRouter>
-      <React.Fragment>
-        <AuctionStatus />
+    <React.Fragment>
+      <AuctionStatus />
 
-        <PageHeader />
+      {isDailyAuction
+        ? <AuctionsPage/>
+        : null}
 
-        <Switch>
-          <Route exact path="/" component={HomePage}/>
-          <Route exact path="/features" component={FeaturesPage} />
-          <Route exact path="/media-kit" component={MediaKitPage} />
-          {isDailyAuction
-            ? <Route exact path="/auction" component={AuctionsPage}/>
-            : null}
-          <Route component={ErrorPage} />
-        </Switch>
+      <h1>{isDailyAuction.toString()}</h1>
 
-        <PageFooter />
-
-        <AuctionPanel showBuyPanelEdit={showBuyPanel} />
-      </React.Fragment>
-    </BrowserRouter>
+      <AuctionPanel showBuyPanelEdit={showBuyPanel} />
+    </React.Fragment>
   )
 }
 
