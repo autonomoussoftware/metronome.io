@@ -2,7 +2,7 @@ import React from 'react'
 
 function MainFooter () {
   return (
-    <footer className="footer site-section" role="footer">
+    <footer className="footer site-section">
       <div className="container">
         <div className="row justify-content-md-center">
           <div className="col-md">

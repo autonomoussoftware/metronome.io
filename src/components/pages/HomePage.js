@@ -17,7 +17,7 @@ function MainPage (props) {
   const loadingAuctionStatus = loading
 
   return (
-    <div className="home" >
+    <div className="home">
       <div id="top" className="site-section">
         {/* <div id="top-particle"></div> */}
 
@@ -425,8 +425,9 @@ function MainPage (props) {
           <div className="row">
             <div className="col-sm text-center">
               <a href="https://www.bloomberg.com/news/articles/2017-10-24/bitcoin-pioneer-says-new-coin-to-work-on-multiple-blockchains"
-                target="_blank" rel='noopener noreferrer' />
-              <img src="images/news-bloomberg.png" alt="Bloomberg" />
+                target="_blank" rel='noopener noreferrer'>
+                <img src="images/news-bloomberg.png" alt="Bloomberg" />
+              </a>
               <h3>
                 <a href="https://www.bloomberg.com/news/articles/2017-10-24/bitcoin-pioneer-says-new-coin-to-work-on-multiple-blockchains"
                   target="_blank" rel='noopener noreferrer'>Bitcoin pioneer says new coin to work on many blockchains</a>
