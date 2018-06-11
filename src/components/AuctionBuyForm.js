@@ -117,11 +117,12 @@ class AuctionBuyForm extends Component {
           </section>
           <section className="buy-meta-mask__review-order">
             <span> By choosing "Review Purchase" you are agreeing to our disclaimer and terms of service</span>
-            <a
+            <button
               className={`btn ${allowBuy ? '' : '--disabled'}`}
+              disabled={!allowBuy}
               onClick={this.sendTransaction}>
               Review Purchase
-            </a>
+            </button>
             <span className="buy-meta-mask__review-disclaimer"> You will be see a review of this purchase in your web wallet</span>
           </section>
         </div>

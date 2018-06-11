@@ -1475,11 +1475,11 @@ a.overview__current-auction-error-link {
   line-height: normal;
   letter-spacing: 0.4px;
 }
-.buy-meta-mask__review-order a.btn.--disabled {
+.buy-meta-mask__review-order button.btn.--disabled {
   opacity: 0.5;
   cursor: default;
 }
-.buy-meta-mask__review-order a.btn {
+.buy-meta-mask__review-order button.btn {
   cursor: pointer;
   margin-top: 25px;
   width: 100%;
