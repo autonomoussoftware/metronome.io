@@ -44,7 +44,7 @@ function PageHeader ({ isDailyAuction }) {
                 <a className="nav-link" href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md" target="_blank" rel="noopener noreferrer" lang="en">FAQ</a>
               </li>
               {isDailyAuction && <li className="nav-item">
-                <NavLink to="/auctions" activeClassName="active" className="nav-link" lang="en">Auction</NavLink>
+                <NavLink to="/auction" activeClassName="active" className="nav-link" lang="en">Auction</NavLink>
               </li>}
             </ul>
           </div>

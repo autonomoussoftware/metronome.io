@@ -26,12 +26,11 @@ function App ({ isDailyAuction, showBuyPanel }) {
           <Route exact path="/" component={HomePage}/>
           <Route exact path="/features" component={FeaturesPage} />
           <Route exact path="/media-kit" component={MediaKitPage} />
+          {isDailyAuction
+            ? <Route exact path="/auction" component={AuctionsPage}/>
+            : null}
           <Route component={ErrorPage} />
         </Switch>
-
-        {isDailyAuction
-          ? <Route exact path="/auctions" component={AuctionsPage}/>
-          : null}
 
         <PageFooter />
 
