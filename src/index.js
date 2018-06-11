@@ -12,9 +12,24 @@ const reduxDevtoolsOptions = { features: { dispatch: true } }
 
 const store = createStore(reduxDevtoolsOptions, getInitialState(config))
 
-reactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-)
+function getAppContent (content) {
+  switch (content) {
+    case 'home':
+      return <App />
+    default:
+      return null
+  }
+}
+
+const rootElement = document.getElementById('root')
+
+if (rootElement) {
+  const rootContent = rootElement.getAttribute('content')
+
+  reactDOM.render(
+    <Provider store={store}>
+      {getAppContent(rootContent)}
+    </Provider>,
+    rootElement
+  )
+}
