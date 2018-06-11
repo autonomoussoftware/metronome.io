@@ -4,7 +4,10 @@ import BigNumber from 'bignumber.js'
 const initialState = {
   loading: true,
   status: {
-    genesisTime: new Date('2018-06-18T00:00:00Z').getTime()
+    genesisTime: new Date('2018-06-18T00:00:00Z').getTime(),
+    isAuctionInProgress: false,
+    isDailyAuction: false,
+    isInitialAuction: false
   }
 }
 

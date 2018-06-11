@@ -4,6 +4,7 @@ import reactDOM from 'react-dom'
 
 import './css/styles.css'
 import App from './components/App'
+import AuctionStatus from './components/AuctionStatus'
 import config from './config'
 import createStore from './createStore'
 import getInitialState from './getInitialState'
@@ -28,8 +29,18 @@ if (rootElement) {
 
   reactDOM.render(
     <Provider store={store}>
-      {getAppContent(rootContent)}
+      <React.Fragment>
+        <AuctionStatus />
+        {getAppContent(rootContent)}
+      </React.Fragment>
     </Provider>,
     rootElement
   )
 }
+
+store.subscribe(function () {
+  if (store.getState().auction.status.isDailyAuction) {
+    // eslint-disable-next-line no-undef
+    $('#auctions-menu-item').show()
+  }
+})

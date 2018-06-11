@@ -2,14 +2,12 @@ import { connect } from 'react-redux'
 import React from 'react'
 
 import AuctionPanel from './AuctionPanel'
-import AuctionStatus from './AuctionStatus'
 import AuctionSummary from './AuctionSummary'
 // import AuctionsPage from './pages/AuctionsPage'
 
 function App ({ isDailyAuction, showBuyPanel }) {
   return (
     <React.Fragment>
-      <AuctionStatus />
       <AuctionSummary />
 
       {/* {isDailyAuction
