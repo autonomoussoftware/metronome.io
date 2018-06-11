@@ -18,6 +18,7 @@ class AuctionBuyForm extends Component {
   sendTransaction () {
     const {
       auctionsAddress,
+      clearForm,
       eth,
       userAccount,
       web3
@@ -33,18 +34,25 @@ class AuctionBuyForm extends Component {
       web3.eth.sendTransaction(txObject)
         .on('transactionHash', function (hash) {
           // TODO switch to "awaiting confirmation"
+          console.log('hash', hash)
         })
         .on('receipt', function (recepit) {
           // TODO swith to "recepit" & clear form
+          console.log('recepit', recepit)
+
+          clearForm()
         })
-        .on('error', function (e) {
+        .on('error', function (err) {
           // TODO switch to "error"
+          console.log('tx error', err.message)
         })
-    } catch (e) {
+    } catch (err) {
       // TODO switch to "error"
+      console.log('send error', err.message)
     }
 
     // TODO switch to "awaiting user" panel
+    console.log('awaiting user')
   }
 
   render () {
@@ -131,6 +139,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+  clearForm: () => dispatch({
+    type: 'CLEAR_BUY_FORM'
+  }),
   updateEth: payload => dispatch({
     type: 'UPDATE_BUY_ETH',
     payload

@@ -37,7 +37,8 @@ const reducer = handleActions(
       eth: new BigNumber(state.met)
         .times(fromWei(payload.currentPrice))
         .toFixed(DECIMAL_PLACES)
-    })
+    }),
+    CLEAR_BUY_FORM: () => initialState
   },
   initialState
 )
