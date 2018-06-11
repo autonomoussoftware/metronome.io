@@ -1,6 +1,14 @@
+import { fromWei } from 'web3-utils'
 import { handleActions } from 'redux-actions'
 import BigNumber from 'bignumber.js'
 
+// Since both ETH and MET are 18 decimal places, we can use a single const
+const DECIMAL_PLACES = 18
+
+// Ensure all division operations are not properly rounded
+BigNumber.config({ DECIMAL_PLACES })
+
+// Values are in ETH and MET, not wei and aMET
 const initialState = {
   eth: '0',
   met: '0'
@@ -10,26 +18,25 @@ const reducer = handleActions(
   {
     UPDATE_BUY_ETH: (state, { payload }) => ({
       ...state,
-      eth: payload.value,
+      eth: new BigNumber(payload.value)
+        .toFixed(DECIMAL_PLACES),
       met: new BigNumber(payload.value)
-        .div(payload.rate)
-        .times(1e18)
-        .toString()
+        .div(fromWei(payload.rate))
+        .toFixed(DECIMAL_PLACES)
     }),
     UPDATE_BUY_MET: (state, { payload }) => ({
       ...state,
       eth: new BigNumber(payload.value)
-        .times(payload.rate)
-        .div(1e18)
-        .toString(),
-      met: payload.value
+        .times(fromWei(payload.rate))
+        .toFixed(DECIMAL_PLACES),
+      met: new BigNumber(payload.value)
+        .toFixed(DECIMAL_PLACES)
     }),
     UPDATE_AUCTION_STATUS: (state, { payload }) => ({
       ...state,
-      met: new BigNumber(state.eth)
-        .div(payload.currentPrice)
-        .times(1e18)
-        .toString()
+      eth: new BigNumber(state.met)
+        .times(fromWei(payload.currentPrice))
+        .toFixed(DECIMAL_PLACES)
     })
   },
   initialState

@@ -6,6 +6,7 @@ import CoinCapRate from './CoinCapRate'
 import EthValue from './EthValue'
 import FiatValue from './FiatValue'
 import MetValue from './MetValue'
+import ValueInput from './ValueInput'
 
 class AuctionBuyForm extends Component {
   constructor () {
@@ -25,7 +26,7 @@ class AuctionBuyForm extends Component {
     const txObject = {
       from: userAccount,
       to: auctionsAddress,
-      value: web3.utils.toWei(eth, 'ether')
+      value: web3.utils.toWei(eth)
     }
 
     try {
@@ -65,16 +66,15 @@ class AuctionBuyForm extends Component {
     function withRate (eventHandler) {
       return function (ev) {
         eventHandler({
-          value: ev.target.value || 0,
+          value: ev.target.value || '0',
           rate: currentPrice
         })
       }
     }
 
-    function orEmpty (value) {
-      return (new BigNumber(value).eq(0))
-        ? ''
-        : value
+    function formatValue (value) {
+      const bigValue = new BigNumber(value)
+      return bigValue.toFixed()
     }
 
     return (
@@ -94,18 +94,18 @@ class AuctionBuyForm extends Component {
               <div className="buy-meta-mask__form-group">
                 <label>Amount (MET)</label>
                 {/* <label className="right">MAX</label> */}
-                <input type="number" placeholder="0" value={orEmpty(met)} onChange={withRate(updateMet)}/>
+                <ValueInput type="number" placeholder="0" value={formatValue(met)} onChange={withRate(updateMet)}/>
                 <span className="label_overlay">MET</span>
               </div>
               <div className="buy-meta-mask__form-group">
                 <label>Cost (ETH)</label>
-                <input type="number" placeholder="0" value={orEmpty(eth)} onChange={withRate(updateEth)}/>
+                <ValueInput type="number" placeholder="0" value={formatValue(eth)} onChange={withRate(updateEth)}/>
                 <span className="label_overlay">ETH</span>
               </div>
             </form>
           </section>
           <section className="buy-meta-mask__form-totals">
-            <span>Buying <MetValue unit="ether">{met}</MetValue> @ <EthValue>{currentPrice}</EthValue> = <FiatValue suffix="USD">{fiatValue}</FiatValue></span>
+            <span>Buying <MetValue unit="met">{met}</MetValue> @ <EthValue>{currentPrice}</EthValue> = <FiatValue suffix="USD">{fiatValue}</FiatValue></span>
           </section>
           <section className="buy-meta-mask__review-order">
             <span> By choosing "Review Purchase" you are agreeing to our disclaimer and terms of service</span>
