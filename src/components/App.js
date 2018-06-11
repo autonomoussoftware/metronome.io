@@ -3,18 +3,18 @@ import React from 'react'
 
 import AuctionPanel from './AuctionPanel'
 import AuctionStatus from './AuctionStatus'
-import AuctionsPage from './pages/AuctionsPage'
+import AuctionSummary from './AuctionSummary'
+// import AuctionsPage from './pages/AuctionsPage'
 
 function App ({ isDailyAuction, showBuyPanel }) {
   return (
     <React.Fragment>
       <AuctionStatus />
+      <AuctionSummary />
 
-      {isDailyAuction
+      {/* {isDailyAuction
         ? <AuctionsPage/>
-        : null}
-
-      <h1>{isDailyAuction.toString()}</h1>
+        : null} */}
 
       <AuctionPanel showBuyPanelEdit={showBuyPanel} />
     </React.Fragment>

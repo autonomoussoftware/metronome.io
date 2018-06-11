@@ -2019,8 +2019,3 @@ a.overview__current-auction-error-link {
     -webkit-transform: translateY(0%);
   }
 }
-
-/* TODO: temp fix to make team members visibles in all pages */
-.team-grid-member {
-  opacity: 1 !important;
-}

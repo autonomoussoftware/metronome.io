@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import React from 'react'
 
@@ -64,7 +63,7 @@ function AuctionSummary (props) {
             </div>
           </div>
           <div className="overview__visit-dashboard">
-            <Link to="/dashboard">Visit Dashboard</Link>
+            <a href="/dashboard.html">Visit Dashboard</a>
           </div>
         </div>
       </div>

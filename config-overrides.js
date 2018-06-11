@@ -8,8 +8,14 @@ module.exports = {
 
     config.plugins.push(new HtmlWebpackPlugin({
       inject: true,
-      template: path.join(__dirname, './public/features.html'),
-      filename: 'features.html'
+      template: path.join(__dirname, './public/features/index.html'),
+      filename: 'features/index.html'
+    }))
+
+    config.plugins.push(new HtmlWebpackPlugin({
+      inject: true,
+      template: path.join(__dirname, './public/media-kit/index.html'),
+      filename: 'media-kit/index.html'
     }))
 
     return config
