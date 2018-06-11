@@ -4,5 +4,6 @@
   "main": "index.js",
   "dependencies": {
     "bignumber.js": "^7.2.1"
-  }
+  },
+  "browser": "es5.js"
 }

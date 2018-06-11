@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "bignumber.js": "^7.2.1",
     "debug": "^3.1.0",
     "metronome-contracts": "^1.1.1",
     "promise-all-props": "^1.0.1",
-    "react-router-dom": "^4.3.1",
     "socket.io-client": "^2.1.1",
     "web3": "1.0.0-beta.34"
-  }
+  },
+  "browser": "es5.js"
 }

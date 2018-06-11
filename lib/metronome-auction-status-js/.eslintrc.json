@@ -4,6 +4,6 @@
   ],
   "root": true,
   "rules": {
-    "no-shadow": "warn"
+    "no-shadow": ["warn", { "allow": ["err"] }]
   }
 }
