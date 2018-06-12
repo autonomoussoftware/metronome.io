@@ -13,14 +13,16 @@ const walletInstallers = [
 ]
 
 const latestWalletVersion = 'v0.11.1'
-const baseWalletURL = `https://github.com/autonomoussoftware/metronome-wallet-desktop/releases/download/${latestWalletVersion}/metronome-desktop-wallet_${latestWalletVersion}`
+const baseReleasetUrl = 'https://github.com/autonomoussoftware/metronome-wallet-desktop/releases'
+const downloadWalletUrl = `${baseReleasetUrl}/download/${latestWalletVersion}/metronome-desktop-wallet_${latestWalletVersion}`
 const walletInstaller = walletInstallers
   .find(installer => installer.os === currentOS.name)
 
 export {
   currentOS,
   latestWalletVersion,
-  baseWalletURL,
+  baseReleasetUrl,
+  downloadWalletUrl,
   walletInstaller,
   walletInstallers
 }

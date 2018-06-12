@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import arrowIcon from '../img/arrow-forward-24-px.svg'
-import { currentOS, baseWalletURL, walletInstaller } from '../download-helper'
+import { currentOS, downloadWalletUrl, walletInstaller } from '../download-helper'
 
 class AuctionPanelDetectOS extends Component {
   render () {
@@ -9,7 +9,7 @@ class AuctionPanelDetectOS extends Component {
       <div className="auction-panel__os-container">
         {walletInstaller
           ? <React.Fragment>
-            <a className="btn btn-lrg" {...{ href: `${baseWalletURL}.${walletInstaller.ext}` }}>
+            <a className="btn btn-lrg" {...{ href: `${downloadWalletUrl}.${walletInstaller.ext}` }}>
               <span className="btn-text">Download Metronome Wallet</span>
               <span className="btn-icon --down"><img alt="" src={arrowIcon} /></span>
             </a>
