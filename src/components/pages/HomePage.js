@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
 import React from 'react'
 
-import AuctionSummary from './AuctionSummary'
-import BuyMetronomeButton from './BuyMetronomeButton'
-import EmailForm from './EmailForm'
-import TokenSaleCountdown from './TokenSaleCountdown'
+import AuctionSummary from '../AuctionSummary'
+import BuyMetronomeButton from '../BuyMetronomeButton'
+import EmailForm from '../EmailForm'
+import TokenSaleCountdown from '../TokenSaleCountdown'
 
 function HomePageContent (props) {
   const {
