@@ -8,8 +8,8 @@ import closeIcon from '../img/close.svg'
 import DownloadWalletForm from './DownloadWalletForm'
 import metIcon from '../img/light.svg'
 
-const web3Provder = detectProvider()
-const isWeb3Available = web3Provder !== 'none'
+const web3Provider = detectProvider('web wallet')
+const isWeb3Available = web3Provider !== 'none'
 
 class AuctionBuyOptions extends Component {
   render () {
@@ -30,7 +30,7 @@ class AuctionBuyOptions extends Component {
               <h2>How would you like to buy Metronome?</h2>
               {isWeb3Available && <section>
                 <a onClick={this.props.showBuyForm} className="btn btn-lrg">
-                  <span className="btn-text">Buy with {web3Provder}</span> <span className="btn-icon"><img alt="" src={arrowIcon} /></span>
+                  <span className="btn-text">Buy with {web3Provider}</span> <span className="btn-icon"><img alt="" src={arrowIcon} /></span>
                 </a>
               </section>}
               <section className="auction__option-section">

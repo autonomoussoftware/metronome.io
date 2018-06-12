@@ -21,6 +21,7 @@ class AuctionBuyForm extends Component {
       auctionsAddress,
       clearForm,
       eth,
+      showWaiting,
       userAccount,
       web3
     } = this.props
@@ -31,11 +32,12 @@ class AuctionBuyForm extends Component {
       value: web3.utils.toWei(eth)
     }
 
+    showWaiting()
+
     try {
       web3.eth.sendTransaction(txObject)
         .on('transactionHash', function (hash) {
-          // TODO switch to "awaiting confirmation"
-          console.log('hash', hash)
+          showWaiting(hash)
         })
         .on('receipt', function (recepit) {
           // TODO swith to "recepit" & clear form
@@ -156,6 +158,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   clearForm: () => dispatch({
     type: 'CLEAR_BUY_FORM'
+  }),
+  showWaiting: hash => dispatch({
+    type: 'SHOW_BUY_WAITING',
+    payload: hash
   }),
   updateEth: payload => dispatch({
     type: 'UPDATE_BUY_ETH',

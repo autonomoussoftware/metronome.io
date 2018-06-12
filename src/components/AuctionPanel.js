@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 
 import AuctionBuyForm from './AuctionBuyForm'
 import AuctionBuyOptions from './AuctionBuyOptions'
+import AuctionPanelWait from './AuctionPanelWait'
 import CoinCapRate from '../providers/CoinCapRate'
 import UserInfo from '../providers/UserInfo'
 import withWeb3 from '../hocs/withWeb3'
@@ -16,24 +17,28 @@ class AuctionPanel extends Component {
       backToBuyOptions,
       showBuyForm,
       hideBuyPanel,
-      showBuyPanelEdit,
-      showPanelBuyMet,
-      showPanelMetaMask,
+      showPanel,
+      showOptions,
+      showBuy,
+      showWaiting,
       updateAccounts,
       updateEthUsdRate
     } = this.props
 
     return (
-      <div className={showBuyPanelEdit ? 'AuctionPanel --slideOut' : 'AuctionPanel'}>
+      <div className={showPanel ? 'AuctionPanel --slideOut' : 'AuctionPanel'}>
         <UserInfoWithWeb3 onAccounts={updateAccounts} />
         <CoinCapRate onData={updateEthUsdRate}/>
-        {showPanelBuyMet &&
+        {showOptions &&
           <AuctionBuyOptions
             showBuyForm={showBuyForm}
             hideBuyPanel={hideBuyPanel}/>}
-        {showPanelMetaMask &&
+        {showBuy &&
           <AuctionBuyFormWithWeb3
             backToBuyOptions={backToBuyOptions}
+            hideBuyPanel={hideBuyPanel} />}
+        {showWaiting &&
+          <AuctionPanelWait
             hideBuyPanel={hideBuyPanel} />}
       </div>
     )
@@ -41,9 +46,12 @@ class AuctionPanel extends Component {
 }
 
 const mapStateToProps = state => ({
-  showBuyPanelEdit: state.buyPanel.show,
-  showPanelBuyMet: state.buyPanel.showStep === 'options',
-  showPanelMetaMask: state.buyPanel.showStep === 'form'
+  showPanel: state.buyPanel.show,
+  showOptions: state.buyPanel.showStep === 'options',
+  showBuy: state.buyPanel.showStep === 'form',
+  showWaiting: state.buyPanel.showStep === 'waiting',
+  showRecepit: state.buyPanel.showStep === 'receipt',
+  showError: state.buyPanel.showStep === 'error'
 })
 
 const mapDispatchToProps = dispatch => ({

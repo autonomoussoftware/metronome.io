@@ -2,7 +2,10 @@ import { handleActions } from 'redux-actions'
 
 const initialState = {
   show: false,
-  showStep: 'options'
+  showStep: 'options',
+  ongoingTx: {
+    hash: ''
+  }
 }
 
 const reducer = handleActions(
@@ -19,6 +22,11 @@ const reducer = handleActions(
     SHOW_BUY_OPTIONS: state => ({
       ...state,
       showStep: 'options'
+    }),
+    SHOW_BUY_WAITING: (state, payload) => ({
+      ...state,
+      showStep: 'waiting',
+      ongoingTx: { hash: payload || '' }
     })
   },
   initialState
