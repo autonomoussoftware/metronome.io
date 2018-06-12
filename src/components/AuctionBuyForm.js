@@ -51,6 +51,7 @@ class AuctionBuyForm extends Component {
             })
         })
         .on('receipt', function (receipt) {
+          debugger // eslint-disable-line
           if (!receipt.status) {
             showError('Transaction reverted - Try again', new Error('Transaction status is falsy'))
             return
