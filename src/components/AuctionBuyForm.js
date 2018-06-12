@@ -21,7 +21,9 @@ class AuctionBuyForm extends Component {
       auctionsAddress,
       clearForm,
       eth,
+      showReceipt,
       showWaiting,
+      storeTxData,
       userAccount,
       web3
     } = this.props
@@ -38,11 +40,17 @@ class AuctionBuyForm extends Component {
       web3.eth.sendTransaction(txObject)
         .on('transactionHash', function (hash) {
           showWaiting(hash)
+          web3.eth.getTransaction(hash)
+            .then(storeTxData)
+            .catch(function (err) {
+              // TODO switch to "error"
+              console.log('get tx', err.message)
+            })
         })
-        .on('receipt', function (recepit) {
-          // TODO swith to "recepit" & clear form
-          console.log('recepit', recepit)
-
+        .on('receipt', function (receipt) {
+          // TODO should check receipt.status is true
+          // TODO if no receipt.logs, error
+          showReceipt(receipt)
           clearForm()
         })
         .on('error', function (err) {
@@ -53,9 +61,6 @@ class AuctionBuyForm extends Component {
       // TODO switch to "error"
       console.log('send error', err.message)
     }
-
-    // TODO switch to "awaiting user" panel
-    console.log('awaiting user')
   }
 
   render () {
@@ -159,9 +164,17 @@ const mapDispatchToProps = dispatch => ({
   clearForm: () => dispatch({
     type: 'CLEAR_BUY_FORM'
   }),
-  showWaiting: hash => dispatch({
+  showReceipt: payload => dispatch({
+    type: 'SHOW_BUY_RECEIPT',
+    payload
+  }),
+  showWaiting: payload => dispatch({
     type: 'SHOW_BUY_WAITING',
-    payload: hash
+    payload
+  }),
+  storeTxData: payload => dispatch({
+    type: 'UPDATE_ONGOING_TX',
+    payload
   }),
   updateEth: payload => dispatch({
     type: 'UPDATE_BUY_ETH',

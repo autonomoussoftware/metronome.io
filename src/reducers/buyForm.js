@@ -16,6 +16,8 @@ const initialState = {
 
 const reducer = handleActions(
   {
+    CLEAR_BUY_FORM: () => initialState,
+    SHOW_BUY_RECEIPT: () => initialState,
     UPDATE_BUY_ETH: (state, { payload }) => ({
       ...state,
       eth: new BigNumber(payload.value)
@@ -37,8 +39,7 @@ const reducer = handleActions(
       eth: new BigNumber(state.met)
         .times(fromWei(payload.currentPrice))
         .toFixed(DECIMAL_PLACES)
-    }),
-    CLEAR_BUY_FORM: () => initialState
+    })
   },
   initialState
 )

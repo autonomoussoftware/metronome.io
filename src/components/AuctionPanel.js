@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import AuctionBuyForm from './AuctionBuyForm'
 import AuctionBuyOptions from './AuctionBuyOptions'
 import AuctionPanelWait from './AuctionPanelWait'
+import AuctionReceipt from './AuctionReceipt'
 import CoinCapRate from '../providers/CoinCapRate'
 import UserInfo from '../providers/UserInfo'
 import withWeb3 from '../hocs/withWeb3'
@@ -12,6 +13,7 @@ const AuctionBuyFormWithWeb3 = withWeb3(AuctionBuyForm)
 const UserInfoWithWeb3 = withWeb3(UserInfo)
 
 class AuctionPanel extends Component {
+  // eslint-disable-next-line complexity
   render () {
     const {
       backToBuyOptions,
@@ -20,6 +22,7 @@ class AuctionPanel extends Component {
       showPanel,
       showOptions,
       showBuy,
+      showReceipt,
       showWaiting,
       updateAccounts,
       updateEthUsdRate
@@ -40,6 +43,9 @@ class AuctionPanel extends Component {
         {showWaiting &&
           <AuctionPanelWait
             hideBuyPanel={hideBuyPanel} />}
+        {showReceipt &&
+          <AuctionReceipt
+            hideBuyPanel={hideBuyPanel} />}
       </div>
     )
   }
@@ -50,7 +56,7 @@ const mapStateToProps = state => ({
   showOptions: state.buyPanel.showStep === 'options',
   showBuy: state.buyPanel.showStep === 'form',
   showWaiting: state.buyPanel.showStep === 'waiting',
-  showRecepit: state.buyPanel.showStep === 'receipt',
+  showReceipt: state.buyPanel.showStep === 'receipt',
   showError: state.buyPanel.showStep === 'error'
 })
 

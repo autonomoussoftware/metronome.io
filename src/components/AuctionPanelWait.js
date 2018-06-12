@@ -17,6 +17,7 @@ class AuctionPanelWait extends Component {
       currentPrice,
       eth,
       met,
+      hash,
       rates
     } = this.props
 
@@ -37,7 +38,11 @@ class AuctionPanelWait extends Component {
             <div className="panel__buy-metronome --showBuyMet">
               <section>
                 <METLoader height="100px" />
-                <h2>Confim this purchase in {web3Provider}</h2>
+                <h2>
+                  {hash
+                    ? `Waiting for transaction ${hash.substr(0, 6)}* to be confirmed`
+                    : `Confim this purchase in ${web3Provider}`}
+                </h2>
                 <span>Buying <MetValue unit="met">{met}</MetValue> @ <EthValue>{currentPrice}</EthValue> = <FiatValue suffix="USD">{fiatValue}</FiatValue></span>
               </section>
               <span className="alert-text-warning">Note: Do not change the network or general configuration of Metamask while your purchase is completing.</span>
@@ -52,6 +57,7 @@ class AuctionPanelWait extends Component {
 const mapStateToProps = state => ({
   ...state.buyForm,
   currentPrice: state.auction.status.currentPrice,
+  hash: state.buyPanel.ongoingTx.hash,
   rates: state.rates
 })
 

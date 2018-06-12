@@ -5,7 +5,8 @@ const initialState = {
   showStep: 'options',
   ongoingTx: {
     hash: ''
-  }
+  },
+  receipt: null
 }
 
 const reducer = handleActions(
@@ -23,10 +24,25 @@ const reducer = handleActions(
       ...state,
       showStep: 'options'
     }),
-    SHOW_BUY_WAITING: (state, payload) => ({
+    SHOW_BUY_RECEIPT: (state, { payload }) => ({
+      ...state,
+      showStep: 'receipt',
+      receipt: payload.transactionHash === state.ongoingTx.hash
+        ? payload
+        : state.receipt
+    }),
+    SHOW_BUY_WAITING: (state, { payload }) => ({
       ...state,
       showStep: 'waiting',
-      ongoingTx: { hash: payload || '' }
+      ongoingTx: {
+        hash: payload || ''
+      }
+    }),
+    UPDATE_ONGOING_TX: (state, { payload }) => ({
+      ...state,
+      ongoingTx: payload.hash === state.ongoingTx.hash
+        ? payload
+        : state.ongoingTx
     })
   },
   initialState
