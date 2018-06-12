@@ -101,7 +101,6 @@
   html body .container__counter,
   html body .container__tokens {
     width: 100%;
-    padding: 15px 0 10px 0;
   }
   html body .container__inner-padding {
     padding: 10px 0 10px 0;
@@ -157,6 +156,23 @@
     text-align: center;
     width: 100%;
   }
+  html body .chart__victory-container {
+    height: 200px;
+  }
+  html body .button__visit-auction-dashboard {
+    width: 100%;
+    text-align: center;
+  }
+  html body .container__one-third--inner .half.left {
+    display: inline-block;
+    position: relative;
+    width: 50%;
+  }
+  html body .container__one-third--inner .half.right {
+    display: inline-block;
+    position: relative;
+    width: 50%;
+  }
 }
 @media only screen and (max-device-width: 1150px), only screen and (max-device-width: 1150px), only screen and (max-width: 1130px) {
   body .tokens-percentage,
@@ -167,7 +183,6 @@
   body .container__counter,
   body .container__tokens {
     width: 100%;
-    padding: 15px 0 10px 0;
   }
   body .container__counter .label__title,
   body .container__tokens .label__title,
@@ -279,10 +294,8 @@ a {
 } */
 .label__title {
   position: relative;
+  z-index: 2;
   display: block;
-  background: #3B3B3B;
-  border-top: solid 1px #202020;
-  border-bottom: solid 1px #202020;
   color: #C1C1C1;
   padding: 20px 0 20px 20px;
   font-weight: 300;
@@ -294,6 +307,7 @@ a {
 .container__wrapper {
   position: relative;
   width: 100%;
+  display: inline-block;
   margin: 0px;
   padding: 0px;
 }
@@ -315,13 +329,10 @@ a {
   padding: 0px;
 }
 .container__primary {
-  float: left;
-  width: 66.66%;
+  width: 100%;
+  text-align: center;
   margin: 0px;
   padding: 0px;
-}
-.container__primary .container__primary--inner {
-  border-right: solid 1px #202020;
 }
 .container__sidebar {
   position: relative;
@@ -359,7 +370,8 @@ a {
 .container__main-fixed.--fixed {
   position: fixed;
   background-color: #292929;
-  z-index: 11;
+  z-index: 21;
+  top: 0px;
   width: 100%;
   animation-name: slideDown;
   -webkit-animation-name: slideDown;
@@ -403,8 +415,8 @@ a {
   position: relative;
   width: 100%;
   clear: both;
-  display: inline-block;
   border-top: solid 1px #463f63;
+  border-bottom: solid 1px #202020;
 }
 .container__general-stats .container__inner {
   padding: 15px;
@@ -432,7 +444,6 @@ a {
   width: 100%;
   clear: both;
   display: inline-block;
-  margin: 0 0 15px 0;
 }
 .equals {
   display: inline-block;
@@ -536,6 +547,24 @@ ul.price__compare li {
   margin: 0px;
   padding: 0px;
 }
+.container__row.container__dashboard-header-components {
+  text-align: center;
+}
+.container__header-top-border {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  background: #3B3B3B;
+  border-top: solid 1px #202020;
+  border-bottom: solid 1px #202020;
+  height: 58px;
+}
+.container__row.container__stats {
+  text-align: center;
+}
+.container__row.container__stats .label__title {
+  text-align: left;
+}
 .row--header {
   padding: 0px;
   margin: 0px;
@@ -554,10 +583,17 @@ ul.price__compare li {
 .container__one-third--inner {
   margin: 15px 0 0 0;
   padding: 15px;
-  min-height: 300px;
+  min-height: 340px;
   border-radius: 8px;
   background-color: #3B3B3B;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08), 0 4px 16px 0 rgba(0, 0, 0, 0.16);
+}
+.container__mtn-auction-inner {
+  margin: 0 auto;
+  padding: 0px;
+  max-width: 1100px;
+  position: relative;
+  clear: both;
 }
 .container__mtn-auction .container__one-third--inner {
   margin-left: 15px;
@@ -594,6 +630,9 @@ ul.price__compare li {
   margin-bottom: 15px;
   width: 100%;
   text-align: center;
+}
+.container__markets .container__one-third--inner {
+  min-height: 310px;
 }
 .container__markets table {
   width: 100%;
@@ -670,7 +709,7 @@ ul.price__compare li {
   display: inline-block;
   float: right;
   padding: 0px;
-  margin: 15px 15px 0 0;
+  margin: 10px 15px 0 0;
 }
 .button__visit-auction-dashboard a {
   display: block;
@@ -843,7 +882,15 @@ ul.price__compare li {
 }
 .container__mtn-price {
   position: relative;
-  border-top: solid 1px #292929;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+}
+.container__mtn-price .chart__main-inner-container {
+  max-width: 1100px;
+  position: relative;
+  margin: 0 auto;
+  padding: 0px;
 }
 .container__mtn-price select {
   display: none;
@@ -867,7 +914,9 @@ ul.price__compare li {
   display: inline-block;
   position: relative;
   margin: 15px 15px 0 0;
-  padding: 0px;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: #202020;
   text-transform: uppercase;
   cursor: pointer;
 }
@@ -887,25 +936,51 @@ ul.price__compare li {
   position: relative;
   top: 6px;
 }
+.chart__dropdown-time-selector .chart__dropdown-time-selector--dropdown.--show {
+  display: block;
+}
 .chart__dropdown-time-selector .chart__dropdown-time-selector--dropdown {
   background-color: #fff;
-  display: block;
+  display: none;
   position: absolute;
-  margin: 0px;
+  margin: 18px 0px 0px 0px;
   padding: 0px;
   border-radius: 5px;
   text-transform: none;
   width: 200px;
   z-index: 20;
-  left: -70px;
+  left: -60px;
+}
+.chart__dropdown-time-selector .chart__dropdown-time-selector--dropdown .arrow-up {
+  width: 0;
+  height: 0;
+  top: -8px;
+  left: 90px;
+  margin: 0 auto;
+  position: absolute;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #fff;
+}
+.chart__dropdown-time-selector .chart__dropdown-time-selector--dropdown .chart__dropdown-time-selector-items {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: inline-block;
+  border-radius: 5px;
+}
+.chart__dropdown-time-selector .chart__dropdown-time-selector--dropdown ul {
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
+.chart__dropdown-time-selector .chart__dropdown-time-selector--dropdown li.--active a {
+  background-color: #e5e0fd;
 }
 .chart__dropdown-time-selector .chart__dropdown-time-selector--dropdown li {
   display: block;
   margin: 0px;
   padding: 0px;
-}
-.chart__dropdown-time-selector .chart__dropdown-time-selector--dropdown li a.--active {
-  background-color: #e5e0fd;
 }
 .chart__dropdown-time-selector .chart__dropdown-time-selector--dropdown li a {
   width: calc(100% - 30px);
@@ -2016,6 +2091,187 @@ a.overview__current-auction-error-link {
   100% {
     -webkit-transform: translateY(0%);
   }
+}
+.chart__victory-container {
+  height: 400px;
+  width: 100%;
+  display: inline-block;
+  clear: both;
+}
+.chart__victory-background {
+  position: absolute;
+  display: block;
+  width: 100%;
+  z-index: 1;
+}
+.chart__victory-foreground {
+  position: absolute;
+  display: block;
+  width: 100%;
+  z-index: 2;
+}
+.chart__keys {
+  position: relative;
+  width: calc(100% - 30px);
+  padding: 0 15px 0 15px;
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+  clear: both;
+}
+.supply__available-container {
+  float: left;
+  text-align: left;
+  display: inline-block;
+}
+.supply__available-container span {
+  font-family: Muli;
+  font-size: 11px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  float: right;
+}
+.supply__available-container .supply__available-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background-color: #594f90;
+  display: inline-block;
+  margin-right: 10px;
+}
+.price__available-container {
+  float: right;
+  text-align: left;
+  display: inline-block;
+}
+.price__available-container span {
+  font-family: Muli;
+  font-size: 11px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  float: left;
+}
+.price__available-container .price__available-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background-color: #67686f;
+  display: inline-block;
+  margin-left: 10px;
+}
+.panel__confirm-purchase span {
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.4px;
+  text-align: center;
+  display: block;
+  color: #fff;
+}
+.panel__confirm-purchase span.alert-text-warning {
+  color: #45d48d;
+  margin-top: 10px;
+}
+.panel__receipt section {
+  display: inline-block;
+  width: 100%;
+  clear: both;
+  position: relative;
+}
+.panel__receipt section.panel__purchase-btn-container {
+  border-bottom: none;
+}
+.panel__receipt label {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #fff;
+  display: inline-block;
+  float: left;
+}
+.panel__receipt span.amount__total-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  float: right;
+}
+.panel__receipt ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  display: inline-block;
+  float: right;
+  text-align: right;
+}
+.panel__receipt li.amount__total-li:first-of-type {
+  font-size: 21px;
+  margin-bottom: 10px;
+}
+.panel__receipt li.amount__total-li {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+}
+.panel__receipt .amount__hash {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  float: left;
+  margin-top: 10px;
+}
+.panel__receipt ul.panel__receipt-details {
+  list-style-type: none;
+  margin: 15px 0 0 0;
+  padding: 0px;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  clear: both;
+}
+.panel__receipt ul.panel__receipt-details li {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  clear: both;
+  padding-bottom: 10px;
+}
+.panel__receipt ul.panel__receipt-details li label {
+  font-size: 13px;
+}
+.panel__receipt ul.panel__receipt-details li span.amount__total-text {
+  font-size: 13px;
+}
+.panel__receipt ul.panel__receipt-details li div.amount__hash {
+  font-size: 13px;
+  margin-top: 0px;
+  width: 250px;
+  float: right;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+}
+.panel__receipt ul.panel__receipt-details li:last-of-type {
+  padding-bottom: 0px;
+}
+.panel__receipt a.btn {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.panel__receipt a.btn.btn-inverted {
+  background-color: #fff;
+  color: #7e61f8;
 }
 div #root {
   pointer-events: auto;
