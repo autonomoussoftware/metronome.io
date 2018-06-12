@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
-import React, { Component } from 'react'
 import BigNumber from 'bignumber.js'
+import detectProvider from 'web3-detect-provider'
+import React, { Component } from 'react'
 
 import arrowIcon from '../img/arrow-forward-24-px.svg'
 import closeIcon from '../img/close.svg'
@@ -8,6 +9,8 @@ import EthValue from './EthValue'
 import FiatValue from './FiatValue'
 import MetValue from './MetValue'
 import ValueInput from './ValueInput'
+
+const web3Provider = detectProvider('web wallet')
 
 class AuctionBuyForm extends Component {
   constructor () {
@@ -101,7 +104,7 @@ class AuctionBuyForm extends Component {
             <a onClick={backToBuyOptions}><img alt="" className="auction-panel__back-arrow" src={arrowIcon} /></a>
             <h2>{userAccount
               ? `Buy with account ${userAccount.substr(0, 6)}*`
-              : 'Buy with web wallet'}</h2>
+              : `Buy with ${web3Provider}`}</h2>
             <a onClick={hideBuyPanel} className="auction-panel__close"><img alt="" src={closeIcon} /></a>
           </div>
         </div>
