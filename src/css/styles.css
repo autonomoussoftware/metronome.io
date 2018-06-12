@@ -223,6 +223,7 @@
     display: inherit;
   }
 }
+/* Disable the following to avoid conflicts with original site styles */
 /* html,
 body {
   height: 100%;
@@ -243,6 +244,7 @@ a {
   height: 100%;
   width: 100%;
   position: relative;
+  /* Disabled to fix positioning issues of dynamic content */
   /* display: inline-block; */
 }
 .logo {
@@ -286,6 +288,7 @@ a {
 .container__mobile-navigation ul li a:hover {
   color: #7e61f8;
 }
+/* Disable the following to avoid conflicts with original site styles */
 /* h2 {
   color: #fff;
   margin: 10px 0 0 0;
@@ -1390,6 +1393,7 @@ a.overview__current-auction-error-link {
   right: 0px;
   top: 0px;
   width: 460px;
+  /* Increased to fix visibility of panel */
   z-index: 10000;
   background-color: #343434;
   box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.2);
@@ -1504,6 +1508,8 @@ a.overview__current-auction-error-link {
   cursor: pointer;
 }
 .panel__buy-metronome {
+  /* Disabled as the panel visibility is controlled by its parent */
+  /* display: none; */
 }
 .panel__buy-metronome.--showBuyMet {
   display: inherit;
@@ -1549,10 +1555,12 @@ a.overview__current-auction-error-link {
   line-height: normal;
   letter-spacing: 0.4px;
 }
+/* Should be button to allow onclick to be disabled */
 .buy-meta-mask__review-order button.btn.--disabled {
   opacity: 0.5;
   cursor: default;
 }
+/* Should be button to allow onclick to be disabled */
 .buy-meta-mask__review-order button.btn {
   cursor: pointer;
   margin-top: 25px;
@@ -1641,6 +1649,8 @@ a.overview__current-auction-error-link {
 }
 .panel__buy-meta-mask {
   opacity: 0;
+  /* Disabled as the panel visibility is controlled by its parent */
+  /* display: none; */
 }
 .panel__buy-meta-mask.--showMetaMask {
   opacity: 1;
@@ -2273,6 +2283,7 @@ a.overview__current-auction-error-link {
   background-color: #fff;
   color: #7e61f8;
 }
+/* Enable pointer events in dynamic content */
 div #root {
   pointer-events: auto;
 }
