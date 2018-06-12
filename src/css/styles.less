@@ -1426,47 +1426,49 @@ a.overview__current-auction-error-link {
   color: @white;
   object-fit: contain;
 }
-.AuctionPanel {
-  height: 100%;
-  display: none;
+
+.AuctionPanel .Shade, .AuctionPanel .Panel {
+  -webkit-transition: all 0.5s ease-in;
+  -moz-transition: all 0.5s ease-in;
+  -ms-transition: all 0.5s ease-in;
+  -o-transition: all 0.5s ease-in;
+  transition: all 0.5s ease-in;
+}
+
+.AuctionPanel .Shade {
   position: fixed;
-  right: 0px;
-  top: 0px;
-  width: 460px;
-  // Increased to fix visibility of panel
+  z-index: -1;
+  height:100%;
+  width:100%;
+  opacity:0;
+  left:0;
+  top:0;
+  background-color: rgba(0,0,0,.5);
+}
+
+.AuctionPanel.--slideOut .Shade {
   z-index: 10000;
-  background-color: @dark;
+  opacity:1;
+  cursor: pointer;
+}
+
+.AuctionPanel .Panel {
+  height: 100%;
+  opacity:0;
+  position: fixed;
+  right: -460px;
+  top: 0;
+  width: 460px;
+  z-index: 10001;
+  background-color: #343434;
   box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.2);
 }
-.AuctionPanel.--slideOut {
+.AuctionPanel.--slideOut .Panel {
   display: inherit;
-	visibility: visible !important;
-	animation-name: slideLeft;
-	-webkit-animation-name: slideLeft;
-	animation-duration: 0.7s;
-	-webkit-animation-duration: 0.7s;
-	animation-timing-function: ease-in-out;
-	-webkit-animation-timing-function: ease-in-out;
-	transition-timing-function: ease;
+  right:0px;
+  opacity:1;
 }
 
-@keyframes slideLeft {
-	0% {
-		transform: translateX(150%);
-	}
-	100% {
-		transform: translateX(0%);
-	}
-}
-
-@-webkit-keyframes slideLeft {
-	0% {
-		transform: translateX(150%);
-	}
-	100% {
-		transform: translateX(0%);
-	}
-}
 @keyframes slideLeftFadeIn {
 	0% {
 		transform: translateX(80%);

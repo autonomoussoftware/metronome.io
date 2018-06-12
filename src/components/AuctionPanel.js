@@ -30,22 +30,25 @@ class AuctionPanel extends Component {
 
     return (
       <div className={showPanel ? 'AuctionPanel --slideOut' : 'AuctionPanel'}>
-        <UserInfoWithWeb3 onAccounts={updateAccounts} />
-        <CoinCapRate onData={updateEthUsdRate}/>
-        {showOptions &&
-          <AuctionBuyOptions
-            showBuyForm={showBuyForm}
-            hideBuyPanel={hideBuyPanel}/>}
-        {showBuy &&
-          <AuctionBuyFormWithWeb3
-            backToBuyOptions={backToBuyOptions}
-            hideBuyPanel={hideBuyPanel} />}
-        {showWaiting &&
-          <AuctionPanelWait
-            hideBuyPanel={hideBuyPanel} />}
-        {showReceipt &&
-          <AuctionReceipt
-            hideBuyPanel={hideBuyPanel} />}
+        <div className="Shade" onClick={hideBuyPanel}></div>
+        <div className="Panel">
+          <UserInfoWithWeb3 onAccounts={updateAccounts} />
+          <CoinCapRate onData={updateEthUsdRate}/>
+          {showOptions &&
+            <AuctionBuyOptions
+              showBuyForm={showBuyForm}
+              hideBuyPanel={hideBuyPanel}/>}
+          {showBuy &&
+            <AuctionBuyFormWithWeb3
+              backToBuyOptions={backToBuyOptions}
+              hideBuyPanel={hideBuyPanel} />}
+          {showWaiting &&
+            <AuctionPanelWait
+              hideBuyPanel={hideBuyPanel} />}
+          {showReceipt &&
+            <AuctionReceipt
+              hideBuyPanel={hideBuyPanel} />}
+        </div>
       </div>
     )
   }
