@@ -1556,8 +1556,15 @@ a.overview__current-auction-error-link {
   // Disabled as the panel visibility is controlled by its parent
   // display: none;
 }
-.panel__buy-metronome.--showBuyMet {
+.auction-panel__body .panel__buy-metronome.--showBuyMet {
   display: inherit;
+  text-align: center;
+  h2 {
+    margin-bottom: 5px;
+  }
+  span {
+    font-size: 13px;
+  }
 }
 .buy-meta-mask__section {
   clear: both;
@@ -1649,8 +1656,8 @@ a.overview__current-auction-error-link {
     line-height: normal;
     letter-spacing: 0.6px;
     color: @white;
-    right: 13px;
-    bottom: 10px;
+    right: 45px;
+    bottom: 15px;
   }
   label {
     font-size: 13px;
@@ -2204,10 +2211,16 @@ a.overview__current-auction-error-link {
     display: block;
     color: @white;
   }
-  span.alert-text-warning {
-    color: #45d48d;
-    margin-top: 10px;
-  }
+}
+span.alert-text-warning {
+  color: #45d48d;
+  position: relative;
+  margin-top: 10px;
+  font-size: 13px;
+  text-align: center;
+  width: 100%;
+  margin: 15px 0 0 0;
+  display: block;
 }
 .panel__receipt {
   section {
