@@ -2,9 +2,7 @@ import { connect } from 'react-redux'
 import React, { Component } from 'react'
 
 import AuctionBuyForm from './AuctionBuyForm'
-import AuctionBuyFormHeader from './AuctionBuyFormHeader'
 import AuctionBuyOptions from './AuctionBuyOptions'
-import AuctionBuyOptionsHeader from './AuctionBuyOptionsHeader'
 import CoinCapRate from '../providers/CoinCapRate'
 import UserInfo from '../providers/UserInfo'
 import withWeb3 from '../hocs/withWeb3'
@@ -14,14 +12,29 @@ const UserInfoWithWeb3 = withWeb3(UserInfo)
 
 class AuctionPanel extends Component {
   render () {
+    const {
+      backToBuyOptions,
+      showBuyForm,
+      hideBuyPanel,
+      showBuyPanelEdit,
+      showPanelBuyMet,
+      showPanelMetaMask,
+      updateAccounts,
+      updateEthUsdRate
+    } = this.props
+
     return (
-      <div className={this.props.showBuyPanelEdit ? 'AuctionPanel --slideOut' : 'AuctionPanel'}>
-        <UserInfoWithWeb3 onAccounts={this.props.updateAccounts} />
-        <CoinCapRate onData={this.props.updateEthUsdRate}/>
-        <AuctionBuyOptionsHeader showPanelMetaMask={this.props.showPanelMetaMask} hideBuyPanel={this.props.hideBuyPanel} />
-        <AuctionBuyFormHeader backBuyMetPanel={this.props.backBuyMetPanel} showPanelMetaMask={this.props.showPanelMetaMask} hideBuyPanel={this.props.hideBuyPanel} />
-        {this.props.showPanelBuyMet && <AuctionBuyOptions buyMetaMask={this.props.buyMetaMask} />}
-        {this.props.showPanelMetaMask && <AuctionBuyFormWithWeb3 />}
+      <div className={showBuyPanelEdit ? 'AuctionPanel --slideOut' : 'AuctionPanel'}>
+        <UserInfoWithWeb3 onAccounts={updateAccounts} />
+        <CoinCapRate onData={updateEthUsdRate}/>
+        {showPanelBuyMet &&
+          <AuctionBuyOptions
+            showBuyForm={showBuyForm}
+            hideBuyPanel={hideBuyPanel}/>}
+        {showPanelMetaMask &&
+          <AuctionBuyFormWithWeb3
+            backToBuyOptions={backToBuyOptions}
+            hideBuyPanel={hideBuyPanel} />}
       </div>
     )
   }
@@ -34,10 +47,10 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  backBuyMetPanel: () => dispatch({
+  backToBuyOptions: () => dispatch({
     type: 'SHOW_BUY_OPTIONS'
   }),
-  buyMetaMask: () => dispatch({
+  showBuyForm: () => dispatch({
     type: 'SHOW_BUY_FORM'
   }),
   hideBuyPanel: () => dispatch({
