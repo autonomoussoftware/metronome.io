@@ -5,8 +5,8 @@ import reactDOM from 'react-dom'
 import './css/styles.css'
 
 import config from './config'
-import createStore from './createStore'
-import getInitialState from './getInitialState'
+import createStore from './create-store'
+import getInitialState from './get-initial-state'
 import AuctionStatus from './providers/AuctionStatus'
 
 import AuctionPanel from './components/AuctionPanel'
