@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import BigNumber from 'bignumber.js'
 
-import CoinCapRate from '../providers/CoinCapRate'
 import EthValue from './EthValue'
 import FiatValue from './FiatValue'
 import MetValue from './MetValue'
@@ -86,47 +85,48 @@ class AuctionBuyForm extends Component {
     }
 
     return (
-      <React.Fragment>
-        <CoinCapRate onData={updateEthUsdRate}/>
-        <div className={this.props.showPanelMetaMask ? 'panel__buy-meta-mask --showMetaMask' : 'panel__buy-meta-mask'}>
-          <section className="buy-meta-mask__section">
-            <div className="buy-meta-mask__current-price">
-              <span>Current Auction Price</span>
-            </div>
-            <div className="buy-meta-mask__current-price-numeral">
-              <EthValue>{currentPrice}</EthValue>
-            </div>
-          </section>
-          <section className="buy-meta-mask__section">
-            <form>
-              <div className="buy-meta-mask__form-group">
-                <label>Amount (MET)</label>
-                {/* <label className="right">MAX</label> */}
-                <ValueInput type="number" placeholder="0" value={formatValue(met)} onChange={withRate(updateMet)}/>
-                <span className="label_overlay">MET</span>
+      <div className="auction-panel__body">
+        <div className="auction-panel__body--inner">
+          <div className="panel__buy-meta-mask --showMetaMask">
+            <section className="buy-meta-mask__section">
+              <div className="buy-meta-mask__current-price">
+                <span>Current Auction Price</span>
               </div>
-              <div className="buy-meta-mask__form-group">
-                <label>Cost (ETH)</label>
-                <ValueInput type="number" placeholder="0" value={formatValue(eth)} onChange={withRate(updateEth)}/>
-                <span className="label_overlay">ETH</span>
+              <div className="buy-meta-mask__current-price-numeral">
+                <EthValue>{currentPrice}</EthValue>
               </div>
-            </form>
-          </section>
-          <section className="buy-meta-mask__form-totals">
-            <span>Buying <MetValue unit="met">{met}</MetValue> @ <EthValue>{currentPrice}</EthValue> = <FiatValue suffix="USD">{fiatValue}</FiatValue></span>
-          </section>
-          <section className="buy-meta-mask__review-order">
-            <span> By choosing "Review Purchase" you are agreeing to our disclaimer and terms of service</span>
-            <button
-              className={`btn ${allowBuy ? '' : '--disabled'}`}
-              disabled={!allowBuy}
-              onClick={this.sendTransaction}>
-              Review Purchase
-            </button>
-            <span className="buy-meta-mask__review-disclaimer"> You will be see a review of this purchase in your web wallet</span>
-          </section>
+            </section>
+            <section className="buy-meta-mask__section">
+              <form>
+                <div className="buy-meta-mask__form-group">
+                  <label>Amount (MET)</label>
+                  {/* <label className="right">MAX</label> */}
+                  <ValueInput type="number" placeholder="0" value={formatValue(met)} onChange={withRate(updateMet)}/>
+                  <span className="label_overlay">MET</span>
+                </div>
+                <div className="buy-meta-mask__form-group">
+                  <label>Cost (ETH)</label>
+                  <ValueInput type="number" placeholder="0" value={formatValue(eth)} onChange={withRate(updateEth)}/>
+                  <span className="label_overlay">ETH</span>
+                </div>
+              </form>
+            </section>
+            <section className="buy-meta-mask__form-totals">
+              <span>Buying <MetValue unit="met">{met}</MetValue> @ <EthValue>{currentPrice}</EthValue> = <FiatValue suffix="USD">{fiatValue}</FiatValue></span>
+            </section>
+            <section className="buy-meta-mask__review-order">
+              <span> By choosing "Review Purchase" you are agreeing to our disclaimer and terms of service</span>
+              <button
+                className={`btn ${allowBuy ? '' : '--disabled'}`}
+                disabled={!allowBuy}
+                onClick={this.sendTransaction}>
+                Review Purchase
+              </button>
+              <span className="buy-meta-mask__review-disclaimer"> You will be see a review of this purchase in your web wallet</span>
+            </section>
+          </div>
         </div>
-      </React.Fragment>
+      </div>
     )
   }
 }
@@ -146,10 +146,6 @@ const mapDispatchToProps = dispatch => ({
   updateEth: payload => dispatch({
     type: 'UPDATE_BUY_ETH',
     payload
-  }),
-  updateEthUsdRate: value => dispatch({
-    type: 'UPDATE_RATE',
-    payload: { type: 'ETH_USD', value }
   }),
   updateMet: payload => dispatch({
     type: 'UPDATE_BUY_MET',

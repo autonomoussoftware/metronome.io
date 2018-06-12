@@ -1429,7 +1429,6 @@ a.overview__current-auction-error-link {
   cursor: pointer;
 }
 .panel__buy-metronome {
-  display: none;
 }
 .panel__buy-metronome.--showBuyMet {
   display: inherit;
@@ -1567,7 +1566,6 @@ a.overview__current-auction-error-link {
 }
 .panel__buy-meta-mask {
   opacity: 0;
-  display: none;
 }
 .panel__buy-meta-mask.--showMetaMask {
   opacity: 1;

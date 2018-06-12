@@ -2,18 +2,23 @@ import { handleActions } from 'redux-actions'
 
 const initialState = {
   show: false,
-  showBuyForm: false
+  showStep: 'options'
 }
 
 const reducer = handleActions(
   {
     SHOW_BUY_PANEL: (state, { payload }) => ({
       ...state,
-      show: payload
+      show: payload,
+      showStep: payload ? 'options' : state.showStep
     }),
-    SHOW_BUY_FORM: (state, { payload }) => ({
+    SHOW_BUY_FORM: state => ({
       ...state,
-      showBuyForm: payload
+      showStep: 'form'
+    }),
+    SHOW_BUY_OPTIONS: state => ({
+      ...state,
+      showStep: 'options'
     })
   },
   initialState

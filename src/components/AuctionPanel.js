@@ -2,9 +2,10 @@ import { connect } from 'react-redux'
 import React, { Component } from 'react'
 
 import AuctionBuyForm from './AuctionBuyForm'
+import AuctionBuyFormHeader from './AuctionBuyFormHeader'
 import AuctionBuyOptions from './AuctionBuyOptions'
 import AuctionBuyOptionsHeader from './AuctionBuyOptionsHeader'
-import AuctionBuyFormHeader from './AuctionBuyFormHeader'
+import CoinCapRate from '../providers/CoinCapRate'
 import UserInfo from '../providers/UserInfo'
 import withWeb3 from '../hocs/withWeb3'
 
@@ -16,14 +17,11 @@ class AuctionPanel extends Component {
     return (
       <div className={this.props.showBuyPanelEdit ? 'AuctionPanel --slideOut' : 'AuctionPanel'}>
         <UserInfoWithWeb3 onAccounts={this.props.updateAccounts} />
+        <CoinCapRate onData={this.props.updateEthUsdRate}/>
         <AuctionBuyOptionsHeader showPanelMetaMask={this.props.showPanelMetaMask} hideBuyPanel={this.props.hideBuyPanel} />
         <AuctionBuyFormHeader backBuyMetPanel={this.props.backBuyMetPanel} showPanelMetaMask={this.props.showPanelMetaMask} hideBuyPanel={this.props.hideBuyPanel} />
-        <div className="auction-panel__body">
-          <div className="auction-panel__body--inner">
-            <AuctionBuyOptions showPanelBuyMet={this.props.showPanelBuyMet} buyMetaMask={this.props.buyMetaMask} />
-            <AuctionBuyFormWithWeb3 showPanelMetaMask={this.props.showPanelMetaMask} />
-          </div>
-        </div>
+        {this.props.showPanelBuyMet && <AuctionBuyOptions buyMetaMask={this.props.buyMetaMask} />}
+        {this.props.showPanelMetaMask && <AuctionBuyFormWithWeb3 />}
       </div>
     )
   }
@@ -31,18 +29,16 @@ class AuctionPanel extends Component {
 
 const mapStateToProps = state => ({
   showBuyPanelEdit: state.buyPanel.show,
-  showPanelBuyMet: !state.buyPanel.showBuyForm,
-  showPanelMetaMask: state.buyPanel.showBuyForm
+  showPanelBuyMet: state.buyPanel.showStep === 'options',
+  showPanelMetaMask: state.buyPanel.showStep === 'form'
 })
 
 const mapDispatchToProps = dispatch => ({
   backBuyMetPanel: () => dispatch({
-    type: 'SHOW_BUY_FORM',
-    payload: false
+    type: 'SHOW_BUY_OPTIONS'
   }),
   buyMetaMask: () => dispatch({
-    type: 'SHOW_BUY_FORM',
-    payload: true
+    type: 'SHOW_BUY_FORM'
   }),
   hideBuyPanel: () => dispatch({
     type: 'SHOW_BUY_PANEL',
@@ -51,6 +47,10 @@ const mapDispatchToProps = dispatch => ({
   updateAccounts: accounts => dispatch({
     type: 'UPDATE_USER_ACCOUNTS',
     payload: accounts
+  }),
+  updateEthUsdRate: value => dispatch({
+    type: 'UPDATE_RATE',
+    payload: { type: 'ETH_USD', value }
   })
 })
 
