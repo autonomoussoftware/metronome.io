@@ -145,7 +145,7 @@ class AuctionBuyForm extends Component {
                   onClick={this.sendTransaction}>
                   Review Purchase
                 </button>
-                <span className="buy-meta-mask__review-disclaimer"> You will be see a review of this purchase in your web wallet</span>
+                <span className="buy-meta-mask__review-disclaimer"> You will be see a review of this purchase in your {web3Provider}</span>
               </section>
             </div>
           </div>

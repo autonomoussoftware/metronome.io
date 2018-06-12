@@ -45,7 +45,7 @@ class AuctionPanelWait extends Component {
                 </h2>
                 <span>Buying <MetValue unit="met">{met}</MetValue> @ <EthValue>{currentPrice}</EthValue> = <FiatValue suffix="USD">{fiatValue}</FiatValue></span>
               </section>
-              <span className="alert-text-warning">Note: Do not change the network or general configuration of Metamask while your purchase is completing.</span>
+              <span className="alert-text-warning">Note: Do not change the network or general configuration of {web3Provider} while your purchase is completing.</span>
             </div>
           </div>
         </div>
