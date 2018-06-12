@@ -7,7 +7,9 @@
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
     "eject": "react-scripts eject",
-    "prestart": "rm -rf node_modules/react-scripts/node_modules/eslint",
+    "fix-deps": "rm -rf node_modules/react-scripts/node_modules/eslint",
+    "prestart": "npm run fix-deps",
+    "prebuild": "npm run fix-deps",
     "postinstall": "patch-package"
   },
   "dependencies": {
