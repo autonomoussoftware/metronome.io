@@ -1560,7 +1560,7 @@ a.overview__current-auction-error-link {
   display: inherit;
   text-align: center;
   h2 {
-    margin-bottom: 5px;
+    margin: 10px 0 15px 0;
   }
   span {
     font-size: 13px;
@@ -2271,10 +2271,17 @@ span.alert-text-warning {
   }
   .amount__hash {
     font-size: 13px;
+    display: inline-block;
+    text-align: right;
     font-weight: 600;
     color: @white;
-    float: left;
-    margin-top: 10px;
+    float: right;
+    width: 250px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
   }
   ul.panel__receipt-details {
     list-style-type: none;
@@ -2319,6 +2326,7 @@ span.alert-text-warning {
   a.btn.btn-inverted {
     background-color: @white;
     color: @purple;
+    border: none;
   }
 }
 // Enable pointer events in dynamic content
