@@ -9,6 +9,7 @@ import createStore from './create-store'
 import getInitialState from './get-initial-state'
 import AuctionStatus from './providers/AuctionStatus'
 
+import AuctionPage from './components/pages/AuctionPage'
 import AuctionPanel from './components/AuctionPanel'
 import HomePageContent from './components/HomePageContent'
 import AppsDownloadButton from './components/AppsDownloadButton'
@@ -23,6 +24,8 @@ function getAppContent (content) {
       return <HomePageContent />
     case 'apps':
       return <AppsDownloadButton />
+    case 'auction':
+      return <AuctionPage />
     default:
       return null
   }
