@@ -1,22 +1,7 @@
 import React, { Component } from 'react'
-import UAParser from 'ua-parser-js'
 
 import arrowIcon from '../img/arrow-forward-24-px.svg'
-import linuxIcon from '../img/linux.png'
-import macOsIcon from '../img/macos.svg'
-import windowsIcon from '../img/windows.png'
-
-const currentOS = new UAParser().getOS()
-const walletInstallers = [
-  { os: 'Debian', icon: linuxIcon, ext: 'deb' },
-  { os: 'Mac OS', icon: macOsIcon, ext: 'dmg' },
-  { os: 'Ubuntu', icon: linuxIcon, ext: 'deb' },
-  { os: 'Windows', icon: windowsIcon, ext: 'exe' }
-]
-const latestWalletVersion = 'v0.11.0'
-const baseWalletURL = `https://github.com/autonomoussoftware/metronome-wallet-desktop/releases/download/${latestWalletVersion}/metronome-desktop-wallet_v0.11.0`
-const walletInstaller = walletInstallers
-  .find(installer => installer.os === currentOS.name)
+import { currentOS, baseWalletURL, walletInstaller } from '../download-helper'
 
 class AuctionPanelDetectOS extends Component {
   render () {

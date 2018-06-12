@@ -18,6 +18,12 @@ module.exports = {
       filename: 'media-kit/index.html'
     }))
 
+    config.plugins.push(new HtmlWebpackPlugin({
+      inject: true,
+      template: path.join(__dirname, './public/apps/index.html'),
+      filename: 'apps/index.html'
+    }))
+
     return config
   }
 }

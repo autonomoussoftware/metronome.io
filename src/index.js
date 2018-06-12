@@ -3,12 +3,15 @@ import React from 'react'
 import reactDOM from 'react-dom'
 
 import './css/styles.css'
-import AuctionPanel from './components/AuctionPanel'
-import AuctionStatus from './providers/AuctionStatus'
+
 import config from './config'
 import createStore from './createStore'
 import getInitialState from './getInitialState'
+import AuctionStatus from './providers/AuctionStatus'
+
+import AuctionPanel from './components/AuctionPanel'
 import HomePageContent from './components/HomePageContent'
+import AppsDownloadButton from './components/AppsDownloadButton'
 
 const reduxDevtoolsOptions = { features: { dispatch: true } }
 
@@ -18,6 +21,8 @@ function getAppContent (content) {
   switch (content) {
     case 'home':
       return <HomePageContent />
+    case 'apps':
+      return <AppsDownloadButton />
     default:
       return null
   }
