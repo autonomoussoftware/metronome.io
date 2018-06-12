@@ -24,6 +24,12 @@ module.exports = {
       filename: 'apps/index.html'
     }))
 
+    config.plugins.push(new HtmlWebpackPlugin({
+      inject: true,
+      template: path.join(__dirname, './public/auction/index.html'),
+      filename: 'auction/index.html'
+    }))
+
     return config
   }
 }

@@ -5,12 +5,14 @@ import reactDOM from 'react-dom'
 import './css/styles.css'
 
 import config from './config'
-import createStore from './createStore'
-import getInitialState from './getInitialState'
+import createStore from './create-store'
+import getInitialState from './get-initial-state'
 import AuctionStatus from './providers/AuctionStatus'
 
+import HomePage from './components/pages/HomePage'
+import AuctionPage from './components/pages/AuctionPage'
+
 import AuctionPanel from './components/AuctionPanel'
-import HomePageContent from './components/HomePageContent'
 import AppsDownloadButton from './components/AppsDownloadButton'
 
 const reduxDevtoolsOptions = { features: { dispatch: true } }
@@ -20,9 +22,11 @@ const store = createStore(reduxDevtoolsOptions, getInitialState(config))
 function getAppContent (content) {
   switch (content) {
     case 'home':
-      return <HomePageContent />
+      return <HomePage />
     case 'apps':
       return <AppsDownloadButton />
+    case 'auction':
+      return <AuctionPage />
     default:
       return null
   }

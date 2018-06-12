@@ -34,7 +34,7 @@ class AuctionBuyForm extends Component {
     const txObject = {
       from: userAccount,
       to: auctionsAddress,
-      value: web3.utils.toWei(eth)
+      value: web3.utils.toWei(eth.replace(',', '.'))
     }
 
     showWaiting()
