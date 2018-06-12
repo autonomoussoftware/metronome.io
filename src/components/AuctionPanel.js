@@ -17,11 +17,11 @@ class AuctionPanel extends Component {
   render () {
     const {
       backToBuyOptions,
-      showBuyForm,
       hideBuyPanel,
-      showPanel,
-      showOptions,
       showBuy,
+      showBuyForm,
+      showOptions,
+      showPanel,
       showReceipt,
       showWaiting,
       updateAccounts,
@@ -36,8 +36,8 @@ class AuctionPanel extends Component {
           <CoinCapRate onData={updateEthUsdRate}/>
           {showOptions &&
             <AuctionBuyOptions
-              showBuyForm={showBuyForm}
-              hideBuyPanel={hideBuyPanel}/>}
+              hideBuyPanel={hideBuyPanel}
+              showBuyForm={showBuyForm} />}
           {showBuy &&
             <AuctionBuyFormWithWeb3
               backToBuyOptions={backToBuyOptions}
