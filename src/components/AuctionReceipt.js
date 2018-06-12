@@ -49,7 +49,7 @@ class AuctionReceipt extends Component {
             <a onClick={hideBuyPanel} className="auction-panel__close"><img alt="" src={closeIcon} /></a>
           </div>
         </div>
-        <div className="auction-panel__body">
+        <div className="auction-panel__body panel__receipt">
           <div className="auction-panel__body--inner">
             <div className="panel__buy-metronome --showBuyMet">
               <section>
@@ -69,7 +69,9 @@ class AuctionReceipt extends Component {
               </section>
               <section>
                 <label>Transaction Hash</label>
-                <span className="amount__hash">{hash}</span>
+                <div className="amount__hash">
+                  <span>{hash}</span>
+                </div>
               </section>
               <section>
                 <label>Transaction Details</label>
