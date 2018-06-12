@@ -14,12 +14,21 @@ function HomePageContent (props) {
     onBuyMetronomeClick
   } = props
 
+  const buttonContainerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: 162,
+    marginTop: 37
+  }
+
   return isInitialAuction
     ? <AuctionSummary />
     : isDailyAuction
-      ? <BuyMetronomeButton
-        disabled={!isAuctionActive}
-        onClick={onBuyMetronomeClick} />
+      ? <div style={buttonContainerStyle}>
+        <BuyMetronomeButton
+          disabled={!isAuctionActive}
+          onClick={onBuyMetronomeClick} />
+      </div>
       : <React.Fragment>
         <TokenSaleCountdown />
         <EmailForm />
