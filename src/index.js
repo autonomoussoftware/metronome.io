@@ -3,11 +3,12 @@ import React from 'react'
 import reactDOM from 'react-dom'
 
 import './css/styles.css'
-import App from './components/App'
-import AuctionStatus from './components/AuctionStatus'
+import AuctionPanel from './components/AuctionPanel'
+import AuctionStatus from './providers/AuctionStatus'
 import config from './config'
 import createStore from './createStore'
 import getInitialState from './getInitialState'
+import HomePageContent from './components/HomePageContent'
 
 const reduxDevtoolsOptions = { features: { dispatch: true } }
 
@@ -16,7 +17,7 @@ const store = createStore(reduxDevtoolsOptions, getInitialState(config))
 function getAppContent (content) {
   switch (content) {
     case 'home':
-      return <App />
+      return <HomePageContent />
     default:
       return null
   }
@@ -32,6 +33,7 @@ if (rootElement) {
       <React.Fragment>
         <AuctionStatus />
         {getAppContent(rootContent)}
+        <AuctionPanel/>
       </React.Fragment>
     </Provider>,
     rootElement

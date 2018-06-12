@@ -11,7 +11,7 @@ function AuctionCounterSm (props) {
   const {
     currentAuction,
     genesisTime,
-    isAuctionInProgress,
+    isAuctionActive,
     nextAuctionStartTime
   } = props
 
@@ -26,7 +26,7 @@ function AuctionCounterSm (props) {
   // should be a non-issue.
   return (
     <div className="AuctionCounterSm">
-      {isAuctionInProgress && <VictoryPie
+      {isAuctionActive && <VictoryPie
         colorScale={[
           '#202020',
           '#7e61f8'
@@ -43,7 +43,7 @@ function AuctionCounterSm (props) {
         />
       </span>
       <span className="auction__counter-sm-remaining">
-        {isAuctionInProgress
+        {isAuctionActive
           ? 'Remaining'
           : 'Until Next Auction'}
       </span>

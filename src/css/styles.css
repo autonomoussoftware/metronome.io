@@ -2019,3 +2019,6 @@ a.overview__current-auction-error-link {
     -webkit-transform: translateY(0%);
   }
 }
+div #root {
+  pointer-events: auto;
+}

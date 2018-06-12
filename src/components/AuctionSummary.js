@@ -15,17 +15,17 @@ function AuctionSummary (props) {
     tokensRemaining
   } = props
 
-  const isAuctionInProgress = !(new BigNumber(tokensRemaining).eq(0))
+  const isAuctionActive = !(new BigNumber(tokensRemaining).eq(0))
 
   return (
     <div className="AuctionInProgress" style={{ height: 430, marginBottom: 154 }}>
       <div className="overview__met-container" style={{ bottom: 'auto' }}>
         <div className="overview__price-container">
           <span className="overview__current-auction-price">
-            {isAuctionInProgress ? 'Current Auction Price' : 'Last Purchase Price'}
+            {isAuctionActive ? 'Current Auction Price' : 'Last Purchase Price'}
           </span>
           <span className="overview__eth-price">
-            <EthValue>{isAuctionInProgress ? currentPrice : lastPurchasePrice}</EthValue>
+            <EthValue>{isAuctionActive ? currentPrice : lastPurchasePrice}</EthValue>
           </span>
         </div>
         <div className="overview__met-container--inner">
@@ -54,8 +54,8 @@ function AuctionSummary (props) {
           <div className="overview__buy-met">
             <div className="overview__buy-met--inner">
               <button
-                className={`btn ${isAuctionInProgress ? '' : 'btn-disabled'}`}
-                disabled={!isAuctionInProgress}
+                className={`btn ${isAuctionActive ? '' : 'btn-disabled'}`}
+                disabled={!isAuctionActive}
                 style={{ borderColor: '#fff', color: '#7e61f8' }}
                 onClick={onBuyMetronomeClick}>
                 Buy Metronome

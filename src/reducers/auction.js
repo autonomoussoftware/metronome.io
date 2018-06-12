@@ -5,7 +5,7 @@ const initialState = {
   loading: true,
   status: {
     genesisTime: new Date('2018-06-18T00:00:00Z').getTime(),
-    isAuctionInProgress: false,
+    isAuctionActive: false,
     isDailyAuction: false,
     isInitialAuction: false
   }
@@ -19,7 +19,7 @@ const reducer = handleActions(
       status: {
         ...state.status,
         ...payload,
-        isAuctionInProgress: !(new BigNumber(payload.tokensRemaining).eq(0)),
+        isAuctionActive: !(new BigNumber(payload.tokensRemaining).eq(0)),
         isDailyAuction: !(payload.currentAuction === 0),
         isInitialAuction: payload.currentAuction === 0
       }

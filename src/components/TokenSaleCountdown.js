@@ -6,7 +6,7 @@ import TokenSaleCountdownDigits from './TokenSaleCountdownDigits'
 
 function TokenSaleCountdown ({ genesisTime }) {
   return (
-    <div className="final-countdown" style={{ display: 'flex' }}>
+    <div className="final-countdown">
       <div className="final-countdown__label">TOKEN SALE COUNTDOWN:</div>
       <div className="final-countdown__counter">
         <Countdown

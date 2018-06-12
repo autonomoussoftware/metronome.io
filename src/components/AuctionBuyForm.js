@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import BigNumber from 'bignumber.js'
 
-import CoinCapRate from './CoinCapRate'
+import CoinCapRate from '../providers/CoinCapRate'
 import EthValue from './EthValue'
 import FiatValue from './FiatValue'
 import MetValue from './MetValue'

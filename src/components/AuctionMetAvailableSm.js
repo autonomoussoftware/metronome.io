@@ -7,7 +7,7 @@ import MetValue from './MetValue'
 function AuctionMetAvailableSm (props) {
   const {
     currentAuction,
-    isAuctionInProgress,
+    isAuctionActive,
     nextAuctionStartPrice,
     tokensRemaining
   } = props
@@ -29,20 +29,20 @@ function AuctionMetAvailableSm (props) {
 
   return (
     <div className="AuctionMetAvailableSm">
-      {isAuctionInProgress &&
+      {isAuctionActive &&
         <div className="auction__met-remaining-sm">
           <div className="auction__met-remaining-sm--fill" style={divStyle}>
           </div>
         </div>}
       <span className="auction__counter-sm">
         <MetValue>
-          {isAuctionInProgress
+          {isAuctionActive
             ? tokensRemaining
             : nextAuctionStartPrice}
         </MetValue>
       </span>
       <span className="auction__counter-sm-remaining">
-        {isAuctionInProgress
+        {isAuctionActive
           ? 'Available'
           : 'Next Starting Price'}
       </span>

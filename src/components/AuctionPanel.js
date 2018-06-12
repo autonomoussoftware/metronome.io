@@ -5,8 +5,8 @@ import AuctionBuyForm from './AuctionBuyForm'
 import AuctionBuyOptions from './AuctionBuyOptions'
 import AuctionBuyOptionsHeader from './AuctionBuyOptionsHeader'
 import AuctionBuyFormHeader from './AuctionBuyFormHeader'
-import UserInfo from './UserInfo'
-import withWeb3 from './withWeb3'
+import UserInfo from '../providers/UserInfo'
+import withWeb3 from '../hocs/withWeb3'
 
 const AuctionBuyFormWithWeb3 = withWeb3(AuctionBuyForm)
 const UserInfoWithWeb3 = withWeb3(UserInfo)
@@ -30,6 +30,7 @@ class AuctionPanel extends Component {
 }
 
 const mapStateToProps = state => ({
+  showBuyPanelEdit: state.buyPanel.show,
   showPanelBuyMet: !state.buyPanel.showBuyForm,
   showPanelMetaMask: state.buyPanel.showBuyForm
 })
