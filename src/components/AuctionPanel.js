@@ -47,6 +47,7 @@ class AuctionPanel extends Component {
               hideBuyPanel={hideBuyPanel} />}
           {showReceipt &&
             <AuctionReceipt
+              showBuyForm={showBuyForm}
               hideBuyPanel={hideBuyPanel} />}
         </div>
       </div>
