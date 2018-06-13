@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="../css/styles.min.css?ver=4.1.1">
 
   </head>
-  <body class="features">
+  <body class="apps">
     <div class="shim"></div>
     <header>
     <nav class="navbar navbar-expand-xl navbar-dark fixed-top">
@@ -37,7 +37,7 @@
               <a class="nav-link" href="/#about">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="/features/">Features</a>
+              <a class="nav-link" href="/features/">Features</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md" target="_blank">Owner's Manual</a>
@@ -57,7 +57,7 @@
             <li class="nav-item">
               <a class="nav-link" href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md" target="_blank">FAQ</a>
             </li>
-            <li class="nav-item" id="auctions-menu-item" style="display: none;">
+            <li class="nav-item" id="auctions-menu-item">
               <a class="nav-link" href="/auction">Auction</a>
             </li>
           </ul>
@@ -70,81 +70,11 @@
     <![endif]-->
 
     <!-- Content -->
-
-    <!-- Dynamic content -->
-    <div id="root" content="none"></div>
-    <!-- /Dynamic content -->
-
     <div id="top" class="site-section">
-      <div id="top-particle"></div>
-      <div class="container">
-        <h1 class="text-center extra-bold">Metronome's Unique Features</h1>
-      </div>
+      <!-- Dynamic content -->
+      <div id="root" content="dashboard"></div>
+      <!-- /Dynamic content -->
     </div>
-
-    <div class="about site-section">
-      <div class="container squeeze">
-        <div class="row feature-set">
-          <div class="col-sm-11">
-            <p class="lead">Metronome's core design principles of self-governance, reliability, and portability are supported by a host of innovative features.</p>
-          </div>
-        </div>
-        <div class="row feature-set">
-          <div class="col-sm-6">
-            <img src="../images/features-illustration-1.png" alt="">
-          </div>
-          <div class="col-sm-6">
-            <h3>Self-Governance</h3>
-            <ol>
-              <li>No undue founder influence following launch</li>
-              <li>Resistant to individual or community influence discord, disagreement, or misinterpretation</li>
-              <li>Public access to all sale opportunities</li>
-              <li>100% on-chain, decentralized, and auditable</li>
-              <li>Auction sale price determined by descending price auction</li>
-            </ol>
-          </div>
-        </div>
-
-        <div class="row feature-set">
-          <div class="col-sm-6">
-            <img src="../images/features-illustration-2.png" alt="">
-          </div>
-          <div class="col-sm-6">
-            <h3>Reliability</h3>
-            <ol>
-              <li>Predictable issuance and token supply</li>
-              <li>New MET minted daily ad infinitum, at the rate that is the greater of (i) 2,880 MET per day, or (ii) an annual rate equal to 2.0000% of the then-outstanding supply per year</li>
-            </ol>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6">
-            <img class="illustration-last" src="../images/features-illustration-3.png" alt="">
-          </div>
-          <div class="col-sm-6">
-            <h3>Portability</h3>
-            <ol>
-              <li>Cross-blockchain portability allows provable export to and import from different contracts or blockchains:
-                <ul>
-                  <li><span>Provides exit for users from chains for any reason</span></li>
-                  <li><span>Further protects the cryptocurrency from management issues and instability</span></li>
-                </li>
-                </ul></li>
-              <li>Enables a migration path to future blockchains as the ledger technology platform matures, acting as a key value proposition for the long-term viability of all digital currencies</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </div><!-- /about -->
-
-    <div class="other-features site-section">
-      <div class="container squeeze">
-          <h2>Additional Features</h2>
-          <p><strong>For a more comprehensive explanation of these features and other aspects of Metronome, please see the <a href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md" target="_blank">Owner's Manual</a>.</strong></p>
-        </div>
-      </div>
-    </div>
-
     <!-- /Content -->
 
     <footer class="footer site-section" role="footer">
@@ -161,6 +91,7 @@
             </ul>
           </div>
           <div class="col-md">
+            <h3>Stay Updated:</h3>
             <div class="sendgrid">
               <script type="text/javascript" src="//sgwidget.leaderapps.co/js/sendgrid-widget.js"></script><style>.sendgrid-subscription-widget .response{display:none;font-family:sans-serif;font-size:.8em}.sendgrid-subscription-widget .success{color:#7e61f8;text-align: center;}.sendgrid-subscription-widget .error{color:red}</style><div id="sendgrid-subscription-widget" class="sendgrid-subscription-widget" ><form id="sg-widget" data-token="ad8b1f4cd2963a816efc51879519201e" onsubmit="return false;"><div class="sg-response" id="sg-response"></div>
                   <input id="sg_email" class="email" type="email" name="sg_email" placeholder="Email Address" required><br>
@@ -176,7 +107,6 @@
               <a href="https://twitter.com/MTNToken" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
               <a href="https://www.reddit.com/r/metronometoken" target="_blank"><i class="fa fa-reddit-alien" aria-hidden="true"></i></a>
               <a href="https://www.facebook.com/MetronomeToken/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-              <a href="" target="_blank"><i class="fa fa-wechat" aria-hidden="true"></i></a>
               <a href="https://medium.com/@MetronomeToken" target="_blank"><i class="fa fa-medium" aria-hidden="true"></i></a>
             </div>
 
@@ -198,20 +128,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    <script src="../js/lib/particles.min.js"></script>
-    <!-- <script src="../js/lib/js.cookie.js" charset="utf-8" type="text/javascript"></script> -->
-    <!-- <script src="../js/lib/jquery-lang.js" charset="utf-8" type="text/javascript"></script> -->
-
-    <script type="text/javascript">
-      // var lang = new Lang();
-      // lang.dynamic('li', '../js/lib/langpack/li.json');
-      // lang.dynamic('lx', '../js/lib/langpack/lx.json');
-      // lang.init({
-      //   defaultLang: 'en'
-      // });
-    </script>
-
-    <script src="../js/main.js"></script>
 
   </body>
 </html>

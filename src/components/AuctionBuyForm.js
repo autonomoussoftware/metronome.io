@@ -24,6 +24,7 @@ class AuctionBuyForm extends Component {
       auctionsAddress,
       clearForm,
       eth,
+      showError,
       showReceipt,
       showWaiting,
       storeTxData,
@@ -46,30 +47,35 @@ class AuctionBuyForm extends Component {
           web3.eth.getTransaction(hash)
             .then(storeTxData)
             .catch(function (err) {
-              // TODO switch to "error"
-              console.log('get tx', err.message)
+              showError('Transaction details could not be retrieved - Try again', err)
             })
         })
         .on('receipt', function (receipt) {
-          // TODO should check receipt.status is true
-          // TODO if no receipt.logs, error
+          if (!receipt.status) {
+            showError('Transaction reverted - Try again', new Error('Transaction status is falsy'))
+            return
+          }
+          if (!receipt.logs.length) {
+            showError('Transaction failed - Try again', new Error('Transaction logs missing'))
+            return
+          }
           showReceipt(receipt)
           clearForm()
         })
         .on('error', function (err) {
-          // TODO switch to "error"
-          console.log('tx error', err.message)
+          showError('Transaction error - Try again', err)
         })
     } catch (err) {
-      // TODO switch to "error"
-      console.log('send error', err.message)
+      showError('Transaction could not be sent - Try again', err)
     }
   }
 
+  // eslint-disable-next-line complexity
   render () {
     const {
       backToBuyOptions,
       currentPrice,
+      error,
       eth,
       hideBuyPanel,
       met,
@@ -97,6 +103,15 @@ class AuctionBuyForm extends Component {
       return bigValue.toFixed()
     }
 
+    const errorStyle = {
+      background: '#d4604519',
+      border: 'solid 1px #d46045',
+      margin: '0 0 20px 0',
+      padding: 8,
+      textAlign: 'center',
+      width: '100%'
+    }
+
     return (
       <React.Fragment>
         <div className="auction-panel__header header__meta-mask --showMetaMask">
@@ -112,6 +127,10 @@ class AuctionBuyForm extends Component {
           <div className="auction-panel__body--inner">
             <div className="panel__buy-meta-mask --showMetaMask">
               <section className="buy-meta-mask__section">
+                {error && error.err.message &&
+                  <div className="buy-meta-mask__current-price" style={errorStyle}>
+                    <span title={error.err.message}>{error.hint}</span>
+                  </div>}
                 <div className="buy-meta-mask__current-price">
                   <span>Current Auction Price</span>
                 </div>
@@ -159,6 +178,7 @@ const mapStateToProps = state => ({
   ...state.buyForm,
   auctionsAddress: state.config.auctionsAddress,
   currentPrice: state.auction.status.currentPrice,
+  error: state.buyPanel.error,
   rates: state.rates,
   userAccount: state.user.accounts[0]
 })
@@ -166,6 +186,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   clearForm: () => dispatch({
     type: 'CLEAR_BUY_FORM'
+  }),
+  showError: (hint, err) => dispatch({
+    type: 'SHOW_BUY_ERROR',
+    payload: { hint, err }
   }),
   showReceipt: payload => dispatch({
     type: 'SHOW_BUY_RECEIPT',

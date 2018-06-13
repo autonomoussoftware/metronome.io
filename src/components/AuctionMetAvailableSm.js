@@ -1,27 +1,15 @@
 import { connect } from 'react-redux'
 import React from 'react'
-import BigNumber from 'bignumber.js'
 
 import MetValue from './MetValue'
 
 function AuctionMetAvailableSm (props) {
   const {
-    currentAuction,
     isAuctionActive,
     nextAuctionStartPrice,
-    tokensRemaining
+    tokensRemaining,
+    remainingPercentage
   } = props
-
-  // We don't have a "stateless" way to know how much tokens were available at
-  // the beginnig of the daily auctions because of the eventual carryover of the
-  // previous one. Therefore, let's assume all auctions are depleted and new
-  // ones start with 2880 tokens.
-  const auctionSupply = new BigNumber(currentAuction === 0 ? 8000000 : 2880)
-    .times(1e18)
-  const remainingPercentage = new BigNumber(tokensRemaining)
-    .div(auctionSupply)
-    .times(100)
-    .toNumber()
 
   const divStyle = {
     height: `${Math.min(remainingPercentage, 100)}%`
@@ -50,8 +38,6 @@ function AuctionMetAvailableSm (props) {
   )
 }
 
-function mapStateToProps (state) {
-  return state.auction.status
-}
+const mapStateToProps = state => state.auction.status
 
 export default connect(mapStateToProps)(AuctionMetAvailableSm)

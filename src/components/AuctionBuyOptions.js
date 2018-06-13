@@ -13,7 +13,11 @@ const isWeb3Available = web3Provider !== 'none'
 
 class AuctionBuyOptions extends Component {
   render () {
-    const { auctionsAddress } = this.props
+    const {
+      auctionsAddress,
+      hideBuyPanel,
+      showBuyForm
+    } = this.props
 
     return (
       <React.Fragment>
@@ -21,7 +25,7 @@ class AuctionBuyOptions extends Component {
           <div className="auction-panel__header--inner">
             <img alt="" className="auction-panel__metIcon" src={metIcon} />
             <h2>Buy Metronome</h2>
-            <a onClick={this.props.hideBuyPanel} className="auction-panel__close"><img alt="" src={closeIcon} /></a>
+            <a onClick={hideBuyPanel} className="auction-panel__close"><img alt="" src={closeIcon} /></a>
           </div>
         </div>
         <div className="auction-panel__body">
@@ -29,7 +33,7 @@ class AuctionBuyOptions extends Component {
             <div className="panel__buy-metronome --showBuyMet">
               <h2>How would you like to buy Metronome?</h2>
               {isWeb3Available && <section>
-                <a onClick={this.props.showBuyForm} className="btn btn-lrg">
+                <a onClick={showBuyForm} className="btn btn-lrg">
                   <span className="btn-text">Buy with {web3Provider}</span> <span className="btn-icon"><img alt="" src={arrowIcon} /></span>
                 </a>
               </section>}

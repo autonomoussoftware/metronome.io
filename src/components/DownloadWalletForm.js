@@ -20,7 +20,7 @@ class AuctionPanelDetectOS extends Component {
               <span>{currentOS.version}</span>
             </div>
             <div className="auction__all-options">
-              <a>See all download options</a>
+              <a href="/apps">See all download options</a>
             </div>
           </React.Fragment>
           : <a className="btn btn-lrg">

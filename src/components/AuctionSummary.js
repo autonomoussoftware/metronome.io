@@ -63,7 +63,7 @@ function AuctionSummary (props) {
             </div>
           </div>
           <div className="overview__visit-dashboard">
-            <a href="/dashboard.html">Visit Dashboard</a>
+            <a href="/dashboard">Visit Dashboard</a>
           </div>
         </div>
       </div>

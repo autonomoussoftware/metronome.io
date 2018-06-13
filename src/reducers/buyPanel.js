@@ -1,12 +1,11 @@
 import { handleActions } from 'redux-actions'
 
 const initialState = {
+  error: null,
+  ongoingTx: { hash: '' },
+  receipt: null,
   show: false,
-  showStep: 'options',
-  ongoingTx: {
-    hash: ''
-  },
-  receipt: null
+  showStep: 'options'
 }
 
 const reducer = handleActions(
@@ -26,10 +25,11 @@ const reducer = handleActions(
     }),
     SHOW_BUY_RECEIPT: (state, { payload }) => ({
       ...state,
-      showStep: 'receipt',
+      error: null,
       receipt: payload.transactionHash === state.ongoingTx.hash
         ? payload
-        : state.receipt
+        : state.receipt,
+      showStep: 'receipt'
     }),
     SHOW_BUY_WAITING: (state, { payload }) => ({
       ...state,
@@ -37,6 +37,13 @@ const reducer = handleActions(
       ongoingTx: {
         hash: payload || ''
       }
+    }),
+    SHOW_BUY_ERROR: (state, { payload }) => ({
+      ...state,
+      error: payload,
+      ongoingTx: initialState.ongoingTx,
+      receipt: null,
+      showStep: 'form'
     }),
     UPDATE_ONGOING_TX: (state, { payload }) => ({
       ...state,

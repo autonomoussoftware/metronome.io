@@ -20,6 +20,7 @@ class AuctionReceipt extends Component {
         logs,
         transactionIndex
       },
+      showBuyForm,
       tx: {
         from,
         gasPrice,
@@ -33,7 +34,6 @@ class AuctionReceipt extends Component {
       .find(log => log.decoded.sender === from)
 
     const value = new BigNumber(auctionLog.decoded.amount)
-      .minus(auctionLog.decoded.refund)
       .toString()
 
     const totalValue = new BigNumber(gasUsed)
@@ -93,8 +93,15 @@ class AuctionReceipt extends Component {
                 </ul>
               </section>
               <section className="panel__purchase-btn-container">
-                <a className="btn">Make Another Purchase</a>
-                <a className="btn btn-inverted" href={`${metExplorerUrl}/transactions/${hash}`}>View in Explorer</a>
+                <a className="btn" onClick={showBuyForm}>
+                  Make Another Purchase
+                </a>
+                <a
+                  className="btn btn-inverted"
+                  href={`${metExplorerUrl}/transactions/${hash}`}
+                  target="_blank">
+                  View in Explorer
+                </a>
               </section>
             </div>
           </div>
