@@ -419,12 +419,10 @@
 .container__counter {
   display: inline-block;
   position: relative;
+  border-right: solid 1px @darkest;
   .left;
   .one-third;
   .noMarginPadding;
-  .label__title {
-    border-right: solid 1px @darkest;
-  }
 }
 .container__tokens {
   display: inline-block;
@@ -897,15 +895,24 @@ ul.price__compare {
     padding: 0 0 0 19px;
   }
 }
+.AuctionCounter {
+  .label__title {
+    border-right: solid 1px @darkest;
+    width: calc(100% + 1px);
+  }
+}
 .AuctionCounter--inner {
   padding: 25px 25px 45px 20px;
   clear: both;
   display: inline-block;
   position: relative;
-  border-right: solid 1px @darkest;
 }
 .container__auction--inner {
   padding: 25px;
+  position: relative;
+  display: inline-block;
+  clear: both;
+  width: 100%;
 }
 .investorDropdownSelector {
   background-color: @white;
