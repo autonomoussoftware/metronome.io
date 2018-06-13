@@ -1372,8 +1372,16 @@ a.overview__current-auction-error-link {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
-.AuctionInProgress, .AuctionDepleted, .AuctionWaiting, .AuctionError {
+.AuctionInProgress,
+.AuctionDepleted,
+.AuctionWaiting,
+.AuctionError {
   height: 100%;
+  margin-bottom: 0px;
+  height: inherit;
+  .overview__met-container {
+    position: relative;
+  }
 }
 .--screenDarken {
   opacity: 0.3;
