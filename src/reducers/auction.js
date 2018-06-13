@@ -9,6 +9,7 @@ const genesisTimePlus7 = genesisTime + 7 * MS_PER_DAY
 const now = Date.now()
 
 const initialState = {
+  error: null,
   loading: true,
   status: {
     genesisTime,
@@ -30,6 +31,7 @@ const reducer = handleActions(
   {
     UPDATE_AUCTION_STATUS: (state, { payload }) => ({
       ...state,
+      error: null,
       loading: false,
       status: {
         ...state.status,
@@ -46,6 +48,11 @@ const reducer = handleActions(
           100
         )
       }
+    }),
+    AUCTION_STATUS_ERROR: (state, { payload }) => ({
+      ...state,
+      error: payload,
+      loading: false
     })
   },
   initialState
