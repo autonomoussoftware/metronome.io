@@ -153,13 +153,16 @@
         .AuctionPanel .Panel {
           width: 360px;
         }
+        .label__general-stats, .numeral__general-stats {
+          text-align: center;
+        }
         .btn-icon.--down {
           top: -18px;
           left: 10px;
         }
         .container__tokens-label {
           float: none;
-          padding-top: 10px;
+          padding-top: 25px;
         }
         .logo {
           width: 150px;
@@ -212,14 +215,23 @@
         }
         .overview__price-container {
           span {
-            font-size: 18px!important;
-          }
-          span.overview__eth-price {
-            font-size: 32px!important;
+            font-size: 28px;
           }
         }
         .AuctionPanel {
           width: 90%;
+        }
+        .auction-panel__header--inner {
+          h2 {
+            position: absolute;
+            margin-top: 20px;
+            font-size: 18px;
+          }
+        }
+        .buy-meta-mask__current-price-numeral {
+          float: left;
+          display: block;
+          width: 100%;
         }
         h1.downloads__header-title {
           font-size: 32px!important;
