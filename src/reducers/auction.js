@@ -1,13 +1,20 @@
 import { handleActions } from 'redux-actions'
 import BigNumber from 'bignumber.js'
 
+const MS_PER_DAY = 24 * 60 * 60 * 1000
+
+const genesisTime = new Date('2018-06-18T00:00:00Z').getTime()
+const genesisTimePlus7 = genesisTime + 7 * MS_PER_DAY
+
+const now = Date.now()
+
 const initialState = {
   loading: true,
   status: {
-    genesisTime: new Date('2018-06-18T00:00:00Z').getTime(),
+    genesisTime,
     isAuctionActive: false,
-    isDailyAuction: false,
-    isInitialAuction: false
+    isDailyAuction: now >= genesisTimePlus7,
+    isInitialAuction: now >= genesisTime && now < genesisTimePlus7
   }
 }
 
