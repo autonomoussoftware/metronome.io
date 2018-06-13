@@ -9,6 +9,7 @@ class AuctionStatus extends Component {
       metApiUrl: this.props.metApiUrl
     })
     this.statusStream.on('data', this.props.onData)
+    this.statusStream.on('error', this.props.onError)
   }
 
   componentWillUnmount () {
@@ -25,7 +26,14 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onData: data => dispatch({ type: 'UPDATE_AUCTION_STATUS', payload: data })
+  onData: payload => dispatch({
+    type: 'UPDATE_AUCTION_STATUS',
+    payload
+  }),
+  onError: payload => dispatch({
+    type: 'AUCTION_STATUS_ERROR',
+    payload
+  })
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuctionStatus)
