@@ -437,7 +437,12 @@
   display: inline-block;
   margin: 8px 0 0 15px;
   padding: 0px;
-  .left;
+  .right;
+  span {
+    font-size: 21px;
+    color: @white;
+    font-weight: 100;
+  }
 }
 .container__main-fixed.--fixed {
   position: fixed;
@@ -858,8 +863,8 @@ ul.price__compare {
   display: inline-block;
   .auction-timer__section {
     position: relative;
-    top: 12px;
-    padding: 13px;
+    top: 9px;
+    padding: 13px 13px 11px 13px;
     border-right: solid 2px @gray;
     font-size: 32px;
     color: @purple;
@@ -893,8 +898,10 @@ ul.price__compare {
   }
 }
 .AuctionCounter--inner {
-  padding: 25px 0px 45px 20px;
-  height: 80px;
+  padding: 25px 25px 45px 20px;
+  clear: both;
+  display: inline-block;
+  position: relative;
   border-right: solid 1px @darkest;
 }
 .container__auction--inner {
