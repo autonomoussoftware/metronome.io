@@ -1379,11 +1379,24 @@ a.overview__current-auction-error-link {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+[content="home"] {
+  .AuctionInProgress {
+    height: inherit;
+    .overview__met-container {
+      position: relative;
+      top: 0px;
+      margin-bottom: 25px;
+    }
+  }
+}
+#root[content="auction"] {
+  padding-bottom: 160px;
+}
 .AuctionInProgress,
 .AuctionDepleted,
 .AuctionWaiting,
 .AuctionError {
-  height: 100%;
+  height: 100%!important;
   margin-bottom: 0px;
   height: inherit;
   .overview__met-container {
