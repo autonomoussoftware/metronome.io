@@ -12,7 +12,9 @@ class GeneralStats extends Component {
   render () {
     const {
       auction: {
+        auctionSupply,
         isAuctionActive,
+        isDailyAuction,
         tokenSupply
       },
       rates,
@@ -42,12 +44,12 @@ class GeneralStats extends Component {
                 <div className="numeral__general-stats"><FiatValue suffix="USD">{marketCap}</FiatValue></div>
               </div>
             </div>
-            {/* <div className="left">
+            <div className="left">
               <div className="container__inner">
-                <div className="label__general-stats">Daily Auction Amount</div>
-                <div className="numeral__general-stats">{data.mtn_daily_auction} MTN</div>
+                <div className="label__general-stats">{isDailyAuction ? 'Daily' : 'Initial'} Auction Amount</div>
+                <div className="numeral__general-stats"><MetValue>{auctionSupply}</MetValue></div>
               </div>
-            </div> */}
+            </div>
           </div>
           {/* <div className="left">
             <div className="container__inner">
