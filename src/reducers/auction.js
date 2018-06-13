@@ -18,6 +18,14 @@ const initialState = {
   }
 }
 
+// We don't have a "stateless" way to know how much tokens were available at the
+// beginnig of the daily auctions because of the eventual carryover of the
+// previous one. Therefore, let's assume all auctions are depleted and new ones
+// start with 2880 tokens.
+const auctionSupply = currentAuction =>
+  new BigNumber(currentAuction === 0 ? 8000000 : 2880)
+    .times(1e18)
+
 const reducer = handleActions(
   {
     UPDATE_AUCTION_STATUS: (state, { payload }) => ({
@@ -28,7 +36,15 @@ const reducer = handleActions(
         ...payload,
         isAuctionActive: !(new BigNumber(payload.tokensRemaining).eq(0)),
         isDailyAuction: !(payload.currentAuction === 0),
-        isInitialAuction: payload.currentAuction === 0
+        isInitialAuction: payload.currentAuction === 0,
+        auctionSupply: auctionSupply(payload.currentAuction),
+        remainingPercentage: BigNumber.min(
+          new BigNumber(payload.tokensRemaining)
+            .div(auctionSupply(payload.currentAuction))
+            .times(100)
+            .toNumber(),
+          100
+        )
       }
     })
   },

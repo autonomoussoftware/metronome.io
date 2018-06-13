@@ -30,6 +30,12 @@ module.exports = {
       filename: 'auction/index.html'
     }))
 
+    config.plugins.push(new HtmlWebpackPlugin({
+      inject: true,
+      template: path.join(__dirname, './public/dashboard/index.html'),
+      filename: 'dashboard/index.html'
+    }))
+
     return config
   }
 }

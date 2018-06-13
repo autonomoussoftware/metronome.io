@@ -42,7 +42,10 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onBuyMetronomeClick: () => dispatch({ type: 'SHOW_BUY_PANEL', payload: true })
+  onBuyMetronomeClick: () => dispatch({
+    type: 'SHOW_BUY_PANEL',
+    payload: true
+  })
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePageContent)

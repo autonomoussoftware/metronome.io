@@ -7,13 +7,15 @@ import './css/styles.css'
 import config from './config'
 import createStore from './create-store'
 import getInitialState from './get-initial-state'
+
 import AuctionStatus from './providers/AuctionStatus'
 
-import HomePage from './components/pages/HomePage'
 import AuctionPage from './components/pages/AuctionPage'
+import DashboardPage from './components/pages/DashboardPage'
+import HomePage from './components/pages/HomePage'
 
-import AuctionPanel from './components/AuctionPanel'
 import AppsDownloadButton from './components/AppsDownloadButton'
+import AuctionPanel from './components/AuctionPanel'
 
 const reduxDevtoolsOptions = { features: { dispatch: true } }
 
@@ -27,6 +29,8 @@ function getAppContent (content) {
       return <AppsDownloadButton />
     case 'auction':
       return <AuctionPage />
+    case 'dashboard':
+      return <DashboardPage />
     default:
       return null
   }
