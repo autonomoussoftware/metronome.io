@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import detectProvider from 'web3-detect-provider'
 import React, { Component } from 'react'
+import UAParser from 'ua-parser-js'
 
 import arrowIcon from '../img/arrow-forward-24-px.svg'
 import AuctionCopyClipboard from './AuctionCopyClipboard'
@@ -10,6 +11,11 @@ import metIcon from '../img/light.svg'
 
 const web3Provider = detectProvider('web wallet')
 const isWeb3Available = web3Provider !== 'none'
+
+const isMobile = ['mobile', 'tablet'].includes(new UAParser().getDevice().type)
+const useWallet = isMobile
+  ? { name: 'Cipher', url: 'https://www.cipherbrowser.com/' }
+  : { name: 'MetaMask', url: 'https://metamask.io' }
 
 class AuctionBuyOptions extends Component {
   render () {
@@ -32,11 +38,19 @@ class AuctionBuyOptions extends Component {
           <div className="auction-panel__body--inner">
             <div className="panel__buy-metronome --showBuyMet">
               <h2>How would you like to buy Metronome?</h2>
-              {isWeb3Available && <section>
-                <a onClick={showBuyForm} className="btn btn-lrg">
-                  <span className="btn-text">Buy with {web3Provider}</span> <span className="btn-icon"><img alt="" src={arrowIcon} /></span>
+              <section>
+                <a
+                  onClick={isWeb3Available && showBuyForm}
+                  className="btn btn-lrg"
+                  href={!isWeb3Available && useWallet.url}
+                  target="_blank">
+                  <span className="btn-text">
+                    Buy with {isWeb3Available ? web3Provider : useWallet.name}</span>
+                  <span className="btn-icon">
+                    <img alt="" src={arrowIcon} />
+                  </span>
                 </a>
-              </section>}
+              </section>
               <section className="auction__option-section">
                 <DownloadWalletForm />
                 <div className="auction--or-oval"><span className="auction--or-text">or</span></div>
