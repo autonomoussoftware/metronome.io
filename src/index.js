@@ -4,6 +4,7 @@ import reactDOM from 'react-dom'
 
 import './css/styles.css'
 
+import analytics from './analytics'
 import config from './config'
 import createStore from './create-store'
 import getInitialState from './get-initial-state'
@@ -16,6 +17,8 @@ import AuctionPage from './components/pages/AuctionPage'
 import DashboardPage from './components/pages/DashboardPage'
 
 import AuctionPanel from './components/AuctionPanel'
+
+analytics.init()
 
 const reduxDevtoolsOptions = { features: { dispatch: true } }
 
