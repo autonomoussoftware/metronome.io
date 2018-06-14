@@ -42,8 +42,7 @@ class AuctionBuyOptions extends Component {
                 <a
                   onClick={isWeb3Available && showBuyForm}
                   className="btn btn-lrg"
-                  href={isWeb3Available ? '' : useWallet.url}
-                  target="_blank">
+                  {...(isWeb3Available ? {} : { href: useWallet.url, target: '_blank' })}>
                   <span className="btn-text">
                     Buy with {isWeb3Available ? web3Provider : useWallet.name}</span>
                   <span className="btn-icon">
