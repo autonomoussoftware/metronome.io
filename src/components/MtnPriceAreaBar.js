@@ -107,9 +107,9 @@ class MtnPriceAreaBar extends Component {
 
   parseHistory (data) {
     return data.map(point => ({
-      time: point.header.timestamp * 1000,
-      supply: new BigNumber(fromWei(point.heartbeat.minting)).toNumber(),
-      price: new BigNumber(point.heartbeat.currentAuctionPrice).div(1e18).toNumber()
+      time: point.timestamp * 1000,
+      supply: new BigNumber(fromWei(point.minting)).toNumber(),
+      price: new BigNumber(point.currentAuctionPrice).div(1e18).toNumber()
     }))
   }
 
