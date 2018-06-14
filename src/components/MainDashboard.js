@@ -7,9 +7,6 @@ import HeaderDashboard from './HeaderDashboard'
 // import MtnExchanger from './MtnExchanger'
 import MtnPriceAreaBar from './MtnPriceAreaBar'
 
-// TODO show METLoader if auction data is loading
-// TODO hide if auctions did not start
-
 class MainDashboard extends Component {
   render () {
     return (
