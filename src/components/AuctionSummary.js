@@ -54,6 +54,7 @@ function AuctionSummary (props) {
           <div className="overview__buy-met">
             <div className="overview__buy-met--inner">
               <button
+                { ...(!isAuctionActive ? { 'data-tooltip': 'Next auction has not started' } : {}) }
                 className={`btn ${isAuctionActive ? '' : 'btn-disabled'}`}
                 disabled={!isAuctionActive}
                 style={{ borderColor: '#fff', color: '#7e61f8' }}

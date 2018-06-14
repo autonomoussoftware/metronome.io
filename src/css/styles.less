@@ -2324,3 +2324,62 @@ span.alert-text-warning {
 .apps #top .container, div #root {
   pointer-events: auto;
 }
+
+[data-tooltip] {
+  position: relative;
+  z-index: 2;
+
+  &::before,
+  &::after {
+    visibility: hidden;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &::before {
+    position: absolute;
+    bottom: 105%;
+    left: 50%;
+    margin-bottom: 5px;
+    margin-left: -100px;
+    padding: 7px;
+    width: 205px;
+    border-radius: 3px;
+    background-color: hsla(0, 0%, 44%, 0.9);
+    color: #fff;
+    text-transform: none;
+    font-weight: 200px;
+    content: attr(data-tooltip);
+    text-align: center;
+    font-size: 10px;
+  }
+
+  &::after {
+    position: absolute;
+    bottom: 105%;
+    left: 50%;
+    margin-left: -5px;
+    width: 0;
+    border-top: 5px solid hsla(0, 0%, 44%, 0.9);
+    background-color: transparent;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    content: " ";
+    font-size: 0;
+    line-height: 0;
+  }
+
+  &:hover::before,
+  &:hover::after {
+    visibility: visible;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    opacity: 1;
+  }
+
+  &:hover {
+    border: none;
+  }
+}
