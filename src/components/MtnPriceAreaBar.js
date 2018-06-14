@@ -93,16 +93,32 @@ class MtnPriceAreaBar extends Component {
 
     fetch(`${metHistoryUrl}?from=${from}&to=${now}`)
       .then(response => response.json())
-      .then(data => this.setState({ err: null, history: data }))
+      .then(data => this.setState({ err: null, history: data, timestamp: now }))
       .catch(err => this.setState({ err }))
   }
 
   componentDidMount () {
-    this.interval = startInterval(() => this.retrieveData(), POLLING_TIME)
+    this.retrieveData()
   }
 
-  componentWillUnmount () {
-    clearInterval(this.interval)
+  static getDerivedStateFromProps (props, state) {
+    const {
+      currentPrice,
+      tokensRemaining
+    } = props.auction
+
+    const point = {
+      timestamp: moment().unix(),
+      minting: tokensRemaining,
+      currentAuctionPrice: currentPrice
+    }
+
+    const newHistory = state.history.concat(point)
+    newHistory.shift()
+
+    return {
+      history: newHistory
+    }
   }
 
   parseHistory (data) {
@@ -114,8 +130,9 @@ class MtnPriceAreaBar extends Component {
   }
 
   changeTimeWindow (timeWindow) {
-    this.setState({ timeWindow, showDropdown: false })
-    this.retrieveData()
+    this.setState({ timeWindow, showDropdown: false }, () =>
+      this.retrieveData()
+    )
   }
 
   toggleDropdown () {
