@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { toWei } from 'web3-utils'
 import BigNumber from 'bignumber.js'
 import detectProvider from 'web3-detect-provider'
 import React, { Component } from 'react'
@@ -16,12 +17,12 @@ class AuctionPanelWait extends Component {
     const {
       currentPrice,
       eth,
-      met,
       hash,
       rates
     } = this.props
 
     const fiatValue = new BigNumber(eth).times(rates.ETH_USD).toString()
+    const metAmount = new BigNumber(toWei(eth)).div(currentPrice).toString()
 
     return (
       <React.Fragment>
@@ -43,7 +44,7 @@ class AuctionPanelWait extends Component {
                     ? `Waiting for transaction ${hash.substr(0, 6)}* to be confirmed`
                     : `Confim this purchase in ${web3Provider}`}
                 </h2>
-                <span>Buying <MetValue unit="met">{met}</MetValue> @ <EthValue>{currentPrice}</EthValue> = <FiatValue suffix="USD">{fiatValue}</FiatValue></span>
+                <span>Buying <MetValue unit="met">{metAmount}</MetValue> @ <EthValue>{currentPrice}</EthValue> = <FiatValue suffix="USD">{fiatValue}</FiatValue></span>
               </section>
               <span className="alert-text-warning">Note: Do not change the network or general configuration of {web3Provider} while your purchase is completing.</span>
             </div>
