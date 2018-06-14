@@ -102,16 +102,6 @@ class AuctionBuyForm extends Component {
       const bigValue = new BigNumber(value)
       return bigValue.toFixed()
     }
-
-    const errorStyle = {
-      background: '#d4604519',
-      border: 'solid 1px #d46045',
-      margin: '0 0 20px 0',
-      padding: 8,
-      textAlign: 'center',
-      width: '100%'
-    }
-
     return (
       <React.Fragment>
         <div className="auction-panel__header header__meta-mask --showMetaMask">
@@ -128,7 +118,7 @@ class AuctionBuyForm extends Component {
             <div className="panel__buy-meta-mask --showMetaMask">
               <section className="buy-meta-mask__section">
                 {error && error.err.message &&
-                  <div className="buy-meta-mask__current-price" style={errorStyle}>
+                  <div className="buy-meta-mask__current-price meta-mask__error">
                     <span title={error.err.message}>{error.hint}</span>
                   </div>}
                 <div className="buy-meta-mask__current-price">

@@ -150,6 +150,20 @@
             padding: 15px;
           }
         }
+        .AuctionPanel .Panel {
+          width: 360px;
+        }
+        .label__general-stats, .numeral__general-stats {
+          text-align: center;
+        }
+        .btn-icon.--down {
+          top: -18px;
+          left: 10px;
+        }
+        .container__tokens-label {
+          float: none;
+          padding-top: 25px;
+        }
         .logo {
           width: 150px;
           float: none;
@@ -201,14 +215,24 @@
         }
         .overview__price-container {
           span {
-            font-size: 18px!important;
-          }
-          span.overview__eth-price {
-            font-size: 32px!important;
+            font-size: 28px;
+            letter-spacing: 1px;
           }
         }
         .AuctionPanel {
           width: 90%;
+        }
+        .auction-panel__header--inner {
+          h2 {
+            position: absolute;
+            margin-top: 20px;
+            font-size: 18px;
+          }
+        }
+        .buy-meta-mask__current-price-numeral {
+          float: left;
+          display: block;
+          width: 100%;
         }
         h1.downloads__header-title {
           font-size: 32px!important;
@@ -231,6 +255,10 @@
           height: 200px;
         }
         .button__visit-auction-dashboard {
+          button {
+            width: 100%;
+            text-align: center;
+          }
           width: 100%;
           text-align: center;
         }
@@ -259,6 +287,9 @@
         .label__general-stats,
         .container__one-third {
           width: 100%;
+        }
+        .container__tokens-label {
+          float: none;
         }
         .container__counter,
         .container__tokens {
@@ -374,7 +405,7 @@
   z-index: 2;
   display: block;
   color: @grayLight;
-  padding: 20px 0 20px 20px;
+  padding: 20px 0 17px 20px;
   font-weight: 300;
   font-size: 14px;
   letter-spacing: 2px;
@@ -419,12 +450,10 @@
 .container__counter {
   display: inline-block;
   position: relative;
+  border-right: solid 1px @darkest;
   .left;
   .one-third;
   .noMarginPadding;
-  .label__title {
-    border-right: solid 1px @darkest;
-  }
 }
 .container__tokens {
   display: inline-block;
@@ -437,7 +466,12 @@
   display: inline-block;
   margin: 8px 0 0 15px;
   padding: 0px;
-  .left;
+  .right;
+  span {
+    font-size: 21px;
+    color: @white;
+    font-weight: 100;
+  }
 }
 .container__main-fixed.--fixed {
   position: fixed;
@@ -563,17 +597,17 @@ ul.price__compare {
   position: relative;
   height: 7px;
   border-radius: 15px;
+  top: -2px;
 }
 .tokens__progress-arrow {
   position: absolute;
   right: 0px;
-  top: -3px;
   border-right: 1px solid @white;
   width: 1px;
   height: 15px;
   .arrow-up {
     position: absolute;
-    left: -2px;
+    left: -3px;
   }
 }
 .tokens__remainder-label {
@@ -776,7 +810,7 @@ ul.price__compare {
   display: inline-block;
   .right;
   padding: 0px;
-  margin: 10px 15px 0 0;
+  margin: 13px 15px 0 0;
   button {
     display: block;
     font-size: 14px;
@@ -858,8 +892,8 @@ ul.price__compare {
   display: inline-block;
   .auction-timer__section {
     position: relative;
-    top: 12px;
-    padding: 13px;
+    top: 9px;
+    padding: 13px 13px 11px 13px;
     border-right: solid 2px @gray;
     font-size: 32px;
     color: @purple;
@@ -892,13 +926,24 @@ ul.price__compare {
     padding: 0 0 0 19px;
   }
 }
+.AuctionCounter {
+  .label__title {
+    border-right: solid 1px @darkest;
+    width: calc(100% + 1px);
+  }
+}
 .AuctionCounter--inner {
-  padding: 25px 0px 45px 20px;
-  height: 80px;
-  border-right: solid 1px @darkest;
+  padding: 25px 25px 45px 20px;
+  clear: both;
+  display: inline-block;
+  position: relative;
 }
 .container__auction--inner {
   padding: 25px;
+  position: relative;
+  display: inline-block;
+  clear: both;
+  width: 100%;
 }
 .investorDropdownSelector {
   background-color: @white;
@@ -1310,6 +1355,11 @@ a.overview__current-auction-error-link {
     text-decoration: none;
   }
 }
+.MainDashboard {
+  &.container__main {
+    padding-top: 19px;
+  }
+}
 .MainDashboard.--showDashboard {
   display: inherit;
   -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
@@ -1360,8 +1410,29 @@ a.overview__current-auction-error-link {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
-.AuctionInProgress, .AuctionDepleted, .AuctionWaiting, .AuctionError {
-  height: 100%;
+[content="home"] {
+  .AuctionInProgress {
+    height: inherit;
+    .overview__met-container {
+      position: relative;
+      top: 0px;
+      margin-bottom: 25px;
+    }
+  }
+}
+#root[content="auction"] {
+  padding-bottom: 160px;
+}
+.AuctionInProgress,
+.AuctionDepleted,
+.AuctionWaiting,
+.AuctionError {
+  height: 100%!important;
+  margin-bottom: 0px;
+  height: inherit;
+  .overview__met-container {
+    position: relative;
+  }
 }
 .--screenDarken {
   opacity: 0.3;
@@ -1692,6 +1763,18 @@ a.overview__current-auction-error-link {
   span {
     font-size: 20px;
     color: @white;
+  }
+}
+.meta-mask__error {
+  background-color: rgba(212, 96, 69, 0.1);
+  border: solid 1px #d46045;
+  margin: 0 0 20px 0;
+  padding: 8;
+  text-align: center;
+  width: 100%;
+  span {
+    color: #d46045;
+    font-size: 13px;
   }
 }
 

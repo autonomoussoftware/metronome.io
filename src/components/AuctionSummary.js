@@ -18,8 +18,8 @@ function AuctionSummary (props) {
   const isAuctionActive = !(new BigNumber(tokensRemaining).eq(0))
 
   return (
-    <div className="AuctionInProgress" style={{ height: 430, marginBottom: 154 }}>
-      <div className="overview__met-container" style={{ bottom: 'auto' }}>
+    <div className="AuctionInProgress">
+      <div className="overview__met-container">
         <div className="overview__price-container">
           <span className="overview__current-auction-price">
             {isAuctionActive ? 'Current Auction Price' : 'Last Purchase Price'}
