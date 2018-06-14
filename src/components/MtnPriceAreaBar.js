@@ -11,13 +11,9 @@ import {
 import { VictoryTheme } from 'victory-core'
 import React, { Component } from 'react'
 import BigNumber from 'bignumber.js'
-import startInterval from 'startinterval2'
 import moment from 'moment'
 
 import EthValue from './EthValue'
-
-// New chart data is pulled from the server at this rate
-const POLLING_TIME = 15000
 
 const foregroudTickStyle = {
   grid: {
@@ -88,8 +84,11 @@ class MtnPriceAreaBar extends Component {
   retrieveData () {
     const { metHistoryUrl } = this.props.config
 
-    const now = moment().unix()
-    const from = moment().subtract(timeWindows[this.state.timeWindow]).unix()
+    const now = moment()
+      .unix()
+    const from = moment()
+      .subtract(timeWindows[this.state.timeWindow])
+      .unix()
 
     fetch(`${metHistoryUrl}?from=${from}&to=${now}`)
       .then(response => response.json())
@@ -114,10 +113,13 @@ class MtnPriceAreaBar extends Component {
     }
 
     const newHistory = state.history.concat(point)
-    newHistory.shift()
+
+    const from = moment()
+      .subtract(timeWindows[state.timeWindow])
+      .unix()
 
     return {
-      history: newHistory
+      history: newHistory.filter(p => p.timestamp >= from)
     }
   }
 
