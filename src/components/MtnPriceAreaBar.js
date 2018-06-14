@@ -163,7 +163,7 @@ class MtnPriceAreaBar extends Component {
           <div className="chart__main-label">
             <span className="label__Auction-Price">Auction Price:</span> <span className="label_-ETH"><EthValue>{currentPrice}</EthValue></span>
           </div>
-          <div className="chart__dropdown-time-selector" onClick={this.toggleDropdown}>
+          <div className={`chart__dropdown-time-selector ${showDropdown ? '--active' : ''}`} onClick={this.toggleDropdown}>
             <span className="label__selector">{timeWindows[timeWindow].label}<span className="arrow-down"></span></span>
             <div className={`chart__dropdown-time-selector--dropdown ${showDropdown ? '--show' : ''}`}>
               <div className="arrow-up"></div>
