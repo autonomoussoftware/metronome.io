@@ -82,7 +82,7 @@ class MtnPriceAreaBar extends Component {
   }
 
   retrieveData () {
-    const { metHistoryUrl } = this.props.config
+    const { metApiUrl } = this.props.config
 
     const now = moment()
       .unix()
@@ -90,7 +90,7 @@ class MtnPriceAreaBar extends Component {
       .subtract(timeWindows[this.state.timeWindow])
       .unix()
 
-    fetch(`${metHistoryUrl}?from=${from}&to=${now}`)
+    fetch(`${metApiUrl}/history?from=${from}&to=${now}`)
       .then(response => response.json())
       .then(data => this.setState({ err: null, history: data, timestamp: now }))
       .catch(err => this.setState({ err }))
