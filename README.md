@@ -6,6 +6,7 @@ Set the following variables in a `.env` file:
 
 - `REACT_APP_CHAIN`: defaults to `mainnet`
 - `REACT_APP_DESKTOP_APP_VERSION`: defaults to `v1.0.0`
+- `REACT_APP_GA_TRACKING_ID`
 - `REACT_APP_MET_API_URL`: defaults to `https://api.metronome.io`
 - `REACT_APP_MET_EXPLORER_URL`: defaults to `https://explorer.metronome.io`
 
