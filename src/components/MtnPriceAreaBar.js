@@ -1,6 +1,13 @@
 import { connect } from 'react-redux'
 import { fromWei } from 'web3-utils'
-import { VictoryChart, VictoryGroup, VictoryAxis, VictoryArea, VictoryTooltip, VictoryBar } from 'victory'
+import {
+  VictoryArea,
+  VictoryAxis,
+  VictoryChart,
+  VictoryGroup,
+  VictoryLine,
+  VictoryTooltip
+} from 'victory'
 import { VictoryTheme } from 'victory-core'
 import React, { Component } from 'react'
 import BigNumber from 'bignumber.js'
@@ -100,7 +107,7 @@ class MtnPriceAreaBar extends Component {
 
   parseHistory (data) {
     return data.map(point => ({
-      time: moment(new Date(point.header.timestamp * 1000)).format('LT'),
+      time: point.header.timestamp * 1000,
       supply: new BigNumber(fromWei(point.heartbeat.minting)).toNumber(),
       price: new BigNumber(point.heartbeat.currentAuctionPrice).div(1e18).toNumber()
     }))
@@ -182,8 +189,9 @@ class MtnPriceAreaBar extends Component {
                   x="time"
                   y="price"
                   dependentAxis>
-                  <VictoryBar
-                    style={{ data: { fill: '#fff', fillOpacity: 0.1, width: 5 } }} />
+                  <VictoryLine
+                    interpolationNoooooo="basis"
+                    style={{ data: { stroke: '#fff2', strokeWidth: 1 } }} />
                 </VictoryGroup>
               </VictoryChart>
             </div>
@@ -193,6 +201,8 @@ class MtnPriceAreaBar extends Component {
                 height={130}
                 padding={{ top: 5, bottom: 15, right: 25, left: 15 }}>
                 <VictoryAxis
+                  tickCount={10}
+                  scale={{ x: 'time' }}
                   style={backgroundTickStyle} />
                 <VictoryAxis
                   height={400}
