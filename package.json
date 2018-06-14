@@ -8,8 +8,11 @@
     "lint:fix": "eslint --fix ./src",
     "eject": "react-scripts eject",
     "fix-deps": "rm -rf node_modules/react-scripts/node_modules/eslint",
+    "build:libs": "npm run build:libs:status && npm run build:libs:round",
+    "build:libs:status": "cd lib/metronome-auction-status-js && npm i && npm run build",
+    "build:libs:round": "cd lib/smart-round && npm i && npm run build",
     "prestart": "npm run fix-deps",
-    "prebuild": "npm run fix-deps",
+    "prebuild": "npm run fix-deps && npm run build:libs",
     "postinstall": "patch-package",
     "watch-less": "react-less-watcher -d src/css"
   },
