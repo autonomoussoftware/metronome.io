@@ -8,47 +8,23 @@ module.exports = {
   webpack (config, env) {
     config = rewireEslint(config, env)
 
-    config.plugins.push(new HtmlWebpackPlugin({
-      inject: true,
-      template: path.join(__dirname, './public/index.html'),
-      filename: 'index.html',
-      params: { gaTrackingId }
-    }))
+    const pages = [
+      'index.html',
+      'features/index.html',
+      'media-kit/index.html',
+      'apps/index.html',
+      'auction/index.html',
+      'dashboard/index.html'
+    ]
 
-    config.plugins.push(new HtmlWebpackPlugin({
-      inject: true,
-      template: path.join(__dirname, './public/features/index.html'),
-      filename: 'features/index.html',
-      params: { gaTrackingId }
-    }))
-
-    config.plugins.push(new HtmlWebpackPlugin({
-      inject: true,
-      template: path.join(__dirname, './public/media-kit/index.html'),
-      filename: 'media-kit/index.html',
-      params: { gaTrackingId }
-    }))
-
-    config.plugins.push(new HtmlWebpackPlugin({
-      inject: true,
-      template: path.join(__dirname, './public/apps/index.html'),
-      filename: 'apps/index.html',
-      params: { gaTrackingId }
-    }))
-
-    config.plugins.push(new HtmlWebpackPlugin({
-      inject: true,
-      template: path.join(__dirname, './public/auction/index.html'),
-      filename: 'auction/index.html',
-      params: { gaTrackingId }
-    }))
-
-    config.plugins.push(new HtmlWebpackPlugin({
-      inject: true,
-      template: path.join(__dirname, './public/dashboard/index.html'),
-      filename: 'dashboard/index.html',
-      params: { gaTrackingId }
-    }))
+    pages.forEach(function (filename) {
+      config.plugins.push(new HtmlWebpackPlugin({
+        inject: true,
+        template: path.join(__dirname, `./public/${filename}`),
+        filename,
+        params: { gaTrackingId }
+      }))
+    })
 
     return config
   }
