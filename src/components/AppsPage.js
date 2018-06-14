@@ -18,7 +18,7 @@ class AppsDownloadButton extends Component {
               <img src="/images/metronome-apps-logo.png" alt="metronome-apps-logo"/>
             </div>
             <div className="downloads__title-container">
-              <h1 className="downloads__header-title">Download the Delstop App</h1>
+              <h1 className="downloads__header-title">Download the Desktop App</h1>
               <h2>Get started with the Metronome Wallet</h2>
             </div>
             {walletInstaller && <a {...{ href: `${downloadWalletUrl}.${walletInstaller.ext}` }} className="btn">

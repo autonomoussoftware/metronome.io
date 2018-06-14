@@ -1027,9 +1027,12 @@ ul.price__compare {
   margin: 15px 15px 0 0;
   border-radius: 5px;
   padding: 10px;
-  background-color: @darkest;
+  background-color: none;
   text-transform: uppercase;
   cursor: pointer;
+  &.--active {
+    background-color: @darkest;
+  }
   .label__selector {
     font-size: 14px;
     font-weight: bold;
@@ -1084,22 +1087,19 @@ ul.price__compare {
       list-style-type: none;
     }
     li.--active {
-      a {
-        background-color: #e5e0fd;
-      }
+      background-color: #e5e0fd;
     }
     li {
       display: block;
       margin: 0px;
+      color: @darkest;
       padding: 0px;
-      a {
-        width: calc(100% - 30px);
-        display: block;
-        margin: 0px;
-        padding: 15px;
-        &:hover {
-          background-color: #f6f4fe;
-        }
+      width: 100%;
+      display: block;
+      margin: 0px;
+      padding: 15px;
+      &:hover {
+        background-color: #f6f4fe;
       }
     }
   }
