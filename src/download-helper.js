@@ -1,8 +1,8 @@
 import UAParser from 'ua-parser-js'
 
-import linuxIcon from './img/linux.png'
+import linuxIcon from './img/linux.svg'
 import macOsIcon from './img/macos.svg'
-import windowsIcon from './img/windows.png'
+import windowsIcon from './img/windows@3x.png'
 import config from './config'
 
 const currentOS = new UAParser().getOS()
