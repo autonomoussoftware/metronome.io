@@ -133,12 +133,12 @@ class AuctionBuyForm extends Component {
                   <div className="buy-meta-mask__form-group">
                     <label>Amount (MET)</label>
                     {/* <label className="right">MAX</label> */}
-                    <ValueInput type="number" placeholder="0" value={formatValue(met)} onChange={withRate(updateMet)}/>
+                    <ValueInput type="number" placeholder="0.00" value={formatValue(met)} onChange={withRate(updateMet)}/>
                     <span className="label_overlay">MET</span>
                   </div>
                   <div className="buy-meta-mask__form-group">
                     <label>Cost (ETH)</label>
-                    <ValueInput type="number" placeholder="0" value={formatValue(eth)} onChange={withRate(updateEth)}/>
+                    <ValueInput type="number" placeholder="0.00" value={formatValue(eth)} onChange={withRate(updateEth)}/>
                     <span className="label_overlay">ETH</span>
                   </div>
                 </form>

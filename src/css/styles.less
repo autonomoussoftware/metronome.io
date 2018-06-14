@@ -1589,13 +1589,12 @@ a.overview__current-auction-error-link {
     padding: 17px 15px 15px 15px;
   }
   h2 {
-    display: inline-block;
     margin: 0px 0px 0px 15px;
     position: relative;
     top: -4px;
     padding: 0px;
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 23px;
+    font-weight: 600;
     font-style: normal;
     font-stretch: normal;
     line-height: normal;
@@ -1618,10 +1617,6 @@ a.overview__current-auction-error-link {
     float: right;
     cursor: pointer;
   }
-}
-.panel__buy-metronome {
-  // Disabled as the panel visibility is controlled by its parent
-  // display: none;
 }
 .auction-panel__body .panel__buy-metronome.--showBuyMet {
   display: inherit;
@@ -1686,7 +1681,7 @@ a.overview__current-auction-error-link {
     color: #fff;
     background-color: #7e61f8;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 600;
     font-style: normal;
     font-stretch: normal;
     line-height: 1.14;
@@ -1740,6 +1735,8 @@ a.overview__current-auction-error-link {
     margin-top: 10px;
     width: calc(100% - 15px);
     padding: 15px;
+    font-size: 14px;
+    letter-spacing: 1px;
     background-color: #3e3956;
     color: @white;
   }
@@ -1749,6 +1746,9 @@ a.overview__current-auction-error-link {
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
       -webkit-appearance: none;
+  }
+  input::placeholder {
+    color: #6D6C70
   }
   input:focus {
     border-bottom: solid 2px @purple;
@@ -1878,7 +1878,7 @@ a.overview__current-auction-error-link {
     color: @white;
     background-color: @purple;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 600;
     font-style: normal;
     font-stretch: normal;
     line-height: 1.14;

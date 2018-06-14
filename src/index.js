@@ -10,11 +10,11 @@ import getInitialState from './get-initial-state'
 
 import AuctionStatus from './providers/AuctionStatus'
 
+import AppsPage from './components/AppsPage'
+import HomePage from './components/pages/HomePage'
 import AuctionPage from './components/pages/AuctionPage'
 import DashboardPage from './components/pages/DashboardPage'
-import HomePage from './components/pages/HomePage'
 
-import AppsDownloadButton from './components/AppsDownloadButton'
 import AuctionPanel from './components/AuctionPanel'
 
 const reduxDevtoolsOptions = { features: { dispatch: true } }
@@ -26,7 +26,7 @@ function getAppContent (content) {
     case 'home':
       return <HomePage />
     case 'apps':
-      return <AppsDownloadButton />
+      return <AppsPage />
     case 'auction':
       return <AuctionPage />
     case 'dashboard':
