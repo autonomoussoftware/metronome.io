@@ -66,7 +66,7 @@ const timeWindows = {
   week: { days: 7, label: '7 Days' }
 }
 
-class MtnPriceAreaBar extends Component {
+class MetPriceAreaBar extends Component {
   constructor (props) {
     super(props)
 
@@ -252,4 +252,4 @@ const mapStateToProps = state => ({
   config: state.config
 })
 
-export default connect(mapStateToProps)(MtnPriceAreaBar)
+export default connect(mapStateToProps)(MetPriceAreaBar)
