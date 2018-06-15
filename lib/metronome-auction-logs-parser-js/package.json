@@ -1,0 +1,9 @@
+{
+  "name": "metronome-auction-logs-parser",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "metronome-contracts": "^1.1.1",
+    "web3": "1.0.0-beta.34"
+  }
+}

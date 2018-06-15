@@ -1,1 +1,8 @@
 .DS_Store
+.env.*
+/build
+/coverage
+/lib/**/package-lock.json
+/node_modules
+npm-debug.log
+src/css/*.css
