@@ -19,7 +19,7 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/styles.min.css?ver=4.1.1">
+    <link rel="stylesheet" href="../css/styles.min.css?v=5.0">
 
   </head>
   <body class="media-kit">
@@ -40,7 +40,16 @@
               <a class="nav-link" href="/features/">Features</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md" target="_blank">Owner's Manual</a>
+              <a class="nav-link dropdown-toggle" href="#" id="s-owners-manual" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Owner's Manual
+              </a>
+              <div class="dropdown-menu" aria-labelledby="s-owners-manual">
+                <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md" target="_blank">English</a>
+                <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_zh_CN.md" target="_blank">Chinese (Simplified) 中文</a>
+                <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_jp.md" target="_blank">Japanese 中文</a>
+                <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_ko.md" target="_blank">Korean 한국어</a>
+                <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_ru.md" target="_blank">Russian русский</a>
+              </div>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/#token-sale" id="s-token-sale">Token Sale</a>
@@ -112,7 +121,18 @@
           <div class="col-sm-4">
             <h4>Metronome Fact Sheet</h4>
             <img class="img-fluid" src="../images/media-kit-fact-sheet.png" alt="">
-            <p><a href="/download/Fact_Sheet.pdf" target="_blank" class="dl-link">Download Fact Sheet &raquo;</a></p>
+            <div class="dropdown">
+              <a class="dl-link dropdown-toggle" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Language to Download &raquo;
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/download/Fact_Sheet.pdf">English</a>
+                <a class="dropdown-item" href="/download/Fact_Sheet_CN.pdf" target="_blank">Chinese (Simplified) 中文</a>
+                <a class="dropdown-item" href="/download/Fact_Sheet_JP.pdf" target="_blank">Japanese 中文</a>
+                <a class="dropdown-item" href="/download/Fact_Sheet_KO.pdf" target="_blank">Korean 한국어</a>
+                <a class="dropdown-item" href="/download/Fact_Sheet_RU.pdf" target="_blank">Russian русский</a>
+              </div>
+            </div>
           </div>
           <div class="col-sm-4">
             <h4>About Metronome Infographic</h4>
@@ -127,7 +147,7 @@
 
         <div class="row">
           <div class="col-md-6 col-xl-4">
-            <h4>Metronome Launch Date Set for June 18, 2018</h4>
+            <h4>Metronome Launch Date Set for June 18, 2018 / 05.15.18</h4>
             <p>Influential Blockchain Industry Participants Express Their Support for New Cryptocurrency</p>
             <p><a href="/press/launch-date-set/" class="btn">READ MORE</a></p>
           </div>
@@ -145,43 +165,59 @@
     <footer class="footer site-section" role="footer">
       <div class="container">
         <div class="row justify-content-md-center">
-          <div class="col-md">
+          <div class="col-md-2">
             <h3>Resources:</h3>
-             <ul>
-              <li><a href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md" target="_blank">Owner's Manual</a></li>
-              <li><a href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md" target="_blank">Metronome FAQ</a></li>
-              <li><a href="https://github.com/autonomoussoftware" target="_blank">GitHub</a></li>
-              <li><a href="/media-kit">Media Kit</a></li>
+            <ul>
+              <li>
+                <a href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md" target="_blank">Owner's Manual</a>
+              </li>
+              <li>
+                <a href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md" target="_blank">Metronome FAQ</a>
+              </li>
+              <li>
+                <a href="https://github.com/autonomoussoftware" target="_blank">GitHub</a>
+              </li>
+              <li>
+                <a href="/media-kit">Media Kit</a>
+              </li>
             </ul>
           </div>
-          <div class="col-md">
-            <h3>Stay Updated:</h3>
-            <div class="sendgrid">
-              <script type="text/javascript" src="//sgwidget.leaderapps.co/js/sendgrid-widget.js"></script><style>.sendgrid-subscription-widget .response{display:none;font-family:sans-serif;font-size:.8em}.sendgrid-subscription-widget .success{color:#7e61f8;text-align: center;}.sendgrid-subscription-widget .error{color:red}</style><div id="sendgrid-subscription-widget" class="sendgrid-subscription-widget" ><form id="sg-widget" data-token="ad8b1f4cd2963a816efc51879519201e" onsubmit="return false;"><div class="sg-response" id="sg-response"></div>
-                  <input id="sg_email" class="email" type="email" name="sg_email" placeholder="Email Address" required><br>
-                  <input type="submit" id="sg-submit-btn" class="btn" value="SIGN UP FOR UPDATES">
-              </form></div>
-            </div>
-          </div>
-          <div class="col-md">
+          <div class="col-md-3">
             <h3>Connect + Collaborate</h3>
             <div class="social">
-              <a href="https://github.com/autonomoussoftware" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
-              <a href="https://t.me/metronometoken" target="_blank"><i class="fa fa-telegram" aria-hidden="true"></i></a>
-              <a href="https://twitter.com/MTNToken" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-              <a href="https://www.reddit.com/r/metronometoken" target="_blank"><i class="fa fa-reddit-alien" aria-hidden="true"></i></a>
-              <a href="https://www.facebook.com/MetronomeToken/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-              <a href="https://medium.com/@MetronomeToken" target="_blank"><i class="fa fa-medium" aria-hidden="true"></i></a>
-            </div>
+              <a href="https://github.com/autonomoussoftware" target="_blank">
+                <i class="fa fa-github" aria-hidden="true"></i>
+              </a>
+              <a href="https://t.me/metronometoken" target="_blank">
+                <i class="fa fa-telegram" aria-hidden="true"></i>
+              </a>
 
+              <a href="https://twitter.com/MTNToken" target="_blank">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+              <a href="https://www.reddit.com/r/metronometoken" target="_blank">
+                <i class="fa fa-reddit-alien" aria-hidden="true"></i>
+              </a>
+
+              <a href="https://www.facebook.com/MetronomeToken/" target="_blank">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="https://medium.com/@MetronomeToken" target="_blank">
+                <i class="fa fa-medium" aria-hidden="true"></i>
+              </a>
+            </div>
           </div>
-          <div class="col-md">
+          <div class="col-md-3">
             <h3>Additional Info:</h3>
             <ul>
-              <li><a href="/privacy/">Privacy Policy</a></li>
+              <li>
+                <a href="privacy/">Privacy Policy</a>
+              </li>
               <li>All Rights Reserved.</li>
-              
-              <li>Site Design by <a href="http://www.thinkonramp.com/" target="_blank">Onramp</a></li>
+
+              <li>Site Design by
+                <a href="http://www.thinkonramp.com/" target="_blank">Onramp</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -189,9 +225,10 @@
       </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <script src="../js/lib/particles.min.js"></script>
     <script src="../js/main.js"></script>
 
