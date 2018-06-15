@@ -3,7 +3,6 @@ import React from 'react'
 
 import AuctionSummary from '../AuctionSummary'
 import BuyMetronomeButton from '../BuyMetronomeButton'
-import EmailForm from '../EmailForm'
 import TokenSaleCountdown from '../TokenSaleCountdown'
 
 function HomePageContent (props) {
@@ -31,7 +30,6 @@ function HomePageContent (props) {
       </div>
       : <React.Fragment>
         <TokenSaleCountdown />
-        <EmailForm />
       </React.Fragment>
 }
 
