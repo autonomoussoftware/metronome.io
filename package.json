@@ -8,11 +8,12 @@
     "lint:fix": "eslint --fix ./src",
     "eject": "react-scripts eject",
     "fix-deps": "rm -rf node_modules/react-scripts/node_modules/eslint",
+    "build:css": "for file in src/css/*.less; do lessc $file `dirname $file`/`basename $file .less`.css ; done",
     "build:libs": "npm run build:libs:status && npm run build:libs:round",
     "build:libs:status": "cd lib/metronome-auction-status-js && npm i && npm run build",
     "build:libs:round": "cd lib/smart-round && npm i && npm run build",
     "prestart": "npm run fix-deps",
-    "prebuild": "npm run fix-deps && npm run build:libs",
+    "prebuild": "npm run fix-deps && npm run build:libs && npm run build:css",
     "postinstall": "patch-package",
     "watch-less": "react-less-watcher -d src/css"
   },
@@ -57,6 +58,7 @@
     "eslint-plugin-promise": "3.8.0",
     "eslint-plugin-standard": "3.1.0",
     "html-webpack-plugin": "3.2.0",
+    "less": "3.0.4",
     "patch-package": "5.1.1",
     "react-app-rewire-eslint": "0.2.3"
   }
