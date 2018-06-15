@@ -40,9 +40,8 @@ class AuctionBuyOptions extends Component {
               <h2>How would you like to buy Metronome?</h2>
               <section>
                 <a
-                  onClick={isWeb3Available && showBuyForm}
                   className="btn btn-lrg"
-                  {...(isWeb3Available ? {} : { href: useWallet.url, target: '_blank' })}>
+                  {...(isWeb3Available ? { onClick: showBuyForm } : { href: useWallet.url, target: '_blank' })}>
                   <span className="btn-text">
                     Buy with {isWeb3Available ? web3Provider : useWallet.name}</span>
                   <span className="btn-icon">
