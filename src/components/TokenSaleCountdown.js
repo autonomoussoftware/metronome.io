@@ -6,15 +6,20 @@ import TokenSaleCountdownDigits from './TokenSaleCountdownDigits'
 
 function TokenSaleCountdown ({ genesisTime }) {
   return (
-    <div className="final-countdown">
-      <div className="final-countdown__label">TOKEN SALE COUNTDOWN:</div>
-      <div className="final-countdown__counter">
-        <Countdown
-          date={genesisTime}
-          renderer={TokenSaleCountdownDigits}
-        />
+    <React.Fragment>
+      <h2 style={{ fontWeight: 300, textAlign: 'center' }}>
+        June 18, Midnight UTC
+      </h2>
+      <div class="final-countdown">
+        <div class="final-countdown__label">TOKEN SALE COUNTDOWN:</div>
+        <div className="final-countdown__counter">
+          <Countdown
+            date={genesisTime}
+            renderer={TokenSaleCountdownDigits}
+          />
+        </div>
       </div>
-    </div>
+    </React.Fragment>
   )
 }
 
