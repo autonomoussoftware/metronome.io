@@ -12,8 +12,12 @@ import { VictoryTheme } from 'victory-core'
 import React, { Component } from 'react'
 import BigNumber from 'bignumber.js'
 import moment from 'moment'
+import shrinkArray from 'shrink-array'
+import last from 'shrink-array/last'
 
 import EthValue from './EthValue'
+
+const MAX_DATA_POINTS = 500
 
 const foregroudTickStyle = {
   grid: {
@@ -112,14 +116,16 @@ class MetPriceAreaBar extends Component {
       currentAuctionPrice: currentPrice
     }
 
-    const newHistory = state.history.concat(point)
-
     const from = moment()
       .subtract(timeWindows[state.timeWindow])
       .unix()
 
+    const newHistory = state.history
+      .concat(point)
+      .filter(p => p.timestamp >= from)
+
     return {
-      history: newHistory.filter(p => p.timestamp >= from)
+      history: shrinkArray(newHistory, MAX_DATA_POINTS, last)
     }
   }
 
