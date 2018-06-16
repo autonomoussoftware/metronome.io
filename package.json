@@ -23,7 +23,7 @@
     "lodash.throttle": "4.1.1",
     "metronome-auction-logs-parser": "file:lib/metronome-auction-logs-parser-js",
     "metronome-auction-status": "file:lib/metronome-auction-status-js",
-    "metronome-contracts": "1.4.0",
+    "metronome-contracts": "1.4.1",
     "moment": "2.22.2",
     "react": "16.4.1",
     "react-app-rewired": "1.5.2",
