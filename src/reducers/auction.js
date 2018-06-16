@@ -38,7 +38,8 @@ const reducer = handleActions(
         ...payload,
         isAuctionActive: !(new BigNumber(payload.tokensRemaining).eq(0)),
         isDailyAuction: !(payload.currentAuction === 0),
-        isInitialAuction: payload.currentAuction === 0,
+        isInitialAuction: Date.now() >= payload.genesisTime &&
+          payload.currentAuction === 0,
         auctionSupply: auctionSupply(payload.currentAuction),
         remainingPercentage: BigNumber.min(
           new BigNumber(payload.tokensRemaining)
@@ -46,7 +47,13 @@ const reducer = handleActions(
             .times(100)
             .toNumber(),
           100
-        )
+        ),
+        // Next auction start price will be 2x last purchase price unless the
+        // last auction ended with unsold tokens. Contract functions that
+        // calculate this as private so that logic should be replicated here.
+        nextAuctionStartPrice: Date.now() < payload.genesisTime
+          ? payload.lastPurchasePrice
+          : new BigNumber(payload.lastPurchasePrice).times(2).toString()
       }
     }),
     AUCTION_STATUS_ERROR: (state, { payload }) => ({

@@ -8,11 +8,12 @@
     "lint:fix": "eslint --fix ./src",
     "eject": "react-scripts eject",
     "fix-deps": "rm -rf node_modules/react-scripts/node_modules/eslint",
+    "build:css": "for file in src/css/*.less; do lessc $file `dirname $file`/`basename $file .less`.css ; done",
     "build:libs": "npm run build:libs:status && npm run build:libs:round",
     "build:libs:status": "cd lib/metronome-auction-status-js && npm i && npm run build",
     "build:libs:round": "cd lib/smart-round && npm i && npm run build",
     "prestart": "npm run fix-deps",
-    "prebuild": "npm run fix-deps && npm run build:libs",
+    "prebuild": "npm run fix-deps && npm run build:libs && npm run build:css",
     "postinstall": "patch-package",
     "watch-less": "react-less-watcher -d src/css"
   },
@@ -22,7 +23,7 @@
     "lodash.throttle": "4.1.1",
     "metronome-auction-logs-parser": "file:lib/metronome-auction-logs-parser-js",
     "metronome-auction-status": "file:lib/metronome-auction-status-js",
-    "metronome-contracts": "1.4.0",
+    "metronome-contracts": "1.4.1",
     "moment": "2.22.2",
     "react": "16.4.1",
     "react-app-rewired": "1.5.2",
@@ -34,6 +35,7 @@
     "redux": "4.0.0",
     "redux-actions": "2.4.0",
     "redux-localstorage": "0.4.1",
+    "shrink-array": "0.0.2",
     "smart-round": "file:lib/smart-round",
     "startinterval2": "1.0.1",
     "styled-components": "3.3.2",
@@ -56,6 +58,7 @@
     "eslint-plugin-promise": "3.8.0",
     "eslint-plugin-standard": "3.1.0",
     "html-webpack-plugin": "3.2.0",
+    "less": "3.0.4",
     "patch-package": "5.1.1",
     "react-app-rewire-eslint": "0.2.3"
   }
