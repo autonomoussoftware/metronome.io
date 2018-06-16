@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "bloq",
+    "react-app"
+  ],
+  "rules": {
+    "no-console": "warn"
+  }
+}
