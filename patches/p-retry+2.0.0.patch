@@ -1,0 +1,87 @@
+patch-package
+--- a/node_modules/p-retry/index.js
++++ b/node_modules/p-retry/index.js
+@@ -1,37 +1,51 @@
+ 'use strict';
+-const retry = require('retry');
+ 
+-class AbortError extends Error {
+-	constructor(message) {
+-		super();
++function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
++
++function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
++
++function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
++
++var retry = require('retry');
++
++var AbortError = function (_Error) {
++	_inherits(AbortError, _Error);
++
++	function AbortError(message) {
++		_classCallCheck(this, AbortError);
++
++		var _this = _possibleConstructorReturn(this, (AbortError.__proto__ || Object.getPrototypeOf(AbortError)).call(this));
+ 
+ 		if (message instanceof Error) {
+-			this.originalError = message;
+-			({message} = message);
++			_this.originalError = message;
++			var _message = message;
++			message = _message.message;
+ 		} else {
+-			this.originalError = new Error(message);
+-			this.originalError.stack = this.stack;
++			_this.originalError = new Error(message);
++			_this.originalError.stack = _this.stack;
+ 		}
+ 
+-		this.name = 'AbortError';
+-		this.message = message;
++		_this.name = 'AbortError';
++		_this.message = message;
++		return _this;
+ 	}
+-}
+ 
+-module.exports = (input, options) => new Promise((resolve, reject) => {
+-	options = Object.assign({
+-		onFailedAttempt: () => {},
+-		retries: 10
+-	}, options);
++	return AbortError;
++}(Error);
++
++module.exports = function (input, options) {
++	return new Promise(function (resolve, reject) {
++		options = Object.assign({
++			onFailedAttempt: function onFailedAttempt() {},
++			retries: 10
++		}, options);
+ 
+-	const operation = retry.operation(options);
++		var operation = retry.operation(options);
+ 
+-	operation.attempt(attemptNumber => {
+-		const attemptsLeft = options.retries - attemptNumber;
++		operation.attempt(function (attemptNumber) {
++			var attemptsLeft = options.retries - attemptNumber;
+ 
+-		return Promise.resolve(attemptNumber)
+-			.then(input)
+-			.then(resolve, error => {
++			return Promise.resolve(attemptNumber).then(input).then(resolve, function (error) {
+ 				if (error instanceof AbortError) {
+ 					operation.stop();
+ 					reject(error.originalError);
+@@ -46,7 +60,8 @@ module.exports = (input, options) => new Promise((resolve, reject) => {
+ 					reject(operation.mainError());
+ 				}
+ 			});
++		});
+ 	});
+-});
++};
+ 
+ module.exports.AbortError = AbortError;
