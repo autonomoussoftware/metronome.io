@@ -1,10 +1,8 @@
 import { connect } from 'react-redux'
-import BigNumber from 'bignumber.js'
 import React, { Component } from 'react'
 // import ReactTooltip from 'react-tooltip'
 
 import CoinCapRate from '../providers/CoinCapRate'
-import FiatValue from './FiatValue'
 // import infoIcon from '../img/ic-info.svg'
 import MetValue from './MetValue'
 
@@ -17,15 +15,9 @@ class GeneralStats extends Component {
         isDailyAuction,
         tokenSupply
       },
-      rates,
       onBuyMetronomeClick,
       updateEthUsdRate
     } = this.props
-
-    const marketCap = new BigNumber(tokenSupply)
-      .times(rates.ETH_USD)
-      .div(1e18)
-      .toString()
 
     return (
       <React.Fragment>
@@ -36,12 +28,6 @@ class GeneralStats extends Component {
               <div className="container__inner">
                 <div className="label__general-stats">Market Supply</div>
                 <div className="numeral__general-stats"><MetValue>{tokenSupply}</MetValue></div>
-              </div>
-            </div>
-            <div className="left">
-              <div className="container__inner">
-                <div className="label__general-stats">Market Cap</div>
-                <div className="numeral__general-stats"><FiatValue suffix="USD">{marketCap}</FiatValue></div>
               </div>
             </div>
             <div className="left">
