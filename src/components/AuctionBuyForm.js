@@ -68,10 +68,10 @@ class AuctionBuyForm extends Component {
           clearForm()
         })
         .on('error', function (err) {
-          showError('Transaction error - Try again', err)
+          showError('Transaction error', err)
         })
     } catch (err) {
-      showError('Transaction could not be sent - Try again', err)
+      showError('Transaction could not be sent', err)
     }
   }
 
@@ -86,6 +86,7 @@ class AuctionBuyForm extends Component {
       eth,
       hideBuyPanel,
       met,
+      ongoingTx,
       rates,
       updateEth,
       updateMet,
@@ -114,7 +115,6 @@ class AuctionBuyForm extends Component {
       const bigValue = new BigNumber(value)
       return bigValue.toFixed()
     }
-
     return (
       <React.Fragment>
         <div className="auction-panel__header header__meta-mask --showMetaMask">
@@ -133,6 +133,10 @@ class AuctionBuyForm extends Component {
                 {error && error.err.message &&
                   <div className="buy-meta-mask__current-price meta-mask__error">
                     <span title={error.err.message}>{error.hint}</span>
+                    { ongoingTx.hash
+                      ? <span> - Check status in the <a target="_blank" href={`${config.metExplorerUrl}/transactions/${ongoingTx.hash}`}>explorer</a> or try again</span>
+                      : <span> - Try again</span>
+                    }
                   </div>}
                 {warnStr &&
                   <div className="buy-meta-mask__current-price meta-mask__error">
@@ -187,6 +191,7 @@ const mapStateToProps = state => ({
   config: state.config,
   currentPrice: state.auction.status.currentPrice,
   error: state.buyPanel.error,
+  ongoingTx: state.buyPanel.ongoingTx,
   rates: state.rates,
   userAccount: state.wallet.accounts[0],
   warn: state.buyPanel.warn
