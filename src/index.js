@@ -20,6 +20,10 @@ import AuctionPanel from './components/AuctionPanel'
 
 analytics.init()
 
+if (module.hot) {
+  module.hot.accept()
+}
+
 const reduxDevtoolsOptions = { features: { dispatch: true } }
 
 const store = createStore(reduxDevtoolsOptions, getInitialState(config))
