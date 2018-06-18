@@ -12,11 +12,11 @@ function AuctionCounterSm (props) {
     currentAuction,
     genesisTime,
     isAuctionActive,
-    nextAuctionStartTime
+    currentAuctionEndTime
   } = props
 
   const now = Date.now()
-  const remainingTime = nextAuctionStartTime - now
+  const remainingTime = currentAuctionEndTime - now
   const consumedTime = currentAuction === 0
     ? now - genesisTime
     : MS_PER_DAY - remainingTime
@@ -38,7 +38,7 @@ function AuctionCounterSm (props) {
       />}
       <span className="auction__counter-sm">
         <Countdown
-          date={nextAuctionStartTime}
+          date={currentAuctionEndTime}
           renderer={TimeString}
         />
       </span>
