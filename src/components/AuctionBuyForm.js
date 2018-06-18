@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import BigNumber from 'bignumber.js'
 import detectProvider from 'web3-detect-provider'
+import pRetry from 'p-retry'
 import React, { Component } from 'react'
 
 import arrowIcon from '../img/arrow-forward-24-px.svg'
@@ -9,6 +10,8 @@ import EthValue from './EthValue'
 import FiatValue from './FiatValue'
 import MetValue from './MetValue'
 import ValueInput from './ValueInput'
+
+const GET_TX_RETRIES = 5
 
 const web3Provider = detectProvider('web wallet')
 
@@ -44,8 +47,10 @@ class AuctionBuyForm extends Component {
       web3.eth.sendTransaction(txObject)
         .on('transactionHash', function (hash) {
           showWaiting(hash)
-          web3.eth.getTransaction(hash)
-            .then(storeTxData)
+          pRetry(
+            () => web3.eth.getTransaction(hash).then(storeTxData),
+            { retries: GET_TX_RETRIES }
+          )
             .catch(function (err) {
               showError('Transaction details could not be retrieved - Try again', err)
             })
