@@ -1,8 +1,11 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
+import smartRounder from 'smart-round'
 
 import CoinCapRate from '../providers/CoinCapRate'
 import MetValue from './MetValue'
+
+const smartRound = smartRounder(3, 0, 10)
 
 class GeneralStats extends Component {
   render () {
@@ -11,6 +14,7 @@ class GeneralStats extends Component {
         auctionSupply,
         isAuctionActive,
         isDailyAuction,
+        remainingPercentage,
         tokenSupply
       },
       onBuyMetronomeClick,
@@ -26,6 +30,12 @@ class GeneralStats extends Component {
               <div className="container__inner">
                 <div className="label__general-stats">Market Supply</div>
                 <div className="numeral__general-stats"><MetValue>{tokenSupply}</MetValue></div>
+              </div>
+            </div>
+            <div className="left">
+              <div className="container__inner">
+                <div className="label__general-stats">Percentage Sold</div>
+                <div className="numeral__general-stats">{smartRound(100 - remainingPercentage)}%</div>
               </div>
             </div>
             <div className="left">
