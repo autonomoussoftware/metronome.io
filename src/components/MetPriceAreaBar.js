@@ -130,10 +130,19 @@ class MetPriceAreaBar extends Component {
   }
 
   parseHistory (data) {
+    const { auctionSupply } = this.props.auction
+
     return data.map(point => ({
       time: point.timestamp * 1000,
       supply: new BigNumber(fromWei(point.minting)).toNumber(),
-      price: new BigNumber(point.currentAuctionPrice).div(1e18).toNumber()
+      price: new BigNumber(point.currentAuctionPrice).div(1e18).toNumber(),
+      percentageSold: Math.min(
+        100 - new BigNumber(point.minting)
+          .div(auctionSupply)
+          .times(100)
+          .toNumber(),
+        100
+      )
     }))
   }
 
@@ -194,7 +203,7 @@ class MetPriceAreaBar extends Component {
           <div className="chart__keys">
             <div className="supply__available-container">
               <div className="supply__available-box"></div>
-              <span>Available Supply</span>
+              <span>Percentage Sold</span>
             </div>
             <div className="price__available-container">
               <div className="price__available-box"></div>
@@ -211,7 +220,7 @@ class MetPriceAreaBar extends Component {
                 <VictoryAxis
                   height={400}
                   orientation="right"
-                  tickFormat={x => (`${x} ETH`)}
+                  tickFormat={x => (`${x.toFixed()}`)}
                   dependentAxis
                   style={foregroudTickStyle}/>
                 <VictoryGroup
@@ -236,13 +245,13 @@ class MetPriceAreaBar extends Component {
                   style={backgroundTickStyle} />
                 <VictoryAxis
                   height={400}
-                  tickFormat={x => (`${x / 1000000}m`)}
+                  tickFormat={x => (`${(x / 1000000).toFixed()}%`)}
                   dependentAxis
                   style={backgroundTickStyle} />
                 <VictoryGroup
                   data={auctionChartData}
                   x="time"
-                  y="supply"
+                  y="percentageSold"
                   dependentAxis
                   labels={d => `y: ${d.y}`}
                   labelComponent={<VictoryTooltip/>}>
