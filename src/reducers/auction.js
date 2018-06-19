@@ -27,6 +27,7 @@ const initialState = {
 const auctionSupply = currentAuction =>
   new BigNumber(currentAuction === 0 ? 8000000 : 2880)
     .times(1e18)
+    .toNumber()
 
 const reducer = handleActions(
   {
@@ -42,7 +43,7 @@ const reducer = handleActions(
         isInitialAuction: Date.now() >= payload.genesisTime &&
           payload.currentAuction === 0,
         auctionSupply: auctionSupply(payload.currentAuction),
-        remainingPercentage: BigNumber.min(
+        remainingPercentage: Math.min(
           new BigNumber(payload.tokensRemaining)
             .div(auctionSupply(payload.currentAuction))
             .times(100)
