@@ -16,6 +16,7 @@ import shrinkArray from 'shrink-array'
 import last from 'shrink-array/last'
 
 import EthValue from './EthValue'
+import DollarValue from './DollarValue'
 
 const MAX_DATA_POINTS = 500
 
@@ -170,7 +171,9 @@ class MetPriceAreaBar extends Component {
         <div className="chart__main-inner-container">
           <span className="label__title">Charts </span>
           <div className="chart__main-label">
-            <span className="label__Auction-Price">Auction Price:</span> <span className="label_-ETH"><EthValue>{currentPrice}</EthValue></span>
+            <span className="label__Auction-Price">Auction Price:</span>
+            <span className="label_-ETH"><EthValue>{currentPrice}</EthValue></span>
+            <span className="label_-USD"><DollarValue/></span>
           </div>
           <div className={`chart__dropdown-time-selector ${showDropdown ? '--active' : ''}`} onClick={this.toggleDropdown}>
             <span className="label__selector">{timeWindows[timeWindow].label}<span className="arrow-down"></span></span>
