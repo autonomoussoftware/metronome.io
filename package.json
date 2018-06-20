@@ -18,6 +18,7 @@
     "watch-less": "react-less-watcher -d src/css"
   },
   "dependencies": {
+    "accounting": "0.4.1",
     "bignumber.js": "7.2.1",
     "coincap-lib": "1.0.0",
     "lodash.throttle": "4.1.1",
