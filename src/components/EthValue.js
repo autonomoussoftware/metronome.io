@@ -5,7 +5,12 @@ import smartRounder from 'smart-round'
 const smartRound = smartRounder(6, 0, 6)
 
 const EthValue = ({ children }) => (
-  <span>{children && smartRound(fromWei(children))} ETH</span>
+  <span>
+    {!children && children !== 0
+      ? '...'
+      : `${smartRound(fromWei(children))} ETH`
+    }
+  </span>
 )
 
 export default EthValue

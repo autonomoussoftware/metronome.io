@@ -132,8 +132,8 @@ class MetPriceAreaBar extends Component {
   parseHistory (data) {
     return data.map(point => ({
       time: point.timestamp * 1000,
-      supply: new BigNumber(fromWei(point.minting)).toNumber(),
-      price: new BigNumber(point.currentAuctionPrice).div(1e18).toNumber()
+      supply: new BigNumber(fromWei(point.minting || '0')).toNumber(),
+      price: new BigNumber(point.currentAuctionPrice || '0').div(1e18).toNumber()
     }))
   }
 

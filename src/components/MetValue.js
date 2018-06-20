@@ -17,7 +17,12 @@ const fromUnit = {
 }
 
 const MetValue = ({ children, unit = 'atto' }) => (
-  <span>{smartRound(new BigNumber(children).div(fromUnit[unit]))} MET</span>
+  <span>
+    {!children && children !== 0
+      ? '...'
+      : `${smartRound(new BigNumber(children).div(fromUnit[unit]))} MET`
+    }
+  </span>
 )
 
 export default MetValue

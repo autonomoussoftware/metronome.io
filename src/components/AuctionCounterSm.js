@@ -37,10 +37,10 @@ function AuctionCounterSm (props) {
         ]}
       />}
       <span className="auction__counter-sm">
-        <Countdown
-          date={nextAuctionStartTime}
-          renderer={TimeString}
-        />
+        {nextAuctionStartTime
+          ? <Countdown date={nextAuctionStartTime} renderer={TimeString}/>
+          : <span>...</span>
+        }
       </span>
       <span className="auction__counter-sm-remaining">
         {isAuctionActive
