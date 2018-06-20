@@ -86,7 +86,7 @@ class MetPriceAreaBar extends Component {
     err: null,
     history: [],
     showDropdown: false,
-    timeWindow: 'quarter'
+    timeWindow: 'day'
   }
 
   retrieveData () {
@@ -235,7 +235,6 @@ class MetPriceAreaBar extends Component {
                   y="price"
                   dependentAxis>
                   <VictoryLine
-                    interpolationNoooooo="basis"
                     style={{ data: { stroke: '#fff2', strokeWidth: 1 } }} />
                 </VictoryGroup>
               </VictoryChart>
