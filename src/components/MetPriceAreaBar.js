@@ -86,7 +86,7 @@ class MetPriceAreaBar extends Component {
     err: null,
     history: [],
     showDropdown: false,
-    timeWindow: 'day'
+    timeWindow: 'hour'
   }
 
   retrieveData () {
