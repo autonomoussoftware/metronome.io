@@ -14,7 +14,7 @@ class MainDashboard extends Component {
     const { auction } = this.props
     return (
       <div className={this.props.showScreenDarken ? 'MainDashboard container__main --screenDarken' : 'MainDashboard container__main'}>
-        {!auction.auctionSupply
+        {auction.loading
           ? <div className="loader"><METLoader/></div>
           : <div>
             <GeneralStats />
@@ -41,7 +41,7 @@ class MainDashboard extends Component {
 }
 
 const mapStateToProps = state => ({
-  auction: state.auction.status
+  auction: state.auction
 })
 
 export default connect(mapStateToProps)(MainDashboard)

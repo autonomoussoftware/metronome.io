@@ -8,13 +8,14 @@ import TimeString from './TimeString'
 const MS_PER_DAY = 24 * 60 * 60 * 1000
 
 function AuctionCounterSm (props) { // eslint-disable-line complexity
+  const { loading } = props
   const {
     currentAuction,
     currentAuctionEndTime,
     genesisTime,
     isAuctionActive,
     nextAuctionStartTime
-  } = props
+  } = props.status
 
   const now = Date.now()
   const remainingTime = currentAuctionEndTime - now
@@ -38,13 +39,11 @@ function AuctionCounterSm (props) { // eslint-disable-line complexity
         ]}
       />}
       <span className="auction__counter-sm">
-        {
-          (currentAuctionEndTime || nextAuctionStartTime)
-            ? <Countdown
-              date={isAuctionActive ? currentAuctionEndTime : nextAuctionStartTime}
-              renderer={TimeString}/>
-            : <span className="blink">...</span>
-        }
+        {!loading
+          ? <Countdown
+            date={isAuctionActive ? currentAuctionEndTime : nextAuctionStartTime}
+            renderer={TimeString}/>
+          : <span className="blink">...</span>}
       </span>
       <span className="auction__counter-sm-remaining">
         {isAuctionActive
@@ -55,8 +54,6 @@ function AuctionCounterSm (props) { // eslint-disable-line complexity
   )
 }
 
-function mapStateToProps (state) {
-  return state.auction.status
-}
+const mapStateToProps = state => state.auction
 
 export default connect(mapStateToProps)(AuctionCounterSm)
