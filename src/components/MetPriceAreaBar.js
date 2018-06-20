@@ -14,11 +14,14 @@ import BigNumber from 'bignumber.js'
 import moment from 'moment'
 import shrinkArray from 'shrink-array'
 import last from 'shrink-array/last'
+import smartRounder from 'smart-round'
 
 import EthValue from './EthValue'
 import DollarValue from './DollarValue'
 
 const MAX_DATA_POINTS = 500
+
+const smartRound = smartRounder(4, 0, 4)
 
 const foregroudTickStyle = {
   grid: {
@@ -135,15 +138,15 @@ class MetPriceAreaBar extends Component {
 
     return data.map(point => ({
       time: point.timestamp * 1000,
-      supply: new BigNumber(fromWei(point.minting)).toNumber(),
-      price: new BigNumber(point.currentAuctionPrice).div(1e18).toNumber(),
-      percentageSold: Math.min(
-        100 - new BigNumber(point.minting)
-          .div(auctionSupply)
-          .times(100)
-          .toNumber(),
-        100
-      )
+      supply: new BigNumber(fromWei(point.minting))
+        .toNumber(),
+      price: new BigNumber(point.currentAuctionPrice)
+        .div(1e18)
+        .toNumber(),
+      tokensSold: new BigNumber(auctionSupply)
+        .minus(point.minting)
+        .div(1e18)
+        .toNumber()
     }))
   }
 
@@ -206,7 +209,7 @@ class MetPriceAreaBar extends Component {
           <div className="chart__keys">
             <div className="supply__available-container">
               <div className="supply__available-box"></div>
-              <span>Percentage Sold</span>
+              <span>Tokens Sold</span>
             </div>
             <div className="price__available-container">
               <div className="price__available-box"></div>
@@ -223,7 +226,7 @@ class MetPriceAreaBar extends Component {
                 <VictoryAxis
                   height={400}
                   orientation="right"
-                  tickFormat={x => (`${x.toFixed()}`)}
+                  tickFormat={x => (`${smartRound(x)}`)}
                   dependentAxis
                   style={foregroudTickStyle}/>
                 <VictoryGroup
@@ -248,13 +251,13 @@ class MetPriceAreaBar extends Component {
                   style={backgroundTickStyle} />
                 <VictoryAxis
                   height={400}
-                  tickFormat={x => (`${(x / 1000000).toFixed()}%`)}
+                  tickFormat={x => (`${smartRound(x)}`)}
                   dependentAxis
                   style={backgroundTickStyle} />
                 <VictoryGroup
                   data={auctionChartData}
                   x="time"
-                  y="percentageSold"
+                  y="tokensSold"
                   dependentAxis
                   labels={d => `y: ${d.y}`}
                   labelComponent={<VictoryTooltip/>}>
