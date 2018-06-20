@@ -7,7 +7,7 @@ import TimeString from './TimeString'
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000
 
-function AuctionCounterSm (props) {
+function AuctionCounterSm (props) { // eslint-disable-line complexity
   const {
     currentAuction,
     currentAuctionEndTime,
@@ -38,10 +38,13 @@ function AuctionCounterSm (props) {
         ]}
       />}
       <span className="auction__counter-sm">
-        <Countdown
-          date={isAuctionActive ? currentAuctionEndTime : nextAuctionStartTime}
-          renderer={TimeString}
-        />
+        {
+          (currentAuctionEndTime || nextAuctionStartTime)
+            ? <Countdown
+              date={isAuctionActive ? currentAuctionEndTime : nextAuctionStartTime}
+              renderer={TimeString}/>
+            : <span className="blink">...</span>
+        }
       </span>
       <span className="auction__counter-sm-remaining">
         {isAuctionActive
