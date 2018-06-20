@@ -1375,6 +1375,12 @@ a.overview__current-auction-error-link {
   }
 }
 .MainDashboard {
+  .loader {
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+  }
+
   &.container__main {
     padding-top: 19px;
   }
@@ -2486,5 +2492,15 @@ span.alert-text-warning {
 
   &:hover {
     border: none;
+  }
+}
+
+.blink {
+  animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
   }
 }

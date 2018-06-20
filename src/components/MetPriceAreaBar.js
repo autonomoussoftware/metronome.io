@@ -138,9 +138,9 @@ class MetPriceAreaBar extends Component {
 
     return data.map(point => ({
       time: point.timestamp * 1000,
-      supply: new BigNumber(fromWei(point.minting))
+      supply: new BigNumber(fromWei(point.minting || '0'))
         .toNumber(),
-      price: new BigNumber(point.currentAuctionPrice)
+      price: new BigNumber(point.currentAuctionPrice || '0')
         .div(1e18)
         .toNumber(),
       tokensSold: new BigNumber(auctionSupply)
