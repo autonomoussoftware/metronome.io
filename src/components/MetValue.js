@@ -19,7 +19,7 @@ const fromUnit = {
 const MetValue = ({ children, unit = 'atto' }) => (
   <span>
     {!children && children !== 0
-      ? '...'
+      ? <span class="blink">...</span>
       : `${smartRound(new BigNumber(children).div(fromUnit[unit]))} MET`
     }
   </span>

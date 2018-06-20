@@ -7,7 +7,7 @@ const smartRound = smartRounder(6, 0, 6)
 const EthValue = ({ children }) => (
   <span>
     {!children && children !== 0
-      ? '...'
+      ? <span class="blink">...</span>
       : `${smartRound(fromWei(children))} ETH`
     }
   </span>

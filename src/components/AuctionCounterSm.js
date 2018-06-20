@@ -39,7 +39,7 @@ function AuctionCounterSm (props) {
       <span className="auction__counter-sm">
         {nextAuctionStartTime
           ? <Countdown date={nextAuctionStartTime} renderer={TimeString}/>
-          : <span>...</span>
+          : <span class="blink">...</span>
         }
       </span>
       <span className="auction__counter-sm-remaining">

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import React, { Component, ReactFragment } from 'react'
+import React, { Component } from 'react'
 
 import GeneralStats from './GeneralStats'
 import HeaderDashboard from './HeaderDashboard'
