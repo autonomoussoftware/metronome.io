@@ -24,7 +24,7 @@ class AuctionCounter extends Component {
 
     return (
       <div className="container__auction-timer">
-        {nextAuctionStartTime && <Countdown date={nextAuctionStartTime} renderer={renderer} />}
+        {targetTime && <Countdown date={targetTime} renderer={renderer} />}
         <ul className="auction-timer__labels">
           <li>Days</li>
           <li>Hours</li>
