@@ -5,7 +5,7 @@ import smartRounder from 'smart-round'
 const smartRound = smartRounder(10, 2, 2)
 
 const FiatValue = ({ children, suffix }) => (
-  <span>{smartRound(new BigNumber(children))} {suffix}</span>
+  <span>{smartRound(new BigNumber(children), true)} {suffix}</span>
 )
 
 export default FiatValue
