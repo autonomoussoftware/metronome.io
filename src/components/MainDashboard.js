@@ -15,7 +15,7 @@ class MainDashboard extends Component {
     return (
       <div className={this.props.showScreenDarken ? 'MainDashboard container__main --screenDarken' : 'MainDashboard container__main'}>
         {!auction.auctionSupply
-          ? <div class="loader"><METLoader/></div>
+          ? <div className="loader"><METLoader/></div>
           : <div>
             <GeneralStats />
             <div className="container__primary">
