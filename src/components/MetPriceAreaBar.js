@@ -157,11 +157,11 @@ class MetPriceAreaBar extends Component {
     }))
 
     const grouped = byGroups.reduce(
-      (array, point) => array[array.length - 1].group === point.group
-        ? array
-        : array.concat({
+      (arr, point) => arr[arr.length - 1].group === point.group
+        ? arr
+        : arr.concat({
           ...point,
-          tokensSoldInGroup: point.tokensSold - array[array.length - 1].tokensSold
+          tokensSoldInGroup: point.tokensSold - arr[arr.length - 1].tokensSold
         }),
       [{
         ...byGroups[0],
