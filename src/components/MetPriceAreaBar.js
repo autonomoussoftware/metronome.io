@@ -39,7 +39,12 @@ const foregroudTickStyle = {
     padding: 0
   },
   axisLabel: {
-    fontsize: 12
+    angle: 90,
+    fill: '#fff',
+    fontFamily: 'inherit',
+    fontSize: 4,
+    letterSpacing: 1,
+    padding: 24
   }
 }
 const backgroundTickStyle = {
@@ -58,7 +63,11 @@ const backgroundTickStyle = {
     padding: 0
   },
   axisLabel: {
-    fontsize: 12
+    fill: '#fff',
+    fontFamily: 'inherit',
+    fontSize: 4,
+    letterSpacing: 1,
+    padding: 20
   }
 }
 
@@ -230,11 +239,11 @@ class MetPriceAreaBar extends Component {
           <div className="chart__keys">
             <div className="supply__available-container">
               <div className="supply__available-box"></div>
-              <span>Tokens Sold [MET]</span>
+              <span>Tokens Sold</span>
             </div>
             <div className="price__available-container">
               <div className="price__available-box"></div>
-              <span>Price [ETH]</span>
+              <span>Auction Price</span>
             </div>
           </div>
           <div className="chart__victory-container">
@@ -242,12 +251,13 @@ class MetPriceAreaBar extends Component {
               <VictoryChart
                 domainPadding={5}
                 height={130}
-                padding={{ top: 5, bottom: 15, right: 25, left: 15 }}
+                padding={{ top: 5, bottom: 15, right: 25, left: 25 }}
                 style={{ labels: { fontSize: 2 }, padding: 0 }}
                 theme={VictoryTheme.material}>
                 <VictoryAxis
                   dependentAxis
                   height={400}
+                  label="PRICE [ETH]"
                   orientation="right"
                   style={foregroudTickStyle}
                   tickFormat={y => `${smartRound(y)}`} />
@@ -262,7 +272,7 @@ class MetPriceAreaBar extends Component {
               <VictoryChart
                 domainPadding={5}
                 height={130}
-                padding={{ top: 5, bottom: 15, right: 25, left: 15 }}
+                padding={{ top: 5, bottom: 15, right: 25, left: 25 }}
                 theme={VictoryTheme.material}>
                 <VictoryAxis
                   scale={{ x: 'time' }}
@@ -271,6 +281,7 @@ class MetPriceAreaBar extends Component {
                 <VictoryAxis
                   dependentAxis
                   height={400}
+                  label="VOLUME [MET]"
                   style={backgroundTickStyle}
                   tickFormat={y => `${smartRound(y)}`} />
                 <VictoryBar
