@@ -226,17 +226,14 @@ class MetPriceAreaBar extends Component {
                 <VictoryAxis
                   height={400}
                   orientation="right"
-                  tickFormat={x => (`${smartRound(x)}`)}
+                  tickFormat={y => (`${smartRound(y)}`)}
                   dependentAxis
                   style={foregroudTickStyle}/>
-                <VictoryGroup
+                <VictoryLine
                   data={auctionChartData}
                   x="time"
                   y="price"
-                  dependentAxis>
-                  <VictoryLine
-                    style={{ data: { stroke: '#fff2', strokeWidth: 1 } }} />
-                </VictoryGroup>
+                  style={{ data: { stroke: '#fff2', strokeWidth: 1 } }} />
               </VictoryChart>
             </div>
             <div className="chart__victory-background">
@@ -250,19 +247,16 @@ class MetPriceAreaBar extends Component {
                   style={backgroundTickStyle} />
                 <VictoryAxis
                   height={400}
-                  tickFormat={x => (`${smartRound(x)}`)}
+                  tickFormat={y => (`${smartRound(y)}`)}
                   dependentAxis
                   style={backgroundTickStyle} />
-                <VictoryGroup
+                <VictoryArea
                   data={auctionChartData}
                   x="time"
                   y="tokensSold"
-                  dependentAxis
                   labels={d => `y: ${d.y}`}
-                  labelComponent={<VictoryTooltip/>}>
-                  <VictoryArea
-                    style={{ data: { fill: '#7e61f8', fillOpacity: 0.3, stroke: '#7e61f8', strokeWidth: 0 } }} />
-                </VictoryGroup>
+                  labelComponent={<VictoryTooltip/>}
+                  style={{ data: { fill: '#7e61f8', fillOpacity: 0.3, stroke: '#7e61f8', strokeWidth: 0 } }} />
               </VictoryChart>
             </div>
           </div>
