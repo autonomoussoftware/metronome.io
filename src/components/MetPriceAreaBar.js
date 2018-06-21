@@ -1,12 +1,10 @@
 import { connect } from 'react-redux'
 import { fromWei } from 'web3-utils'
 import {
-  VictoryArea,
   VictoryAxis,
+  VictoryBar,
   VictoryChart,
-  VictoryGroup,
-  VictoryLine,
-  VictoryTooltip
+  VictoryLine
 } from 'victory'
 import { VictoryTheme } from 'victory-core'
 import React, { Component } from 'react'
@@ -21,7 +19,7 @@ import DollarValue from './DollarValue'
 
 const MAX_DATA_POINTS = 500
 
-const smartRound = smartRounder(4, 0, 4)
+const smartRound = smartRounder(3, 0, 3)
 
 const foregroudTickStyle = {
   grid: {
@@ -65,13 +63,12 @@ const backgroundTickStyle = {
 }
 
 const timeWindows = {
-  minute: { minutes: 1, label: 'Minute' },
-  quarter: { minutes: 15, label: '15 Minutes' },
-  hour: { hours: 1, label: 'Hour' },
-  six: { hours: 6, label: '6 Hours' },
-  twelve: { hours: 12, label: '12 Hours' },
-  day: { days: 1, label: 'Day' },
-  week: { days: 7, label: '7 Days' }
+  quarter: { minutes: 15, label: '15 Minutes', grouping: 60000 },
+  hour: { hours: 1, label: 'Hour', grouping: 60000 },
+  six: { hours: 6, label: '6 Hours', grouping: 600000 },
+  twelve: { hours: 12, label: '12 Hours', grouping: 1200000 },
+  day: { days: 1, label: 'Day', grouping: 1200000 },
+  week: { days: 7, label: '7 Days', grouping: 1200000 }
 }
 
 class MetPriceAreaBar extends Component {
@@ -136,7 +133,7 @@ class MetPriceAreaBar extends Component {
   parseHistory (data) {
     const { auctionSupply } = this.props.auction
 
-    return data.map(point => ({
+    const parsed = data.map(point => ({
       time: point.timestamp * 1000,
       supply: new BigNumber(fromWei(point.minting || '0'))
         .toNumber(),
@@ -148,6 +145,31 @@ class MetPriceAreaBar extends Component {
         .div(1e18)
         .toNumber()
     }))
+
+    const { grouping } = timeWindows[this.state.timeWindow]
+
+    const byGroups = parsed.sort((a, b) => a.time - b.time).map(point => ({
+      ...point,
+      group: Math.ceil(point.time / grouping)
+    })).map(point => ({
+      ...point,
+      time: point.group * grouping
+    }))
+
+    const grouped = byGroups.reduce(
+      (arr, point) => arr[arr.length - 1].group === point.group
+        ? arr
+        : arr.concat({
+          ...point,
+          tokensSoldInGroup: point.tokensSold - arr[arr.length - 1].tokensSold
+        }),
+      [{
+        ...byGroups[0],
+        tokensSoldInGroup: 0
+      }]
+    )
+
+    return grouped
   }
 
   changeTimeWindow (timeWindow) {
@@ -193,7 +215,6 @@ class MetPriceAreaBar extends Component {
               <div className="arrow-up"></div>
               <div className="chart__dropdown-time-selector-items">
                 <ul>
-                  <li onClick={() => this.changeTimeWindow('minute')} className={timeWindow === 'minute' ? '--active' : ''}><a>Minute</a></li>
                   <li onClick={() => this.changeTimeWindow('quarter')} className={timeWindow === 'quarter' ? '--active' : ''}><a>15 Minutes</a></li>
                   <li onClick={() => this.changeTimeWindow('hour')} className={timeWindow === 'hour' ? '--active' : ''}><a>Hour</a></li>
                   <li onClick={() => this.changeTimeWindow('six')} className={timeWindow === 'six' ? '--active' : ''}><a>6 Hours</a></li>
@@ -209,60 +230,54 @@ class MetPriceAreaBar extends Component {
           <div className="chart__keys">
             <div className="supply__available-container">
               <div className="supply__available-box"></div>
-              <span>Tokens Sold</span>
+              <span>Tokens Sold [MET]</span>
             </div>
             <div className="price__available-container">
               <div className="price__available-box"></div>
-              <span>Price (ETH)</span>
+              <span>Price [ETH]</span>
             </div>
           </div>
           <div className="chart__victory-container">
             <div className="chart__victory-foreground">
               <VictoryChart
-                theme={VictoryTheme.material}
+                domainPadding={5}
                 height={130}
+                padding={{ top: 5, bottom: 15, right: 25, left: 15 }}
                 style={{ labels: { fontSize: 2 }, padding: 0 }}
-                padding={{ top: 5, bottom: 15, right: 25, left: 15 }}>
+                theme={VictoryTheme.material}>
                 <VictoryAxis
+                  dependentAxis
                   height={400}
                   orientation="right"
-                  tickFormat={x => (`${smartRound(x)}`)}
-                  dependentAxis
-                  style={foregroudTickStyle}/>
-                <VictoryGroup
+                  style={foregroudTickStyle}
+                  tickFormat={y => `${smartRound(y)}`} />
+                <VictoryLine
                   data={auctionChartData}
+                  style={{ data: { stroke: '#fff2', strokeWidth: 1 } }}
                   x="time"
-                  y="price"
-                  dependentAxis>
-                  <VictoryLine
-                    style={{ data: { stroke: '#fff2', strokeWidth: 1 } }} />
-                </VictoryGroup>
+                  y="price" />
               </VictoryChart>
             </div>
             <div className="chart__victory-background">
               <VictoryChart
-                theme={VictoryTheme.material}
+                domainPadding={5}
                 height={130}
-                padding={{ top: 5, bottom: 15, right: 25, left: 15 }}>
+                padding={{ top: 5, bottom: 15, right: 25, left: 15 }}
+                theme={VictoryTheme.material}>
                 <VictoryAxis
-                  tickCount={10}
                   scale={{ x: 'time' }}
-                  style={backgroundTickStyle} />
+                  style={backgroundTickStyle}
+                  tickCount={10} />
                 <VictoryAxis
+                  dependentAxis
                   height={400}
-                  tickFormat={x => (`${smartRound(x)}`)}
-                  dependentAxis
-                  style={backgroundTickStyle} />
-                <VictoryGroup
+                  style={backgroundTickStyle}
+                  tickFormat={y => `${smartRound(y)}`} />
+                <VictoryBar
                   data={auctionChartData}
+                  style={{ data: { fill: '#7e61f8', fillOpacity: 0.3 } }}
                   x="time"
-                  y="tokensSold"
-                  dependentAxis
-                  labels={d => `y: ${d.y}`}
-                  labelComponent={<VictoryTooltip/>}>
-                  <VictoryArea
-                    style={{ data: { fill: '#7e61f8', fillOpacity: 0.3, stroke: '#7e61f8', strokeWidth: 0 } }} />
-                </VictoryGroup>
+                  y="tokensSoldInGroup" />
               </VictoryChart>
             </div>
           </div>
