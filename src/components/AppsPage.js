@@ -26,7 +26,12 @@ class AppsDownloadButton extends Component {
             </a>}
             <a href="#download-options" className="link__sm">See all download options</a>
             <div className="downloads__app-screenshot">
-              <img className="--slideUp" src="/images/metronome-apps-demo.png" alt="metronome-apps-demo"/>
+              <img
+                className="--slideUp"
+                src="/images/metronome-apps-demo.png"
+                srcset="/images/metronome-apps-demo@2x.png 2x, /images/metronome-apps-demo@3x.png 3x"
+                alt="Metronome App Demo"
+              />
             </div>
           </div>
           <div className="envelope__footer" id="download-options">
