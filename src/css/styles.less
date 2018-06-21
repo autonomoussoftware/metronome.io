@@ -2250,61 +2250,65 @@ a.overview__current-auction-error-link {
   width: 100%;
   z-index: 2;
 }
+
 .chart__keys {
+  clear: both;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0 15px 0 15px;
+  padding: 0;
   position: relative;
   width: calc(100% - 30px);
-  padding: 0 15px 0 15px;
-  display: inline-block;
-  margin: 0px;
-  padding: 0px;
-  clear: both;
 }
+
 .supply__available-container {
-  float: left;
-  text-align: left;
-  display: inline-block;
+  margin: 0 15px;
+
   span {
-    font-family: Muli;
-    font-size: 11px;
-    font-weight: 600;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #ffffff;
+    color: #fff;
     float: right;
+    font-family: Muli, sans-serif;
+    font-size: 11px;
+    font-stretch: normal;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: normal;
+    line-height: normal;
   }
+
   .supply__available-box {
-    width: 16px;
-    height: 16px;
-    border-radius: 4px;
     background-color: #594f90;
+    border-radius: 4px;
     display: inline-block;
+    height: 16px;
     margin-right: 10px;
+    width: 16px;
   }
 }
+
 .price__available-container {
-  float: right;
-  text-align: left;
-  display: inline-block;
+  margin: 0 15px;
+
   span {
-    font-family: Muli;
+    color: #fff;
+    float: right;
+    font-family: Muli, sans-serif;
     font-size: 11px;
-    font-weight: 600;
-    font-style: normal;
     font-stretch: normal;
-    line-height: normal;
+    font-style: normal;
+    font-weight: 600;
     letter-spacing: normal;
-    color: #ffffff;
-    float: left;
+    line-height: normal;
   }
+
   .price__available-box {
-    width: 16px;
-    height: 16px;
-    border-radius: 4px;
     background-color: #67686f;
+    border-radius: 4px;
     display: inline-block;
-    margin-left: 10px;
+    height: 2px;
+    margin: 7px 10px 7px 0;
+    width: 16px;
   }
 }
 .panel__confirm-purchase {

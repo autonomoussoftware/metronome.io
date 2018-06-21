@@ -207,11 +207,11 @@ class MetPriceAreaBar extends Component {
           <div className="chart__keys">
             <div className="supply__available-container">
               <div className="supply__available-box"></div>
-              <span>Tokens Sold</span>
+              <span>Tokens Sold [MET]</span>
             </div>
             <div className="price__available-container">
               <div className="price__available-box"></div>
-              <span>Price (ETH)</span>
+              <span>Price [ETH]</span>
             </div>
           </div>
           <div className="chart__victory-container">
