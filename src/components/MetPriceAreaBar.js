@@ -65,7 +65,6 @@ const backgroundTickStyle = {
 }
 
 const timeWindows = {
-  minute: { minutes: 1, label: 'Minute' },
   quarter: { minutes: 15, label: '15 Minutes' },
   hour: { hours: 1, label: 'Hour' },
   six: { hours: 6, label: '6 Hours' },
@@ -193,7 +192,6 @@ class MetPriceAreaBar extends Component {
               <div className="arrow-up"></div>
               <div className="chart__dropdown-time-selector-items">
                 <ul>
-                  <li onClick={() => this.changeTimeWindow('minute')} className={timeWindow === 'minute' ? '--active' : ''}><a>Minute</a></li>
                   <li onClick={() => this.changeTimeWindow('quarter')} className={timeWindow === 'quarter' ? '--active' : ''}><a>15 Minutes</a></li>
                   <li onClick={() => this.changeTimeWindow('hour')} className={timeWindow === 'hour' ? '--active' : ''}><a>Hour</a></li>
                   <li onClick={() => this.changeTimeWindow('six')} className={timeWindow === 'six' ? '--active' : ''}><a>6 Hours</a></li>
