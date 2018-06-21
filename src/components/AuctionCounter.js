@@ -4,7 +4,12 @@ import React, { Component } from 'react'
 
 class AuctionCounter extends Component {
   render () {
-    const { nextAuctionStartTime } = this.props
+    const { loading } = this.props
+    const {
+      currentAuctionEndTime,
+      isAuctionActive,
+      nextAuctionStartTime
+    } = this.props.status
 
     const renderer = ({ days, hours, minutes, seconds, completed }) =>
       <div>
@@ -14,9 +19,13 @@ class AuctionCounter extends Component {
         <span className="auction-timer__section">{seconds}</span>
       </div>
 
+    const targetTime = isAuctionActive
+      ? currentAuctionEndTime
+      : nextAuctionStartTime
+
     return (
       <div className="container__auction-timer">
-        <Countdown date={nextAuctionStartTime} renderer={renderer} />
+        {!loading && <Countdown date={targetTime} renderer={renderer} />}
         <ul className="auction-timer__labels">
           <li>Days</li>
           <li>Hours</li>
@@ -28,6 +37,6 @@ class AuctionCounter extends Component {
   }
 }
 
-const mapStateToProps = state => state.auction.status
+const mapStateToProps = state => state.auction
 
 export default connect(mapStateToProps)(AuctionCounter)

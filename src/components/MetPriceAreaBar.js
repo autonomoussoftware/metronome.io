@@ -14,10 +14,14 @@ import BigNumber from 'bignumber.js'
 import moment from 'moment'
 import shrinkArray from 'shrink-array'
 import last from 'shrink-array/last'
+import smartRounder from 'smart-round'
 
 import EthValue from './EthValue'
+import DollarValue from './DollarValue'
 
 const MAX_DATA_POINTS = 500
+
+const smartRound = smartRounder(4, 0, 4)
 
 const foregroudTickStyle = {
   grid: {
@@ -82,7 +86,7 @@ class MetPriceAreaBar extends Component {
     err: null,
     history: [],
     showDropdown: false,
-    timeWindow: 'quarter'
+    timeWindow: 'hour'
   }
 
   retrieveData () {
@@ -130,10 +134,19 @@ class MetPriceAreaBar extends Component {
   }
 
   parseHistory (data) {
+    const { auctionSupply } = this.props.auction
+
     return data.map(point => ({
       time: point.timestamp * 1000,
-      supply: new BigNumber(fromWei(point.minting)).toNumber(),
-      price: new BigNumber(point.currentAuctionPrice).div(1e18).toNumber()
+      supply: new BigNumber(fromWei(point.minting || '0'))
+        .toNumber(),
+      price: new BigNumber(point.currentAuctionPrice || '0')
+        .div(1e18)
+        .toNumber(),
+      tokensSold: new BigNumber(auctionSupply)
+        .minus(point.minting)
+        .div(1e18)
+        .toNumber()
     }))
   }
 
@@ -156,7 +169,10 @@ class MetPriceAreaBar extends Component {
     } = this.state
 
     const {
-      auction: { currentPrice }
+      auction: {
+        currentPrice,
+        isDailyAuction
+      }
     } = this.props
 
     const auctionChartData = this.parseHistory(data)
@@ -167,7 +183,9 @@ class MetPriceAreaBar extends Component {
         <div className="chart__main-inner-container">
           <span className="label__title">Charts </span>
           <div className="chart__main-label">
-            <span className="label__Auction-Price">Auction Price:</span> <span className="label_-ETH"><EthValue>{currentPrice}</EthValue></span>
+            <span className="label__Auction-Price">Auction Price:</span>
+            <span className="label_-ETH"><EthValue>{currentPrice}</EthValue></span>
+            <span className="label_-USD"><DollarValue/></span>
           </div>
           <div className={`chart__dropdown-time-selector ${showDropdown ? '--active' : ''}`} onClick={this.toggleDropdown}>
             <span className="label__selector">{timeWindows[timeWindow].label}<span className="arrow-down"></span></span>
@@ -181,7 +199,9 @@ class MetPriceAreaBar extends Component {
                   <li onClick={() => this.changeTimeWindow('six')} className={timeWindow === 'six' ? '--active' : ''}><a>6 Hours</a></li>
                   <li onClick={() => this.changeTimeWindow('twelve')} className={timeWindow === 'twelve' ? '--active' : ''}><a>12 Hours</a></li>
                   <li onClick={() => this.changeTimeWindow('day')} className={timeWindow === 'day' ? '--active' : ''}><a>Day</a></li>
-                  <li onClick={() => this.changeTimeWindow('week')} className={timeWindow === 'week' ? '--active' : ''}><a>7 Days</a></li>
+                  {isDailyAuction
+                    ? <li onClick={() => this.changeTimeWindow('week')} className={timeWindow === 'week' ? '--active' : ''}><a>7 Days</a></li>
+                    : null}
                 </ul>
               </div>
             </div>
@@ -189,7 +209,7 @@ class MetPriceAreaBar extends Component {
           <div className="chart__keys">
             <div className="supply__available-container">
               <div className="supply__available-box"></div>
-              <span>Available Supply</span>
+              <span>Tokens Sold</span>
             </div>
             <div className="price__available-container">
               <div className="price__available-box"></div>
@@ -206,7 +226,7 @@ class MetPriceAreaBar extends Component {
                 <VictoryAxis
                   height={400}
                   orientation="right"
-                  tickFormat={x => (`${x} ETH`)}
+                  tickFormat={x => (`${smartRound(x)}`)}
                   dependentAxis
                   style={foregroudTickStyle}/>
                 <VictoryGroup
@@ -215,7 +235,6 @@ class MetPriceAreaBar extends Component {
                   y="price"
                   dependentAxis>
                   <VictoryLine
-                    interpolationNoooooo="basis"
                     style={{ data: { stroke: '#fff2', strokeWidth: 1 } }} />
                 </VictoryGroup>
               </VictoryChart>
@@ -231,13 +250,13 @@ class MetPriceAreaBar extends Component {
                   style={backgroundTickStyle} />
                 <VictoryAxis
                   height={400}
-                  tickFormat={x => (`${x / 1000000}m`)}
+                  tickFormat={x => (`${smartRound(x)}`)}
                   dependentAxis
                   style={backgroundTickStyle} />
                 <VictoryGroup
                   data={auctionChartData}
                   x="time"
-                  y="supply"
+                  y="tokensSold"
                   dependentAxis
                   labels={d => `y: ${d.y}`}
                   labelComponent={<VictoryTooltip/>}>

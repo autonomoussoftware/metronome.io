@@ -2,9 +2,10 @@ import { handleActions } from 'redux-actions'
 import BigNumber from 'bignumber.js'
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000
+const ISA_DURATION_DAYS = 7
 
 const genesisTime = new Date('2018-06-18T00:00:00Z').getTime()
-const genesisTimePlus7 = genesisTime + 7 * MS_PER_DAY
+const genesisTimePlus7 = genesisTime + ISA_DURATION_DAYS * MS_PER_DAY
 
 const now = Date.now()
 
@@ -26,6 +27,7 @@ const initialState = {
 const auctionSupply = currentAuction =>
   new BigNumber(currentAuction === 0 ? 8000000 : 2880)
     .times(1e18)
+    .toNumber()
 
 const reducer = handleActions(
   {
@@ -41,7 +43,7 @@ const reducer = handleActions(
         isInitialAuction: Date.now() >= payload.genesisTime &&
           payload.currentAuction === 0,
         auctionSupply: auctionSupply(payload.currentAuction),
-        remainingPercentage: BigNumber.min(
+        remainingPercentage: Math.min(
           new BigNumber(payload.tokensRemaining)
             .div(auctionSupply(payload.currentAuction))
             .times(100)
@@ -53,7 +55,10 @@ const reducer = handleActions(
         // calculate this as private so that logic should be replicated here.
         nextAuctionStartPrice: Date.now() < payload.genesisTime
           ? payload.lastPurchasePrice
-          : new BigNumber(payload.lastPurchasePrice).times(2).toString()
+          : new BigNumber(payload.lastPurchasePrice).times(2).toString(),
+        currentAuctionEndTime: payload.currentAuction === 0
+          ? payload.genesisTime + ISA_DURATION_DAYS * MS_PER_DAY
+          : payload.nextAuctionStartTime
       }
     }),
     AUCTION_STATUS_ERROR: (state, { payload }) => ({

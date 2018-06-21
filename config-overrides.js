@@ -2,7 +2,7 @@ const path = require('path')
 const rewireEslint = require('react-app-rewire-eslint')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const gaTrackingId = process.env.REACT_APP_GA_TRACKING_ID
+const gaTrackingId = process.env.REACT_APP_GA_TRACKING_ID || 'UA-116275666-1'
 
 module.exports = {
   webpack (config, env) {

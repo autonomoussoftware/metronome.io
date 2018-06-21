@@ -1,12 +1,11 @@
 import { connect } from 'react-redux'
-import BigNumber from 'bignumber.js'
 import React, { Component } from 'react'
-// import ReactTooltip from 'react-tooltip'
+import smartRounder from 'smart-round'
 
 import CoinCapRate from '../providers/CoinCapRate'
-import FiatValue from './FiatValue'
-// import infoIcon from '../img/ic-info.svg'
 import MetValue from './MetValue'
+
+const smartRound = smartRounder(3, 0, 10)
 
 class GeneralStats extends Component {
   render () {
@@ -15,17 +14,12 @@ class GeneralStats extends Component {
         auctionSupply,
         isAuctionActive,
         isDailyAuction,
+        remainingPercentage,
         tokenSupply
       },
-      rates,
       onBuyMetronomeClick,
       updateEthUsdRate
     } = this.props
-
-    const marketCap = new BigNumber(tokenSupply)
-      .times(rates.ETH_USD)
-      .div(1e18)
-      .toString()
 
     return (
       <React.Fragment>
@@ -40,8 +34,8 @@ class GeneralStats extends Component {
             </div>
             <div className="left">
               <div className="container__inner">
-                <div className="label__general-stats">Market Cap</div>
-                <div className="numeral__general-stats"><FiatValue suffix="USD">{marketCap}</FiatValue></div>
+                <div className="label__general-stats">Percentage Sold</div>
+                <div className="numeral__general-stats">{smartRound(100 - remainingPercentage)}%</div>
               </div>
             </div>
             <div className="left">
@@ -51,13 +45,6 @@ class GeneralStats extends Component {
               </div>
             </div>
           </div>
-          {/* <div className="left">
-            <div className="container__inner">
-              <ReactTooltip />
-              <div className="label__general-stats">Largest Delta <img alt="" data-tip="Kraken $119.97 &#60; &#62; Bitifinex $122.96" src={infoIcon} /></div>
-              <div className="numeral__general-stats">${data.mtn_largest_delta} <span className="label__delta-stats"></span></div>
-            </div>
-          </div> */}
           <div className="button__visit-auction-dashboard">
             <button onClick={onBuyMetronomeClick} disabled={!isAuctionActive}>
               Buy Metronome

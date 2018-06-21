@@ -32,7 +32,7 @@ function AuctionSummary (props) {
           <div className="overview__met-header">
             <div className="overview__met-header--inner">
               <div className="overview__met-icon">
-                <img alt='m' src={metIcon} />
+                <img alt="metronome" src={metIcon} />
               </div>
               <span className="overview__met-container-title">
                 Metronome (MET)
