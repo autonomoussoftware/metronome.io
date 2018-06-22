@@ -5,7 +5,8 @@ const initialState = {
   ongoingTx: { hash: '' },
   receipt: null,
   show: false,
-  showStep: 'options'
+  showStep: 'options',
+  warn: ''
 }
 
 const reducer = handleActions(
@@ -51,14 +52,11 @@ const reducer = handleActions(
         ? payload
         : state.ongoingTx
     }),
-    UPDATE_USER_ACCOUNTS: (state, { payload }) => ({
+    UPDATE_WALLET_INFO: (state, { payload }) => ({
       ...state,
-      error: payload.length
-        ? null
-        : {
-          err: new Error('No active wallet account'),
-          hint: 'Log into your web wallet'
-        }
+      warn: payload.accounts.length
+        ? ''
+        : 'Log into your web wallet'
     })
   },
   initialState
