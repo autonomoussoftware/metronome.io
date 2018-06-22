@@ -136,12 +136,12 @@ class AuctionBuyForm extends Component {
                   <div className="buy-meta-mask__current-price meta-mask__error">
                     <span title={errorData.err.message}>{errorData.hint}</span>
                     { hash
-                      ? <span> - Check status in the <a
+                      ? <span> - Check tx status in the <a
                         target="_blank"
                         href={`${config.metExplorerUrl}/transactions/${hash}`}>
                         explorer
-                      </a> or try again</span>
-                      : <span> - Try again</span>
+                      </a>.</span>
+                      : <span> - Check tx status in your wallet.</span>
                     }
                   </div>}
                 {warnStr &&
