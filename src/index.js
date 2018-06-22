@@ -24,6 +24,13 @@ if (module.hot) {
   module.hot.accept()
 }
 
+if (config.env === 'production' && window.Raven) {
+  window.Raven.config(config.sentryDns).install()
+  window.addEventListener('unhandledrejection', function (e) {
+    window.Raven.captureException(e.reason)
+  })
+}
+
 const reduxDevtoolsOptions = { features: { dispatch: true } }
 
 const store = createStore(reduxDevtoolsOptions, getInitialState(config))
