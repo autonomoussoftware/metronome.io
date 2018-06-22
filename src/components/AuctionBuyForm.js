@@ -57,11 +57,11 @@ class AuctionBuyForm extends Component {
         })
         .on('receipt', function (receipt) {
           if (!receipt.status) {
-            showError('Transaction reverted - Check tx status in your wallet or explorer', new Error('Transaction status is falsy'))
+            showError('Purchase reverted - Try again', new Error('Transaction status is falsy'))
             return
           }
           if (!receipt.logs.length) {
-            showError('Transaction failed - Check tx status in your wallet or explorer', new Error('Transaction logs missing'))
+            showError('Purchase failed - Try again', new Error('Transaction logs missing'))
             return
           }
           showReceipt(receipt)
