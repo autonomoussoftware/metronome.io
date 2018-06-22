@@ -55,12 +55,6 @@ class AuctionBuyForm extends Component {
       web3.eth.sendTransaction(txObject)
         .on('transactionHash', function (hash) {
           showWaiting(hash)
-          pRetry(
-            () => web3.eth.getTransaction(hash).then(throwIfNull),
-            { minTimeout: GET_TX_TIMEOUT, retries: GET_TX_RETRIES }
-          )
-            .catch(err => ({ err, from: userAccount, hash }))
-            .then(storeTxData)
         })
         .on('receipt', function (receipt) {
           if (!receipt.status) {
@@ -71,8 +65,21 @@ class AuctionBuyForm extends Component {
             showError('Purchase failed - Try again', new Error('Transaction logs missing'))
             return
           }
-          showReceipt(receipt)
-          clearForm()
+
+          const hash = receipt.transactionHash
+          pRetry(
+            () => web3.eth.getTransaction(hash).then(throwIfNull),
+            { minTimeout: GET_TX_TIMEOUT, retries: GET_TX_RETRIES }
+          )
+            .catch(() => ({ from: userAccount, hash }))
+            .then(function (tx) {
+              storeTxData(tx)
+              showReceipt(receipt)
+              clearForm()
+            })
+            .catch(function (err) {
+              showError(`Something went wrong - Check your wallet or explorer for transaction ${hash}`, err)
+            })
         })
         .on('error', function (err) {
           showError('Transaction error - Try again', err)
