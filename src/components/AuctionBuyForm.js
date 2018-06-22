@@ -12,8 +12,16 @@ import MetValue from './MetValue'
 import ValueInput from './ValueInput'
 
 const GET_TX_RETRIES = 5
+const GET_TX_TIMEOUT = 250
 
 const web3Provider = detectProvider('web wallet')
+
+function throwIfNull (obj) {
+  if (!obj) {
+    throw new Error('Object should not be null')
+  }
+  return obj
+}
 
 class AuctionBuyForm extends Component {
   constructor () {
@@ -48,12 +56,11 @@ class AuctionBuyForm extends Component {
         .on('transactionHash', function (hash) {
           showWaiting(hash)
           pRetry(
-            () => web3.eth.getTransaction(hash).then(storeTxData),
-            { retries: GET_TX_RETRIES }
+            () => web3.eth.getTransaction(hash).then(throwIfNull),
+            { minTimeout: GET_TX_TIMEOUT, retries: GET_TX_RETRIES }
           )
-            .catch(function (err) {
-              showError('Transaction details could not be retrieved - Check tx status in your wallet or explorer', err)
-            })
+            .catch(err => ({ err, from: userAccount, hash }))
+            .then(storeTxData)
         })
         .on('receipt', function (receipt) {
           if (!receipt.status) {
@@ -82,7 +89,7 @@ class AuctionBuyForm extends Component {
       chain,
       config,
       currentPrice,
-      error,
+      errorData,
       eth,
       hideBuyPanel,
       met,
@@ -114,7 +121,6 @@ class AuctionBuyForm extends Component {
       const bigValue = new BigNumber(value)
       return bigValue.toFixed()
     }
-
     return (
       <React.Fragment>
         <div className="auction-panel__header header__meta-mask --showMetaMask">
@@ -130,9 +136,9 @@ class AuctionBuyForm extends Component {
           <div className="auction-panel__body--inner">
             <div className="panel__buy-meta-mask --showMetaMask">
               <section className="buy-meta-mask__section">
-                {error && error.err.message &&
+                {errorData && errorData.err && errorData.err.message &&
                   <div className="buy-meta-mask__current-price meta-mask__error">
-                    <span title={error.err.message}>{error.hint}</span>
+                    <span title={errorData.err.message}>{errorData.hint}</span>
                   </div>}
                 {warnStr &&
                   <div className="buy-meta-mask__current-price meta-mask__error">
@@ -186,7 +192,7 @@ const mapStateToProps = state => ({
   chain: state.wallet.chain,
   config: state.config,
   currentPrice: state.auction.status.currentPrice,
-  error: state.buyPanel.error,
+  errorData: state.buyPanel.errorData,
   rates: state.rates,
   userAccount: state.wallet.accounts[0],
   warn: state.buyPanel.warn

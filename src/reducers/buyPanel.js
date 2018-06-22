@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions'
 
 const initialState = {
-  error: null,
+  errorData: {},
   ongoingTx: { hash: '' },
   receipt: null,
   show: false,
@@ -26,7 +26,7 @@ const reducer = handleActions(
     }),
     SHOW_BUY_RECEIPT: (state, { payload }) => ({
       ...state,
-      error: null,
+      errorData: {},
       receipt: payload.transactionHash === state.ongoingTx.hash
         ? payload
         : state.receipt,
@@ -41,7 +41,7 @@ const reducer = handleActions(
     }),
     SHOW_BUY_ERROR: (state, { payload }) => ({
       ...state,
-      error: payload,
+      errorData: payload,
       ongoingTx: initialState.ongoingTx,
       receipt: null,
       showStep: 'form'
