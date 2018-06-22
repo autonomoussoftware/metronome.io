@@ -52,16 +52,16 @@ class AuctionBuyForm extends Component {
             { retries: GET_TX_RETRIES }
           )
             .catch(function (err) {
-              showError('Transaction details could not be retrieved - Try again', err)
+              showError('Transaction details could not be retrieved - Check tx status in your wallet or explorer', err)
             })
         })
         .on('receipt', function (receipt) {
           if (!receipt.status) {
-            showError('Transaction reverted - Try again', new Error('Transaction status is falsy'))
+            showError('Transaction reverted - Check tx status in your wallet or explorer', new Error('Transaction status is falsy'))
             return
           }
           if (!receipt.logs.length) {
-            showError('Transaction failed - Try again', new Error('Transaction logs missing'))
+            showError('Transaction failed - Check tx status in your wallet or explorer', new Error('Transaction logs missing'))
             return
           }
           showReceipt(receipt)
