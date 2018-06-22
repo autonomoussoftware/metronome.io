@@ -50,6 +50,15 @@ const reducer = handleActions(
       ongoingTx: payload.hash === state.ongoingTx.hash
         ? payload
         : state.ongoingTx
+    }),
+    UPDATE_USER_ACCOUNTS: (state, { payload }) => ({
+      ...state,
+      error: payload.length
+        ? null
+        : {
+          err: new Error('No active wallet account'),
+          hint: 'Log into your web wallet'
+        }
     })
   },
   initialState
