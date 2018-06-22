@@ -11,8 +11,11 @@ import MetValue from './MetValue'
 class AuctionReceipt extends Component {
   render () {
     const {
+      config: {
+        defaultGasPrice,
+        metExplorerUrl
+      },
       hideBuyPanel,
-      metExplorerUrl,
       receipt: {
         blockHash,
         blockNumber,
@@ -37,7 +40,7 @@ class AuctionReceipt extends Component {
       .toString()
 
     const totalValue = new BigNumber(gasUsed)
-      .times(gasPrice)
+      .times(gasPrice || defaultGasPrice)
       .plus(value)
       .toString()
 
@@ -63,7 +66,7 @@ class AuctionReceipt extends Component {
               <section className="panel__receipt-cost">
                 <label>Cost</label>
                 <ul>
-                  <li className="amount__total-li"><EthValue>{totalValue}</EthValue></li>
+                  <li className="amount__total-li"><EthValue>{totalValue}</EthValue>{gasPrice ? '' : <span title="Gas price was estimated">*</span>}</li>
                   <li className="amount__total-li"><EthValue>{value}</EthValue> + {gasUsed} gas</li>
                 </ul>
               </section>
@@ -112,11 +115,11 @@ class AuctionReceipt extends Component {
 }
 
 const mapStateToProps = state => ({
+  config: state.config,
   currentPrice: state.auction.status.currentPrice,
   rates: state.rates,
   receipt: state.buyPanel.receipt,
-  tx: state.buyPanel.ongoingTx,
-  metExplorerUrl: state.config.metExplorerUrl
+  tx: state.buyPanel.ongoingTx
 })
 
 export default connect(mapStateToProps)(AuctionReceipt)
