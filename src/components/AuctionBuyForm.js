@@ -24,7 +24,7 @@ class AuctionBuyForm extends Component {
 
   sendTransaction () {
     const {
-      auctionsAddress,
+      config,
       clearForm,
       eth,
       showError,
@@ -37,7 +37,7 @@ class AuctionBuyForm extends Component {
 
     const txObject = {
       from: userAccount,
-      to: auctionsAddress,
+      to: config.auctionsAddress,
       value: web3.utils.toWei(eth.replace(',', '.'))
     }
 
@@ -79,6 +79,8 @@ class AuctionBuyForm extends Component {
   render () {
     const {
       backToBuyOptions,
+      chain,
+      config,
       currentPrice,
       error,
       eth,
@@ -87,12 +89,17 @@ class AuctionBuyForm extends Component {
       rates,
       updateEth,
       updateMet,
-      userAccount
+      userAccount,
+      warn
     } = this.props
 
     const fiatValue = new BigNumber(eth).times(rates.ETH_USD).toString()
 
-    const allowBuy = !(new BigNumber(eth).eq(0)) && userAccount
+    const warnStr = warn ||
+      (chain !== config.chain &&
+        `Wrong chain - Connect wallet to ${config.chain}`)
+
+    const allowBuy = !(new BigNumber(eth).eq(0)) && userAccount && !warnStr
 
     function withRate (eventHandler) {
       return function (ev) {
@@ -107,6 +114,7 @@ class AuctionBuyForm extends Component {
       const bigValue = new BigNumber(value)
       return bigValue.toFixed()
     }
+
     return (
       <React.Fragment>
         <div className="auction-panel__header header__meta-mask --showMetaMask">
@@ -125,6 +133,10 @@ class AuctionBuyForm extends Component {
                 {error && error.err.message &&
                   <div className="buy-meta-mask__current-price meta-mask__error">
                     <span title={error.err.message}>{error.hint}</span>
+                  </div>}
+                {warnStr &&
+                  <div className="buy-meta-mask__current-price meta-mask__error">
+                    <span>{warnStr}</span>
                   </div>}
                 <div className="buy-meta-mask__current-price">
                   <span>Current Auction Price</span>
@@ -171,11 +183,13 @@ class AuctionBuyForm extends Component {
 
 const mapStateToProps = state => ({
   ...state.buyForm,
-  auctionsAddress: state.config.auctionsAddress,
+  chain: state.wallet.chain,
+  config: state.config,
   currentPrice: state.auction.status.currentPrice,
   error: state.buyPanel.error,
   rates: state.rates,
-  userAccount: state.user.accounts[0]
+  userAccount: state.wallet.accounts[0],
+  warn: state.buyPanel.warn
 })
 
 const mapDispatchToProps = dispatch => ({

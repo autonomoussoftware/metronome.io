@@ -6,9 +6,9 @@ const initialState = {
 
 const reducer = handleActions(
   {
-    UPDATE_USER_ACCOUNTS: (state, { payload }) => ({
+    UPDATE_WALLET_INFO: (state, { payload }) => ({
       ...state,
-      accounts: payload || []
+      ...payload
     })
   },
   initialState
