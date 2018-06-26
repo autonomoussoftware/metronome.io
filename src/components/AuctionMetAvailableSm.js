@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import React from 'react'
 
+import EthValue from './EthValue'
 import MetValue from './MetValue'
 
 function AuctionMetAvailableSm (props) {
@@ -23,11 +24,9 @@ function AuctionMetAvailableSm (props) {
           </div>
         </div>}
       <span className="auction__counter-sm">
-        <MetValue>
-          {isAuctionActive
-            ? tokensRemaining
-            : nextAuctionStartPrice}
-        </MetValue>
+        {isAuctionActive
+          ? <MetValue>{tokensRemaining}</MetValue>
+          : <EthValue>{nextAuctionStartPrice}</EthValue>}
       </span>
       <span className="auction__counter-sm-remaining">
         {isAuctionActive
