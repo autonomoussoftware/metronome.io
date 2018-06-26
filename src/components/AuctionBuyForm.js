@@ -12,8 +12,16 @@ import MetValue from './MetValue'
 import ValueInput from './ValueInput'
 
 const GET_TX_RETRIES = 5
+const GET_TX_TIMEOUT = 250
 
 const web3Provider = detectProvider('web wallet')
+
+function throwIfNull (obj) {
+  if (!obj) {
+    throw new Error('Object should not be null')
+  }
+  return obj
+}
 
 class AuctionBuyForm extends Component {
   constructor () {
@@ -24,7 +32,7 @@ class AuctionBuyForm extends Component {
 
   sendTransaction () {
     const {
-      auctionsAddress,
+      config,
       clearForm,
       eth,
       showError,
@@ -37,7 +45,7 @@ class AuctionBuyForm extends Component {
 
     const txObject = {
       from: userAccount,
-      to: auctionsAddress,
+      to: config.auctionsAddress,
       value: web3.utils.toWei(eth.replace(',', '.'))
     }
 
@@ -47,25 +55,31 @@ class AuctionBuyForm extends Component {
       web3.eth.sendTransaction(txObject)
         .on('transactionHash', function (hash) {
           showWaiting(hash)
-          pRetry(
-            () => web3.eth.getTransaction(hash).then(storeTxData),
-            { retries: GET_TX_RETRIES }
-          )
-            .catch(function (err) {
-              showError('Transaction details could not be retrieved - Try again', err)
-            })
         })
         .on('receipt', function (receipt) {
           if (!receipt.status) {
-            showError('Transaction reverted - Try again', new Error('Transaction status is falsy'))
+            showError('Purchase reverted - Try again', new Error('Transaction status is falsy'))
             return
           }
           if (!receipt.logs.length) {
-            showError('Transaction failed - Try again', new Error('Transaction logs missing'))
+            showError('Purchase failed - Try again', new Error('Transaction logs missing'))
             return
           }
-          showReceipt(receipt)
-          clearForm()
+
+          const hash = receipt.transactionHash
+          pRetry(
+            () => web3.eth.getTransaction(hash).then(throwIfNull),
+            { minTimeout: GET_TX_TIMEOUT, retries: GET_TX_RETRIES }
+          )
+            .catch(() => ({ from: userAccount, hash }))
+            .then(function (tx) {
+              storeTxData(tx)
+              showReceipt(receipt)
+              clearForm()
+            })
+            .catch(function (err) {
+              showError(`Something went wrong - Check your wallet or explorer for transaction ${hash}`, err)
+            })
         })
         .on('error', function (err) {
           showError('Transaction error - Try again', err)
@@ -79,20 +93,27 @@ class AuctionBuyForm extends Component {
   render () {
     const {
       backToBuyOptions,
+      chain,
+      config,
       currentPrice,
-      error,
+      errorData,
       eth,
       hideBuyPanel,
       met,
       rates,
       updateEth,
       updateMet,
-      userAccount
+      userAccount,
+      warn
     } = this.props
 
     const fiatValue = new BigNumber(eth).times(rates.ETH_USD).toString()
 
-    const allowBuy = !(new BigNumber(eth).eq(0)) && userAccount
+    const warnStr = warn ||
+      (chain !== config.chain &&
+        `Wrong chain - Connect wallet to ${config.chain}`)
+
+    const allowBuy = !(new BigNumber(eth).eq(0)) && userAccount && !warnStr
 
     function withRate (eventHandler) {
       return function (ev) {
@@ -122,9 +143,13 @@ class AuctionBuyForm extends Component {
           <div className="auction-panel__body--inner">
             <div className="panel__buy-meta-mask --showMetaMask">
               <section className="buy-meta-mask__section">
-                {error && error.err.message &&
+                {errorData && errorData.err && errorData.err.message &&
                   <div className="buy-meta-mask__current-price meta-mask__error">
-                    <span title={error.err.message}>{error.hint}</span>
+                    <span title={errorData.err.message}>{errorData.hint}</span>
+                  </div>}
+                {warnStr &&
+                  <div className="buy-meta-mask__current-price meta-mask__error">
+                    <span>{warnStr}</span>
                   </div>}
                 <div className="buy-meta-mask__current-price">
                   <span>Current Auction Price</span>
@@ -171,11 +196,13 @@ class AuctionBuyForm extends Component {
 
 const mapStateToProps = state => ({
   ...state.buyForm,
-  auctionsAddress: state.config.auctionsAddress,
+  chain: state.wallet.chain,
+  config: state.config,
   currentPrice: state.auction.status.currentPrice,
-  error: state.buyPanel.error,
+  errorData: state.buyPanel.errorData,
   rates: state.rates,
-  userAccount: state.user.accounts[0]
+  userAccount: state.wallet.accounts[0],
+  warn: state.buyPanel.warn
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -24,6 +24,13 @@ if (module.hot) {
   module.hot.accept()
 }
 
+if (config.env === 'production' && window.Raven) {
+  window.Raven.config(config.sentryDns).install()
+  window.addEventListener('unhandledrejection', function (e) {
+    window.Raven.captureException(e.reason)
+  })
+}
+
 const reduxDevtoolsOptions = { features: { dispatch: true } }
 
 const store = createStore(reduxDevtoolsOptions, getInitialState(config))
@@ -59,13 +66,3 @@ if (rootElement) {
     rootElement
   )
 }
-
-store.subscribe(function () {
-  if (store.getState().auction.status.isDailyAuction) {
-    // As the header items are outside React scope, use jQuery to show the
-    // Auction page link once the daily auctions have started
-
-    // eslint-disable-next-line no-undef
-    $('#auctions-menu-item').show()
-  }
-})

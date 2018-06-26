@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/styles.min.css?v=5.0">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=<%-htmlWebpackPlugin.options.params && htmlWebpackPlugin.options.params.gaTrackingId%>"></script>
+    <script src="https://cdn.ravenjs.com/3.24.0/raven.min.js" crossorigin="anonymous"></script>
   </head>
   <body class="home" data-spy="scroll" data-target="#navbarCollapse" data-offset="155" id="start">
   <div class="shim"></div>
@@ -50,7 +51,7 @@
               <div class="dropdown-menu" aria-labelledby="s-owners-manual">
                 <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md" target="_blank">English</a>
                 <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_zh_CN.md" target="_blank">Chinese (Simplified) 中文</a>
-                <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_jp.md" target="_blank">Japanese 中文</a>
+                <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_jp.md" target="_blank">Japanese 日本語</a>
                 <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_ko.md" target="_blank">Korean 한국어</a>
                 <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_ru.md" target="_blank">Russian русский</a>
               </div>
@@ -70,7 +71,7 @@
             <li class="nav-item">
               <a class="nav-link" href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md" target="_blank">FAQ</a>
             </li>
-            <li class="nav-item" id="auctions-menu-item" style="display: none;">
+            <li class="nav-item">
               <a class="nav-link" href="/auction">Auction</a>
             </li>
           </ul>
@@ -184,7 +185,7 @@
       <p>Metronome will not be controlled by any party after launch&mdash;not even its authors&mdash;as it is completely autonomous.
         Metronome authors plan to continue to help by building an ongoing open-source community to support developers and
         users, but Metronome authors will have no access or control after the initial auction.</p>
-        
+
       <div class="sendgrid">
         <script type="text/javascript" src="//sgwidget.leaderapps.co/js/sendgrid-widget.js"></script><style>.sendgrid-subscription-widget .response{display:none;font-family:sans-serif;font-size:.8em}.sendgrid-subscription-widget .success{color:#7e61f8;text-align: center;}.sendgrid-subscription-widget .error{color:red}</style><div id="sendgrid-subscription-widget" class="sendgrid-subscription-widget" ><form id="sg-widget" data-token="ad8b1f4cd2963a816efc51879519201e" onsubmit="return false;"><div class="sg-response" id="sg-response"></div>
           <label><strong>Receive the latest updates from Metronome:</strong></label>

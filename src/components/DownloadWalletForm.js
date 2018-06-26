@@ -23,7 +23,7 @@ class AuctionPanelDetectOS extends Component {
               <a href="/apps">See all download options</a>
             </div>
           </React.Fragment>
-          : <a className="btn btn-lrg">
+          : <a className="btn btn-lrg" href="/apps">
             <span className="btn-text">Download Metronome Wallet</span>
             <span className="btn-icon --down"><img alt="" src={arrowIcon} /></span>
           </a>}
