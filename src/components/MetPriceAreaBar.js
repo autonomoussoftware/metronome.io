@@ -149,10 +149,13 @@ class MetPriceAreaBar extends Component {
       price: new BigNumber(point.currentAuctionPrice || '0')
         .div(1e18)
         .toNumber(),
-      tokensSold: new BigNumber(auctionSupply)
-        .minus(point.minting)
-        .div(1e18)
-        .toNumber()
+      tokensSold: Math.max(
+        new BigNumber(auctionSupply)
+          .minus(point.minting)
+          .div(1e18)
+          .toNumber(),
+        0
+      )
     }))
 
     const { grouping } = timeWindows[this.state.timeWindow]
