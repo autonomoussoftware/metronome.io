@@ -149,13 +149,10 @@ class MetPriceAreaBar extends Component {
       price: new BigNumber(point.currentAuctionPrice || '0')
         .div(1e18)
         .toNumber(),
-      tokensSold: Math.max(
-        new BigNumber(auctionSupply)
-          .minus(point.minting)
-          .div(1e18)
-          .toNumber(),
-        0
-      )
+      tokensSold: new BigNumber(auctionSupply)
+        .minus(point.minting)
+        .div(1e18)
+        .toNumber()
     }))
 
     const { grouping } = timeWindows[this.state.timeWindow]
@@ -173,7 +170,7 @@ class MetPriceAreaBar extends Component {
         ? arr
         : arr.concat({
           ...point,
-          tokensSoldInGroup: point.tokensSold - arr[arr.length - 1].tokensSold
+          tokensSoldInGroup: Math.max(point.tokensSold - arr[arr.length - 1].tokensSold, 0)
         }),
       [{
         ...byGroups[0],
