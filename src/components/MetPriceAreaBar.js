@@ -201,8 +201,7 @@ class MetPriceAreaBar extends Component {
 
     const {
       auction: {
-        currentPrice,
-        isDailyAuction
+        currentPrice
       }
     } = this.props
 
@@ -229,9 +228,7 @@ class MetPriceAreaBar extends Component {
                   <li onClick={() => this.changeTimeWindow('six')} className={timeWindow === 'six' ? '--active' : ''}><a>6 Hours</a></li>
                   <li onClick={() => this.changeTimeWindow('twelve')} className={timeWindow === 'twelve' ? '--active' : ''}><a>12 Hours</a></li>
                   <li onClick={() => this.changeTimeWindow('day')} className={timeWindow === 'day' ? '--active' : ''}><a>Day</a></li>
-                  {isDailyAuction
-                    ? <li onClick={() => this.changeTimeWindow('week')} className={timeWindow === 'week' ? '--active' : ''}><a>7 Days</a></li>
-                    : null}
+                  <li onClick={() => this.changeTimeWindow('week')} className={timeWindow === 'week' ? '--active' : ''}><a>7 Days</a></li>
                 </ul>
               </div>
             </div>
