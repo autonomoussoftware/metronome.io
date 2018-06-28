@@ -29,7 +29,7 @@ class AppsDownloadButton extends Component {
               <img
                 className="--slideUp"
                 src="/images/metronome-apps-demo.png"
-                srcset="/images/metronome-apps-demo@2x.png 2x, /images/metronome-apps-demo@3x.png 3x"
+                srcSet="/images/metronome-apps-demo@2x.png 2x, /images/metronome-apps-demo@3x.png 3x"
                 alt="Metronome App Demo"
               />
             </div>
