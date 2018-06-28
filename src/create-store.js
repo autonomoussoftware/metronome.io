@@ -9,7 +9,7 @@ export default function (reduxDevtoolsOptions, initialState) {
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(reduxDevtoolsOptions)
   ) || compose
 
-  const persistState = reduxLocalStorage(['auction', 'user', 'rates'])
+  const persistState = reduxLocalStorage(['auction', 'rates', 'wallet'])
 
   return createStore(
     rootReducer,

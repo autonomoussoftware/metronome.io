@@ -10,6 +10,7 @@ import createStore from './create-store'
 import getInitialState from './get-initial-state'
 
 import AuctionStatus from './providers/AuctionStatus'
+import WalletVersion from './providers/WalletVersion'
 
 import AppsPage from './components/AppsPage'
 import HomePage from './components/pages/HomePage'
@@ -59,6 +60,7 @@ if (rootElement) {
     <Provider store={store}>
       <React.Fragment>
         <AuctionStatus />
+        <WalletVersion />
         {getAppContent(rootContent)}
         <AuctionPanel/>
       </React.Fragment>
