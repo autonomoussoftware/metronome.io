@@ -13,7 +13,6 @@ class GeneralStats extends Component {
       auction: {
         auctionSupply,
         isAuctionActive,
-        isDailyAuction,
         remainingPercentage,
         tokenSupply
       },
@@ -40,7 +39,7 @@ class GeneralStats extends Component {
             </div>
             <div className="left">
               <div className="container__inner">
-                <div className="label__general-stats">{isDailyAuction ? 'Daily' : 'Initial'} Auction Amount</div>
+                <div className="label__general-stats">Daily Auction Amount</div>
                 <div className="numeral__general-stats"><MetValue>{auctionSupply}</MetValue></div>
               </div>
             </div>
