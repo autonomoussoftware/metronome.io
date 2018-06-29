@@ -110,7 +110,10 @@
       </h1>
 
       <!-- Dynamic content -->
-      <div id="root" content="home"></div>
+      <div id="root" content="home">
+        <!-- Placeholder to prevent content jumping around when React app starts -->
+        <div style="min-height: 210px"></div>
+      </div>
       <!-- /Dynamic content -->
 
       <div class="text-center social">
