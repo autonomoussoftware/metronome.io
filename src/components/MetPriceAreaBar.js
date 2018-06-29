@@ -116,14 +116,16 @@ class MetPriceAreaBar extends Component {
 
   static getDerivedStateFromProps (props, state) {
     const {
+      currentAuction,
       currentPrice,
       tokensRemaining
     } = props.auction
 
     const point = {
-      timestamp: moment().unix(),
+      currAuction: `${currentAuction}`,
+      currentAuctionPrice: currentPrice,
       minting: tokensRemaining,
-      currentAuctionPrice: currentPrice
+      timestamp: moment().unix()
     }
 
     const from = moment()
@@ -142,43 +144,64 @@ class MetPriceAreaBar extends Component {
   parseHistory (data) {
     const { auctionSupply } = this.props.auction
 
-    const parsed = data.map(point => ({
-      time: point.timestamp * 1000,
-      supply: new BigNumber(fromWei(point.minting || '0'))
-        .toNumber(),
-      price: new BigNumber(point.currentAuctionPrice || '0')
-        .div(1e18)
-        .toNumber(),
-      tokensSold: new BigNumber(auctionSupply)
-        .minus(point.minting)
-        .div(1e18)
-        .toNumber()
-    }))
-
     const { grouping } = timeWindows[this.state.timeWindow]
 
-    const byGroups = parsed.sort((a, b) => a.time - b.time).map(point => ({
-      ...point,
-      group: Math.ceil(point.time / grouping)
-    })).map(point => ({
-      ...point,
-      time: point.group * grouping
-    }))
+    // const shouldGroup = (a, b) =>
+    //   a.group === b.group && a.currentAuction === b.currentAuction
 
-    const grouped = byGroups.reduce(
-      (arr, point) => arr[arr.length - 1].group === point.group
-        ? arr
-        : arr.concat({
-          ...point,
-          tokensSoldInGroup: Math.max(point.tokensSold - arr[arr.length - 1].tokensSold, 0)
-        }),
-      [{
-        ...byGroups[0],
-        tokensSoldInGroup: 0
-      }]
-    )
+    const grouped = data
+      // standardize data points
+      .map(point => ({
+        auction: point.currAuction,
+        price: new BigNumber(point.currentAuctionPrice || '0')
+          .div(1e18)
+          .toNumber(),
+        supply: new BigNumber(fromWei(point.minting || '0'))
+          .toNumber(),
+        time: point.timestamp * 1000,
+        tokensSold: new BigNumber(auctionSupply)
+          .minus(point.minting)
+          .div(1e18)
+          .toNumber()
+      }))
+      // ensure all are sorted by time
+      .sort((a, b) => a.time - b.time)
+      // add grouping information
+      .map(point => ({
+        ...point,
+        group: Math.ceil(point.time / grouping)
+      }))
+      .map(point => ({
+        ...point,
+        time: point.group * grouping
+      }))
+      // group all points within the same target group (!)
+      .reduce(function (groups, point) {
+        const prop = `${point.auction}-${point.time}`
+        groups[prop] = groups[prop] || []
+        groups[prop].push(point)
+        return groups
+      }, {})
 
-    return grouped
+    const withTokensSold = Object.values(grouped)
+      // from each group, take only the last one
+      .map(group => group.pop())
+      // and calculate the tokens sold in the group as the diff from previous
+      // group's tokens sold but only if within the same auction
+      .map((group, i, array) => ({
+        ...group,
+        tokensSoldInGroup: i === 0
+          ? 0
+          : group.auction !== array[i - 1].auction
+            ? group.tokensSold
+            : group.tokensSold - array[i - 1].tokensSold
+      }))
+
+    // remove the first element as was used only for reference to calculate the
+    // next data point and has not useful data
+    withTokensSold.shift()
+
+    return withTokensSold
   }
 
   changeTimeWindow (timeWindow) {
