@@ -142,8 +142,6 @@ class MetPriceAreaBar extends Component {
   }
 
   parseHistory (data) {
-    const { auctionSupply } = this.props.auction
-
     const { grouping } = timeWindows[this.state.timeWindow]
 
     // const shouldGroup = (a, b) =>
@@ -159,7 +157,8 @@ class MetPriceAreaBar extends Component {
         supply: new BigNumber(fromWei(point.minting || '0'))
           .toNumber(),
         time: point.timestamp * 1000,
-        tokensSold: new BigNumber(auctionSupply)
+        tokensSold: new BigNumber(point.currAuction === '0' ? 8000000 : 2880)
+          .times(1e18)
           .minus(point.minting)
           .div(1e18)
           .toNumber()
@@ -173,6 +172,7 @@ class MetPriceAreaBar extends Component {
       }))
       .map(point => ({
         ...point,
+        exactTime: point.time,
         time: point.group * grouping
       }))
       // group all points within the same target group (!)
