@@ -23,6 +23,45 @@
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=<%-htmlWebpackPlugin.options.params && htmlWebpackPlugin.options.params.gaTrackingId%>"></script>
     <script src="https://cdn.ravenjs.com/3.24.0/raven.min.js" crossorigin="anonymous"></script>
+    <style>
+      @keyframes loader {
+        from {left: -100px; width: 30%;}
+        50% {width: 30%;}
+        70% {width: 70%;}
+        80% { left: 50%;}
+        95% {left: 120%;}
+        to {left: 100%;}
+      }
+      #loader-container {
+        min-height: 210px;
+        padding-top: 20px;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      #loader {
+         width: 100%;
+         background-color: rgba(126, 97, 248, 0.2);
+         padding: 2px;
+         border-radius: 8px;
+      }
+      #loader-bar {
+        position: relative;
+        overflow: hidden;
+        height: 4px;
+        border-radius: 2px;
+      }
+      #loader-bar:before {
+        border-radius: 4px;
+        height: 4px;
+        display: block;
+        position: absolute;
+        content: '';
+        left: -200px;
+        width: 200px;
+        background-color: #7e61f8;
+        animation: loader 2s linear infinite;
+      }
+    </style>
   </head>
   <body class="home" data-spy="scroll" data-target="#navbarCollapse" data-offset="155" id="start">
   <div class="shim"></div>
@@ -111,8 +150,9 @@
 
       <!-- Dynamic content -->
       <div id="root" content="home">
-        <!-- Placeholder to prevent content jumping around when React app starts -->
-        <div style="min-height: 210px"></div>
+        <div id="loader-container">
+          <div id="loader"><div id="loader-bar"></div></div>
+        </div>
       </div>
       <!-- /Dynamic content -->
 

@@ -23,6 +23,45 @@
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=<%-htmlWebpackPlugin.options.params.gaTrackingId%>"></script>
     <script src="https://cdn.ravenjs.com/3.24.0/raven.min.js" crossorigin="anonymous"></script>
+    <style>
+      @keyframes loader {
+        from {left: -100px; width: 30%;}
+        50% {width: 30%;}
+        70% {width: 70%;}
+        80% { left: 50%;}
+        95% {left: 120%;}
+        to {left: 100%;}
+      }
+      #loader-container {
+        min-height: 100vh;
+        padding-top: 40vh;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      #loader {
+         width: 100%;
+         background-color: rgba(126, 97, 248, 0.2);
+         padding: 2px;
+         border-radius: 8px;
+      }
+      #loader-bar {
+        position: relative;
+        overflow: hidden;
+        height: 4px;
+        border-radius: 2px;
+      }
+      #loader-bar:before {
+        border-radius: 4px;
+        height: 4px;
+        display: block;
+        position: absolute;
+        content: '';
+        left: -200px;
+        width: 200px;
+        background-color: #7e61f8;
+        animation: loader 2s linear infinite;
+      }
+    </style>
   </head>
   <body class="apps">
     <div class="shim"></div>
@@ -83,7 +122,11 @@
     <!-- Content -->
     <div id="top" class="site-section">
       <!-- Dynamic content -->
-      <div id="root" content="dashboard"></div>
+      <div id="root" content="dashboard">
+        <div id="loader-container">
+          <div id="loader"><div id="loader-bar"></div></div>
+        </div>
+      </div>
       <!-- /Dynamic content -->
     </div>
     <!-- /Content -->
