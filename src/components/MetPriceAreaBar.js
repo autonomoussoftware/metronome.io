@@ -13,14 +13,11 @@ import moment from 'moment'
 import shrinkArray from 'shrink-array'
 import last from 'shrink-array/last'
 import smartRounder from 'smart-round'
-
 import EthValue from './EthValue'
 import DollarValue from './DollarValue'
 
 const ReactHighcharts = require('react-highcharts')
-
 const MAX_DATA_POINTS = 500
-
 const smartRound = smartRounder(3, 0, 3)
 
 const timeWindows = {
@@ -161,27 +158,70 @@ class MetPriceAreaBar extends Component {
         isDailyAuction
       }
     } = this.props
-
     const auctionChartData = this.parseHistory(data)
-    const lastItem = auctionChartData.length - 1
-    const time1 = auctionChartData[lastItem]['time']
-    const price1 = auctionChartData[lastItem]['tokensSold']
-
+    const timeNestedArray = auctionChartData.map(dataMapped => dataMapped.time)
+    const priceNestedArray = auctionChartData.map(priceMapped => priceMapped.price)
+    const supplyNestedArray = auctionChartData.map(supplyMapped => supplyMapped.supply)
+    const timeString = JSON.stringify(timeNestedArray)
+    const priceString = JSON.stringify(priceNestedArray)
+    const supplyString = JSON.stringify(supplyNestedArray)
+    const parseTimeString = JSON.parse(timeString)
+    const parsePriceString = JSON.parse(priceString)
+    const parseSupplyString = JSON.parse(supplyString)
     const config = {
       chart: {
-        spacingBottom: 15,
-        spacingTop: 10,
-        spacingLeft: 10,
-        spacingRight: 10,
-        width: null,
-        height: null,
-        backgroundColor: null
+        backgroundColor: null,
+        animation: false
       },
-      xAxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', time1]
+      xAxis: [{
+        categories: parseTimeString,
+        crosshair: true
+      }],
+      yAxis: [{ // Primary yAxis
+        labels: {
+          format: '{value}'
+        },
+        title: {
+          text: 'Temperature'
+        },
+        opposite: true
+      }, { // Secondary yAxis
+        gridLineWidth: 0,
+        title: {
+          text: 'Rainfall'
+        },
+        labels: {
+          format: '{value}'
+        }
+      }],
+      tooltip: {
+        shared: true
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'left',
+        x: 80,
+        verticalAlign: 'top',
+        y: 55,
+        floating: true
       },
       series: [{
-        data: [50, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 295.6, price1]
+        name: 'Volume',
+        type: 'area',
+        animation: false,
+        yAxis: 1,
+        data: parseSupplyString,
+        tooltip: {
+          valueSuffix: ' mm'
+        }
+      }, {
+        name: 'Price',
+        animation: false,
+        type: 'line',
+        data: parsePriceString,
+        tooltip: {
+          valueSuffix: ' °C'
+        }
       }]
     }
     return (
