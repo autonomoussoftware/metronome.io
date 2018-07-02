@@ -1,15 +1,18 @@
+import { connect } from 'react-redux'
 import React, { Component } from 'react'
 
-import {
-  currentOS,
-  baseReleasetUrl,
-  downloadWalletUrl,
-  walletInstaller,
-  walletInstallers
-} from '../download-helper'
+import downloadHelper from '../download-helper'
 
 class AppsDownloadButton extends Component {
   render () {
+    const {
+      currentOS,
+      baseReleasetUrl,
+      downloadWalletUrl,
+      walletInstaller,
+      walletInstallers
+    } = downloadHelper(this.props.desktopAppVersion)
+
     return (
       <div className="downloads__main-container">
         <div className="downloads__main-parallax-layer">
@@ -29,7 +32,7 @@ class AppsDownloadButton extends Component {
               <img
                 className="--slideUp"
                 src="/images/metronome-apps-demo.png"
-                srcset="/images/metronome-apps-demo@2x.png 2x, /images/metronome-apps-demo@3x.png 3x"
+                srcSet="/images/metronome-apps-demo@2x.png 2x, /images/metronome-apps-demo@3x.png 3x"
                 alt="Metronome App Demo"
               />
             </div>
@@ -66,4 +69,8 @@ class AppsDownloadButton extends Component {
   }
 }
 
-export default AppsDownloadButton
+const mapStateToProps = state => ({
+  desktopAppVersion: state.config.desktopAppVersion
+})
+
+export default connect(mapStateToProps)(AppsDownloadButton)

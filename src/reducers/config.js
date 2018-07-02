@@ -1,7 +1,14 @@
 import { handleActions } from 'redux-actions'
 
-const initialState = {}
+const initialState = {
+  desktopAppVersion: ''
+}
 
-const reducer = handleActions({}, initialState)
+const reducer = handleActions({
+  UPDATE_WALLET_VERSION: (state, { payload }) => ({
+    ...state,
+    desktopAppVersion: payload
+  })
+}, initialState)
 
 export default reducer

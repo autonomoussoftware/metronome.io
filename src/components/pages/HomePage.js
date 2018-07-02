@@ -1,42 +1,32 @@
 import { connect } from 'react-redux'
 import React from 'react'
 
-import AuctionSummary from '../AuctionSummary'
 import BuyMetronomeButton from '../BuyMetronomeButton'
-import TokenSaleCountdown from '../TokenSaleCountdown'
 
 function HomePageContent (props) {
   const {
     isAuctionActive,
-    isDailyAuction,
-    isInitialAuction,
     onBuyMetronomeClick
   } = props
 
   const buttonContainerStyle = {
     display: 'flex',
     justifyContent: 'center',
-    marginBottom: 162,
-    marginTop: 37
+    paddingBottom: 162,
+    paddingTop: 7
   }
 
-  return isInitialAuction
-    ? <AuctionSummary />
-    : isDailyAuction
-      ? <div style={buttonContainerStyle}>
-        <BuyMetronomeButton
-          disabled={!isAuctionActive}
-          onClick={onBuyMetronomeClick} />
-      </div>
-      : <React.Fragment>
-        <TokenSaleCountdown />
-      </React.Fragment>
+  return (
+    <div style={buttonContainerStyle}>
+      <BuyMetronomeButton
+        disabled={!isAuctionActive}
+        onClick={onBuyMetronomeClick} />
+    </div>
+  )
 }
 
 const mapStateToProps = state => ({
-  isAuctionActive: state.auction.status.isAuctionActive,
-  isDailyAuction: state.auction.status.isDailyAuction,
-  isInitialAuction: state.auction.status.isInitialAuction
+  isAuctionActive: state.auction.status.isAuctionActive
 })
 
 const mapDispatchToProps = dispatch => ({

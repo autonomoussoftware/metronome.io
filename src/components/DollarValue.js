@@ -13,7 +13,9 @@ class DollarValue extends Component {
     return (
       <span>
         <CoinCapRate onData={updateEthUsdRate}/>
-        ${rates.ETH_USD && smartRound(fromWei(auction.currentPrice) * rates.ETH_USD)} USD
+        {rates.ETH_USD &&
+          auction.currentPrice &&
+          `$${smartRound(fromWei(auction.currentPrice) * rates.ETH_USD)} USD`}
       </span>
     )
   }
