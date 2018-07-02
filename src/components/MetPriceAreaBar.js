@@ -210,7 +210,7 @@ class MetPriceAreaBar extends Component {
     } = this.props
 
     const auctionChartData = this.parseHistory(data)
-
+    const chartTest = JSON.stringify(auctionChartData)
     return (
       <div className="container__mtn-price">
         <div className="container__header-top-border"></div>
