@@ -12,8 +12,8 @@ function HomePageContent (props) {
   const buttonContainerStyle = {
     display: 'flex',
     justifyContent: 'center',
-    marginBottom: 162,
-    marginTop: 37
+    paddingBottom: 162,
+    paddingTop: 7
   }
 
   return (
