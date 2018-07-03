@@ -13,63 +13,12 @@ import moment from 'moment'
 import shrinkArray from 'shrink-array'
 import last from 'shrink-array/last'
 import smartRounder from 'smart-round'
-
 import EthValue from './EthValue'
 import DollarValue from './DollarValue'
 
+const ReactHighcharts = require('react-highcharts')
 const MAX_DATA_POINTS = 500
-
 const smartRound = smartRounder(3, 0, 3)
-
-const foregroudTickStyle = {
-  grid: {
-    stroke: '#292929',
-    strokeDasharray: '',
-    strokeOpacity: 0.5
-  },
-  axis: {
-    stroke: 'none'
-  },
-  tickLabels: {
-    fontSize: '4px',
-    fill: '#fff',
-    fontFamily: 'inherit',
-    fillOpacity: 1,
-    margin: 0,
-    padding: 0
-  },
-  axisLabel: {
-    angle: 90,
-    fill: '#fff',
-    fontFamily: 'inherit',
-    fontSize: 4,
-    letterSpacing: 1,
-    padding: 24
-  }
-}
-const backgroundTickStyle = {
-  grid: {
-    stroke: 'none'
-  },
-  axis: {
-    stroke: 'none'
-  },
-  tickLabels: {
-    fontSize: '4px',
-    fill: '#fff',
-    fontFamily: 'inherit',
-    fillOpacity: 1,
-    margin: 0,
-    padding: 0
-  },
-  axisLabel: {
-    fill: '#fff',
-    fontFamily: 'inherit',
-    fontSize: 4,
-    letterSpacing: 1,
-    padding: 20
-  }
-}
 
 const timeWindows = {
   quarter: { minutes: 15, label: '15 Minutes', grouping: 60000 },
@@ -83,7 +32,6 @@ const timeWindows = {
 class MetPriceAreaBar extends Component {
   constructor (props) {
     super(props)
-
     this.changeTimeWindow = this.changeTimeWindow.bind(this)
     this.toggleDropdown = this.toggleDropdown.bind(this)
   }
@@ -106,12 +54,14 @@ class MetPriceAreaBar extends Component {
 
     fetch(`${metApiUrl}/history?from=${from}&to=${now}`)
       .then(response => response.json())
-      .then(data => this.setState({ err: null, history: data, timestamp: now }))
+      .then(data => this.setState({err: null, history: data, timestamp: now}))
       .catch(err => this.setState({ err }))
   }
 
   componentDidMount () {
     this.retrieveData()
+    const chart = this.refs.chart.getChart()
+    chart.series[0].addPoint({x: 10, y: 12})
   }
 
   static getDerivedStateFromProps (props, state) {
@@ -227,9 +177,82 @@ class MetPriceAreaBar extends Component {
         currentPrice
       }
     } = this.props
-
     const auctionChartData = this.parseHistory(data)
-
+    const timeNestedArray = auctionChartData.map(
+      dataMapped => moment(dataMapped.time).format('hh:mm')
+    )
+    const priceNestedArray = auctionChartData.map(priceMapped => priceMapped.price)
+    const supplyNestedArray = auctionChartData.map(supplyMapped => supplyMapped.supply)
+    const timeString = JSON.stringify(timeNestedArray)
+    const priceString = JSON.stringify(priceNestedArray)
+    const supplyString = JSON.stringify(supplyNestedArray)
+    const parseTimeString = JSON.parse(timeString)
+    const parsePriceString = JSON.parse(priceString)
+    const parseSupplyString = JSON.parse(supplyString)
+    const config = {
+      chart: {
+        backgroundColor: null,
+        animation: false
+      },
+      xAxis: [{
+        categories: parseTimeString,
+        crosshair: true,
+        style: {
+          color: '#fff'
+        },
+        labels: {
+          style: {
+            color: '#fff'
+          }
+        }
+      }],
+      yAxis: [{ // Primary yAxis
+        labels: {
+          format: '{value}',
+          style: {
+            color: '#fff'
+          }
+        },
+        title: {
+          text: 'Price',
+          style: {
+            color: '#fff'
+          }
+        },
+        opposite: true
+      }, { // Secondary yAxis
+        gridLineWidth: 0,
+        title: {
+          text: 'Volume',
+          style: {
+            color: '#fff'
+          }
+        },
+        labels: {
+          format: '{value}',
+          style: {
+            color: '#fff'
+          }
+        }
+      }],
+      tooltip: {
+        shared: true
+      },
+      series: [{
+        name: 'Price',
+        type: 'area',
+        animation: false,
+        data: parsePriceString,
+        color: '#594f90'
+      }, {
+        name: 'Volume',
+        animation: false,
+        yAxis: 1,
+        type: 'line',
+        data: parseSupplyString,
+        color: '#c2c4c6'
+      }]
+    }
     return (
       <div className="container__mtn-price">
         <div className="container__header-top-border"></div>
@@ -267,50 +290,7 @@ class MetPriceAreaBar extends Component {
             </div>
           </div>
           <div className="chart__victory-container">
-            <div className="chart__victory-foreground">
-              <VictoryChart
-                domainPadding={5}
-                height={130}
-                padding={{ top: 5, bottom: 15, right: 25, left: 25 }}
-                style={{ labels: { fontSize: 2 }, padding: 0 }}
-                theme={VictoryTheme.material}>
-                <VictoryAxis
-                  dependentAxis
-                  height={400}
-                  label="PRICE [ETH]"
-                  orientation="right"
-                  style={foregroudTickStyle}
-                  tickFormat={y => `${smartRound(y)}`} />
-                <VictoryLine
-                  data={auctionChartData}
-                  style={{ data: { stroke: '#fff2', strokeWidth: 1 } }}
-                  x="time"
-                  y="price" />
-              </VictoryChart>
-            </div>
-            <div className="chart__victory-background">
-              <VictoryChart
-                domainPadding={5}
-                height={130}
-                padding={{ top: 5, bottom: 15, right: 25, left: 25 }}
-                theme={VictoryTheme.material}>
-                <VictoryAxis
-                  scale={{ x: 'time' }}
-                  style={backgroundTickStyle}
-                  tickCount={10} />
-                <VictoryAxis
-                  dependentAxis
-                  height={400}
-                  label="VOLUME [MET]"
-                  style={backgroundTickStyle}
-                  tickFormat={y => `${smartRound(y)}`} />
-                <VictoryBar
-                  data={auctionChartData}
-                  style={{ data: { fill: '#7e61f8', fillOpacity: 0.3 } }}
-                  x="time"
-                  y="tokensSoldInGroup" />
-              </VictoryChart>
-            </div>
+            <ReactHighcharts config={config} ref="chart"></ReactHighcharts>
           </div>
         </div>
       </div>
