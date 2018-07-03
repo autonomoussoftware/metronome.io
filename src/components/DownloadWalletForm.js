@@ -1,10 +1,17 @@
+import { connect } from 'react-redux'
 import React, { Component } from 'react'
 
 import arrowIcon from '../img/arrow-forward-24-px.svg'
-import { currentOS, downloadWalletUrl, walletInstaller } from '../download-helper'
+import downloadHelper from '../download-helper'
 
 class AuctionPanelDetectOS extends Component {
   render () {
+    const {
+      currentOS,
+      downloadWalletUrl,
+      walletInstaller
+    } = downloadHelper(this.props.desktopAppVersion)
+
     return (
       <div className="auction-panel__os-container">
         {walletInstaller
@@ -32,4 +39,8 @@ class AuctionPanelDetectOS extends Component {
   }
 }
 
-export default AuctionPanelDetectOS
+const mapStateToProps = state => ({
+  desktopAppVersion: state.config.desktopAppVersion
+})
+
+export default connect(mapStateToProps)(AuctionPanelDetectOS)
