@@ -219,7 +219,7 @@ class MetPriceAreaBar extends Component {
           }
         },
         title: {
-          text: 'Volume',
+          text: 'Price',
           style: {
             color: '#fff'
           }
@@ -228,7 +228,7 @@ class MetPriceAreaBar extends Component {
       }, { // Secondary yAxis
         gridLineWidth: 0,
         title: {
-          text: 'Price',
+          text: 'Volume',
           style: {
             color: '#fff'
           }
@@ -244,16 +244,16 @@ class MetPriceAreaBar extends Component {
         shared: true
       },
       series: [{
-        name: 'Volume',
+        name: 'Price',
         type: 'area',
         animation: false,
-        yAxis: 1,
-        data: parseSupplyString
-      }, {
-        name: 'Price',
-        animation: false,
-        type: 'line',
         data: parsePriceString
+      }, {
+        name: 'Volume',
+        animation: false,
+        yAxis: 1,
+        type: 'line',
+        data: parseSupplyString
       }]
     }
     return (
