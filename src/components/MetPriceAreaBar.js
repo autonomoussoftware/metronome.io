@@ -158,9 +158,8 @@ class MetPriceAreaBar extends Component {
       }
     } = this.props
     const auctionChartData = this.parseHistory(data)
-    const timestamp = Date.now()
     const timeNestedArray = auctionChartData.map(
-      dataMapped => dataMapped.time
+      dataMapped => moment(dataMapped.time).format('hh:mm')
     )
     const priceNestedArray = auctionChartData.map(priceMapped => priceMapped.price)
     const supplyNestedArray = auctionChartData.map(supplyMapped => supplyMapped.supply)
