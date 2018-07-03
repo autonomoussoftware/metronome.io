@@ -206,11 +206,6 @@ class MetPriceAreaBar extends Component {
           }
         }
       }],
-      plotOptions: {
-        series: {
-          color: '#594f90'
-        }
-      },
       yAxis: [{ // Primary yAxis
         labels: {
           format: '{value}',
@@ -247,13 +242,15 @@ class MetPriceAreaBar extends Component {
         name: 'Price',
         type: 'area',
         animation: false,
-        data: parsePriceString
+        data: parsePriceString,
+        color: '#594f90'
       }, {
         name: 'Volume',
         animation: false,
         yAxis: 1,
         type: 'line',
-        data: parseSupplyString
+        data: parseSupplyString,
+        color: '#c2c4c6'
       }]
     }
     return (
