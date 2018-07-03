@@ -91,7 +91,6 @@ class MetPriceAreaBar extends Component {
 
   parseHistory (data) {
     const { auctionSupply } = this.props.auction
-
     const parsed = data.map(point => ({
       time: point.timestamp * 1000,
       supply: new BigNumber(fromWei(point.minting || '0'))
@@ -159,7 +158,10 @@ class MetPriceAreaBar extends Component {
       }
     } = this.props
     const auctionChartData = this.parseHistory(data)
-    const timeNestedArray = auctionChartData.map(dataMapped => dataMapped.time)
+    const timestamp = Date.now()
+    const timeNestedArray = auctionChartData.map(
+      dataMapped => dataMapped.time
+    )
     const priceNestedArray = auctionChartData.map(priceMapped => priceMapped.price)
     const supplyNestedArray = auctionChartData.map(supplyMapped => supplyMapped.supply)
     const timeString = JSON.stringify(timeNestedArray)
@@ -182,13 +184,13 @@ class MetPriceAreaBar extends Component {
           format: '{value}'
         },
         title: {
-          text: 'Temperature'
+          text: 'Volume'
         },
         opposite: true
       }, { // Secondary yAxis
         gridLineWidth: 0,
         title: {
-          text: 'Rainfall'
+          text: 'Price'
         },
         labels: {
           format: '{value}'
@@ -197,31 +199,17 @@ class MetPriceAreaBar extends Component {
       tooltip: {
         shared: true
       },
-      legend: {
-        layout: 'vertical',
-        align: 'left',
-        x: 80,
-        verticalAlign: 'top',
-        y: 55,
-        floating: true
-      },
       series: [{
         name: 'Volume',
         type: 'area',
         animation: false,
         yAxis: 1,
-        data: parseSupplyString,
-        tooltip: {
-          valueSuffix: ' mm'
-        }
+        data: parseSupplyString
       }, {
         name: 'Price',
         animation: false,
         type: 'line',
-        data: parsePriceString,
-        tooltip: {
-          valueSuffix: ' °C'
-        }
+        data: parsePriceString
       }]
     }
     return (

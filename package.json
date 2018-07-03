@@ -33,6 +33,7 @@
     "react-dom": "16.4.1",
     "react-highcharts": "16.0.2",
     "react-less-watcher": "1.1.4",
+    "react-moment": "0.7.7",
     "react-redux": "5.0.7",
     "react-scripts": "1.1.4",
     "redux": "4.0.0",
