@@ -176,23 +176,48 @@ class MetPriceAreaBar extends Component {
       },
       xAxis: [{
         categories: parseTimeString,
-        crosshair: true
+        crosshair: true,
+        style: {
+          color: '#fff'
+        },
+        labels: {
+          style: {
+            color: '#fff'
+          }
+        }
       }],
+      plotOptions: {
+        series: {
+          color: '#594f90'
+        }
+      },
       yAxis: [{ // Primary yAxis
         labels: {
-          format: '{value}'
+          format: '{value}',
+          style: {
+            color: '#fff'
+          }
         },
         title: {
-          text: 'Volume'
+          text: 'Volume',
+          style: {
+            color: '#fff'
+          }
         },
         opposite: true
       }, { // Secondary yAxis
         gridLineWidth: 0,
         title: {
-          text: 'Price'
+          text: 'Price',
+          style: {
+            color: '#fff'
+          }
         },
         labels: {
-          format: '{value}'
+          format: '{value}',
+          style: {
+            color: '#fff'
+          }
         }
       }],
       tooltip: {
