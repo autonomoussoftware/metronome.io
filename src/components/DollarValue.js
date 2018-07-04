@@ -9,13 +9,13 @@ const smartRound = smartRounder(6, 0, 6)
 
 class DollarValue extends Component {
   render () {
-    const { updateEthUsdRate, auction, rates } = this.props
+    const { updateEthUsdRate, children, rates } = this.props
     return (
       <span>
         <CoinCapRate onData={updateEthUsdRate}/>
         {rates.ETH_USD &&
-          auction.currentPrice &&
-          `$${smartRound(fromWei(auction.currentPrice) * rates.ETH_USD)} USD`}
+          children &&
+          `$${smartRound(fromWei(children) * rates.ETH_USD)} USD`}
       </span>
     )
   }
@@ -29,7 +29,6 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  auction: state.auction.status,
   rates: state.rates
 })
 

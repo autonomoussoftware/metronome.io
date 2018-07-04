@@ -45,7 +45,7 @@ const reducer = handleActions(
         currentAuctionEndTime: payload.nextAuctionStartTime
       }
     }),
-    AUCTION_STATUS_ERROR: (state, { payload }) => ({
+    METRONOME_STATUS_ERROR: (state, { payload }) => ({
       ...state,
       error: payload,
       loading: false

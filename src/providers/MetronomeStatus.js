@@ -37,7 +37,7 @@ const mapDispatchToProps = dispatch => ({
     })
   },
   onError: payload => dispatch({
-    type: 'AUCTION_STATUS_ERROR',
+    type: 'METRONOME_STATUS_ERROR',
     payload
   })
 })
