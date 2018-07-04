@@ -1,49 +1,10 @@
-import Card, { CardAccent } from './Card'
 import React, { Component } from 'react'
 import HeaderDashboard from './HeaderDashboard'
 import MetPriceAreaBar from './MetPriceAreaBar'
 import GeneralStats from './GeneralStats'
-import DollarValue from './DollarValue'
 import { connect } from 'react-redux'
 import METLoader from './METLoader'
-import EthValue from './EthValue'
-import styled from 'styled-components'
-
-const Accent = styled(CardAccent)`
-  padding: 32px 24px;
-`
-
-const WidthConstraints = styled.div`
-  max-width: 300px;
-  margin: 0 auto;
-`
-
-const PriceContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-family: Muli;
-  font-size: 18px;
-  line-height: 1.2;
-  color: #ffffff;
-`
-
-const Value = styled.div`
-  padding: 12px 14px;
-  border-radius: 12px;
-  background-color: rgba(0, 0, 0, 0.2);
-  white-space: nowrap;
-`
-
-const Equals = styled.div`
-  margin: 0 5px;
-`
-
-const DollarContainer = styled.div`
-  margin-top: 16px;
-  text-align: right;
-  font-size: 13px;
-`
+import StatCard from './StatCard'
 
 class MainDashboard extends Component {
   render () {
@@ -65,40 +26,36 @@ class MainDashboard extends Component {
                     <div className="container-fluid">
                       <div className="row my-4">
                         <div className="col-lg-4 col-md-6">
-                          <Card title="MET AUCTION">
-                            <Accent>
-                              <WidthConstraints>
-                                <PriceContainer>
-                                  <Value>1 MET</Value>
-                                  <Equals>=</Equals>
-                                  <Value>
-                                    <EthValue>{auction.status.currentPrice}</EthValue>
-                                  </Value>
-                                </PriceContainer>
-                                <DollarContainer>
-                                  <DollarValue>{auction.status.currentPrice}</DollarValue>
-                                </DollarContainer>
-                              </WidthConstraints>
-                            </Accent>
-                          </Card>
+                          <StatCard
+                            title="MET AUCTION"
+                            currentPrice={auction.status.currentPrice}
+                            chartData={[
+                              { time: 0, price: 1.5 },
+                              { time: 1, price: 1.31 },
+                              { time: 2, price: 0.91 },
+                              { time: 3, price: 1.41 },
+                              { time: 4, price: 0.71 },
+                              { time: 5, price: 0.92 },
+                              { time: 6, price: 0.08 }
+                            ]}
+                            chartLabel="Auction Price"
+                          />
                         </div>
                         <div className="col-lg-4 col-md-6 mt-4 mt-md-0">
-                          <Card title="CONVERTER CONTRACT">
-                            <Accent>
-                              <WidthConstraints>
-                                <PriceContainer>
-                                  <Value>1 MET</Value>
-                                  <Equals>=</Equals>
-                                  <Value>
-                                    <EthValue>{converter.status.currentPrice}</EthValue>
-                                  </Value>
-                                </PriceContainer>
-                                <DollarContainer>
-                                  <DollarValue>{converter.status.currentPrice}</DollarValue>
-                                </DollarContainer>
-                              </WidthConstraints>
-                            </Accent>
-                          </Card>
+                          <StatCard
+                            title="CONVERTER CONTRACT"
+                            currentPrice={converter.status.currentPrice}
+                            chartData={[
+                              { time: 0, price: 0.08 },
+                              { time: 1, price: 0.92 },
+                              { time: 2, price: 0.91 },
+                              { time: 3, price: 1.41 },
+                              { time: 4, price: 1.31 },
+                              { time: 5, price: 0.71 },
+                              { time: 6, price: 1.5 }
+                            ]}
+                            chartLabel="Exchange Rate"
+                          />
                         </div>
                         {/* <div className="col-lg-4 col-md-6 mt-4 mt-lg-0">
                           <Card title="OTHER CARD">Other Content</Card>
