@@ -2,7 +2,7 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import createAuctionStatusStream from 'metronome-auction-status'
 
-class AuctionStatus extends Component {
+class MetronomeStatus extends Component {
   componentDidMount () {
     this.statusStream = createAuctionStatusStream({
       web3currentProvider: window.web3 && window.web3.currentProvider,
@@ -36,4 +36,4 @@ const mapDispatchToProps = dispatch => ({
   })
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuctionStatus)
+export default connect(mapStateToProps, mapDispatchToProps)(MetronomeStatus)
