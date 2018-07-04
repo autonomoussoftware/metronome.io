@@ -1,14 +1,14 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import createAuctionStatusStream from 'metronome-auction-status'
+import createMetronomeStatusStream from 'metronome-status'
 
 class MetronomeStatus extends Component {
   componentDidMount () {
-    this.statusStream = createAuctionStatusStream({
+    this.statusStream = createMetronomeStatusStream({
       web3currentProvider: window.web3 && window.web3.currentProvider,
       metApiUrl: this.props.metApiUrl
     })
-    this.statusStream.on('data', this.props.onAuctionData)
+    this.statusStream.on('data', this.props.onData)
     this.statusStream.on('error', this.props.onError)
   }
 
@@ -26,10 +26,16 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onAuctionData: payload => dispatch({
-    type: 'UPDATE_AUCTION_STATUS',
-    payload
-  }),
+  onData ({ auction, converter }) {
+    dispatch({
+      type: 'UPDATE_AUCTION_STATUS',
+      payload: auction
+    })
+    dispatch({
+      type: 'UPDATE_CONVERTER_STATUS',
+      payload: converter
+    })
+  },
   onError: payload => dispatch({
     type: 'AUCTION_STATUS_ERROR',
     payload
