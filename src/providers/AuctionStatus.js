@@ -8,7 +8,7 @@ class AuctionStatus extends Component {
       web3currentProvider: window.web3 && window.web3.currentProvider,
       metApiUrl: this.props.metApiUrl
     })
-    this.statusStream.on('data', this.props.onData)
+    this.statusStream.on('data', this.props.onAuctionData)
     this.statusStream.on('error', this.props.onError)
   }
 
@@ -26,7 +26,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onData: payload => dispatch({
+  onAuctionData: payload => dispatch({
     type: 'UPDATE_AUCTION_STATUS',
     payload
   }),
