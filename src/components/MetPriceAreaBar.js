@@ -184,8 +184,16 @@ class MetPriceAreaBar extends Component {
       }, {})
 
     const withTokensSold = Object.values(grouped)
-      // from each group, take only the last one
-      .map(group => group.pop())
+      // from each group, take only the first and last data points
+      .map(group => ({
+        first: group.shift(),
+        last: group.pop()
+      }))
+      .reduce(function (array, pair) {
+        if (pair.first) { array.push(pair.first) }
+        if (pair.last) { array.push(pair.last) }
+        return array
+      }, [])
       // and calculate the tokens sold in the group as the diff from previous
       // group's tokens sold but only if within the same auction
       .map((group, i, array) => ({
