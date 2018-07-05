@@ -278,6 +278,7 @@ class MetPriceAreaBar extends Component {
             <div className="chart__victory-foreground">
               <VictoryChart
                 domainPadding={5}
+                minDomain={{ y: 0 }}
                 height={130}
                 padding={{ top: 5, bottom: 15, right: 25, left: 25 }}
                 style={{ labels: { fontSize: 2 }, padding: 0 }}
