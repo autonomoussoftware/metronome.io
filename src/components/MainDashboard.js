@@ -29,32 +29,12 @@ class MainDashboard extends Component {
                           <StatCard
                             title="MET AUCTION"
                             currentPrice={auction.status.currentPrice}
-                            chartData={[
-                              { time: 0, price: 1.5 },
-                              { time: 1, price: 1.31 },
-                              { time: 2, price: 0.91 },
-                              { time: 3, price: 1.41 },
-                              { time: 4, price: 0.71 },
-                              { time: 5, price: 0.92 },
-                              { time: 6, price: 0.08 }
-                            ]}
-                            chartLabel="Auction Price"
                           />
                         </div>
                         <div className="col-lg-4 col-md-6 mt-4 mt-md-0">
                           <StatCard
                             title="CONVERTER CONTRACT"
                             currentPrice={converter.status.currentPrice}
-                            chartData={[
-                              { time: 0, price: 0.08 },
-                              { time: 1, price: 0.92 },
-                              { time: 2, price: 0.91 },
-                              { time: 3, price: 1.41 },
-                              { time: 4, price: 1.31 },
-                              { time: 5, price: 0.71 },
-                              { time: 6, price: 1.5 }
-                            ]}
-                            chartLabel="Exchange Rate"
                           />
                         </div>
                         {/* <div className="col-lg-4 col-md-6 mt-4 mt-lg-0">
