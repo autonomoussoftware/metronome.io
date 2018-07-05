@@ -9,7 +9,7 @@ import config from './config'
 import createStore from './create-store'
 import getInitialState from './get-initial-state'
 
-import AuctionStatus from './providers/AuctionStatus'
+import MetronomeStatus from './providers/MetronomeStatus'
 import WalletVersion from './providers/WalletVersion'
 
 import AppsPage from './components/AppsPage'
@@ -59,7 +59,7 @@ if (rootElement) {
   reactDOM.render(
     <Provider store={store}>
       <React.Fragment>
-        <AuctionStatus />
+        <MetronomeStatus />
         <WalletVersion />
         {getAppContent(rootContent)}
         <AuctionPanel/>
