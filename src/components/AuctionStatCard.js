@@ -1,22 +1,24 @@
 import React, { Component } from 'react'
+import shrinkArray from 'shrink-array'
 import { connect } from 'react-redux'
 import StatCard from './StatCard'
 import moment from 'moment'
+import last from 'shrink-array/last'
 
 class AuctionStatCard extends Component {
   state = {
     chartStatus: 'pending',
     chartError: null,
-    chartData: null
+    chartData: []
   }
 
   // eslint-disable-next-line arrow-body-style
   retrieveData = () => {
-    const { metApiUrl } = this.props.config
-    const now = moment().unix()
-    const from = moment().subtract({ days: 7 }).unix()
+    this.setState({ chartStatus: 'pending', chartError: null, chartData: [] })
 
-    this.setState({ chartStatus: 'pending', chartError: null, chartData: null })
+    const { metApiUrl } = this.props.config
+    const from = moment().subtract({ days: 7 }).unix()
+    const now = moment().unix()
 
     fetch(`${metApiUrl}/history?from=${from}&to=${now}`)
       .then(response => response.json())
@@ -31,7 +33,7 @@ class AuctionStatCard extends Component {
       .catch(err => this.setState({
         chartStatus: 'failure',
         chartError: err.message,
-        chartData: null
+        chartData: []
       }))
   }
 
@@ -39,13 +41,24 @@ class AuctionStatCard extends Component {
     this.retrieveData()
   }
 
-  render () {
-    const { currentPrice } = this.props
+  static getDerivedStateFromProps (props, state) {
+    const point = {
+      y: parseInt(props.auction.currentPrice, 10),
+      x: moment().unix()
+    }
+    const from = moment().subtract({ days: 7 }).unix()
+    const newChartData = state.chartData.concat(point).filter(p => p.x >= from)
 
+    return {
+      chartData: shrinkArray(newChartData, 500, last)
+    }
+  }
+
+  render () {
     return (
       <StatCard
         title="MET AUCTION"
-        currentPrice={currentPrice}
+        currentPrice={this.props.auction.currentPrice}
         chartStatus={this.state.chartStatus}
         chartLabel="Auction Price (last 7 days)"
         chartError={this.state.chartError}
@@ -57,7 +70,7 @@ class AuctionStatCard extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentPrice: state.auction.status.currentPrice,
+  auction: state.auction.status,
   config: state.config
 })
 

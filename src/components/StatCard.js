@@ -65,7 +65,7 @@ export default class StatCard extends Component {
   render () {
     return (
       <Card title={this.props.title}>
-        <Accent bb={!!this.props.chartData}>
+        <Accent bb={this.props.chartData.length > 0}>
           <WidthConstraints>
             <PriceContainer>
               <Value>1 MET</Value>
