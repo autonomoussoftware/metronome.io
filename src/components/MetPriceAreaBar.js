@@ -184,8 +184,16 @@ class MetPriceAreaBar extends Component {
       }, {})
 
     const withTokensSold = Object.values(grouped)
-      // from each group, take only the last one
-      .map(group => group.pop())
+      // from each group, take only the first and last data points
+      .map(group => ({
+        first: group.shift(),
+        last: group.pop()
+      }))
+      .reduce(function (array, pair) {
+        if (pair.first) { array.push(pair.first) }
+        if (pair.last) { array.push(pair.last) }
+        return array
+      }, [])
       // and calculate the tokens sold in the group as the diff from previous
       // group's tokens sold but only if within the same auction
       .map((group, i, array) => ({
@@ -238,7 +246,7 @@ class MetPriceAreaBar extends Component {
           <div className="chart__main-label">
             <span className="label__Auction-Price">Auction Price:</span>
             <span className="label_-ETH"><EthValue>{currentPrice}</EthValue></span>
-            <span className="label_-USD"><DollarValue/></span>
+            <span className="label_-USD"><DollarValue>{currentPrice}</DollarValue></span>
           </div>
           <div className={`chart__dropdown-time-selector ${showDropdown ? '--active' : ''}`} onClick={this.toggleDropdown}>
             <span className="label__selector">{timeWindows[timeWindow].label}<span className="arrow-down"></span></span>
@@ -270,6 +278,7 @@ class MetPriceAreaBar extends Component {
             <div className="chart__victory-foreground">
               <VictoryChart
                 domainPadding={5}
+                minDomain={{ y: 0 }}
                 height={130}
                 padding={{ top: 5, bottom: 15, right: 25, left: 25 }}
                 style={{ labels: { fontSize: 2 }, padding: 0 }}
