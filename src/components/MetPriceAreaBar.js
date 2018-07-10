@@ -280,12 +280,12 @@ class MetPriceAreaBar extends Component {
             </div>
           </div>
           <div className="chart__keys">
-            <div className="supply__available-container">
-              <div className="supply__available-box"></div>
-              <span>Tokens Sold</span>
-            </div>
             <div className="price__available-container">
               <div className="price__available-box"></div>
+              <span>Tokens Sold</span>
+            </div>
+            <div className="supply__available-container">
+              <div className="supply__available-box"></div>
               <span>Auction Price</span>
             </div>
           </div>
