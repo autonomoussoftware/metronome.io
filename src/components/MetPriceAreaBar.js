@@ -1,12 +1,5 @@
 import { connect } from 'react-redux'
 import { fromWei } from 'web3-utils'
-import {
-  VictoryAxis,
-  VictoryBar,
-  VictoryChart,
-  VictoryLine
-} from 'victory'
-import { VictoryTheme } from 'victory-core'
 import React, { Component } from 'react'
 import BigNumber from 'bignumber.js'
 import moment from 'moment'
@@ -206,6 +199,9 @@ class MetPriceAreaBar extends Component {
           }
         }
       }],
+      legend: {
+        enabled: false
+      },
       yAxis: [{ // Primary yAxis
         labels: {
           format: '{value}',
