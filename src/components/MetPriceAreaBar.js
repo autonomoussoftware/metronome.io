@@ -5,13 +5,11 @@ import BigNumber from 'bignumber.js'
 import moment from 'moment'
 import shrinkArray from 'shrink-array'
 import last from 'shrink-array/last'
-import smartRounder from 'smart-round'
 import EthValue from './EthValue'
 import DollarValue from './DollarValue'
 
 const ReactHighcharts = require('react-highcharts')
 const MAX_DATA_POINTS = 500
-const smartRound = smartRounder(3, 0, 3)
 
 const timeWindows = {
   quarter: { minutes: 15, label: '15 Minutes', grouping: 60000 },
@@ -47,14 +45,14 @@ class MetPriceAreaBar extends Component {
 
     fetch(`${metApiUrl}/history?from=${from}&to=${now}`)
       .then(response => response.json())
-      .then(data => this.setState({err: null, history: data, timestamp: now}))
+      .then(data => this.setState({ err: null, history: data, timestamp: now }))
       .catch(err => this.setState({ err }))
   }
 
   componentDidMount () {
     this.retrieveData()
     const chart = this.refs.chart.getChart()
-    chart.series[0].addPoint({x: 10, y: 12})
+    chart.series[0].addPoint({ x: 10, y: 12 })
   }
 
   static getDerivedStateFromProps (props, state) {
