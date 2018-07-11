@@ -1,21 +1,17 @@
-import { connect } from 'react-redux'
-import BigNumber from 'bignumber.js'
-import React from 'react'
-
-import AuctionCounterSm from './AuctionCounterSm'
 import AuctionMetAvailableSm from './AuctionMetAvailableSm'
+import AuctionCounterSm from './AuctionCounterSm'
+import { connect } from 'react-redux'
 import EthValue from './EthValue'
 import metIcon from '../img/light.svg'
+import React from 'react'
 
 function AuctionSummary (props) {
   const {
-    currentPrice,
-    lastPurchasePrice,
     onBuyMetronomeClick,
-    tokensRemaining
+    lastPurchasePrice,
+    isAuctionActive,
+    currentPrice
   } = props
-
-  const isAuctionActive = !(new BigNumber(tokensRemaining).eq(0))
 
   return (
     <div className="AuctionInProgress">
