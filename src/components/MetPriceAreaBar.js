@@ -232,6 +232,7 @@ class MetPriceAreaBar extends Component {
 
     const {
       auction: {
+        isAuctionActive,
         currentPrice
       }
     } = this.props
@@ -244,7 +245,9 @@ class MetPriceAreaBar extends Component {
         <div className="chart__main-inner-container">
           <span className="label__title">Charts </span>
           <div className="chart__main-label">
-            <span className="label__Auction-Price">Auction Price:</span>
+            <span className="label__Auction-Price">
+              { isAuctionActive ? 'Current Auction Price' : 'Auction Closing Price:' }
+            </span>
             <span className="label_-ETH"><EthValue>{currentPrice}</EthValue></span>
             <span className="label_-USD"><DollarValue>{currentPrice}</DollarValue></span>
           </div>

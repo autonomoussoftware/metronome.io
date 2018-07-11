@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-
 import AuctionCounter from './AuctionCounter'
 import AuctionTokens from './AuctionTokens'
+import { connect } from 'react-redux'
 
 class HeaderDashboard extends Component {
   render () {
@@ -12,7 +12,12 @@ class HeaderDashboard extends Component {
           <div className="container__mtn-auction-inner">
             <div className="container__counter">
               <div className="AuctionCounter">
-                <span className="label__title">Auction Time Remaining </span>
+                <span className="label__title">
+                  {this.props.isAuctionActive
+                    ? 'Auction Time Remaining'
+                    : 'Next Auction Starts In'
+                  }
+                </span>
                 <div className="AuctionCounter--inner">
                   <AuctionCounter />
                 </div>
@@ -26,4 +31,8 @@ class HeaderDashboard extends Component {
   }
 }
 
-export default HeaderDashboard
+const mapStateToProps = state => ({
+  isAuctionActive: state.auction.status.isAuctionActive
+})
+
+export default connect(mapStateToProps)(HeaderDashboard)
