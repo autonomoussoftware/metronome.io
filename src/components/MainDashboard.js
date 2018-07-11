@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import ConverterStatCard from './ConverterStatCard'
+import AuctionStatCard from './AuctionStatCard'
 import HeaderDashboard from './HeaderDashboard'
 import MetPriceAreaBar from './MetPriceAreaBar'
 import GeneralStats from './GeneralStats'
 import { connect } from 'react-redux'
 import METLoader from './METLoader'
-import StatCard from './StatCard'
 
 class MainDashboard extends Component {
   render () {
@@ -26,20 +27,16 @@ class MainDashboard extends Component {
                     <div className="container-fluid">
                       <div className="row my-4">
                         <div className="col-lg-4 col-md-6">
-                          <StatCard
-                            title="MET AUCTION"
-                            currentPrice={auction.status.currentPrice}
-                          />
+                          <AuctionStatCard />
                         </div>
                         <div className="col-lg-4 col-md-6 mt-4 mt-md-0">
-                          <StatCard
-                            title="CONVERTER CONTRACT"
-                            currentPrice={converter.status.currentPrice}
-                          />
+                          <ConverterStatCard />
                         </div>
-                        {/* <div className="col-lg-4 col-md-6 mt-4 mt-lg-0">
-                          <Card title="OTHER CARD">Other Content</Card>
-                        </div> */}
+                        { /*
+                        <div className="col-lg-4 col-md-6 mt-4 mt-lg-0">
+                          Other data
+                        </div>
+                      */ }
                       </div>
                     </div>
                   </div>
