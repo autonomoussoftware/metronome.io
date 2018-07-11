@@ -89,9 +89,10 @@ export default class StatCard extends Component {
           {this.props.chartStatus === 'success' && (
             <div>
               <VictoryGroup
-                domainPadding={4}
+                domainPadding={{ x: [0, 0], y: [4, 4] }}
                 padding={{ top: 0, bottom: 0, right: 0, left: 0 }}
                 height={60}
+                {...this.props.extraChartProps}
               >
                 <VictoryLine
                   animate={{ duration: 2000, onLoad: { duration: 1000 } }}

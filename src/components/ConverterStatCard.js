@@ -5,6 +5,8 @@ import StatCard from './StatCard'
 import moment from 'moment'
 import last from 'shrink-array/last'
 
+const sevenDaysAgo = () => moment().subtract({ days: 7 }).unix()
+
 class ConverterStatCard extends Component {
   state = {
     chartStatus: 'pending',
@@ -17,15 +19,16 @@ class ConverterStatCard extends Component {
     this.setState({ chartStatus: 'pending', chartError: null, chartData: [] })
 
     const { metApiUrl } = this.props.config
-    const from = moment().subtract({ days: 7 }).unix()
+    const from = sevenDaysAgo()
     const now = moment().unix()
 
     fetch(`${metApiUrl}/history?from=${from}&to=${now}`)
       .then(response => response.json())
-      .then(chartData => this.setState({
+      .then(data => data.filter(p => Boolean(p.currentConverterPrice)))
+      .then(data => this.setState({
         chartStatus: 'success',
         chartError: null,
-        chartData: chartData.map(point => ({
+        chartData: data.map(point => ({
           x: point.timestamp,
           y: parseInt(point.currentConverterPrice, 10)
         }))
@@ -46,7 +49,7 @@ class ConverterStatCard extends Component {
       y: parseInt(props.converter.currentPrice, 10),
       x: moment().unix()
     }
-    const from = moment().subtract({ days: 7 }).unix()
+    const from = sevenDaysAgo()
     const newChartData = state.chartData.concat(point).filter(p => p.x >= from)
 
     return {
@@ -58,6 +61,7 @@ class ConverterStatCard extends Component {
     return (
       <StatCard
         title="CONVERTER CONTRACT"
+        extraChartProps={{ minDomain: { x: sevenDaysAgo() } }}
         currentPrice={this.props.converter.currentPrice}
         chartStatus={this.state.chartStatus}
         chartLabel="Exchange Rate (last 7 days)"
