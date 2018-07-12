@@ -93,8 +93,6 @@ class AuctionBuyForm extends Component {
   render () {
     const {
       backToBuyOptions,
-      chain,
-      config,
       currentPrice,
       errorData,
       eth,
@@ -109,11 +107,7 @@ class AuctionBuyForm extends Component {
 
     const fiatValue = new BigNumber(eth).times(rates.ETH_USD).toString()
 
-    const warnStr = warn ||
-      (chain !== config.chain &&
-        `Wrong chain - Connect wallet to ${config.chain}`)
-
-    const allowBuy = !(new BigNumber(eth).eq(0)) && userAccount && !warnStr
+    const allowBuy = !(new BigNumber(eth).eq(0)) && userAccount && !warn
 
     function withRate (eventHandler) {
       return function (ev) {
@@ -147,9 +141,9 @@ class AuctionBuyForm extends Component {
                   <div className="buy-meta-mask__current-price meta-mask__error">
                     <span title={errorData.err.message}>{errorData.hint}</span>
                   </div>}
-                {warnStr &&
+                {warn &&
                   <div className="buy-meta-mask__current-price meta-mask__error">
-                    <span>{warnStr}</span>
+                    <span>{warn}</span>
                   </div>}
                 <div className="buy-meta-mask__current-price">
                   <span>Current Auction Price</span>
@@ -196,8 +190,6 @@ class AuctionBuyForm extends Component {
 
 const mapStateToProps = state => ({
   ...state.buyForm,
-  chain: state.wallet.chain,
-  config: state.config,
   currentPrice: state.auction.status.currentPrice,
   errorData: state.buyPanel.errorData,
   rates: state.rates,

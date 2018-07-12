@@ -6,11 +6,9 @@ import AuctionBuyOptions from './AuctionBuyOptions'
 import AuctionPanelWait from './AuctionPanelWait'
 import AuctionReceipt from './AuctionReceipt'
 import CoinCapRate from '../providers/CoinCapRate'
-import WalletInfo from '../providers/WalletInfo'
 import withWeb3 from '../hocs/withWeb3'
 
 const AuctionBuyFormWithWeb3 = withWeb3(AuctionBuyForm)
-const WalletInfoWithWeb3 = withWeb3(WalletInfo)
 
 class AuctionPanel extends Component {
   // eslint-disable-next-line complexity
@@ -24,7 +22,6 @@ class AuctionPanel extends Component {
       showPanel,
       showReceipt,
       showWaiting,
-      updateWalletInfo,
       updateEthUsdRate
     } = this.props
 
@@ -32,7 +29,6 @@ class AuctionPanel extends Component {
       <div className={showPanel ? 'AuctionPanel --slideOut' : 'AuctionPanel'}>
         <div className="Shade" onClick={hideBuyPanel}></div>
         <div className="Panel">
-          <WalletInfoWithWeb3 onWalletInfo={updateWalletInfo} />
           <CoinCapRate onData={updateEthUsdRate}/>
           {showOptions &&
             <AuctionBuyOptions
@@ -74,10 +70,6 @@ const mapDispatchToProps = dispatch => ({
   hideBuyPanel: () => dispatch({
     type: 'SHOW_BUY_PANEL',
     payload: false
-  }),
-  updateWalletInfo: payload => dispatch({
-    type: 'UPDATE_WALLET_INFO',
-    payload
   }),
   updateEthUsdRate: value => dispatch({
     type: 'UPDATE_RATE',
