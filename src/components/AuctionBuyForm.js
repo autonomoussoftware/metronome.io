@@ -190,6 +190,7 @@ class AuctionBuyForm extends Component {
 
 const mapStateToProps = state => ({
   ...state.buyForm,
+  config: state.config,
   currentPrice: state.auction.status.currentPrice,
   errorData: state.buyPanel.errorData,
   rates: state.rates,
