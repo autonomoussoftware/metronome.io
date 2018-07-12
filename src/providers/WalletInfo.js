@@ -1,6 +1,8 @@
 import { Component } from 'react'
 import promiseAllProps from 'promise-all-props'
 import startInterval from 'startinterval2'
+import { connect } from 'react-redux'
+import withWeb3 from '../hocs/withWeb3'
 
 function chainIdToName (id) {
   return [null, 'mainnet', null, 'ropsten'][id]
@@ -8,7 +10,7 @@ function chainIdToName (id) {
 
 class WalletInfo extends Component {
   componentDidMount () {
-    const { onWalletInfo, web3 } = this.props
+    const { dispatch, web3 } = this.props
 
     if (!web3) {
       return
@@ -19,7 +21,7 @@ class WalletInfo extends Component {
         accounts: web3.eth.getAccounts(),
         chain: web3.eth.net.getId().then(chainIdToName)
       })
-        .then(onWalletInfo)
+        .then(payload => dispatch({ type: 'UPDATE_WALLET_INFO', payload }))
         .catch(function (err) {
           // eslint-disable-next-line no-console
           console.error('Could not get wallet info', err.message)
@@ -36,4 +38,4 @@ class WalletInfo extends Component {
   }
 }
 
-export default WalletInfo
+export default connect()(withWeb3(WalletInfo))

@@ -12,12 +12,14 @@ import getInitialState from './get-initial-state'
 import MetronomeStatus from './providers/MetronomeStatus'
 import WalletVersion from './providers/WalletVersion'
 
+import ChainWarning from './components/ChainWarning'
 import AppsPage from './components/AppsPage'
 import HomePage from './components/pages/HomePage'
 import AuctionPage from './components/pages/AuctionPage'
 import DashboardPage from './components/pages/DashboardPage'
 
 import AuctionPanel from './components/AuctionPanel'
+import WalletInfo from './providers/WalletInfo'
 
 analytics.init()
 
@@ -59,8 +61,10 @@ if (rootElement) {
   reactDOM.render(
     <Provider store={store}>
       <React.Fragment>
+        <WalletInfo />
         <MetronomeStatus />
         <WalletVersion />
+        <ChainWarning />
         {getAppContent(rootContent)}
         <AuctionPanel/>
       </React.Fragment>
