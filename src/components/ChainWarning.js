@@ -22,7 +22,8 @@ const ChainWarning = ({ isCorrectChain, configChain }) => !isCorrectChain && (
 )
 
 const mapStateToProps = state => ({
-  isCorrectChain: state.wallet.chain === state.config.chain,
+  isCorrectChain: typeof state.wallet.chain === 'undefined' ||
+    state.wallet.chain === state.config.chain,
   configChain: state.config.chain
 })
 
