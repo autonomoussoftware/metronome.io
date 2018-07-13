@@ -34,7 +34,12 @@ if (config.env === 'production' && window.Raven) {
   })
 }
 
-const reduxDevtoolsOptions = { features: { dispatch: true } }
+const reduxDevtoolsOptions = {
+  features: { dispatch: true },
+  actionCreators: {
+    showPanel: () => ({ type: 'SHOW_BUY_PANEL', payload: true })
+  }
+}
 
 const store = createStore(reduxDevtoolsOptions, getInitialState(config))
 
