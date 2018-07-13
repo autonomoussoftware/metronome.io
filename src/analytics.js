@@ -3,7 +3,7 @@ import config from './config'
 function init () {
   window.dataLayer = window.dataLayer || []
 
-  const gtag = window.gtag || function () {
+  window.gtag = window.gtag || function () {
     window.dataLayer.push(arguments)
   }
 
@@ -11,8 +11,8 @@ function init () {
     return
   }
 
-  gtag('js', new Date())
-  gtag('config', config.gaTrackingId)
+  window.gtag('js', new Date())
+  window.gtag('config', config.gaTrackingId)
 }
 
 export default { init }
