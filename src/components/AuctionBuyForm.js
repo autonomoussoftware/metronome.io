@@ -52,16 +52,19 @@ class AuctionBuyForm extends Component {
     showWaiting()
 
     try {
+      window.gtag('event', 'Buy MET in auction initiated', { event_category: 'Buy' })
       web3.eth.sendTransaction(txObject)
         .on('transactionHash', function (hash) {
           showWaiting(hash)
         })
         .on('receipt', function (receipt) {
           if (!receipt.status) {
+            window.gtag('event', 'Buy MET in auction failed', { event_category: 'Buy' })
             showError('Purchase reverted - Try again', new Error('Transaction status is falsy'))
             return
           }
           if (!receipt.logs.length) {
+            window.gtag('event', 'Buy MET in auction failed', { event_category: 'Buy' })
             showError('Purchase failed - Try again', new Error('Transaction logs missing'))
             return
           }
@@ -73,18 +76,22 @@ class AuctionBuyForm extends Component {
           )
             .catch(() => ({ from: userAccount, hash }))
             .then(function (tx) {
+              window.gtag('event', 'Buy MET in auction succeeded', { event_category: 'Buy' })
               storeTxData(tx)
               showReceipt(receipt)
               clearForm()
             })
             .catch(function (err) {
+              window.gtag('event', 'Buy MET in auction failed', { event_category: 'Buy' })
               showError(`Something went wrong - Check your wallet or explorer for transaction ${hash}`, err)
             })
         })
         .on('error', function (err) {
+          window.gtag('event', 'Buy MET in auction failed', { event_category: 'Buy' })
           showError('Transaction error - Try again', err)
         })
     } catch (err) {
+      window.gtag('event', 'Buy MET in auction failed', { event_category: 'Buy' })
       showError('Transaction could not be sent - Try again', err)
     }
   }
@@ -93,8 +100,6 @@ class AuctionBuyForm extends Component {
   render () {
     const {
       backToBuyOptions,
-      chain,
-      config,
       currentPrice,
       errorData,
       eth,
@@ -109,11 +114,7 @@ class AuctionBuyForm extends Component {
 
     const fiatValue = new BigNumber(eth).times(rates.ETH_USD).toString()
 
-    const warnStr = warn ||
-      (chain !== config.chain &&
-        `Wrong chain - Connect wallet to ${config.chain}`)
-
-    const allowBuy = !(new BigNumber(eth).eq(0)) && userAccount && !warnStr
+    const allowBuy = !(new BigNumber(eth).eq(0)) && userAccount && !warn
 
     function withRate (eventHandler) {
       return function (ev) {
@@ -147,9 +148,9 @@ class AuctionBuyForm extends Component {
                   <div className="buy-meta-mask__current-price meta-mask__error">
                     <span title={errorData.err.message}>{errorData.hint}</span>
                   </div>}
-                {warnStr &&
+                {warn &&
                   <div className="buy-meta-mask__current-price meta-mask__error">
-                    <span>{warnStr}</span>
+                    <span>{warn}</span>
                   </div>}
                 <div className="buy-meta-mask__current-price">
                   <span>Current Auction Price</span>
@@ -196,7 +197,6 @@ class AuctionBuyForm extends Component {
 
 const mapStateToProps = state => ({
   ...state.buyForm,
-  chain: state.wallet.chain,
   config: state.config,
   currentPrice: state.auction.status.currentPrice,
   errorData: state.buyPanel.errorData,
