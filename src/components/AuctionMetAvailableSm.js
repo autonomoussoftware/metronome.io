@@ -1,10 +1,11 @@
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import React from 'react'
 
 import EthValue from './EthValue'
 import MetValue from './MetValue'
 
-function AuctionMetAvailableSm (props) {
+function AuctionMetAvailableSm(props) {
   const {
     isAuctionActive,
     nextAuctionStartPrice,
@@ -18,23 +19,30 @@ function AuctionMetAvailableSm (props) {
 
   return (
     <div className="AuctionMetAvailableSm">
-      {isAuctionActive &&
+      {isAuctionActive && (
         <div className="auction__met-remaining-sm">
-          <div className="auction__met-remaining-sm--fill" style={divStyle}>
-          </div>
-        </div>}
+          <div className="auction__met-remaining-sm--fill" style={divStyle} />
+        </div>
+      )}
       <span className="auction__counter-sm">
-        {isAuctionActive
-          ? <MetValue>{tokensRemaining}</MetValue>
-          : <EthValue>{nextAuctionStartPrice}</EthValue>}
+        {isAuctionActive ? (
+          <MetValue>{tokensRemaining}</MetValue>
+        ) : (
+          <EthValue>{nextAuctionStartPrice}</EthValue>
+        )}
       </span>
       <span className="auction__counter-sm-remaining">
-        {isAuctionActive
-          ? 'Available'
-          : 'Next Starting Price'}
+        {isAuctionActive ? 'Available' : 'Next Starting Price'}
       </span>
     </div>
   )
+}
+
+AuctionMetAvailableSm.propTypes = {
+  nextAuctionStartPrice: PropTypes.string.isRequired,
+  remainingPercentage: PropTypes.number.isRequired,
+  isAuctionActive: PropTypes.bool.isRequired,
+  tokensRemaining: PropTypes.string.isRequired
 }
 
 const mapStateToProps = state => state.auction.status

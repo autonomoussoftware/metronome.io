@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BigNumber from 'bignumber.js'
+import PropTypes from 'prop-types'
 import MetValue from './MetValue'
 import styled from 'styled-components'
 
@@ -35,7 +36,7 @@ const Arrow = styled.div`
   height: 15px;
 
   &:after {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     left: -3.5px;
@@ -63,10 +64,15 @@ const MarkerLabel = styled.span`
   white-space: nowrap;
   position: absolute;
   right: ${({ value }) =>
-    value < 5 ? '-30px'
-      : value < 10 ? '-15px'
-        : value < 90 ? 0
-          : value < 95 ? '15px' : '30px'};
+    value < 5
+      ? '-30px'
+      : value < 10
+        ? '-15px'
+        : value < 90
+          ? 0
+          : value < 95
+            ? '15px'
+            : '30px'};
   width: 110px;
   display: inline-block;
   text-align: center;
@@ -83,12 +89,14 @@ const ProgressBarLabel = styled.div`
 `
 
 class AuctionTokens extends Component {
-  render () {
-    const {
-      remainingPercentage,
-      tokensRemaining,
-      auctionSupply
-    } = this.props
+  static propTypes = {
+    remainingPercentage: PropTypes.number.isRequired,
+    tokensRemaining: PropTypes.string.isRequired,
+    auctionSupply: PropTypes.number.isRequired
+  }
+
+  render() {
+    const { remainingPercentage, tokensRemaining, auctionSupply } = this.props
 
     const tokensSold = BigNumber.max(
       new BigNumber(auctionSupply).minus(tokensRemaining),

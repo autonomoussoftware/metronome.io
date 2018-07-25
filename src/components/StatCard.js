@@ -1,10 +1,12 @@
 import { VictoryGroup, VictoryLine } from 'victory'
-import Card, { CardAccent } from './Card'
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+
+import Card, { CardAccent } from './Card'
 import DollarValue from './DollarValue'
 import METLoader from './METLoader'
 import EthValue from './EthValue'
-import styled from 'styled-components'
 
 const Accent = styled(CardAccent)`
   padding: 32px 24px;
@@ -61,8 +63,19 @@ const Label = styled.div`
 `
 
 export default class StatCard extends Component {
+  static propTypes = {
+    extraChartProps: PropTypes.object,
+    currentPrice: PropTypes.string.isRequired,
+    chartStatus: PropTypes.oneOf(['success', 'failure', 'pending']).isRequired,
+    chartLabel: PropTypes.string.isRequired,
+    chartError: PropTypes.string,
+    chartData: PropTypes.array.isRequired,
+    onRetry: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired
+  }
+
   // eslint-disable-next-line complexity
-  render () {
+  render() {
     return (
       <Card title={this.props.title}>
         <Accent bb={this.props.chartData.length > 0}>

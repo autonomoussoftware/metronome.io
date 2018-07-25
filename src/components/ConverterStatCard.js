@@ -1,13 +1,27 @@
 import React, { Component } from 'react'
 import shrinkArray from 'shrink-array'
 import { connect } from 'react-redux'
-import StatCard from './StatCard'
+import PropTypes from 'prop-types'
 import moment from 'moment'
 import last from 'shrink-array/last'
 
-const sevenDaysAgo = () => moment().subtract({ days: 7 }).unix()
+import StatCard from './StatCard'
+
+const sevenDaysAgo = () =>
+  moment()
+    .subtract({ days: 7 })
+    .unix()
 
 class ConverterStatCard extends Component {
+  static propTypes = {
+    converter: PropTypes.shape({
+      currentPrice: PropTypes.string.isRequired
+    }).isRequired,
+    config: PropTypes.shape({
+      metApiUrl: PropTypes.string.isRequired
+    }).isRequired
+  }
+
   state = {
     chartStatus: 'pending',
     chartError: null,
@@ -25,26 +39,30 @@ class ConverterStatCard extends Component {
     fetch(`${metApiUrl}/history?from=${from}&to=${now}`)
       .then(response => response.json())
       .then(data => data.filter(p => Boolean(p.currentConverterPrice)))
-      .then(data => this.setState({
-        chartStatus: 'success',
-        chartError: null,
-        chartData: data.map(point => ({
-          x: point.timestamp,
-          y: parseInt(point.currentConverterPrice, 10)
-        }))
-      }))
-      .catch(err => this.setState({
-        chartStatus: 'failure',
-        chartError: err.message,
-        chartData: []
-      }))
+      .then(data =>
+        this.setState({
+          chartStatus: 'success',
+          chartError: null,
+          chartData: data.map(point => ({
+            x: point.timestamp,
+            y: parseInt(point.currentConverterPrice, 10)
+          }))
+        })
+      )
+      .catch(err =>
+        this.setState({
+          chartStatus: 'failure',
+          chartError: err.message,
+          chartData: []
+        })
+      )
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.retrieveData()
   }
 
-  static getDerivedStateFromProps (props, state) {
+  static getDerivedStateFromProps(props, state) {
     const point = {
       y: parseInt(props.converter.currentPrice, 10),
       x: moment().unix()
@@ -57,7 +75,7 @@ class ConverterStatCard extends Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <StatCard
         title="CONVERTER CONTRACT"

@@ -1,5 +1,7 @@
-import BigNumber from 'bignumber.js'
 import React, { Component } from 'react'
+import BigNumber from 'bignumber.js'
+import TextInput from './TextInput'
+import PropTypes from 'prop-types'
 
 /**
  * This component is an <input> that will accept value (be controlled) only when
@@ -9,31 +11,37 @@ import React, { Component } from 'react'
  * @extends Component
  */
 class ValueInput extends Component {
+  static propTypes = {
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired
+  }
+
   state = {
     onFocus: false,
     value: ''
   }
 
-  constructor (props) {
+  constructor(props) {
     super(props)
-
     this.onBlur = this.onBlur.bind(this)
     this.onChange = this.onChange.bind(this)
     this.onFocus = this.onFocus.bind(this)
   }
 
-  cleanupValue (value) {
+  cleanupValue(value) {
     return new BigNumber(value).gt(0) ? value : ''
   }
 
-  onBlur () {
+  onBlur() {
     this.setState({ onFocus: false })
 
     this.props.onChange({ target: { value: this.state.value } })
   }
 
-  onChange (ev) {
-    const { target: { value } } = ev
+  onChange(ev) {
+    const {
+      target: { value }
+    } = ev
 
     if (new BigNumber(value).lt(0)) {
       return
@@ -44,11 +52,11 @@ class ValueInput extends Component {
     this.props.onChange(ev)
   }
 
-  onFocus () {
+  onFocus() {
     this.setState({ onFocus: true, value: this.cleanupValue(this.props.value) })
   }
 
-  render () {
+  render() {
     const props = {
       ...this.props,
       value: this.state.onFocus
@@ -57,11 +65,12 @@ class ValueInput extends Component {
     }
 
     return (
-      <input
+      <TextInput
         {...props}
         onBlur={this.onBlur}
         onChange={this.state.onFocus ? this.onChange : this.props.onChange}
-        onFocus={this.onFocus} />
+        onFocus={this.onFocus}
+      />
     )
   }
 }

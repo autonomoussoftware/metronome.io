@@ -1,9 +1,12 @@
 {
   "extends": [
     "bloq",
-    "react-app"
+    "prettier",
+    "react-app",
+    "plugin:react/recommended"
   ],
   "rules": {
-    "no-console": "warn"
+    "no-console": "warn",
+    "react/prop-types": "warn"
   }
 }
