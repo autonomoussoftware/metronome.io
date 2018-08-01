@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import React from 'react'
 
-import AddressCopyClipboard from './AddressCopyClipboard'
 import DownloadWalletBlock from './DownloadWalletBlock'
+import CopyToClipboardBtn from './CopyToClipboardBtn'
 import { useWallet } from '../utils.js'
 import { Link, Btn } from './Btn.js'
 import arrowIcon from '../img/arrow-forward-24-px.svg'
@@ -118,13 +118,19 @@ class BuyPanelOptions extends React.Component {
             address you use is that one. We recommend copying it or scanning the
             QR code.
           </Message>
-          <AddressCopyClipboard address={contractAddress} />
+          <CopyToClipboardBtn
+            successText="Address Copied!"
+            btnLabel="Copy Address to Clipboard"
+            value={contractAddress}
+            title="Address"
+          />
         </section>
 
         <Separator />
 
         <QrBlock
           imgSrc={`https://chart.googleapis.com/chart?chs=160x160&cht=qr&chl=${contractAddress}&choe=UTF-8`}
+          label="Scan Address"
         />
       </Container>
     )

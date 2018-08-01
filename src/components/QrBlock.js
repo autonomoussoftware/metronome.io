@@ -14,14 +14,15 @@ const Label = styled.div`
 
 export default class QrBlock extends React.Component {
   static propTypes = {
-    imgSrc: PropTypes.string.isRequired
+    imgSrc: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired
   }
 
   render() {
     return (
       <Container>
         <img alt="" src={this.props.imgSrc} />
-        <Label>Scan Address</Label>
+        <Label>{this.props.label}</Label>
       </Container>
     )
   }

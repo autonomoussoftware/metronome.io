@@ -4,11 +4,13 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import React from 'react'
 
-import AddressCopyClipboard from './AddressCopyClipboard'
 import DownloadWalletBlock from './DownloadWalletBlock'
+import CopyToClipboardBtn from './CopyToClipboardBtn'
 import { useWallet } from '../utils.js'
 import { Link, Btn } from './Btn.js'
 import arrowIcon from '../img/arrow-forward-24-px.svg'
+import METLoader from './METLoader'
+import withWeb3 from '../hocs/withWeb3'
 import QrBlock from './QrBlock'
 
 const Container = styled.div`
@@ -83,11 +85,26 @@ const isWeb3Available = web3Provider !== 'none'
 class ConvertPanelOptions extends React.Component {
   static propTypes = {
     contractAddress: PropTypes.string.isRequired,
-    showForm: PropTypes.func.isRequired
+    showForm: PropTypes.func.isRequired,
+    web3: PropTypes.shape({
+      eth: PropTypes.shape({
+        getAccounts: PropTypes.func.isRequired,
+        net: PropTypes.shape({
+          getId: PropTypes.func.isRequired
+        }).isRequired
+      }).isRequired
+    }).isRequired
+  }
+
+  state = { chainId: null }
+
+  componentDidMount() {
+    this.props.web3.eth.net.getId().then(chainId => this.setState({ chainId }))
   }
 
   render() {
     const { contractAddress, showForm } = this.props
+    const { chainId } = this.state
 
     return (
       <Container>
@@ -114,18 +131,28 @@ class ConvertPanelOptions extends React.Component {
         <section>
           <Subtitle>Convert With Your Own Wallet</Subtitle>
           <Message>
-            To make a conversion, send ETH to the address below. Make sure the
-            address you use is that one. We recommend copying it or scanning the
-            QR code.
+            To make a conversion, send ETH to the EIP 681-compatible URL below.
+            Make sure the URL you use is that one. We recommend copying it or
+            scanning the QR code.
           </Message>
-          <AddressCopyClipboard address={contractAddress} />
+          <CopyToClipboardBtn
+            successText="URL Copied!"
+            btnLabel="Copy URL to Clipboard"
+            value={`ethereum:${contractAddress}@${chainId}/convertEthToMet?uint256=1`}
+            title="URL"
+          />
         </section>
 
         <Separator />
 
-        <QrBlock
-          imgSrc={`https://chart.googleapis.com/chart?chs=160x160&cht=qr&chl=${contractAddress}&choe=UTF-8`}
-        />
+        {chainId ? (
+          <QrBlock
+            imgSrc={`https://chart.googleapis.com/chart?cht=qr&chs=160x160&choe=UTF-8&chl=ethereum:${contractAddress}@${chainId}/convertEthToMet?uint256=1`}
+            label="Scan URL"
+          />
+        ) : (
+          <METLoader height="183px" />
+        )}
       </Container>
     )
   }
@@ -142,4 +169,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ConvertPanelOptions)
+)(withWeb3(ConvertPanelOptions))

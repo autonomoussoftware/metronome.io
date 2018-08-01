@@ -39,19 +39,22 @@ const Input = styled.input`
   }
 `
 
-export default class AddressCopyClipboard extends React.Component {
+export default class CopyToClipboardBtn extends React.Component {
   static propTypes = {
-    address: PropTypes.string.isRequired
+    successText: PropTypes.string.isRequired,
+    btnLabel: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired
   }
 
   state = { copied: false }
 
-  addressField = React.createRef()
+  textField = React.createRef()
 
   // eslint-disable-next-line arrow-body-style
-  copyMyClipboard = () => {
-    if (!this.addressField.current) return
-    this.addressField.current.select()
+  onCopyClicked = () => {
+    if (!this.textField.current) return
+    this.textField.current.select()
     document.execCommand('copy')
     this.setState({ copied: true })
     setTimeout(() => this.setState({ copied: false }), 500)
@@ -61,16 +64,16 @@ export default class AddressCopyClipboard extends React.Component {
     return (
       <div>
         <Header>
-          <Icon alt="" src={lock} /> Address
+          <Icon alt="" src={lock} /> {this.props.title}
         </Header>
         <Input
-          innerRef={this.addressField}
+          innerRef={this.textField}
           readOnly
-          value={this.props.address}
+          value={this.props.value}
           type="text"
         />
-        <Btn block onClick={this.copyMyClipboard}>
-          {this.state.copied ? 'Address Copied!' : 'Copy Address to Clipboard'}
+        <Btn block onClick={this.onCopyClicked}>
+          {this.state.copied ? this.props.successText : this.props.btnLabel}
         </Btn>
       </div>
     )
