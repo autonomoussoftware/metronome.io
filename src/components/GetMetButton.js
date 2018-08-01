@@ -121,7 +121,7 @@ export default class GetMetButton extends React.Component {
 
   // eslint-disable-next-line
   onSelect = e => {
-    this.setState({ active: e.target.id, isOpen: false })
+    this.setState({ isOpen: false })
     this.props.items[e.target.id]()
   }
 
