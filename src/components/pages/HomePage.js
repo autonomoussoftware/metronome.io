@@ -45,15 +45,15 @@ function HomePageContent(props) {
       {isAuctionActive ? (
         <GetMetButton
           defaultActive={
-            isAuctionCheaper ? 'Buy Metronome' : 'Convert Metronome'
+            isAuctionCheaper ? 'Buy Metronome' : 'Convert ETH to MET'
           }
           items={{
-            'Convert Metronome': onConvertMetronomeClick,
+            'Convert ETH to MET': onConvertMetronomeClick,
             'Buy Metronome': onBuyMetronomeClick
           }}
         />
       ) : (
-        <Btn onClick={onConvertMetronomeClick}>Convert Metronome</Btn>
+        <Btn onClick={onConvertMetronomeClick}>Convert ETH to MET</Btn>
       )}
     </Container>
   )
