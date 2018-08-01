@@ -186,7 +186,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  showForm: () => dispatch({ type: 'SHOW_BUY_FORM' })
+  showForm: () => dispatch({ type: 'SHOW_CONVERT_FORM' })
 })
 
 export default connect(
