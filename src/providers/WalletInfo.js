@@ -4,11 +4,8 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+import { chainIdToName } from '../utils'
 import withWeb3 from '../hocs/withWeb3'
-
-function chainIdToName(id) {
-  return [null, 'mainnet', null, 'ropsten'][id]
-}
 
 class WalletInfo extends Component {
   static propTypes = {
@@ -20,7 +17,7 @@ class WalletInfo extends Component {
           getId: PropTypes.func.isRequired
         }).isRequired
       }).isRequired
-    }).isRequired
+    })
   }
 
   componentDidMount() {

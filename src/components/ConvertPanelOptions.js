@@ -4,13 +4,11 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import React from 'react'
 
+import { useWallet, chainNameToId } from '../utils.js'
 import DownloadWalletBlock from './DownloadWalletBlock'
 import CopyToClipboardBtn from './CopyToClipboardBtn'
-import { useWallet } from '../utils.js'
 import { Link, Btn } from './Btn.js'
 import arrowIcon from '../img/arrow-forward-24-px.svg'
-import METLoader from './METLoader'
-import withWeb3 from '../hocs/withWeb3'
 import QrBlock from './QrBlock'
 
 const Container = styled.div`
@@ -86,25 +84,11 @@ class ConvertPanelOptions extends React.Component {
   static propTypes = {
     contractAddress: PropTypes.string.isRequired,
     showForm: PropTypes.func.isRequired,
-    web3: PropTypes.shape({
-      eth: PropTypes.shape({
-        getAccounts: PropTypes.func.isRequired,
-        net: PropTypes.shape({
-          getId: PropTypes.func.isRequired
-        }).isRequired
-      }).isRequired
-    }).isRequired
-  }
-
-  state = { chainId: null }
-
-  componentDidMount() {
-    this.props.web3.eth.net.getId().then(chainId => this.setState({ chainId }))
+    chainId: PropTypes.number.isRequired
   }
 
   render() {
-    const { contractAddress, showForm } = this.props
-    const { chainId } = this.state
+    const { contractAddress, showForm, chainId } = this.props
 
     return (
       <Container>
@@ -145,21 +129,18 @@ class ConvertPanelOptions extends React.Component {
 
         <Separator />
 
-        {chainId ? (
-          <QrBlock
-            imgSrc={`https://chart.googleapis.com/chart?cht=qr&chs=160x160&choe=UTF-8&chl=ethereum:${contractAddress}@${chainId}/convertEthToMet?uint256=1`}
-            label="Scan URL"
-          />
-        ) : (
-          <METLoader height="183px" />
-        )}
+        <QrBlock
+          imgSrc={`https://chart.googleapis.com/chart?cht=qr&chs=160x160&choe=UTF-8&chl=ethereum:${contractAddress}@${chainId}/convertEthToMet?uint256=1`}
+          label="Scan URL"
+        />
       </Container>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  contractAddress: state.config.converterAddress
+  contractAddress: state.config.converterAddress,
+  chainId: chainNameToId(state.config.chain)
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -169,4 +150,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withWeb3(ConvertPanelOptions))
+)(ConvertPanelOptions)

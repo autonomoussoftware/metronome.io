@@ -14,3 +14,14 @@ export function throwIfNull(obj) {
   }
   return obj
 }
+
+const chainNames = [null, 'mainnet', null, 'ropsten']
+
+export function chainIdToName(id) {
+  return chainNames[id]
+}
+
+export function chainNameToId(chainName) {
+  const chainId = chainNames.findIndex(item => item === chainName)
+  return chainId > -1 ? chainId : null
+}
