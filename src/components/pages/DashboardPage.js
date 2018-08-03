@@ -1,17 +1,20 @@
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import React from 'react'
 
 import MainDashboard from '../MainDashboard'
 import METLoader from '../METLoader'
 
-const DashboardPage = function ({ loadingAuctionStatus }) {
-  return (
-    loadingAuctionStatus
-      ? <METLoader height="100px" />
-      : <MainDashboard />
-  )
+const DashboardPage = function({ isLoading }) {
+  return isLoading ? <METLoader height="100px" /> : <MainDashboard />
 }
 
-const mapStateToProps = state => state.auction.status
+DashboardPage.propTypes = {
+  isLoading: PropTypes.bool.isRequired
+}
+
+const mapStateToProps = state => ({
+  isLoading: state.auction.loading
+})
 
 export default connect(mapStateToProps)(DashboardPage)

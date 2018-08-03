@@ -5,8 +5,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Metronome: The Built-to-Last Cryptocurrency</title>
 
-    <link href="/css/fonts.css" rel="stylesheet">
-    <link href="/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN">
+    <link href="./css/fonts.css" rel="stylesheet">
+    <link href="./css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN">
 
     <meta name="description" content="The Built-to-Last Cryptocurrency">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,11 +18,11 @@
     <link rel="manifest" href="/manifest.json">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB">
-    <link rel="stylesheet" href="css/styles.min.css?v=5.0">
+    <link rel="stylesheet" href="./css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB">
+    <link rel="stylesheet" href="./css/styles.min.css?v=5.0">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=<%-htmlWebpackPlugin.options.params && htmlWebpackPlugin.options.params.gaTrackingId%>"></script>
-    <script src="https://cdn.ravenjs.com/3.24.0/raven.min.js" crossorigin="anonymous"></script>
+    <script src="./js/lib/raven.min.js"></script>
     <style>
       @keyframes loader {
         from {left: -100px; width: 30%;}
@@ -147,7 +147,8 @@
         <br>
         <span>Self-Governance. Reliability. Portability.</span>
       </h1>
-
+    </div>
+      
       <!-- Dynamic content -->
       <div id="root" content="home">
         <div id="loader-container">
@@ -155,7 +156,8 @@
         </div>
       </div>
       <!-- /Dynamic content -->
-
+    
+    <div class="container">
       <div class="text-center social">
         <a href="https://github.com/autonomoussoftware" target="_blank">
           <i class="fa fa-github" aria-hidden="true"></i>
@@ -616,12 +618,12 @@
     </div>
   </footer>
 
-  <script src="/js/lib/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="/js/lib/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"></script>
-  <script src="/js/lib/particles.min.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/home.js"></script>
+  <script src="./js/lib/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="></script>
+  <script src="./js/lib/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"></script>
+  <script src="./js/lib/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"></script>
+  <script src="./js/lib/particles.min.js"></script>
+  <script src="./js/main.js"></script>
+  <script src="./js/home.js"></script>
 
 </body>
 

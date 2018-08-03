@@ -12,12 +12,15 @@ const {
 const defaultChain = REACT_APP_CHAIN || 'mainnet'
 
 export default {
+  converterAddress: Contracts.addresses[defaultChain].autonomousConverter,
   auctionsAddress: Contracts.addresses[defaultChain].auctions,
   chain: defaultChain,
   defaultGasPrice: '1000000000',
   gaTrackingId: REACT_APP_GA_TRACKING_ID || 'UA-116275666-1',
   metApiUrl: REACT_APP_MET_API_URL || 'https://api.metronome.io',
   metExplorerUrl: REACT_APP_MET_EXPLORER_URL || 'https://explorer.metronome.io',
-  sentryDns: REACT_APP_SENTRY_DNS || 'https://1365248ca55742a9aa18902e80db608b@sentry.io/1231118',
+  sentryDns:
+    REACT_APP_SENTRY_DNS ||
+    'https://1365248ca55742a9aa18902e80db608b@sentry.io/1231118',
   env: NODE_ENV
 }
