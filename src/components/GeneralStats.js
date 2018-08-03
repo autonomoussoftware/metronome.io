@@ -1,9 +1,14 @@
-import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import smartRounder from 'smart-round'
+import { connect } from 'react-redux'
+import BigNumber from 'bignumber.js'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+
+import GetMetButton from './GetMetButton'
 import CoinCapRate from '../providers/CoinCapRate'
 import MetValue from './MetValue'
-import styled from 'styled-components'
+import { Btn } from './Btn'
 
 const Container = styled.div`
   border-top: solid 1px #463f63;
@@ -12,8 +17,9 @@ const Container = styled.div`
   max-width: 1140px;
   flex-direction: column;
 
-  @media(min-width: 840px) {
+  @media (min-width: 840px) {
     flex-direction: row;
+    align-items: center;
   }
 `
 
@@ -22,7 +28,7 @@ const CellContainer = styled.div`
   display: flex;
   justify-content: center;
 
-  @media(min-width: 840px) {
+  @media (min-width: 840px) {
     justify-content: flex-start;
   }
 `
@@ -30,7 +36,7 @@ const CellContainer = styled.div`
 const Cell = styled.div`
   padding: 15px;
   border-right: solid 1px #202020;
-  border-left: ${p => p.first ? 'solid 1px #202020' : 'none'};
+  border-left: ${p => (p.first ? 'solid 1px #202020' : 'none')};
 `
 
 const Label = styled.div`
@@ -41,47 +47,62 @@ const Label = styled.div`
 `
 
 const Value = styled.div`
-  color: #45D48D;
+  color: #45d48d;
   font-size: 16px;
 `
 
-const Button = styled.button`
+const ButtonContainer = styled.div`
   margin: 13px 15px;
-  display: block;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-decoration: none;
-  position: relative;
-  background-color: #fff;
-  padding: 15px 65px 15px 65px;
-  color: #7e61f8;
 `
 
 const smartRound = smartRounder(3, 0, 10)
 
 class GeneralStats extends Component {
-  render () {
+  static propTypes = {
+    onConvertMetronomeClick: PropTypes.func.isRequired,
+    onBuyMetronomeClick: PropTypes.func.isRequired,
+    updateEthUsdRate: PropTypes.func.isRequired,
+    converter: PropTypes.shape({
+      currentPrice: PropTypes.string.isRequired
+    }).isRequired,
+    auction: PropTypes.shape({
+      remainingPercentage: PropTypes.number.isRequired,
+      isAuctionActive: PropTypes.bool.isRequired,
+      auctionSupply: PropTypes.number.isRequired,
+      currentPrice: PropTypes.string.isRequired,
+      tokenSupply: PropTypes.string.isRequired
+    }).isRequired
+  }
+
+  render() {
     const {
-      auction: {
-        auctionSupply,
-        isAuctionActive,
-        remainingPercentage,
-        tokenSupply
-      },
+      onConvertMetronomeClick,
       onBuyMetronomeClick,
-      updateEthUsdRate
+      updateEthUsdRate,
+      converter: { currentPrice: converterPrice },
+      auction: {
+        remainingPercentage,
+        isAuctionActive,
+        auctionSupply,
+        currentPrice: auctionPrice,
+        tokenSupply
+      }
     } = this.props
+
+    const isAuctionCheaper = new BigNumber(auctionPrice).lt(
+      new BigNumber(converterPrice)
+    )
 
     return (
       <React.Fragment>
-        <CoinCapRate onData={updateEthUsdRate}/>
+        <CoinCapRate onData={updateEthUsdRate} />
         <Container>
           <CellContainer>
             <Cell first>
               <Label>Market Supply</Label>
-              <Value><MetValue>{tokenSupply}</MetValue></Value>
+              <Value>
+                <MetValue>{tokenSupply}</MetValue>
+              </Value>
             </Cell>
             <Cell>
               <Label>Percentage Sold</Label>
@@ -89,12 +110,26 @@ class GeneralStats extends Component {
             </Cell>
             <Cell>
               <Label>Daily Auction Amount</Label>
-              <Value><MetValue>{auctionSupply}</MetValue></Value>
+              <Value>
+                <MetValue>{auctionSupply}</MetValue>
+              </Value>
             </Cell>
           </CellContainer>
-          <Button onClick={onBuyMetronomeClick} disabled={!isAuctionActive}>
-            Buy Metronome
-          </Button>
+          <ButtonContainer>
+            {isAuctionActive ? (
+              <GetMetButton
+                defaultActive={
+                  isAuctionCheaper ? 'Buy Metronome' : 'Convert ETH to MET'
+                }
+                items={{
+                  'Convert ETH to MET': onConvertMetronomeClick,
+                  'Buy Metronome': onBuyMetronomeClick
+                }}
+              />
+            ) : (
+              <Btn onClick={onConvertMetronomeClick}>Convert ETH to MET</Btn>
+            )}
+          </ButtonContainer>
         </Container>
       </React.Fragment>
     )
@@ -102,19 +137,30 @@ class GeneralStats extends Component {
 }
 
 const mapStateToProps = state => ({
+  converter: state.converter.status,
   auction: state.auction.status,
   rates: state.rates
 })
 
 const mapDispatchToProps = dispatch => ({
-  onBuyMetronomeClick: () => dispatch({
-    type: 'SHOW_BUY_PANEL',
-    payload: true
-  }),
-  updateEthUsdRate: value => dispatch({
-    type: 'UPDATE_RATE',
-    payload: { type: 'ETH_USD', value }
-  })
+  onBuyMetronomeClick: () =>
+    dispatch({
+      type: 'SHOW_BUY_PANEL',
+      payload: true
+    }),
+  onConvertMetronomeClick: () =>
+    dispatch({
+      type: 'SHOW_CONVERT_PANEL',
+      payload: true
+    }),
+  updateEthUsdRate: value =>
+    dispatch({
+      type: 'UPDATE_RATE',
+      payload: { type: 'ETH_USD', value }
+    })
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(GeneralStats)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GeneralStats)

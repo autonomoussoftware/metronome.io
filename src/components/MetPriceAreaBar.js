@@ -1,11 +1,6 @@
 import { connect } from 'react-redux'
 import { fromWei } from 'web3-utils'
-import {
-  VictoryAxis,
-  VictoryBar,
-  VictoryChart,
-  VictoryLine
-} from 'victory'
+import { VictoryAxis, VictoryBar, VictoryChart, VictoryLine } from 'victory'
 import { VictoryTheme } from 'victory-core'
 import React, { Component } from 'react'
 import BigNumber from 'bignumber.js'
@@ -13,6 +8,7 @@ import moment from 'moment'
 import shrinkArray from 'shrink-array'
 import last from 'shrink-array/last'
 import smartRounder from 'smart-round'
+import PropTypes from 'prop-types'
 
 import EthValue from './EthValue'
 import DollarValue from './DollarValue'
@@ -81,7 +77,18 @@ const timeWindows = {
 }
 
 class MetPriceAreaBar extends Component {
-  constructor (props) {
+  static propTypes = {
+    auction: PropTypes.shape({
+      currentAuction: PropTypes.number.isRequired,
+      currentPrice: PropTypes.string.isRequired,
+      tokensRemaining: PropTypes.string.isRequired
+    }).isRequired,
+    config: PropTypes.shape({
+      metApiUrl: PropTypes.string.isRequired
+    }).isRequired
+  }
+
+  constructor(props) {
     super(props)
 
     this.changeTimeWindow = this.changeTimeWindow.bind(this)
@@ -95,11 +102,10 @@ class MetPriceAreaBar extends Component {
     timeWindow: 'day'
   }
 
-  retrieveData () {
+  retrieveData() {
     const { metApiUrl } = this.props.config
 
-    const now = moment()
-      .unix()
+    const now = moment().unix()
     const from = moment()
       .subtract(timeWindows[this.state.timeWindow])
       .unix()
@@ -110,16 +116,12 @@ class MetPriceAreaBar extends Component {
       .catch(err => this.setState({ err }))
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.retrieveData()
   }
 
-  static getDerivedStateFromProps (props, state) {
-    const {
-      currentAuction,
-      currentPrice,
-      tokensRemaining
-    } = props.auction
+  static getDerivedStateFromProps(props, state) {
+    const { currentAuction, currentPrice, tokensRemaining } = props.auction
 
     const point = {
       currAuction: `${currentAuction}`,
@@ -141,7 +143,7 @@ class MetPriceAreaBar extends Component {
     }
   }
 
-  parseHistory (data) {
+  parseHistory(data) {
     const { grouping } = timeWindows[this.state.timeWindow]
 
     // const shouldGroup = (a, b) =>
@@ -154,8 +156,7 @@ class MetPriceAreaBar extends Component {
         price: new BigNumber(point.currentAuctionPrice || '0')
           .div(1e18)
           .toNumber(),
-        supply: new BigNumber(fromWei(point.minting || '0'))
-          .toNumber(),
+        supply: new BigNumber(fromWei(point.minting || '0')).toNumber(),
         time: point.timestamp * 1000,
         tokensSold: new BigNumber(point.currAuction === '0' ? 8000000 : 2880)
           .times(1e18)
@@ -176,7 +177,7 @@ class MetPriceAreaBar extends Component {
         time: point.group * grouping
       }))
       // group all points within the same target group (!)
-      .reduce(function (groups, point) {
+      .reduce(function(groups, point) {
         const prop = `${point.auction}-${point.time}`
         groups[prop] = groups[prop] || []
         groups[prop].push(point)
@@ -189,20 +190,25 @@ class MetPriceAreaBar extends Component {
         first: group.shift(),
         last: group.pop()
       }))
-      .reduce(function (array, pair) {
-        if (pair.first) { array.push(pair.first) }
-        if (pair.last) { array.push(pair.last) }
+      .reduce(function(array, pair) {
+        if (pair.first) {
+          array.push(pair.first)
+        }
+        if (pair.last) {
+          array.push(pair.last)
+        }
         return array
       }, [])
       // and calculate the tokens sold in the group as the diff from previous
       // group's tokens sold but only if within the same auction
       .map((group, i, array) => ({
         ...group,
-        tokensSoldInGroup: i === 0
-          ? 0
-          : group.auction !== array[i - 1].auction
-            ? group.tokensSold
-            : group.tokensSold - array[i - 1].tokensSold
+        tokensSoldInGroup:
+          i === 0
+            ? 0
+            : group.auction !== array[i - 1].auction
+              ? group.tokensSold
+              : group.tokensSold - array[i - 1].tokensSold
       }))
 
     // remove the first element as was used only for reference to calculate the
@@ -212,68 +218,109 @@ class MetPriceAreaBar extends Component {
     return withTokensSold
   }
 
-  changeTimeWindow (timeWindow) {
+  changeTimeWindow(timeWindow) {
     this.setState({ timeWindow, showDropdown: false }, () =>
       this.retrieveData()
     )
   }
 
-  toggleDropdown () {
+  toggleDropdown() {
     this.setState({ showDropdown: !this.state.showDropdown })
   }
 
   // eslint-disable-next-line complexity
-  render () {
-    const {
-      history: data,
-      showDropdown,
-      timeWindow
-    } = this.state
+  render() {
+    const { history: data, showDropdown, timeWindow } = this.state
 
     const {
-      auction: {
-        isAuctionActive,
-        currentPrice
-      }
+      auction: { isAuctionActive, currentPrice }
     } = this.props
 
     const auctionChartData = this.parseHistory(data)
 
     return (
       <div className="container__mtn-price">
-        <div className="container__header-top-border"></div>
+        <div className="container__header-top-border" />
         <div className="chart__main-inner-container">
           <span className="label__title">Charts </span>
           <div className="chart__main-label">
             <span className="label__Auction-Price">
-              { isAuctionActive ? 'Current Auction Price' : 'Auction Closing Price:' }
+              {isAuctionActive
+                ? 'Current Auction Price'
+                : 'Auction Closing Price:'}
             </span>
-            <span className="label_-ETH"><EthValue>{currentPrice}</EthValue></span>
-            <span className="label_-USD"><DollarValue>{currentPrice}</DollarValue></span>
+            <span className="label_-ETH">
+              <EthValue>{currentPrice}</EthValue>
+            </span>
+            <span className="label_-USD">
+              <DollarValue>{currentPrice}</DollarValue>
+            </span>
           </div>
-          <div className={`chart__dropdown-time-selector ${showDropdown ? '--active' : ''}`} onClick={this.toggleDropdown}>
-            <span className="label__selector">{timeWindows[timeWindow].label}<span className="arrow-down"></span></span>
-            <div className={`chart__dropdown-time-selector--dropdown ${showDropdown ? '--show' : ''}`}>
-              <div className="arrow-up"></div>
+          <div
+            className={`chart__dropdown-time-selector ${
+              showDropdown ? '--active' : ''
+            }`}
+            onClick={this.toggleDropdown}
+          >
+            <span className="label__selector">
+              {timeWindows[timeWindow].label}
+              <span className="arrow-down" />
+            </span>
+            <div
+              className={`chart__dropdown-time-selector--dropdown ${
+                showDropdown ? '--show' : ''
+              }`}
+            >
+              <div className="arrow-up" />
               <div className="chart__dropdown-time-selector-items">
                 <ul>
-                  <li onClick={() => this.changeTimeWindow('quarter')} className={timeWindow === 'quarter' ? '--active' : ''}><a>15 Minutes</a></li>
-                  <li onClick={() => this.changeTimeWindow('hour')} className={timeWindow === 'hour' ? '--active' : ''}><a>Hour</a></li>
-                  <li onClick={() => this.changeTimeWindow('six')} className={timeWindow === 'six' ? '--active' : ''}><a>6 Hours</a></li>
-                  <li onClick={() => this.changeTimeWindow('twelve')} className={timeWindow === 'twelve' ? '--active' : ''}><a>12 Hours</a></li>
-                  <li onClick={() => this.changeTimeWindow('day')} className={timeWindow === 'day' ? '--active' : ''}><a>Day</a></li>
-                  <li onClick={() => this.changeTimeWindow('week')} className={timeWindow === 'week' ? '--active' : ''}><a>7 Days</a></li>
+                  <li
+                    onClick={() => this.changeTimeWindow('quarter')}
+                    className={timeWindow === 'quarter' ? '--active' : ''}
+                  >
+                    <a>15 Minutes</a>
+                  </li>
+                  <li
+                    onClick={() => this.changeTimeWindow('hour')}
+                    className={timeWindow === 'hour' ? '--active' : ''}
+                  >
+                    <a>Hour</a>
+                  </li>
+                  <li
+                    onClick={() => this.changeTimeWindow('six')}
+                    className={timeWindow === 'six' ? '--active' : ''}
+                  >
+                    <a>6 Hours</a>
+                  </li>
+                  <li
+                    onClick={() => this.changeTimeWindow('twelve')}
+                    className={timeWindow === 'twelve' ? '--active' : ''}
+                  >
+                    <a>12 Hours</a>
+                  </li>
+                  <li
+                    onClick={() => this.changeTimeWindow('day')}
+                    className={timeWindow === 'day' ? '--active' : ''}
+                  >
+                    <a>Day</a>
+                  </li>
+                  <li
+                    onClick={() => this.changeTimeWindow('week')}
+                    className={timeWindow === 'week' ? '--active' : ''}
+                  >
+                    <a>7 Days</a>
+                  </li>
                 </ul>
               </div>
             </div>
           </div>
           <div className="chart__keys">
             <div className="supply__available-container">
-              <div className="supply__available-box"></div>
+              <div className="supply__available-box" />
               <span>Tokens Sold</span>
             </div>
             <div className="price__available-container">
-              <div className="price__available-box"></div>
+              <div className="price__available-box" />
               <span>Auction Price</span>
             </div>
           </div>
@@ -285,19 +332,22 @@ class MetPriceAreaBar extends Component {
                 height={130}
                 padding={{ top: 5, bottom: 15, right: 25, left: 25 }}
                 style={{ labels: { fontSize: 2 }, padding: 0 }}
-                theme={VictoryTheme.material}>
+                theme={VictoryTheme.material}
+              >
                 <VictoryAxis
                   dependentAxis
                   height={400}
                   label="PRICE [ETH]"
                   orientation="right"
                   style={foregroudTickStyle}
-                  tickFormat={y => `${smartRound(y)}`} />
+                  tickFormat={y => `${smartRound(y)}`}
+                />
                 <VictoryLine
                   data={auctionChartData}
                   style={{ data: { stroke: '#fff2', strokeWidth: 1 } }}
                   x="time"
-                  y="price" />
+                  y="price"
+                />
               </VictoryChart>
             </div>
             <div className="chart__victory-background">
@@ -305,22 +355,26 @@ class MetPriceAreaBar extends Component {
                 domainPadding={5}
                 height={130}
                 padding={{ top: 5, bottom: 15, right: 25, left: 25 }}
-                theme={VictoryTheme.material}>
+                theme={VictoryTheme.material}
+              >
                 <VictoryAxis
                   scale={{ x: 'time' }}
                   style={backgroundTickStyle}
-                  tickCount={10} />
+                  tickCount={10}
+                />
                 <VictoryAxis
                   dependentAxis
                   height={400}
                   label="VOLUME [MET]"
                   style={backgroundTickStyle}
-                  tickFormat={y => `${smartRound(y)}`} />
+                  tickFormat={y => `${smartRound(y)}`}
+                />
                 <VictoryBar
                   data={auctionChartData}
                   style={{ data: { fill: '#7e61f8', fillOpacity: 0.3 } }}
                   x="time"
-                  y="tokensSoldInGroup" />
+                  y="tokensSoldInGroup"
+                />
               </VictoryChart>
             </div>
           </div>

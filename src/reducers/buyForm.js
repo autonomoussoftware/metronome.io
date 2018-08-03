@@ -25,8 +25,7 @@ const reducer = handleActions(
     }),
     UPDATE_BUY_ETH: (state, { payload }) => ({
       ...state,
-      eth: new BigNumber(payload.value)
-        .toFixed(DECIMAL_PLACES),
+      eth: new BigNumber(payload.value).toFixed(DECIMAL_PLACES),
       met: new BigNumber(payload.value)
         .div(fromWei(payload.rate))
         .toFixed(DECIMAL_PLACES)
@@ -36,20 +35,19 @@ const reducer = handleActions(
       eth: new BigNumber(payload.value)
         .times(fromWei(payload.rate))
         .toFixed(DECIMAL_PLACES),
-      met: new BigNumber(payload.value)
-        .toFixed(DECIMAL_PLACES)
+      met: new BigNumber(payload.value).toFixed(DECIMAL_PLACES)
     }),
     UPDATE_AUCTION_STATUS: (state, { payload }) => ({
       ...state,
       eth: state.wait
         ? state.eth
         : new BigNumber(state.met)
-          .times(fromWei(payload.currentPrice))
-          .toFixed(DECIMAL_PLACES),
+            .times(fromWei(payload.currentPrice))
+            .toFixed(DECIMAL_PLACES),
       met: state.wait
         ? new BigNumber(state.eth)
-          .div(fromWei(payload.currentPrice))
-          .toFixed(DECIMAL_PLACES)
+            .div(fromWei(payload.currentPrice))
+            .toFixed(DECIMAL_PLACES)
         : state.met
     })
   },

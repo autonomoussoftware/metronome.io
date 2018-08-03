@@ -1,3 +1,4 @@
+import { ThemeProvider } from 'styled-components'
 import { Provider } from 'react-redux'
 import React from 'react'
 import reactDOM from 'react-dom'
@@ -12,14 +13,17 @@ import getInitialState from './get-initial-state'
 import MetronomeStatus from './providers/MetronomeStatus'
 import WalletVersion from './providers/WalletVersion'
 
-import ChainWarning from './components/ChainWarning'
-import AppsPage from './components/AppsPage'
-import HomePage from './components/pages/HomePage'
-import AuctionPage from './components/pages/AuctionPage'
 import DashboardPage from './components/pages/DashboardPage'
+import AuctionPage from './components/pages/AuctionPage'
+import AppsPage from './components/pages/AppsPage'
+import HomePage from './components/pages/HomePage'
 
-import AuctionPanel from './components/AuctionPanel'
+import ConvertPanel from './components/ConvertPanel'
+import ChainWarning from './components/ChainWarning'
 import WalletInfo from './providers/WalletInfo'
+import BuyPanel from './components/BuyPanel'
+import Tooltips from './components/Tooltips'
+import theme from './theme'
 
 analytics.init()
 
@@ -29,7 +33,7 @@ if (module.hot) {
 
 if (config.env === 'production' && window.Raven) {
   window.Raven.config(config.sentryDns).install()
-  window.addEventListener('unhandledrejection', function (e) {
+  window.addEventListener('unhandledrejection', function(e) {
     window.Raven.captureException(e.reason)
   })
 }
@@ -37,13 +41,13 @@ if (config.env === 'production' && window.Raven) {
 const reduxDevtoolsOptions = {
   features: { dispatch: true },
   actionCreators: {
-    showPanel: () => ({ type: 'SHOW_BUY_PANEL', payload: true })
+    showPanel: (payload = true) => ({ type: 'SHOW_BUY_PANEL', payload })
   }
 }
 
 const store = createStore(reduxDevtoolsOptions, getInitialState(config))
 
-function getAppContent (content) {
+function getAppContent(content) {
   switch (content) {
     case 'home':
       return <HomePage />
@@ -65,14 +69,18 @@ if (rootElement) {
 
   reactDOM.render(
     <Provider store={store}>
-      <React.Fragment>
-        <WalletInfo />
-        <MetronomeStatus />
-        <WalletVersion />
-        <ChainWarning />
-        {getAppContent(rootContent)}
-        <AuctionPanel/>
-      </React.Fragment>
+      <ThemeProvider theme={theme}>
+        <React.Fragment>
+          <WalletInfo />
+          <MetronomeStatus />
+          <WalletVersion />
+          <ChainWarning />
+          {getAppContent(rootContent)}
+          <ConvertPanel />
+          <BuyPanel />
+          <Tooltips />
+        </React.Fragment>
+      </ThemeProvider>
     </Provider>,
     rootElement
   )

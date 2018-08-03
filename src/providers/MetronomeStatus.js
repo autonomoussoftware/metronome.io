@@ -1,9 +1,16 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import createMetronomeStatusStream from 'metronome-status'
+import PropTypes from 'prop-types'
 
 class MetronomeStatus extends Component {
-  componentDidMount () {
+  static propTypes = {
+    metApiUrl: PropTypes.string.isRequired,
+    onError: PropTypes.func.isRequired,
+    onData: PropTypes.func.isRequired
+  }
+
+  componentDidMount() {
     this.statusStream = createMetronomeStatusStream({
       web3currentProvider: window.web3 && window.web3.currentProvider,
       metApiUrl: this.props.metApiUrl
@@ -12,11 +19,11 @@ class MetronomeStatus extends Component {
     this.statusStream.on('error', this.props.onError)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.statusStream.destroy()
   }
 
-  render () {
+  render() {
     return null
   }
 }
@@ -26,7 +33,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onData ({ auction, converter }) {
+  onData({ auction, converter }) {
     dispatch({
       type: 'UPDATE_AUCTION_STATUS',
       payload: auction
@@ -36,10 +43,14 @@ const mapDispatchToProps = dispatch => ({
       payload: converter
     })
   },
-  onError: payload => dispatch({
-    type: 'METRONOME_STATUS_ERROR',
-    payload
-  })
+  onError: payload =>
+    dispatch({
+      type: 'METRONOME_STATUS_ERROR',
+      payload
+    })
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(MetronomeStatus)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MetronomeStatus)

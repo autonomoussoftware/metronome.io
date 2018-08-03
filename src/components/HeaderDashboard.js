@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+
 import AuctionCounter from './AuctionCounter'
 import AuctionTokens from './AuctionTokens'
-import { connect } from 'react-redux'
 
 class HeaderDashboard extends Component {
-  render () {
+  static propTypes = {
+    isAuctionActive: PropTypes.bool.isRequired
+  }
+
+  render() {
     return (
       <div className="container__row container__dashboard-header-components">
-        <div className="container__header-top-border"></div>
+        <div className="container__header-top-border" />
         <div className="chart__main-inner-container">
           <div className="container__mtn-auction-inner">
             <div className="container__counter">
@@ -15,8 +21,7 @@ class HeaderDashboard extends Component {
                 <span className="label__title">
                   {this.props.isAuctionActive
                     ? 'Auction Time Remaining'
-                    : 'Next Auction Starts In'
-                  }
+                    : 'Next Auction Starts In'}
                 </span>
                 <div className="AuctionCounter--inner">
                   <AuctionCounter />

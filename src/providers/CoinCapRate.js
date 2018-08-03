@@ -1,17 +1,25 @@
 import { Component } from 'react'
-import coincap from 'coincap-lib'
+import PropTypes from 'prop-types'
 import throttle from 'lodash.throttle'
+import coincap from 'coincap-lib'
 
 class CoinCapRate extends Component {
-  componentDidMount () {
-    const emitPrice = throttle(
-      this.props.onData,
-      15000,
-      { leading: true, trailing: false }
-    )
+  static propTypes = {
+    onData: PropTypes.func.isRequired
+  }
 
-    coincap.on('trades', function (trade) {
-      const { coin, market_id: marketId, msg: { price } } = trade
+  componentDidMount() {
+    const emitPrice = throttle(this.props.onData, 15000, {
+      leading: true,
+      trailing: false
+    })
+
+    coincap.on('trades', function(trade) {
+      const {
+        coin,
+        market_id: marketId,
+        msg: { price }
+      } = trade
 
       if (coin !== 'ETH' || marketId !== 'ETH_USD') {
         return
@@ -26,13 +34,13 @@ class CoinCapRate extends Component {
     coincap.open()
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     coincap.off('trades')
 
     coincap.close()
   }
 
-  render () {
+  render() {
     return null
   }
 }
