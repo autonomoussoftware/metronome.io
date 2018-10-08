@@ -351,6 +351,15 @@
 // a {
 //   cursor: pointer;
 // }
+
+.navbar-brand img {
+  max-width: 215px;
+
+  @media (min-device-width: 360px) {
+    max-width: 253px;
+  }
+}
+
 .App, #root {
   height: 100%;
   width: 100%;
@@ -2496,9 +2505,11 @@ span.alert-text-warning {
   }
 }
 
-.navbar-collapse.collapse.show {
+.navbar-collapse.show,
+.navbar-collapse.collapsing {
   overflow-y: auto;
-  max-height: 95vh;
+  max-height: 80vh;
+  padding-bottom: 25px;
 }
 
 .blink {
