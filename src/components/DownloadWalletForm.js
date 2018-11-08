@@ -8,7 +8,6 @@ class AuctionPanelDetectOS extends Component {
   render () {
     const {
       currentOS,
-      downloadWalletUrl,
       walletInstaller
     } = downloadHelper(this.props.desktopAppVersion)
 
@@ -16,7 +15,7 @@ class AuctionPanelDetectOS extends Component {
       <div className="auction-panel__os-container">
         {walletInstaller
           ? <React.Fragment>
-            <a className="btn btn-lrg" {...{ href: `${downloadWalletUrl}.${walletInstaller.ext}` }}>
+            <a className="btn btn-lrg" href={walletInstaller.url}>
               <span className="btn-text">Download Metronome Wallet</span>
               <span className="btn-icon --down"><img alt="" src={arrowIcon} /></span>
             </a>

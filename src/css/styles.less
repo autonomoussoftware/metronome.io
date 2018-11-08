@@ -2099,14 +2099,15 @@ a.overview__current-auction-error-link {
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
-    line-height: normal;
+    line-height: 80px;
     color: @purple;
     margin: 0px;
     padding: 0px;
+    letter-spacing: -2px;
   }
   .downloads__content-container {
     width: 100%;
-    padding-top: 45px;
+    padding-top: 65px;
     text-align: center;
     display: inline-block;
     position: relative;
@@ -2121,6 +2122,14 @@ a.overview__current-auction-error-link {
     position: relative;
     top: -25px;
     margin-bottom: 25px;
+
+    h2 {
+      font-family: Muli;
+      font-size: 24px;
+      font-weight: normal;
+      line-height: 1;
+      color: @white;
+    }
   }
   .btn {
     display: inline-block;
@@ -2145,14 +2154,21 @@ a.overview__current-auction-error-link {
     font-size: 13px;
     position: relative;
     display: block;
-    margin-top: 15px;
+    margin-top: 24px;
   }
   .downloads__app-screenshot {
     position: relative;
     z-index: 10;
     margin-top: 25px;
+    background: url(/images/bg-envelope.svg) no-repeat bottom center;
+    background-size: contain;
+
     .parallax__layer;
     .parallax__layer--back;
+
+    img {
+      max-width: 80vw;
+    }
   }
   .envelope {
     position: relative;
@@ -2161,7 +2177,8 @@ a.overview__current-auction-error-link {
   .envelope__footer {
     background-color: @grayLightest;
     width: 100%;
-    padding: 25px 0 25px 0;
+    padding: 150px 0 25px 0;
+    margin-top: -125px;
     display: inline-block;
     text-align: center;
     clear: both;
@@ -2177,7 +2194,6 @@ a.overview__current-auction-error-link {
     }
     .envelope__footer-downloads {
       position: relative;
-      display: inline-block;
       clear: both;
       margin: 0 auto;
       .btn {
@@ -2186,17 +2202,19 @@ a.overview__current-auction-error-link {
         padding-left: 25px;
       }
       ul {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
         margin: 0px;
         padding: 0px;
         list-style-type: none;
         li {
-          float: left;
-          margin-right: 10px;
+          margin: 10px;
         }
       }
     }
     .envelope__footer-coming-soon {
-      font-size: 16px;
+      font-size: 13px;
       display: block;
       font-weight: normal;
       font-style: normal;
@@ -2204,12 +2222,10 @@ a.overview__current-auction-error-link {
       line-height: normal;
       letter-spacing: normal;
       text-align: center;
+      text-decoration: underline;
       color: #525252;
-      margin-top: 45px;
-      margin-bottom: 85px;
-    }
-    span.span__strong {
-      color: @purple;
+      margin-top: 16px;
+      margin-bottom: 48px;
     }
   }
 }

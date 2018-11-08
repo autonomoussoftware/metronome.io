@@ -7,8 +7,7 @@ class AppsDownloadButton extends Component {
   render () {
     const {
       currentOS,
-      baseReleasetUrl,
-      downloadWalletUrl,
+      baseReleaseUrl,
       walletInstaller,
       walletInstallers
     } = downloadHelper(this.props.desktopAppVersion)
@@ -21,11 +20,11 @@ class AppsDownloadButton extends Component {
               <img src="/images/metronome-apps-logo.png" alt="metronome-apps-logo"/>
             </div>
             <div className="downloads__title-container">
-              <h1 className="downloads__header-title">Download the Desktop App</h1>
-              <h2>Get started with the Metronome Wallet</h2>
+              <h1 className="downloads__header-title">Download the App</h1>
+              <h2 className="mt-2">Get started with the Metronome Wallet</h2>
             </div>
-            {walletInstaller && <a {...{ href: `${downloadWalletUrl}.${walletInstaller.ext}` }} className="btn">
-              Download For {walletInstaller.os} {currentOS.version}
+            {walletInstaller && <a href={walletInstaller.url} className="btn">
+              Download For {currentOS.name} {currentOS.version}
             </a>}
             <a href="#download-options" className="link__sm">See all download options</a>
             <div className="downloads__app-screenshot">
@@ -38,29 +37,33 @@ class AppsDownloadButton extends Component {
             </div>
           </div>
           <div className="envelope__footer" id="download-options">
-            <div className="envelope">
-              <div className="envelope__left"></div>
-              <div className="envelope__right"></div>
-            </div>
-            <h2>All Download Options</h2>
+            <h2>Desktop Downloads</h2>
             <div className="envelope__footer-downloads">
               <ul>
-                <li><a {...{ href: `${downloadWalletUrl}.${walletInstallers.find(w => w.os === 'Mac OS').ext}` }} className="btn">
+                <li><a href={walletInstallers['Mac OS'].url} className="btn">
                   Download For Mac OS
                 </a></li>
-                <li><a {...{ href: `${downloadWalletUrl}.${walletInstallers.find(w => w.os === 'Windows').ext}` }} className="btn">
+                <li><a href={walletInstallers['Windows'].url} className="btn">
                   Download For Windows
                 </a></li>
-                <li><a {...{ href: `${downloadWalletUrl}.${walletInstallers.find(w => w.os === 'Ubuntu').ext}` }} className="btn">
+                <li><a href={walletInstallers['Ubuntu'].url} className="btn">
                   Download For Linux
                 </a></li>
               </ul>
             </div>
             <div data-toggle="scroll__here" className="envelope__footer-coming-soon">
-              Or view the <a href={baseReleasetUrl} target="_blank">releases</a>
+              <a href={baseReleaseUrl} target="_blank">View all releases</a>
             </div>
-            <div data-toggle="scroll__here" className="envelope__footer-coming-soon">
-              <span className="span__strong">Coming soon</span> to the App Store and Google Play
+            <h2>Mobile Downloads</h2>
+            <div className="envelope__footer-downloads mb-5">
+              <ul>
+                <li><a href={walletInstallers['iOS'].url} className="">
+                  <img alt="Download on the App Store" src="/images/appstore-btn.svg" />
+                </a></li>
+                <li><a href={walletInstallers['Android'].url} className="">
+                  <img alt="Get it on Google play" src="/images/gplay-btn.svg" />
+                </a></li>
+              </ul>
             </div>
           </div>
         </div>
