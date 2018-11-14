@@ -1,5 +1,10 @@
 {
   "name": "metronome-site",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:autonomoussoftware/metronome.io.git"
+  },
+  "license": "MIT",
   "scripts": {
     "start": "concurrently \"PORT=3001 react-app-rewired start\" \"npm run watch-less\"",
     "build": "react-app-rewired build",
@@ -22,8 +27,8 @@
     "coincap-lib": "1.0.0",
     "lodash.throttle": "4.1.1",
     "metronome-auction-logs-parser": "file:lib/metronome-auction-logs-parser-js",
-    "metronome-status": "file:lib/metronome-status-js",
     "metronome-contracts": "1.4.1",
+    "metronome-status": "file:lib/metronome-status-js",
     "moment": "2.22.2",
     "p-retry": "2.0.0",
     "react": "16.4.1",
@@ -32,7 +37,7 @@
     "react-dom": "16.4.1",
     "react-less-watcher": "1.1.4",
     "react-redux": "5.0.7",
-    "react-scripts": "1.1.4",
+    "react-scripts": "1.1.5",
     "redux": "4.0.0",
     "redux-actions": "2.4.0",
     "redux-localstorage": "0.4.1",
