@@ -14,7 +14,7 @@ if(isset($_POST['submit'])){
 		Location: " .$location. "<br>
 		Event/Meet Up Link: " .$url. "<br>
 		Comment: " .$comment;
-	$redirect = "https://metronome.io/thank-you/";
+	$redirect = "/thank-you/";
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 	$headers .= 'From: metronome.io <connect@metronome.io>' . "\r\n";
