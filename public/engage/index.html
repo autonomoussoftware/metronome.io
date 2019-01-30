@@ -1,0 +1,292 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Metronome: The Built-to-Last Cryptocurrency</title>
+
+    <link href="../css/fonts.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN">
+
+    <meta name="description" content="The Built-to-Last Cryptocurrency">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="../css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB">
+    <link rel="stylesheet" href="../css/styles.min.css?v=5.0">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%-htmlWebpackPlugin.options.params.gaTrackingId%>"></script>
+    <script src="../js/lib/raven.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <style>
+      @keyframes loader {
+        from {left: -100px; width: 30%;}
+        50% {width: 30%;}
+        70% {width: 70%;}
+        80% { left: 50%;}
+        95% {left: 120%;}
+        to {left: 100%;}
+      }
+      #loader-container {
+        min-height: 100vh;
+        padding-top: 50vh;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      #loader {
+         width: 100%;
+         background-color: rgba(126, 97, 248, 0.2);
+         padding: 2px;
+         border-radius: 8px;
+      }
+      #loader-bar {
+        position: relative;
+        overflow: hidden;
+        height: 4px;
+        border-radius: 2px;
+      }
+      #loader-bar:before {
+        border-radius: 4px;
+        height: 4px;
+        display: block;
+        position: absolute;
+        content: '';
+        left: -200px;
+        width: 200px;
+        background-color: #7e61f8;
+        animation: loader 2s linear infinite;
+      }
+    </style>
+  </head>
+  <body class="engage features">
+    <div class="shim"></div>
+    <header>
+    <nav class="navbar navbar-expand-xl navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/"><img src="../images/logo.png" alt="Metronome"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item" id="n-about">
+              <a class="nav-link" href="/#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/features/">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link dropdown-toggle" href="#" id="s-owners-manual" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Owner's Manual
+              </a>
+              <div class="dropdown-menu" aria-labelledby="s-owners-manual">
+                <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md" target="_blank">English</a>
+                <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_zh_CN.md" target="_blank">Chinese (Simplified) 中文</a>
+                <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_jp.md" target="_blank">Japanese 日本語</a>
+                <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_ko.md" target="_blank">Korean 한국어</a>
+                <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_ru.md" target="_blank">Russian русский</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/apps/" id="s-timeline">Wallet</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/#team-content" id="s-team"> Team</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/engage">Engage</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/media-kit">Media Kit</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md" target="_blank">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/auction">Auction</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    </header>
+    <!--[if lte IE 9]>
+      <div class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</div>
+    <![endif]-->
+
+    <!-- Content -->
+
+    <!-- Dynamic content -->
+    <div id="root" content="none">
+      <div id="loader-container">
+        <div id="loader"><div id="loader-bar"></div></div>
+      </div>
+    </div>
+    <!-- /Dynamic content -->
+    <div id="top" class="site-section">
+      <div id="top-particle"></div>
+      <div class="container">
+        <h1 class="text-center extra-bold">Engage</h1>
+      </div>
+    </div>
+
+    <div class="about site-section">
+      <div class="container squeeze">
+
+        <div class="row feature-set">
+          <div class="col-sm-11">
+            <p class="lead">Metronome is a community-driven and community-defined cryptocurrency, built to live across multiple blockchains.</p>
+            <p>&nbsp;</p>
+            <p class="lead">Want to strengthen your Metronome community, or build a new one? Here are some resources to create your own Metronome meetup, or make existing ones even stronger.</p>
+          </div>
+        </div>
+        <div class="row feature-set manual">
+	      <div class="col-sm-11">
+	      	<h2>Owner's Manual</h2>
+	          <p>Metronome’s definitive document, outlining the ethos and motivations for building it, along with API information and contract behavior.</p>
+	          <p><a href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md" target="_blank">Download Owner's Manual &raquo;</a></p>
+	      </div>
+	    </div>
+	    <hr>
+        <div class="row feature-set logos">
+	      <div class="col-sm-11">
+		    <h2>Logos</h2>
+		    <p>Make your own stickers, printouts, and posters.</p>
+	      </div>
+	      <div class="col-sm-4">
+		     <h4>Logo</h4>
+	     	 <img src="../images/media-logo.png" alt="Metronome Logo" class="img-fluid" />
+	     	 <p><a class="dl-link" href="/download/Metronome_logo.zip">Download »</a></p>
+	      </div>
+	      <div class="col-sm-4">
+		     <h4>Secondary Logo</h4>
+	     	 <img src="../images/engage-secondary-logo.png" alt="Metronome Secondary Logo" class="img-fluid" />
+	     	 <p><a class="dl-link" href="/download/Metronome_Secondary_Logo.zip">Download »</a></p>
+	      </div>
+	      <div class="col-sm-4">
+		     <h4>Token Icon</h4>
+	     	 <img src="../images/engage-token-icon.png" alt="Metronome Token Icon" class="img-fluid" />
+	     	 <p><a class="dl-link" href="/download/Metronome_Token_Icon.zip">Download »</a></p>
+	      </div>
+	    </div>
+	    <hr>
+        <div class="row feature-set connect">
+          <div class="col-sm-6">
+	          <div class="col-squeeze">
+	            <h2>Speak with the MET Team</h2>
+	            <p>The team enjoys meeting the community. Reach out to us to check availability. Enough of us travel or otherwise work remotely such that we might be in your area.</p>
+	            <form id="contact-met" action="sendmail.php" method="POST" encType="multipart/form-data">
+				    <input type="text" name ="name" placeholder="Name*" required /><br />
+				    <input type="email" name ="email" placeholder="Email Address*" required/><br />
+				    <input type="text" name ="location" placeholder="Your Location" /><br />
+				    <input type="text" name ="url" placeholder="Event/Meet Up Link" /><br />
+				    <textarea name="comment" placeholder="Comment" rows="8" cols="50"></textarea><br />
+				    <div class="g-recaptcha" data-sitekey="6LdupogUAAAAAPCdYIzKH_J6cheVaJptZZ3-gfMK"></div><br />
+				    <input type="submit" name="submit" value="Submit" />
+				</form>
+            </div>
+          </div>
+          <div class="col-sm-6">
+	        <div class="col-squeeze">
+		  	  <h2>Become a community leader</h2>
+		  	  <p>Reach out to us on Telegram, or at <a href="mailto:info@metronome.io" target="_blank" title="Email Metronome">info@metronome.io</a></p>
+		  	  <p><a href="https://t.me/metronometoken" target="_blank" title="Metronome @ Telegram"><img src="../images/metronome-connect.jpg" alt="Connect with Metronome" class="img-fluid" /></a></p>
+	        </div>
+          </div>
+        </div>
+		<hr>
+		<div class="row feature-set slides">
+	      <div class="col-sm-11">
+	      	<h2>Slides and Other Resources</h2>
+		  	<p>Review and download the slides for our talks, as well as a general Metronome presentation. Feel free to use them for your local MET community.</p>
+	      </div>
+	      <div class="col-sm-4">
+		      <h4>General Presentation</h4>
+		      <img src="../images/resource-general.jpg" alt="General Presentation" class="img-fluid" />
+		      <p><a class="dl-link" href="/download/MET_General_Presentation.pdf" target="_blank">Download »</a></p>
+	      </div>
+	      <div class="col-sm-4">
+		      <h4>Oslo Talk Presentation</h4>
+		      <img src="../images/resource-oslo.jpg" alt="Oslo Talk Presentation" class="img-fluid" />
+		      <p><a class="dl-link" href="/download/MET_Oslo_Presentation.pdf" target="_blank">Download »</a></p>
+	      </div>
+	      <div class="col-sm-4">
+		      <h4>Toronto Talk Presentation</h4>
+		      <img src="../images/resource-toronto.jpg" alt="Toronto Talk Presentation" class="img-fluid" />
+		      <p><a class="dl-link" href="/download/MET_Toronto_Presentation.pdf" target="_blank">Download »</a></p>
+	      </div>
+	      <div class="col-sm-4">
+		      <h4>Why MET is Different</h4>
+		      <img src="../images/resource-top-5.png" alt="Why MET is Different" class="img-fluid" />
+		      <p><a class="dl-link" href="/download/MET_Top_5_Reasons.pdf" target="_blank">Download »</a></p>
+	      </div>
+	    </div>
+
+      </div><!-- /container-squeeze -->
+    </div><!-- /about -->
+    <!-- /Content -->
+
+    <footer class="footer site-section" role="footer">
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col-md">
+            <h3>Resources:</h3>
+             <ul>
+              <li><a href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md" target="_blank">Owner's Manual</a></li>
+              <li><a href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md" target="_blank">Metronome FAQ</a></li>
+              <li><a href="https://github.com/autonomoussoftware" target="_blank">GitHub</a></li>
+              <li><a href="/media-kit">Media Kit</a></li>
+              <li><a href="/apps">Wallet</a></li>
+            </ul>
+          </div>
+          <div class="col-md">
+            <h3>Stay Updated:</h3>
+            <div class="sendgrid">
+              <script type="text/javascript" src="//sgwidget.leaderapps.co/js/sendgrid-widget.js"></script><style>.sendgrid-subscription-widget .response{display:none;font-family:sans-serif;font-size:.8em}.sendgrid-subscription-widget .success{color:#7e61f8;text-align: center;}.sendgrid-subscription-widget .error{color:red}</style><div id="sendgrid-subscription-widget" class="sendgrid-subscription-widget" ><form id="sg-widget" data-token="ad8b1f4cd2963a816efc51879519201e" onsubmit="return false;">
+                  <input id="sg_email" class="email" type="email" name="sg_email" placeholder="Email Address" required><br>
+                  <input type="submit" id="sg-submit-btn" class="btn" value="SIGN UP FOR UPDATES">
+                  <div class="sg-response" id="sg-response"></div>
+              </form></div>
+            </div>
+          </div>
+          <div class="col-md">
+            <h3>Connect + Collaborate</h3>
+            <div class="social">
+              <a href="https://github.com/autonomoussoftware" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
+              <a href="https://t.me/metronometoken" target="_blank"><i class="fa fa-telegram" aria-hidden="true"></i></a>
+              <a href="https://twitter.com/MTNToken" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+              <a href="https://www.reddit.com/r/metronometoken" target="_blank"><i class="fa fa-reddit-alien" aria-hidden="true"></i></a>
+              <a href="https://www.facebook.com/MetronomeToken/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+              <a href="https://medium.com/@MetronomeToken" target="_blank"><i class="fa fa-medium" aria-hidden="true"></i></a>
+            </div>
+
+          </div>
+          <div class="col-md">
+            <h3>Additional Info:</h3>
+            <ul>
+              <li><a href="/privacy/">Privacy Policy</a></li>
+              <li>All Rights Reserved.</li>
+
+              <li>Site Design by <a href="http://www.thinkonramp.com/" target="_blank">Onramp</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+    <script src="../js/lib/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="></script>
+    <script src="../js/lib/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"></script>
+    <script src="../js/lib/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"></script>
+    <script src="../js/lib/particles.min.js"></script>
+
+    <script src="../js/main.js"></script>
+
+  </body>
+</html>

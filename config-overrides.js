@@ -14,7 +14,9 @@ module.exports = {
       'media-kit/index.html',
       'apps/index.html',
       'auction/index.html',
-      'dashboard/index.html'
+      'dashboard/index.html',
+      'engage/index.html',
+      'thank-you/index.html'
     ]
 
     pages.forEach(function (filename) {
