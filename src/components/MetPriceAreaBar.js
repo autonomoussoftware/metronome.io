@@ -1,21 +1,194 @@
+import { VictoryAxis, VictoryBar, VictoryChart, VictoryLine } from 'victory'
+import React, { Component } from 'react'
+import { VictoryTheme } from 'victory-core'
+import smartRounder from 'smart-round'
+import shrinkArray from 'shrink-array'
 import { connect } from 'react-redux'
 import { fromWei } from 'web3-utils'
-import {
-  VictoryAxis,
-  VictoryBar,
-  VictoryChart,
-  VictoryLine
-} from 'victory'
-import { VictoryTheme } from 'victory-core'
-import React, { Component } from 'react'
 import BigNumber from 'bignumber.js'
+import styled from 'styled-components'
 import moment from 'moment'
-import shrinkArray from 'shrink-array'
 import last from 'shrink-array/last'
-import smartRounder from 'smart-round'
 
-import EthValue from './EthValue'
 import DollarValue from './DollarValue'
+import EthValue from './EthValue'
+
+const Container = styled.section`
+  margin-top: 32px;
+`
+
+const Title = styled.h2`
+  margin: 24px 0 8px 0;
+  font-size: 24px;
+  font-weight: 500;
+`
+
+const RowContainer = styled.div`
+  display: flex;
+  align-items: baseline;
+`
+
+const PriceLabel = styled.div`
+  margin-right: 16px;
+`
+
+const EthPrice = styled.div`
+  font-family: Roboto Mono;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.8px;
+  color: #7e61f8;
+  margin-right: 16px;
+`
+
+const UsdPrice = styled.div`
+  font-family: Roboto Mono;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.8;
+  letter-spacing: normal;
+  color: #7e61f8;
+`
+
+const Dropdown = styled.div`
+  position: relative;
+  margin: -32px 0 0 0;
+  float: right;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: ${p =>
+    p.isActive ? 'rgba(126,97,248,0.1)' : 'transparent'};
+  text-transform: uppercase;
+  cursor: pointer;
+`
+
+const DropdownBtn = styled.span`
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.14;
+  letter-spacing: 1.6px;
+`
+
+const DropdownPanel = styled.div`
+  background-color: rgb(218, 211, 246);
+  position: absolute;
+  margin: 18px 0px 0px 0px;
+  padding: 0px;
+  border-radius: 5px;
+  text-transform: none;
+  width: 200px;
+  z-index: 20;
+  left: -50px;
+`
+
+const DropdownItemsContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 5px;
+`
+
+const DropdownItemsList = styled.ul`
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+`
+
+const DropdownItem = styled.li`
+  background-color: ${p => (p.isActive ? '#c6bcf6' : 'transparent')};
+  margin: 0px;
+  color: #202020;
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+
+  &:hover {
+    background-color: #e5e0fd;
+  }
+`
+
+const Arrow = styled.span`
+  width: 0;
+  height: 0;
+  top: 12px;
+  margin: 0 auto;
+  position: relative;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #7e61f8;
+  margin-left: 8px;
+`
+
+const ArrowUp = styled.div`
+  width: 0;
+  height: 0;
+  top: -8px;
+  left: 90px;
+  margin: 0 auto;
+  position: absolute;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid rgb(218, 211, 246);
+`
+
+const ChartKeys = styled.div`
+  clear: both;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0 15px 0 15px;
+  position: relative;
+`
+
+const ChartKeyItem = styled.div`
+  margin: 0 15px;
+  display: flex;
+  align-items: center;
+`
+
+const ChartKeyLabel = styled.div`
+  font-size: 11px;
+  font-weight: 500;
+`
+
+const SoldKeyBox = styled.div`
+  background-color: #7e61f8;
+  border-radius: 4px;
+  display: inline-block;
+  height: 16px;
+  margin-right: 10px;
+  width: 16px;
+`
+
+const PriceKeyBox = styled.div`
+  background-color: #67686f;
+  border-radius: 4px;
+  display: inline-block;
+  height: 2px;
+  margin: 7px 10px 7px 0;
+  width: 16px;
+`
+
+const ChartContainer = styled.div`
+  height: 400px;
+  width: 100%;
+  position: relative;
+`
+
+const ChartBackground = styled.div`
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+`
+
+const ChartForeground = styled.div`
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+`
 
 const MAX_DATA_POINTS = 500
 
@@ -32,7 +205,7 @@ const foregroudTickStyle = {
   },
   tickLabels: {
     fontSize: '4px',
-    fill: '#fff',
+    fill: '#626262',
     fontFamily: 'inherit',
     fillOpacity: 1,
     margin: 0,
@@ -40,7 +213,7 @@ const foregroudTickStyle = {
   },
   axisLabel: {
     angle: 90,
-    fill: '#fff',
+    fill: '#626262',
     fontFamily: 'inherit',
     fontSize: 4,
     letterSpacing: 1,
@@ -56,14 +229,14 @@ const backgroundTickStyle = {
   },
   tickLabels: {
     fontSize: '4px',
-    fill: '#fff',
+    fill: '#626262',
     fontFamily: 'inherit',
     fillOpacity: 1,
     margin: 0,
     padding: 0
   },
   axisLabel: {
-    fill: '#fff',
+    fill: '#626262',
     fontFamily: 'inherit',
     fontSize: 4,
     letterSpacing: 1,
@@ -81,7 +254,7 @@ const timeWindows = {
 }
 
 class MetPriceAreaBar extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.changeTimeWindow = this.changeTimeWindow.bind(this)
@@ -95,11 +268,10 @@ class MetPriceAreaBar extends Component {
     timeWindow: 'day'
   }
 
-  retrieveData () {
+  retrieveData() {
     const { metApiUrl } = this.props.config
 
-    const now = moment()
-      .unix()
+    const now = moment().unix()
     const from = moment()
       .subtract(timeWindows[this.state.timeWindow])
       .unix()
@@ -110,16 +282,12 @@ class MetPriceAreaBar extends Component {
       .catch(err => this.setState({ err }))
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.retrieveData()
   }
 
-  static getDerivedStateFromProps (props, state) {
-    const {
-      currentAuction,
-      currentPrice,
-      tokensRemaining
-    } = props.auction
+  static getDerivedStateFromProps(props, state) {
+    const { currentAuction, currentPrice, tokensRemaining } = props.auction
 
     const point = {
       currAuction: `${currentAuction}`,
@@ -141,7 +309,7 @@ class MetPriceAreaBar extends Component {
     }
   }
 
-  parseHistory (data) {
+  parseHistory(data) {
     const { grouping } = timeWindows[this.state.timeWindow]
 
     // const shouldGroup = (a, b) =>
@@ -154,8 +322,7 @@ class MetPriceAreaBar extends Component {
         price: new BigNumber(point.currentAuctionPrice || '0')
           .div(1e18)
           .toNumber(),
-        supply: new BigNumber(fromWei(point.minting || '0'))
-          .toNumber(),
+        supply: new BigNumber(fromWei(point.minting || '0')).toNumber(),
         time: point.timestamp * 1000,
         tokensSold: new BigNumber(point.currAuction === '0' ? 8000000 : 2880)
           .times(1e18)
@@ -176,7 +343,7 @@ class MetPriceAreaBar extends Component {
         time: point.group * grouping
       }))
       // group all points within the same target group (!)
-      .reduce(function (groups, point) {
+      .reduce(function(groups, point) {
         const prop = `${point.auction}-${point.time}`
         groups[prop] = groups[prop] || []
         groups[prop].push(point)
@@ -189,18 +356,23 @@ class MetPriceAreaBar extends Component {
         first: group.shift(),
         last: group.pop()
       }))
-      .reduce(function (array, pair) {
-        if (pair.first) { array.push(pair.first) }
-        if (pair.last) { array.push(pair.last) }
+      .reduce(function(array, pair) {
+        if (pair.first) {
+          array.push(pair.first)
+        }
+        if (pair.last) {
+          array.push(pair.last)
+        }
         return array
       }, [])
       // and calculate the tokens sold in the group as the diff from previous
       // group's tokens sold but only if within the same auction
       .map((group, i, array) => ({
         ...group,
-        tokensSoldInGroup: i === 0
-          ? 0
-          : group.auction !== array[i - 1].auction
+        tokensSoldInGroup:
+          i === 0
+            ? 0
+            : group.auction !== array[i - 1].auction
             ? group.tokensSold
             : group.tokensSold - array[i - 1].tokensSold
       }))
@@ -212,120 +384,162 @@ class MetPriceAreaBar extends Component {
     return withTokensSold
   }
 
-  changeTimeWindow (timeWindow) {
+  changeTimeWindow(timeWindow) {
     this.setState({ timeWindow, showDropdown: false }, () =>
       this.retrieveData()
     )
   }
 
-  toggleDropdown () {
+  toggleDropdown() {
     this.setState({ showDropdown: !this.state.showDropdown })
   }
 
   // eslint-disable-next-line complexity
-  render () {
-    const {
-      history: data,
-      showDropdown,
-      timeWindow
-    } = this.state
+  render() {
+    const { history: data, showDropdown, timeWindow } = this.state
 
     const {
-      auction: {
-        isAuctionActive,
-        currentPrice
-      }
+      auction: { isAuctionActive, currentPrice }
     } = this.props
 
     const auctionChartData = this.parseHistory(data)
 
     return (
-      <div className="container__mtn-price">
-        <div className="container__header-top-border"></div>
-        <div className="chart__main-inner-container">
-          <span className="label__title">Charts </span>
-          <div className="chart__main-label">
-            <span className="label__Auction-Price">
-              { isAuctionActive ? 'Current Auction Price' : 'Auction Closing Price:' }
-            </span>
-            <span className="label_-ETH"><EthValue>{currentPrice}</EthValue></span>
-            <span className="label_-USD"><DollarValue>{currentPrice}</DollarValue></span>
-          </div>
-          <div className={`chart__dropdown-time-selector ${showDropdown ? '--active' : ''}`} onClick={this.toggleDropdown}>
-            <span className="label__selector">{timeWindows[timeWindow].label}<span className="arrow-down"></span></span>
-            <div className={`chart__dropdown-time-selector--dropdown ${showDropdown ? '--show' : ''}`}>
-              <div className="arrow-up"></div>
-              <div className="chart__dropdown-time-selector-items">
-                <ul>
-                  <li onClick={() => this.changeTimeWindow('quarter')} className={timeWindow === 'quarter' ? '--active' : ''}><a>15 Minutes</a></li>
-                  <li onClick={() => this.changeTimeWindow('hour')} className={timeWindow === 'hour' ? '--active' : ''}><a>Hour</a></li>
-                  <li onClick={() => this.changeTimeWindow('six')} className={timeWindow === 'six' ? '--active' : ''}><a>6 Hours</a></li>
-                  <li onClick={() => this.changeTimeWindow('twelve')} className={timeWindow === 'twelve' ? '--active' : ''}><a>12 Hours</a></li>
-                  <li onClick={() => this.changeTimeWindow('day')} className={timeWindow === 'day' ? '--active' : ''}><a>Day</a></li>
-                  <li onClick={() => this.changeTimeWindow('week')} className={timeWindow === 'week' ? '--active' : ''}><a>7 Days</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="chart__keys">
-            <div className="supply__available-container">
-              <div className="supply__available-box"></div>
-              <span>Tokens Sold</span>
-            </div>
-            <div className="price__available-container">
-              <div className="price__available-box"></div>
-              <span>Auction Price</span>
-            </div>
-          </div>
-          <div className="chart__victory-container">
-            <div className="chart__victory-foreground">
-              <VictoryChart
-                domainPadding={5}
-                minDomain={{ y: 0 }}
-                height={130}
-                padding={{ top: 5, bottom: 15, right: 25, left: 25 }}
-                style={{ labels: { fontSize: 2 }, padding: 0 }}
-                theme={VictoryTheme.material}>
-                <VictoryAxis
-                  dependentAxis
-                  height={400}
-                  label="PRICE [ETH]"
-                  orientation="right"
-                  style={foregroudTickStyle}
-                  tickFormat={y => `${smartRound(y)}`} />
-                <VictoryLine
-                  data={auctionChartData}
-                  style={{ data: { stroke: '#fff2', strokeWidth: 1 } }}
-                  x="time"
-                  y="price" />
-              </VictoryChart>
-            </div>
-            <div className="chart__victory-background">
-              <VictoryChart
-                domainPadding={5}
-                height={130}
-                padding={{ top: 5, bottom: 15, right: 25, left: 25 }}
-                theme={VictoryTheme.material}>
-                <VictoryAxis
-                  scale={{ x: 'time' }}
-                  style={backgroundTickStyle}
-                  tickCount={10} />
-                <VictoryAxis
-                  dependentAxis
-                  height={400}
-                  label="VOLUME [MET]"
-                  style={backgroundTickStyle}
-                  tickFormat={y => `${smartRound(y)}`} />
-                <VictoryBar
-                  data={auctionChartData}
-                  style={{ data: { fill: '#7e61f8', fillOpacity: 0.3 } }}
-                  x="time"
-                  y="tokensSoldInGroup" />
-              </VictoryChart>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Container>
+        <Title>Charts</Title>
+
+        <RowContainer>
+          <PriceLabel>
+            {isAuctionActive
+              ? 'Current Auction Price: '
+              : 'Auction Closing Price: '}
+          </PriceLabel>
+          <EthPrice>
+            <EthValue>{currentPrice}</EthValue>
+          </EthPrice>
+          <UsdPrice>
+            <DollarValue>{currentPrice}</DollarValue>
+          </UsdPrice>
+        </RowContainer>
+
+        <Dropdown onClick={this.toggleDropdown} isActive={showDropdown}>
+          <DropdownBtn>
+            {timeWindows[timeWindow].label}
+            <Arrow />
+          </DropdownBtn>
+          {showDropdown && (
+            <DropdownPanel>
+              <ArrowUp />
+              <DropdownItemsContainer>
+                <DropdownItemsList>
+                  <DropdownItem
+                    onClick={() => this.changeTimeWindow('quarter')}
+                    isActive={timeWindow === 'quarter'}
+                  >
+                    15 Minutes
+                  </DropdownItem>
+                  <DropdownItem
+                    onClick={() => this.changeTimeWindow('hour')}
+                    isActive={timeWindow === 'hour'}
+                  >
+                    Hour
+                  </DropdownItem>
+                  <DropdownItem
+                    onClick={() => this.changeTimeWindow('six')}
+                    isActive={timeWindow === 'six'}
+                  >
+                    6 Hours
+                  </DropdownItem>
+                  <DropdownItem
+                    onClick={() => this.changeTimeWindow('twelve')}
+                    isActive={timeWindow === 'twelve'}
+                  >
+                    12 Hours
+                  </DropdownItem>
+                  <DropdownItem
+                    onClick={() => this.changeTimeWindow('day')}
+                    isActive={timeWindow === 'day'}
+                  >
+                    Day
+                  </DropdownItem>
+                  <DropdownItem
+                    onClick={() => this.changeTimeWindow('week')}
+                    isActive={timeWindow === 'week'}
+                  >
+                    7 Days
+                  </DropdownItem>
+                </DropdownItemsList>
+              </DropdownItemsContainer>
+            </DropdownPanel>
+          )}
+        </Dropdown>
+
+        <ChartKeys>
+          <ChartKeyItem>
+            <SoldKeyBox />
+            <ChartKeyLabel>Tokens Sold</ChartKeyLabel>
+          </ChartKeyItem>
+          <ChartKeyItem>
+            <PriceKeyBox />
+            <ChartKeyLabel>Auction Price</ChartKeyLabel>
+          </ChartKeyItem>
+        </ChartKeys>
+
+        <ChartContainer>
+          <ChartForeground>
+            <VictoryChart
+              domainPadding={5}
+              minDomain={{ y: 0 }}
+              height={130}
+              padding={{ top: 5, bottom: 15, right: 25, left: 25 }}
+              style={{ labels: { fontSize: 2 }, padding: 0 }}
+              theme={VictoryTheme.material}
+            >
+              <VictoryAxis
+                dependentAxis
+                height={400}
+                label="PRICE [ETH]"
+                orientation="right"
+                style={foregroudTickStyle}
+                tickFormat={y => `${smartRound(y)}`}
+              />
+              <VictoryLine
+                data={auctionChartData}
+                style={{ data: { stroke: '#999', strokeWidth: 1 } }}
+                x="time"
+                y="price"
+              />
+            </VictoryChart>
+          </ChartForeground>
+          <ChartBackground>
+            <VictoryChart
+              domainPadding={5}
+              height={130}
+              padding={{ top: 5, bottom: 15, right: 25, left: 25 }}
+              theme={VictoryTheme.material}
+            >
+              <VictoryAxis
+                scale={{ x: 'time' }}
+                style={backgroundTickStyle}
+                tickCount={10}
+              />
+              <VictoryAxis
+                dependentAxis
+                height={400}
+                label="VOLUME [MET]"
+                style={backgroundTickStyle}
+                tickFormat={y => `${smartRound(y)}`}
+              />
+              <VictoryBar
+                data={auctionChartData}
+                style={{ data: { fill: '#7e61f8', fillOpacity: 0.3 } }}
+                x="time"
+                y="tokensSoldInGroup"
+              />
+            </VictoryChart>
+          </ChartBackground>
+        </ChartContainer>
+      </Container>
     )
   }
 }

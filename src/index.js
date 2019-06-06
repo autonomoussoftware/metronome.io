@@ -1,25 +1,22 @@
 import { Provider } from 'react-redux'
-import React from 'react'
 import reactDOM from 'react-dom'
+import React from 'react'
 
-import './css/styles.css'
-
+import getInitialState from './get-initial-state'
+import createStore from './create-store'
 import analytics from './analytics'
 import config from './config'
-import createStore from './create-store'
-import getInitialState from './get-initial-state'
 
 import MetronomeStatus from './providers/MetronomeStatus'
 import WalletVersion from './providers/WalletVersion'
-
-import ChainWarning from './components/ChainWarning'
-import AppsPage from './components/AppsPage'
-import HomePage from './components/pages/HomePage'
-import AuctionPage from './components/pages/AuctionPage'
-import DashboardPage from './components/pages/DashboardPage'
-
-import AuctionPanel from './components/AuctionPanel'
 import WalletInfo from './providers/WalletInfo'
+
+import DashboardPage from './components/pages/DashboardPage'
+import ChainWarning from './components/ChainWarning'
+import AuctionPage from './components/pages/AuctionPage'
+import HomePage from './components/pages/HomePage'
+import AppsPage from './components/AppsPage'
+import BuyPage from './components/pages/BuyPage'
 
 analytics.init()
 
@@ -29,7 +26,7 @@ if (module.hot) {
 
 if (config.env === 'production' && window.Raven) {
   window.Raven.config(config.sentryDns).install()
-  window.addEventListener('unhandledrejection', function (e) {
+  window.addEventListener('unhandledrejection', function(e) {
     window.Raven.captureException(e.reason)
   })
 }
@@ -43,7 +40,7 @@ const reduxDevtoolsOptions = {
 
 const store = createStore(reduxDevtoolsOptions, getInitialState(config))
 
-function getAppContent (content) {
+function getAppContent(content) {
   switch (content) {
     case 'home':
       return <HomePage />
@@ -53,6 +50,8 @@ function getAppContent (content) {
       return <AuctionPage />
     case 'dashboard':
       return <DashboardPage />
+    case 'buy':
+      return <BuyPage />
     default:
       return null
   }
@@ -71,7 +70,6 @@ if (rootElement) {
         <WalletVersion />
         <ChainWarning />
         {getAppContent(rootContent)}
-        <AuctionPanel/>
       </React.Fragment>
     </Provider>,
     rootElement

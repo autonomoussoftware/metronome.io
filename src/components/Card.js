@@ -4,31 +4,28 @@ import React from 'react'
 
 const Container = styled.div`
   border-radius: 4px;
-  background-color: #3b3b3b;
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.16), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+  background-color: #ffffff;
   height: 100%;
 `
 
 const Title = styled.div`
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.3px;
+  color: #333335;
+  border-bottom: 2px solid #d1d1d1;
   padding: 16px 24px;
-  font-family: Muli;
-  font-size: 14px;
-  line-height: 1.14;
-  letter-spacing: 2px;
-  color: #c1c1c1;
-  text-align: left;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2)
 `
 
 const Body = styled.div`
-  font-family: Muli;
   text-align: left;
 `
 
 export const CardAccent = styled.div`
-  border-top: ${p => p.bt ? '1px solid rgba(0, 0, 0, 0.2)' : 'none'};
-  border-bottom: ${p => p.bb ? '1px solid rgba(0, 0, 0, 0.2)' : 'none'};
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(126, 97, 248, 0.1);
 `
 
 export default class Card extends React.Component {
@@ -37,13 +34,11 @@ export default class Card extends React.Component {
     title: PropTypes.string
   }
 
-  render () {
+  render() {
     return (
       <Container>
         {this.props.title && <Title>{this.props.title}</Title>}
-        <Body>
-          {this.props.children}
-        </Body>
+        <Body>{this.props.children}</Body>
       </Container>
     )
   }

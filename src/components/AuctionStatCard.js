@@ -17,36 +17,44 @@ class AuctionStatCard extends Component {
     this.setState({ chartStatus: 'pending', chartError: null, chartData: [] })
 
     const { metApiUrl } = this.props.config
-    const from = moment().subtract({ days: 7 }).unix()
+    const from = moment()
+      .subtract({ days: 7 })
+      .unix()
     const now = moment().unix()
 
     fetch(`${metApiUrl}/history?from=${from}&to=${now}`)
       .then(response => response.json())
-      .then(chartData => this.setState({
-        chartStatus: 'success',
-        chartError: null,
-        chartData: chartData.map(point => ({
-          x: point.timestamp,
-          y: parseInt(point.currentAuctionPrice, 10)
-        }))
-      }))
-      .catch(err => this.setState({
-        chartStatus: 'failure',
-        chartError: err.message,
-        chartData: []
-      }))
+      .then(chartData =>
+        this.setState({
+          chartStatus: 'success',
+          chartError: null,
+          chartData: chartData.map(point => ({
+            x: point.timestamp,
+            y: parseInt(point.currentAuctionPrice, 10)
+          }))
+        })
+      )
+      .catch(err =>
+        this.setState({
+          chartStatus: 'failure',
+          chartError: err.message,
+          chartData: []
+        })
+      )
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.retrieveData()
   }
 
-  static getDerivedStateFromProps (props, state) {
+  static getDerivedStateFromProps(props, state) {
     const point = {
       y: parseInt(props.auction.currentPrice, 10),
       x: moment().unix()
     }
-    const from = moment().subtract({ days: 7 }).unix()
+    const from = moment()
+      .subtract({ days: 7 })
+      .unix()
     const newChartData = state.chartData.concat(point).filter(p => p.x >= from)
 
     return {
@@ -54,10 +62,10 @@ class AuctionStatCard extends Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <StatCard
-        title="MET AUCTION"
+        title="Daily Auction"
         currentPrice={this.props.auction.currentPrice}
         chartStatus={this.state.chartStatus}
         chartLabel="Auction Price (last 7 days)"

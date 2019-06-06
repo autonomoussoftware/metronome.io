@@ -6,13 +6,13 @@ import MetValue from './MetValue'
 import styled from 'styled-components'
 
 const Container = styled.div`
-  border-top: solid 1px #463f63;
   display: flex;
   margin: 0 auto;
   max-width: 1140px;
   flex-direction: column;
 
-  @media(min-width: 840px) {
+  @media (min-width: 840px) {
+    align-items: center;
     flex-direction: row;
   }
 `
@@ -22,66 +22,70 @@ const CellContainer = styled.div`
   display: flex;
   justify-content: center;
 
-  @media(min-width: 840px) {
+  @media (min-width: 840px) {
     justify-content: flex-start;
   }
 `
 
 const Cell = styled.div`
-  padding: 15px;
-  border-right: solid 1px #202020;
-  border-left: ${p => p.first ? 'solid 1px #202020' : 'none'};
+  padding: ${p => (p.first ? '15px 30px 15px 0' : '15px 30px')};
 `
 
 const Label = styled.div`
   position: relative;
   margin: 5px 0 0 0;
-  color: #fff;
-  font-size: 13px;
-`
-
-const Value = styled.div`
-  color: #45D48D;
   font-size: 16px;
 `
 
-const Button = styled.button`
-  margin: 13px 15px;
-  display: block;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-decoration: none;
-  position: relative;
-  background-color: #fff;
-  padding: 15px 65px 15px 65px;
+const Value = styled.div`
   color: #7e61f8;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: Roboto Mono;
+`
+
+const Btn = styled.a`
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 2.06;
+  letter-spacing: 0.3px;
+  text-align: center;
+  color: #ffffff;
+  background-color: #7e61f8;
+  display: block;
+  text-transform: uppercase;
+  padding: 10px 28px;
+  text-decoration: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    opacity: 0.9;
+    text-decoration: none;
+    color: #ffffff;
+  }
 `
 
 const smartRound = smartRounder(3, 0, 10)
 
 class GeneralStats extends Component {
-  render () {
+  render() {
     const {
-      auction: {
-        auctionSupply,
-        isAuctionActive,
-        remainingPercentage,
-        tokenSupply
-      },
-      onBuyMetronomeClick,
+      auction: { remainingPercentage, auctionSupply, tokenSupply },
       updateEthUsdRate
     } = this.props
 
     return (
       <React.Fragment>
-        <CoinCapRate onData={updateEthUsdRate}/>
+        <CoinCapRate onData={updateEthUsdRate} />
         <Container>
           <CellContainer>
             <Cell first>
               <Label>Market Supply</Label>
-              <Value><MetValue>{tokenSupply}</MetValue></Value>
+              <Value>
+                <MetValue>{tokenSupply}</MetValue>
+              </Value>
             </Cell>
             <Cell>
               <Label>Percentage Sold</Label>
@@ -89,12 +93,12 @@ class GeneralStats extends Component {
             </Cell>
             <Cell>
               <Label>Daily Auction Amount</Label>
-              <Value><MetValue>{auctionSupply}</MetValue></Value>
+              <Value>
+                <MetValue>{auctionSupply}</MetValue>
+              </Value>
             </Cell>
           </CellContainer>
-          <Button onClick={onBuyMetronomeClick} disabled={!isAuctionActive}>
-            Buy Metronome
-          </Button>
+          <Btn href="../buy">Buy Metronome</Btn>
         </Container>
       </React.Fragment>
     )
@@ -107,14 +111,14 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  onBuyMetronomeClick: () => dispatch({
-    type: 'SHOW_BUY_PANEL',
-    payload: true
-  }),
-  updateEthUsdRate: value => dispatch({
-    type: 'UPDATE_RATE',
-    payload: { type: 'ETH_USD', value }
-  })
+  updateEthUsdRate: value =>
+    dispatch({
+      type: 'UPDATE_RATE',
+      payload: { type: 'ETH_USD', value }
+    })
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(GeneralStats)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GeneralStats)

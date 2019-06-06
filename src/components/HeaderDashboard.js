@@ -1,32 +1,56 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import styled from 'styled-components'
+
 import AuctionCounter from './AuctionCounter'
 import AuctionTokens from './AuctionTokens'
-import { connect } from 'react-redux'
+
+const Container = styled.section`
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 840px) {
+    flex-direction: row;
+  }
+`
+
+const Cell = styled.div`
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  margin-top: ${p => (p.first ? '0' : '30px')};
+
+  @media (min-width: 840px) {
+    margin-top: 0;
+    margin-left: ${p => (p.first ? '0' : '60px')};
+    flex-grow: ${p => (p.grow ? '1' : '0')};
+  }
+`
+
+const Label = styled.div`
+  position: relative;
+  margin: 0 0 8px 0;
+  font-size: 16px;
+`
 
 class HeaderDashboard extends Component {
-  render () {
+  render() {
     return (
-      <div className="container__row container__dashboard-header-components">
-        <div className="container__header-top-border"></div>
-        <div className="chart__main-inner-container">
-          <div className="container__mtn-auction-inner">
-            <div className="container__counter">
-              <div className="AuctionCounter">
-                <span className="label__title">
-                  {this.props.isAuctionActive
-                    ? 'Auction Time Remaining'
-                    : 'Next Auction Starts In'
-                  }
-                </span>
-                <div className="AuctionCounter--inner">
-                  <AuctionCounter />
-                </div>
-              </div>
-            </div>
-            <AuctionTokens />
-          </div>
-        </div>
-      </div>
+      <Container>
+        <Cell first>
+          <Label>
+            {this.props.isAuctionActive
+              ? 'Auction Time Remaining'
+              : 'Next Auction Starts In'}
+          </Label>
+          <AuctionCounter />
+        </Cell>
+        <Cell grow>
+          <Label>Auction Tokens Available</Label>
+          <AuctionTokens />
+        </Cell>
+      </Container>
     )
   }
 }

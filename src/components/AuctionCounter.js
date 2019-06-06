@@ -1,9 +1,68 @@
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Countdown from 'react-countdown-now'
-import React, { Component } from 'react'
+import styled from 'styled-components'
+
+const Counter = styled.div`
+  display: flex;
+`
+
+const Value = styled.div`
+  font-family: Roboto Mono;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 48px;
+  text-align: center;
+  color: #7e61f8;
+  background-color: rgba(126, 97, 248, 0.1);
+  min-width: 64px;
+`
+
+const Cell = styled.div`
+  flex-grow: 1;
+  flex-basis: 0;
+
+  & + & > ${Value} {
+    border-left: 1px solid white;
+  }
+
+  &:first-child > ${Value} {
+    border-radius: 12px 0 0 12px;
+  }
+
+  &:last-child > ${Value} {
+    border-radius: 0 12px 12px 0;
+  }
+`
+
+const Label = styled.div`
+  font-family: Roboto;
+  font-size: 13px;
+  line-height: 1.69;
+  letter-spacing: 0.4px;
+  text-align: center;
+  color: rgb(98, 98, 98);
+`
+
+const renderer = ({ hours, minutes, seconds }) => (
+  <Counter>
+    <Cell>
+      <Value>{hours}</Value>
+      <Label>Hours</Label>
+    </Cell>
+    <Cell>
+      <Value>{minutes}</Value>
+      <Label>Mins</Label>
+    </Cell>
+    <Cell>
+      <Value>{seconds}</Value>
+      <Label>Secs</Label>
+    </Cell>
+  </Counter>
+)
 
 class AuctionCounter extends Component {
-  render () {
+  render() {
     const { loading } = this.props
     const {
       currentAuctionEndTime,
@@ -11,27 +70,13 @@ class AuctionCounter extends Component {
       nextAuctionStartTime
     } = this.props.status
 
-    const renderer = ({ days, hours, minutes, seconds, completed }) =>
-      <div>
-        <span className="auction-timer__section">{days}</span>
-        <span className="auction-timer__section">{hours}</span>
-        <span className="auction-timer__section">{minutes}</span>
-        <span className="auction-timer__section">{seconds}</span>
-      </div>
-
     const targetTime = isAuctionActive
       ? currentAuctionEndTime
       : nextAuctionStartTime
 
     return (
-      <div className="container__auction-timer">
+      <div>
         {!loading && <Countdown date={targetTime} renderer={renderer} />}
-        <ul className="auction-timer__labels">
-          <li>Days</li>
-          <li>Hours</li>
-          <li>Mins</li>
-          <li>Secs</li>
-        </ul>
       </div>
     )
   }

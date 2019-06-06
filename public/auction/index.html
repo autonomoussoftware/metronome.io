@@ -1,188 +1,345 @@
-<!doctype html>
-<html class="no-js">
+<!DOCTYPE html>
+<html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Metronome: The Built-to-Last Cryptocurrency</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Metronome | Auction</title>
 
-    <link href="../css/fonts.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../lib/bootstrap/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../lib/fontawesome/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../dist/css/main.css?cb=1554381138394"
+    />
 
-    <meta name="description" content="The Built-to-Last Cryptocurrency">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="../css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/styles.min.css?ver=4.1.1">
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=<%-htmlWebpackPlugin.options.params.gaTrackingId%>"></script>
-    <script src="../js/lib/raven.min.js"></script>
-    <style>
-      @keyframes loader {
-        from {left: -100px; width: 30%;}
-        50% {width: 30%;}
-        70% {width: 70%;}
-        80% { left: 50%;}
-        95% {left: 120%;}
-        to {left: 100%;}
-      }
-      #loader-container {
-        min-height: 100vh;
-        padding-top: 40vh;
-        max-width: 400px;
-        margin: 0 auto;
-      }
-      #loader {
-         width: 100%;
-         background-color: rgba(126, 97, 248, 0.2);
-         padding: 2px;
-         border-radius: 8px;
-      }
-      #loader-bar {
-        position: relative;
-        overflow: hidden;
-        height: 4px;
-        border-radius: 2px;
-      }
-      #loader-bar:before {
-        border-radius: 4px;
-        height: 4px;
-        display: block;
-        position: absolute;
-        content: '';
-        left: -200px;
-        width: 200px;
-        background-color: #7e61f8;
-        animation: loader 2s linear infinite;
-      }
-    </style>
+    <meta name="description" content="The Built-to-Last Cryptocurrency" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../dist/images/metronome_touch_icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../dist/images/metronome_favicon.png"
+    />
   </head>
-  <body class="apps">
-    <div class="shim"></div>
-    <header>
-    <nav class="navbar navbar-expand-xl navbar-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="/"><img src="../images/logo.png" alt="Metronome"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item" id="n-about">
-              <a class="nav-link" href="/#about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/features/">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link dropdown-toggle" href="#" id="s-owners-manual" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Owner's Manual
-              </a>
-              <div class="dropdown-menu" aria-labelledby="s-owners-manual">
-                <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md" target="_blank">English</a>
-                <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_zh_CN.md" target="_blank">Chinese (Simplified) 中文</a>
-                <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_jp.md" target="_blank">Japanese 日本語</a>
-                <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_ko.md" target="_blank">Korean 한국어</a>
-                <a class="dropdown-item" href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_ru.md" target="_blank">Russian русский</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/apps/" id="s-timeline">Wallet</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/#team-content" id="s-team"> Team</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/engage">Engage</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/media-kit">Media Kit</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md" target="_blank">FAQ</a>
-            </li>
-            <li class="nav-item" id="auctions-menu-item">
-              <a class="nav-link active" href="/auction">Auction</a>
-            </li>
-          </ul>
+  <body class="buy">
+    <!-- HEADER -->
+    <div class="white-half"></div>
+    <div class="gray-fade"></div>
+    <header id="masthead" class="site-header">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand" href="/"
+            ><img
+              src="../dist/images/metronome-logo.png"
+              class="d-inline-block align-top"
+              alt="Metronome Logo"
+          /></a>
+          <button
+            class="toggler toggler--3dx"
+            type="button"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="toggler-box">
+              <span class="toggler-inner"></span>
+            </span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="/buy/"
+                  >Buy<span class="sr-only">(current)</span></a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/build/">Build</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/engage/">Engage</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/wallet/">Wallet</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  >About <i class="fas fa-chevron-down txt-purple pl-1"></i
+                ></a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/about/">About MET</a>
+                  <a class="dropdown-item pb-0 disabled" href="/about/#info"
+                    >Owner's Manual</a
+                  >
+                  <ul class="sub-menu">
+                    <li>
+                      <a
+                        href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md"
+                        target="_blank"
+                        >English</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_zh_CN.md"
+                        target="_blank"
+                        >Chinese (Simplified) 中文</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_jp.md"
+                        target="_blank"
+                        >Japanese 日本語</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_ko.md"
+                        target="_blank"
+                        >Korean 한국어</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual_ru.md"
+                        target="_blank"
+                        >Russian русский</a
+                      >
+                    </li>
+                  </ul>
+                  <a
+                    class="dropdown-item"
+                    href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md"
+                    target="_blank"
+                    >FAQ</a
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
     </header>
-    <!--[if lte IE 9]>
-      <div class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</div>
-    <![endif]-->
+    <!-- /HEADER -->
 
-    <!-- Content -->
-    <div id="top" class="site-section">
-      <!-- Dynamic content -->
-      <div id="root" content="auction">
-        <div id="loader-container">
-          <div id="loader"><div id="loader-bar"></div></div>
+    <!-- PAGE -->
+    <section id="top" class="site-section intro">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 welcome">
+            <h1 class="page-title">Hello world!</h1>
+          </div>
         </div>
       </div>
-      <!-- /Dynamic content -->
-    </div>
-    <!-- /Content -->
+    </section>
 
-    <footer class="footer site-section" role="footer">
+    <!-- /PAGE -->
+
+    <!-- FOOTER -->
+    <footer id="colophon" class="site-footer">
       <div class="container">
-        <div class="row justify-content-md-center">
-          <div class="col-md">
-            <h3>Resources:</h3>
-             <ul>
-              <li><a href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md" target="_blank">Owner's Manual</a></li>
-              <li><a href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md" target="_blank">Metronome FAQ</a></li>
-              <li><a href="https://github.com/autonomoussoftware" target="_blank">GitHub</a></li>
-              <li><a href="/media-kit">Media Kit</a></li>
-              <li><a href="/apps">Wallet</a></li>
+        <div class="row">
+          <div class="col-sm-6 col-lg-3">
+            <h5>METRONOME</h5>
+            <ul class="nav flex-column pl-0">
+              <li class="nav-item">
+                <a href="/buy/" class="nav-link">Buy MET</a>
+              </li>
+              <li class="nav-item">
+                <a href="/build/" class="nav-link">Build with Metronome</a>
+              </li>
+              <li class="nav-item">
+                <a href="/engage/" class="nav-link">Engage With Us</a>
+              </li>
+              <li class="nav-item">
+                <a href="/wallet/" class="nav-link">Download the Wallet</a>
+              </li>
+              <li class="nav-item">
+                <a href="/about/" class="nav-link">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a href="/#milestones" class="nav-link">Timeline</a>
+              </li>
             </ul>
           </div>
-          <div class="col-md">
-            <h3>Stay Updated:</h3>
+          <div class="col-sm-6 col-lg-3">
+            <h5>RESOURCES</h5>
+            <ul class="nav flex-column pl-0">
+              <li class="nav-item">
+                <a
+                  href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md"
+                  target="_blank"
+                  class="nav-link"
+                  >The Owner's Manual</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md"
+                  target="_blank"
+                  class="nav-link"
+                  >Frequently Asked Questions</a
+                >
+              </li>
+              <li class="nav-item">
+                <a href="/engage/#tabs" class="nav-link">Media Kit</a>
+              </li>
+              <li class="nav-item">
+                <a
+                  href="https://github.com/autonomoussoftware/"
+                  target="_blank"
+                  class="nav-link"
+                  >Github</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <h5>COLLABORATE</h5>
+            <ul class="nav nav-collaborate flex-column">
+              <li class="nav-item">
+                <a
+                  href="https://twitter.com/MET_Token"
+                  target="_blank"
+                  class="nav-link"
+                  ><i class="fab fa-twitter"></i> Twitter</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="https://medium.com/@MetronomeToken"
+                  target="_blank"
+                  class="nav-link"
+                  ><i class="fab fa-medium-m"></i> Medium</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="https://www.facebook.com/MetronomeToken/"
+                  target="_blank"
+                  class="nav-link"
+                  ><i class="fab fa-facebook-square"></i> Facebook</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="https://t.me/metronometoken"
+                  target="_blank"
+                  class="nav-link"
+                  ><i class="fab fa-telegram-plane"></i> Telegram</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="https://github.com/autonomoussoftware"
+                  target="_blank"
+                  class="nav-link"
+                  ><i class="fab fa-github-alt"></i> Github</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  href="https://www.reddit.com/r/metronometoken"
+                  target="_blank"
+                  class="nav-link"
+                  ><i class="fab fa-reddit-alien"></i> Reddit</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-sm-6 col-lg-3">
+            <h5>CONNECT</h5>
+            <p class="mb-3">
+              Sign up to receive the latest updates from the Metronome team:
+            </p>
             <div class="sendgrid">
-              <script type="text/javascript" src="//sgwidget.leaderapps.co/js/sendgrid-widget.js"></script><style>.sendgrid-subscription-widget .response{display:none;font-family:sans-serif;font-size:.8em}.sendgrid-subscription-widget .success{color:#7e61f8;text-align: center;}.sendgrid-subscription-widget .error{color:red}</style><div id="sendgrid-subscription-widget" class="sendgrid-subscription-widget" ><form id="sg-widget" data-token="ad8b1f4cd2963a816efc51879519201e" onsubmit="return false;">
-                  <input id="sg_email" class="email" type="email" name="sg_email" placeholder="Email Address" required><br>
-                  <input type="submit" id="sg-submit-btn" class="btn" value="SIGN UP FOR UPDATES">
+              <script
+                type="text/javascript"
+                src="//sgwidget.leaderapps.co/js/sendgrid-widget.js"
+              ></script>
+              <style>
+                .sendgrid-subscription-widget .response {
+                  display: none;
+                  font-family: sans-serif;
+                  font-size: 0.8em;
+                }
+                .sendgrid-subscription-widget .success {
+                  color: #7e61f8;
+                  text-align: center;
+                }
+                .sendgrid-subscription-widget .error {
+                  color: red;
+                }
+              </style>
+              <div
+                id="sendgrid-subscription-widget"
+                class="sendgrid-subscription-widget"
+              >
+                <form
+                  id="sg-widget"
+                  data-token="ad8b1f4cd2963a816efc51879519201e"
+                  onsubmit="return false;"
+                >
+                  <input
+                    id="sg_email"
+                    class="email form-control mb-1"
+                    type="email"
+                    name="sg_email"
+                    placeholder="Email Address"
+                    required
+                  />
+                  <input
+                    type="submit"
+                    id="sg-submit-btn"
+                    class="btn btn-primary font-weight-bold w-100"
+                    value="SIGN UP FOR UPDATES &raquo;"
+                  />
                   <div class="sg-response" id="sg-response"></div>
-              </form></div>
+                </form>
+              </div>
             </div>
-          </div>
-          <div class="col-md">
-            <h3>Connect + Collaborate</h3>
-            <div class="social">
-              <a href="https://github.com/autonomoussoftware" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
-              <a href="https://t.me/metronometoken" target="_blank"><i class="fa fa-telegram" aria-hidden="true"></i></a>
-              <a href="https://twitter.com/MET_Token" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-              <a href="https://www.reddit.com/r/metronometoken" target="_blank"><i class="fa fa-reddit-alien" aria-hidden="true"></i></a>
-              <a href="https://www.facebook.com/MetronomeToken/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-              <a href="https://medium.com/@MetronomeToken" target="_blank"><i class="fa fa-medium" aria-hidden="true"></i></a>
-            </div>
-
-          </div>
-          <div class="col-md">
-            <h3>Additional Info:</h3>
-            <ul>
-              <li><a href="/privacy/">Privacy Policy</a></li>
-              <li>All Rights Reserved.</li>
-
-              <li>Site Design by <a href="https://thegrove.co/" target="_blank">The Grove</a></li>
-            </ul>
           </div>
         </div>
-
+        <div class="row copyright mt-5 ml-n1 mr-n1">
+          <div class="col-md-9 mb-5 pl-0">
+            <p>
+              Copyright &copy; Metronome. All Rights Reserved. Site Design by
+              <a href="https://thegrove.co" target="_blank">The Grove</a>
+            </p>
+          </div>
+          <div class="col-md-3 mb-5 pr-0 text-right">
+            <a href="/privacy/">Privacy Policy</a>
+          </div>
+        </div>
       </div>
     </footer>
+    <!-- /FOOTER -->
 
-    <script src="../js/lib/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="></script>
-    <script src="../js/lib/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"></script>
-    <script src="../js/lib/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"></script>
-
+    <!-- SCRIPTS -->
+    <script src="../dist/js/main.js?cb=1554381138394"></script>
   </body>
 </html>

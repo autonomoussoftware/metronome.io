@@ -1,15 +1,11 @@
 import { connect } from 'react-redux'
 import React from 'react'
 
-import AuctionSummary from '../AuctionSummary'
+import AuctionWidget from '../AuctionWidget'
 import METLoader from '../METLoader'
 
-const AuctionsPage = function ({ isLoading }) {
-  return (
-    isLoading
-      ? <METLoader height="200px" />
-      : <AuctionSummary />
-  )
+const AuctionsPage = function({ isLoading }) {
+  return isLoading ? <METLoader height="200px" /> : <AuctionWidget />
 }
 
 const mapStateToProps = state => ({

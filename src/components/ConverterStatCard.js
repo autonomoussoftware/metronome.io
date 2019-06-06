@@ -5,7 +5,10 @@ import StatCard from './StatCard'
 import moment from 'moment'
 import last from 'shrink-array/last'
 
-const sevenDaysAgo = () => moment().subtract({ days: 7 }).unix()
+const sevenDaysAgo = () =>
+  moment()
+    .subtract({ days: 7 })
+    .unix()
 
 class ConverterStatCard extends Component {
   state = {
@@ -25,26 +28,30 @@ class ConverterStatCard extends Component {
     fetch(`${metApiUrl}/history?from=${from}&to=${now}`)
       .then(response => response.json())
       .then(data => data.filter(p => Boolean(p.currentConverterPrice)))
-      .then(data => this.setState({
-        chartStatus: 'success',
-        chartError: null,
-        chartData: data.map(point => ({
-          x: point.timestamp,
-          y: parseInt(point.currentConverterPrice, 10)
-        }))
-      }))
-      .catch(err => this.setState({
-        chartStatus: 'failure',
-        chartError: err.message,
-        chartData: []
-      }))
+      .then(data =>
+        this.setState({
+          chartStatus: 'success',
+          chartError: null,
+          chartData: data.map(point => ({
+            x: point.timestamp,
+            y: parseInt(point.currentConverterPrice, 10)
+          }))
+        })
+      )
+      .catch(err =>
+        this.setState({
+          chartStatus: 'failure',
+          chartError: err.message,
+          chartData: []
+        })
+      )
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.retrieveData()
   }
 
-  static getDerivedStateFromProps (props, state) {
+  static getDerivedStateFromProps(props, state) {
     const point = {
       y: parseInt(props.converter.currentPrice, 10),
       x: moment().unix()
@@ -57,10 +64,10 @@ class ConverterStatCard extends Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <StatCard
-        title="CONVERTER CONTRACT"
+        title="Autonomous Converter"
         extraChartProps={{ minDomain: { x: sevenDaysAgo() } }}
         currentPrice={this.props.converter.currentPrice}
         chartStatus={this.state.chartStatus}

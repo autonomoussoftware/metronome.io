@@ -19,17 +19,19 @@ const PriceContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-family: Muli;
-  font-size: 18px;
-  line-height: 1.2;
-  color: #ffffff;
+  font-family: Roboto Mono;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.8;
+  letter-spacing: normal;
+  color: #7e61f8;
 `
 
 const Value = styled.div`
   padding: 12px 14px;
   border-radius: 12px;
-  background-color: rgba(0, 0, 0, 0.2);
   white-space: nowrap;
+  background-color: rgba(126, 97, 248, 0.1);
 `
 
 const Equals = styled.div`
@@ -37,9 +39,14 @@ const Equals = styled.div`
 `
 
 const DollarContainer = styled.div`
-  margin-top: 16px;
+  margin-top: 8px;
   text-align: right;
+  font-family: Roboto Mono;
   font-size: 13px;
+  font-weight: 500;
+  line-height: 1.8;
+  letter-spacing: normal;
+  color: #7e61f8;
 `
 
 const ChartContainer = styled.div`
@@ -50,19 +57,17 @@ const ChartContainer = styled.div`
 const Loading = styled.div`
   text-align: center;
   font-size: 13px;
-  font-weight: 200;
   margin: 9px 0;
 `
 
 const Label = styled.div`
   text-align: center;
   font-size: 13px;
-  font-weight: 200;
 `
 
 export default class StatCard extends Component {
   // eslint-disable-next-line complexity
-  render () {
+  render() {
     return (
       <Card title={this.props.title}>
         <Accent bb={this.props.chartData.length > 0}>
@@ -106,7 +111,7 @@ export default class StatCard extends Component {
           {this.props.chartStatus === 'failure' && (
             <div className="text-center">
               <button
-                className="btn mt-2"
+                className="btn btn-primary mt-2"
                 onClick={this.props.onRetry}
                 type="button"
               >
