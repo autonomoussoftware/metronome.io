@@ -11,12 +11,11 @@ import MetronomeStatus from './providers/MetronomeStatus'
 import WalletVersion from './providers/WalletVersion'
 import WalletInfo from './providers/WalletInfo'
 
-import DashboardPage from './components/pages/DashboardPage'
-import ChainWarning from './components/ChainWarning'
-import AuctionPage from './components/pages/AuctionPage'
-import HomePage from './components/pages/HomePage'
-import AppsPage from './components/AppsPage'
-import BuyPage from './components/pages/BuyPage'
+import DashboardPage from './components/dashboard/Dashboard'
+import ChainWarning from './components/common/ChainWarning'
+import AuctionPage from './components/auction/Auction'
+import HomePage from './components/home/Home'
+import AppsPage from './components/apps/Apps'
 
 analytics.init()
 
@@ -50,8 +49,6 @@ function getAppContent(content) {
       return <AuctionPage />
     case 'dashboard':
       return <DashboardPage />
-    case 'buy':
-      return <BuyPage />
     default:
       return null
   }

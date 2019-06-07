@@ -18,8 +18,11 @@ export default {
   gaTrackingId: REACT_APP_GA_TRACKING_ID || 'UA-116275666-1',
   metApiUrl: REACT_APP_MET_API_URL || 'https://api.metronome.io',
   metExplorerUrl: REACT_APP_MET_EXPLORER_URL || 'https://explorer.metronome.io',
-  sentryDns: REACT_APP_SENTRY_DNS || 'https://1365248ca55742a9aa18902e80db608b@sentry.io/1231118',
-  googlePlayUrl: 'https://play.google.com/store/apps/details?id=sh.autonomous.wallet.mobile',
+  sentryDns:
+    REACT_APP_SENTRY_DNS ||
+    'https://1365248ca55742a9aa18902e80db608b@sentry.io/1231118',
+  googlePlayUrl:
+    'https://play.google.com/store/apps/details?id=sh.autonomous.wallet.mobile',
   appStoreUrl: 'https://itunes.apple.com/app/id1434362697',
   env: NODE_ENV
 }

@@ -1,29 +1,29 @@
 {
-  "name": "metronome-site",
+  "name": "metronome.io",
   "repository": {
     "type": "git",
     "url": "git@github.com:autonomoussoftware/metronome.io.git"
   },
   "license": "MIT",
   "scripts": {
-    "start": "concurrently \"PORT=3001 react-app-rewired start\" \"npm run watch-less\"",
     "build": "react-app-rewired build",
-    "test": "react-app-rewired test --env=jsdom",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint --fix ./src",
-    "eject": "react-scripts eject",
-    "fix-deps": "rm -rf node_modules/react-scripts/node_modules/eslint",
-    "build:css": "for file in src/css/*.less; do lessc $file `dirname $file`/`basename $file .less`.css ; done",
     "build:libs": "npm run build:libs:status",
     "build:libs:status": "cd lib/metronome-status-js && npm i && npm run build",
-    "prestart": "npm run fix-deps",
-    "prebuild": "npm run fix-deps && npm run build:libs && npm run build:css",
+    "build:static": "gulp",
+    "fix-deps": "rm -rf node_modules/react-scripts/node_modules/eslint",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src",
     "postinstall": "patch-package",
-    "watch-less": "react-less-watcher -d src/css"
+    "prestart": "npm run fix-deps",
+    "prebuild": "npm run fix-deps && npm run build:libs && gulp",
+    "start": "gulp && PORT=3001 react-app-rewired start",
+    "start:static": "PORT=3001 react-app-rewired start && gulp watch",
+    "test": "react-app-rewired test --env=jsdom"
   },
   "dependencies": {
     "accounting": "0.4.1",
     "bignumber.js": "7.2.1",
+    "bootstrap": "^4.3.1",
     "coincap-lib": "1.0.0",
     "lodash.throttle": "4.1.1",
     "metronome-auction-logs-parser": "file:lib/metronome-auction-logs-parser-js",
@@ -52,20 +52,53 @@
     "web3-utils": "1.0.0-beta.34"
   },
   "devDependencies": {
-    "concurrently": "3.5.1",
-    "eslint": "4.19.1",
+    "autoprefixer": "^9.5.0",
+    "browser-sync": "^2.26.3",
+    "cssnano": "^4.1.10",
+    "eslint": "5.6.0",
     "eslint-config-bloq": "1.3.0",
-    "eslint-config-standard": "11.0.0",
-    "eslint-plugin-import": "2.12.0",
+    "eslint-config-prettier": "4.1.0",
+    "eslint-config-standard": "12.0.0",
+    "eslint-plugin-import": "2.17.2",
     "eslint-plugin-jsdoc": "3.7.1",
     "eslint-plugin-mocha": "5.0.0",
-    "eslint-plugin-node": "6.0.1",
-    "eslint-plugin-prefer-arrow": "1.1.2",
-    "eslint-plugin-promise": "3.8.0",
-    "eslint-plugin-standard": "3.1.0",
+    "eslint-plugin-node": "7.0.1",
+    "eslint-plugin-prefer-arrow": "1.1.5",
+    "eslint-plugin-promise": "4.1.1",
+    "eslint-plugin-require-path-exists": "1.1.9",
+    "eslint-plugin-standard": "4.0.0",
+    "gulp": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^5.0.3",
+    "gulp-postcss": "^8.0.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.2",
     "html-webpack-plugin": "3.2.0",
-    "less": "3.0.4",
+    "husky": "1.3.1",
+    "lint-staged": "8.1.0",
     "patch-package": "5.1.1",
+    "prettier": "1.15.3",
     "react-app-rewire-eslint": "0.2.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "{src}/**/*.js": [
+        "eslint --cache"
+      ],
+      "{src,public}/**/*.{js,json,css,html,md}": [
+        "prettier --write",
+        "git add"
+      ]
+    },
+    "ignore": [
+      "public/dist/**/*.{js,json,css,html,md}"
+    ]
   }
 }

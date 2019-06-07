@@ -1,8 +1,23 @@
-.DS_Store
-.env.*
-/build
-/coverage
-/lib/**/package-lock.json
+# dependencies
 /node_modules
-npm-debug.log
-src/css/*.css
+
+# environment variables
+.env
+.env.*
+
+# building
+/build
+/public/dist
+
+# testing
+/coverage
+
+# misc
+.DS_Store
+/lib/**/package-lock.json
+
+# logs
+npm-debug.log*
+
+# ESLint
+.eslintcache
