@@ -28,31 +28,27 @@ class DashboardPage extends Component {
   render() {
     const { isLoading } = this.props
 
-    return (
+    return isLoading ? (
+      <METLoader />
+    ) : (
       <div>
-        {isLoading ? (
-          <METLoader />
-        ) : (
-          <div>
-            <GeneralStats />
+        <GeneralStats />
 
-            <HeaderDashboard />
+        <HeaderDashboard />
 
-            <MetPriceAreaBar />
+        <MetPriceAreaBar />
 
-            <Container className="container-fluid">
-              <Title>Stats</Title>
-              <div className="row my-4">
-                <div className="col-lg-4 col-md-6">
-                  <AuctionStatCard />
-                </div>
-                <div className="col-lg-4 col-md-6 mt-4 mt-md-0">
-                  <ConverterStatCard />
-                </div>
-              </div>
-            </Container>
+        <Container className="container-fluid">
+          <Title>Stats</Title>
+          <div className="row my-4">
+            <div className="col-lg-4 col-md-6">
+              <AuctionStatCard />
+            </div>
+            <div className="col-lg-4 col-md-6 mt-4 mt-md-0">
+              <ConverterStatCard />
+            </div>
           </div>
-        )}
+        </Container>
       </div>
     )
   }

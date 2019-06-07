@@ -2,8 +2,6 @@
   "env": {
     "browser": true
   },
-  "extends": [
-    "bloq"
-  ],
+  "extends": ["bloq"],
   "root": true
 }

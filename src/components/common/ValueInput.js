@@ -67,9 +67,9 @@ class ValueInput extends Component {
     return (
       <input
         {...props}
-        onBlur={this.onBlur}
         onChange={this.state.onFocus ? this.onChange : this.props.onChange}
         onFocus={this.onFocus}
+        onBlur={this.onBlur}
       />
     )
   }

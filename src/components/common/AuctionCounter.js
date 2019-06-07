@@ -72,8 +72,8 @@ class AuctionCounter extends Component {
   static propTypes = {
     loading: PropTypes.bool.isRequired,
     status: PropTypes.shape({
-      currentAuctionEndTime: PropTypes.string.isRequired,
-      nextAuctionStartTime: PropTypes.string.isRequired,
+      currentAuctionEndTime: PropTypes.number.isRequired,
+      nextAuctionStartTime: PropTypes.number.isRequired,
       isAuctionActive: PropTypes.bool.isRequired
     }).isRequired
   }

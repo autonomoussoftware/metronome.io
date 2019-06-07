@@ -35,6 +35,11 @@ class WalletInfo extends Component {
         accounts: web3.eth.getAccounts(),
         chain: web3.eth.net.getId().then(chainIdToName)
       })
+        .then(payload =>
+          Promise.all(payload.accounts.map(web3.eth.getBalance)).then(
+            balances => ({ balances, ...payload })
+          )
+        )
         .then(payload => dispatch({ type: 'UPDATE_WALLET_INFO', payload }))
         .catch(function(err) {
           // eslint-disable-next-line no-console

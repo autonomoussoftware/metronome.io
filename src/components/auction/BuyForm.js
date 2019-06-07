@@ -4,13 +4,138 @@ import { connect } from 'react-redux'
 import BigNumber from 'bignumber.js'
 import PropTypes from 'prop-types'
 import pRetry from 'p-retry'
+import styled from 'styled-components'
 
-import ValueInput from './ValueInput'
-import arrowIcon from '../../img/arrow-forward-24-px.svg'
-import closeIcon from '../../img/close.svg'
+import DollarValue from '../common/DollarValue'
+import TextInput from '../common/TextInput'
 import FiatValue from '../common/FiatValue'
 import EthValue from '../common/EthValue'
 import MetValue from '../common/MetValue'
+
+const Container = styled.div`
+  border-radius: 4px;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.16), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+  background-color: rgb(255, 255, 255);
+`
+
+const ErrorMessage = styled.div`
+  background: #ff00001f;
+  padding: 8px 24px;
+  font-size: 13px;
+  color: #bc1818;
+`
+
+const WarningMessage = styled.div`
+  padding: 8px 24px;
+  font-size: 13px;
+  background: #ffcc003d;
+  color: #b67104;
+`
+
+const Header = styled.div`
+  border-bottom: 2px solid #d1d1d1;
+  padding: 24px 24px 16px 24px;
+`
+
+const PriceLabelContainer = styled.div`
+  display: flex;
+  align-items: baseline;
+`
+
+const PriceLabel = styled.div`
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+  color: rgb(98, 98, 98);
+  margin-right: 8px;
+`
+
+const EthPrice = styled.div`
+  font-family: Roboto Mono;
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.8px;
+  color: rgb(126, 97, 248);
+`
+
+const UsdPrice = styled.div`
+  font-size: 14px;
+  line-height: 2.06;
+  color: rgb(98, 98, 98);
+`
+
+const Form = styled.form`
+  padding: 32px 24px 24px 24px;
+`
+
+const SubmitBtn = styled.button`
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 2.06;
+  letter-spacing: 0.3px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  background-color: rgb(126, 97, 248);
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 10px 28px;
+  margin: 0;
+  cursor: pointer;
+  margin-top: 24px;
+
+  &[disabled] {
+    background-color: rgb(209, 209, 209);
+    color: rgb(124, 124, 124);
+    cursor: not-allowed;
+  }
+
+  &:not([disabled]):focus,
+  &:not([disabled]):active,
+  &:not([disabled]):hover {
+    opacity: 0.9;
+  }
+`
+
+const EstimateContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 8px 0;
+  border-top: 1px solid #d1d1d1;
+  border-bottom: 1px solid #d1d1d1;
+  margin-top: 24px;
+`
+
+const EstimateLabel = styled.div`
+  flex-grow: 1;
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+  color: rgb(126, 97, 248);
+  min-width: 80px;
+`
+
+const EstimateValue = styled.div``
+
+const EstimateMet = styled.div`
+  font-family: Roboto Mono;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: rgb(126, 97, 248);
+  text-align: right;
+  white-space: nowrap;
+`
+
+const EstimateUsd = styled.div`
+  font-size: 11px;
+  line-height: 1.5;
+  font-weight: 500;
+  text-align: right;
+  color: rgb(98, 98, 98);
+`
 
 const GET_TX_RETRIES = 5
 const GET_TX_TIMEOUT = 250
@@ -24,25 +149,22 @@ function throwIfNull(obj) {
   return obj
 }
 
-class AuctionBuyForm extends Component {
+class BuyForm extends Component {
   static propTypes = {
     auctionsAddress: PropTypes.string.isRequired,
-    userAccount: PropTypes.string.isRequired,
+    currentPrice: PropTypes.string.isRequired,
+    userAccount: PropTypes.string,
     showReceipt: PropTypes.func.isRequired,
     showWaiting: PropTypes.func.isRequired,
     storeTxData: PropTypes.func.isRequired,
     showError: PropTypes.func.isRequired,
     clearForm: PropTypes.func.isRequired,
-    backToBuyOptions: PropTypes.func.isRequired,
-    hideBuyPanel: PropTypes.func.isRequired,
-    currentPrice: PropTypes.string.isRequired,
     updateEth: PropTypes.func.isRequired,
-    updateMet: PropTypes.func.isRequired,
     errorData: PropTypes.shape({
-      hint: PropTypes.string.isRequired,
+      hint: PropTypes.string,
       err: PropTypes.shape({
         message: PropTypes.string.isRequired
-      }).isRequired
+      })
     }),
     rates: PropTypes.shape({
       ETH_USD: PropTypes.number.isRequired
@@ -56,7 +178,7 @@ class AuctionBuyForm extends Component {
         getTransaction: PropTypes.func.isRequired,
         setTransaction: PropTypes.func.isRequired
       }).isRequired
-    }).isRequired,
+    }),
     eth: PropTypes.string.isRequired,
     met: PropTypes.string.isRequired
   }
@@ -153,12 +275,9 @@ class AuctionBuyForm extends Component {
 
   render() {
     const {
-      backToBuyOptions,
-      hideBuyPanel,
       currentPrice,
       userAccount,
       updateEth,
-      updateMet,
       errorData,
       rates,
       warn,
@@ -183,103 +302,61 @@ class AuctionBuyForm extends Component {
       const bigValue = new BigNumber(value)
       return bigValue.toFixed()
     }
+
     return (
-      <React.Fragment>
-        <div className="auction-panel__header header__meta-mask --showMetaMask">
-          <div className="auction-panel__header--inner">
-            <a onClick={backToBuyOptions}>
-              <img
-                alt=""
-                className="auction-panel__back-arrow"
-                src={arrowIcon}
-              />
-            </a>
-            <h2>
-              {userAccount
-                ? `Buy with account ${userAccount.substr(0, 6)}*`
-                : `Buy with ${web3Provider}`}
-            </h2>
-            <a onClick={hideBuyPanel} className="auction-panel__close">
-              <img alt="" src={closeIcon} />
-            </a>
-          </div>
-        </div>
-        <div className="auction-panel__body">
-          <div className="auction-panel__body--inner">
-            <div className="panel__buy-meta-mask --showMetaMask">
-              <section className="buy-meta-mask__section">
-                {errorData && errorData.err && errorData.err.message && (
-                  <div className="buy-meta-mask__current-price meta-mask__error">
-                    <span title={errorData.err.message}>{errorData.hint}</span>
-                  </div>
-                )}
-                {warn && (
-                  <div className="buy-meta-mask__current-price meta-mask__error">
-                    <span>{warn}</span>
-                  </div>
-                )}
-                <div className="buy-meta-mask__current-price">
-                  <span>Current Auction Price</span>
-                </div>
-                <div className="buy-meta-mask__current-price-numeral">
-                  <EthValue>{currentPrice}</EthValue>
-                </div>
-              </section>
-              <section className="buy-meta-mask__section">
-                <form>
-                  <div className="buy-meta-mask__form-group">
-                    <label>Amount (MET)</label>
-                    {/* <label className="right">MAX</label> */}
-                    <ValueInput
-                      type="number"
-                      placeholder="0.00"
-                      value={formatValue(met)}
-                      onChange={withRate(updateMet)}
-                    />
-                    <span className="label_overlay">MET</span>
-                  </div>
-                  <div className="buy-meta-mask__form-group">
-                    <label>Cost (ETH)</label>
-                    <ValueInput
-                      type="number"
-                      placeholder="0.00"
-                      value={formatValue(eth)}
-                      onChange={withRate(updateEth)}
-                    />
-                    <span className="label_overlay">ETH</span>
-                  </div>
-                </form>
-              </section>
-              <section className="buy-meta-mask__form-totals">
-                <span>
-                  Buying <MetValue unit="met">{met}</MetValue> @{' '}
-                  <EthValue>{currentPrice}</EthValue> ={' '}
-                  <FiatValue suffix="USD">{fiatValue}</FiatValue>
-                </span>
-              </section>
-              <section className="buy-meta-mask__review-order">
-                <span>
-                  {' '}
-                  By choosing &quot;Review Purchase&quot; you are agreeing to
-                  our disclaimer and terms of service
-                </span>
-                <button
-                  className={`btn ${allowBuy ? '' : '--disabled'}`}
-                  disabled={!allowBuy}
-                  onClick={this.sendTransaction}
-                >
-                  Review Purchase
-                </button>
-                <span className="buy-meta-mask__review-disclaimer">
-                  {' '}
-                  You will be see a review of this purchase in your{' '}
-                  {web3Provider}
-                </span>
-              </section>
-            </div>
-          </div>
-        </div>
-      </React.Fragment>
+      <Container>
+        {errorData && errorData.err && errorData.err.message && (
+          <ErrorMessage title={errorData.err.message}>
+            {errorData.hint}
+          </ErrorMessage>
+        )}
+
+        {warn && <WarningMessage>{warn}</WarningMessage>}
+
+        <Header>
+          <PriceLabelContainer>
+            <PriceLabel>Price per MET</PriceLabel>
+            <UsdPrice>
+              (<DollarValue>{currentPrice}</DollarValue>)
+            </UsdPrice>
+          </PriceLabelContainer>
+
+          <EthPrice>
+            <EthValue>{currentPrice}</EthValue>
+          </EthPrice>
+        </Header>
+
+        <Form onSubmit={this.sendTransaction}>
+          <TextInput
+            label="Amount"
+            placeholder="0.00"
+            autoFocus
+            onChange={withRate(updateEth)}
+            suffix="ETH"
+            value={formatValue(eth)}
+            type="number"
+            id="coinAmount"
+          />
+
+          <EstimateContainer>
+            <EstimateLabel>You will receive:</EstimateLabel>
+            <EstimateValue>
+              <EstimateMet>
+                <MetValue unit="met">{met}</MetValue>
+              </EstimateMet>
+              <EstimateUsd>
+                <FiatValue suffix="USD">{fiatValue}</FiatValue>
+              </EstimateUsd>
+            </EstimateValue>
+          </EstimateContainer>
+
+          <SubmitBtn disabled={!allowBuy} type="submit">
+            {web3Provider === 'none'
+              ? 'REVIEW PURCHASE'
+              : `REVIEW IN ${web3Provider.toUpperCase()}`}
+          </SubmitBtn>
+        </Form>
+      </Container>
     )
   }
 }
@@ -308,4 +385,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AuctionBuyForm)
+)(BuyForm)

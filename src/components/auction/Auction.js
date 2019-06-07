@@ -1,18 +1,170 @@
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import React from 'react'
 
+import AuctionCounter from '../common/AuctionCounter'
+import ProviderInfo from './ProviderInfo'
 import METLoader from '../common/METLoader'
+import BuyForm from './BuyForm'
 
-const AuctionsPage = function({ isLoading }) {
-  return isLoading ? <METLoader height="200px" /> : null
-}
+const Container = styled.div`
+  margin-top: 48px;
+`
 
-AuctionsPage.propTypes = {
-  isLoading: PropTypes.bool.isRequired
+const ProviderInfoContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`
+
+const Row = styled.div`
+  @media (min-width: 840px) {
+    display: flex;
+    justify-content: center;
+  }
+`
+
+const Col = styled.div`
+  max-width: 352px;
+
+  & + & {
+    margin-left: 118px;
+  }
+`
+
+const Title = styled.h1`
+  font-size: 45px;
+  font-weight: bold;
+  line-height: 1.2;
+  letter-spacing: 0.3px;
+  color: rgb(51, 51, 53);
+  margin-top: 16px;
+`
+
+const Subtitle = styled.div`
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  color: rgb(98, 98, 98);
+`
+
+const Lead = styled.div`
+  margin-top: 8px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.3px;
+  color: rgb(51, 51, 53);
+`
+
+const CountdownContainer = styled.div`
+  border-top: 1px solid #d1d1d1;
+  margin-top: 32px;
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+`
+
+const Label = styled.div`
+  flex-grow: 1;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.3px;
+  color: rgb(98, 98, 98);
+  padding-bottom: 21px;
+  padding-right: 42px;
+`
+
+const DepletedMessage = styled.div`
+  border-radius: 4px;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.16), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+  background-color: rgba(126, 97, 248, 0.08);
+  border-top: 4px solid rgb(126, 97, 248);
+  padding: 16px;
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 22px;
+`
+
+const DisclaimerMessage = styled.div`
+  font-size: 13px;
+  line-height: 1.69;
+  letter-spacing: 0.4px;
+  color: rgb(98, 98, 98);
+  margin-top: 16px;
+`
+
+const LearnMore = styled.a`
+  font-size: 16px;
+  margin-top: 24px;
+  display: inline-block;
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+  color: rgb(126, 97, 248);
+`
+
+class AuctionsPage extends React.Component {
+  static propTypes = {
+    isAuctionActive: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool.isRequired
+  }
+
+  render() {
+    return this.props.isLoading ? (
+      <METLoader height="200px" />
+    ) : (
+      <Container>
+        <ProviderInfoContainer>
+          <ProviderInfo />
+        </ProviderInfoContainer>
+        <Row>
+          <Col>
+            <Subtitle>BUY METRONOME</Subtitle>
+            <Title>Daily Auction</Title>
+            <Lead>
+              Metronome has a daily supply of 2880 MET minted and auctioned.
+            </Lead>
+            <CountdownContainer>
+              <Label>
+                {this.props.isAuctionActive
+                  ? 'Auction Time Remaining'
+                  : 'Next Auction Starts In'}
+              </Label>
+              <AuctionCounter />
+            </CountdownContainer>
+            {!this.props.isAuctionActive && (
+              <DepletedMessage>
+                This auction supply has all been purchased. Each daily auction
+                begins at Midnight UTC.
+                <br />
+                <a
+                  href="https://twitter.com/METAuction"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Follow Metronome Auction
+                </a>{' '}
+                on Twitter for <strong>auction updates</strong>.
+              </DepletedMessage>
+            )}
+            <LearnMore href="../buy">Learn more about The Auction</LearnMore>
+          </Col>
+          <Col>
+            <BuyForm />
+            <DisclaimerMessage>
+              By choosing “Review Purchase” you are agreeing to our{' '}
+              <a href="../privacy">disclaimer</a> and{' '}
+              <a href="../privacy">terms of service</a>.
+            </DisclaimerMessage>
+          </Col>
+        </Row>
+      </Container>
+    )
+  }
 }
 
 const mapStateToProps = state => ({
+  isAuctionActive: state.auction.status.isAuctionActive,
   isLoading: state.auction.loading
 })
 
