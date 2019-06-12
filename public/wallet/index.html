@@ -145,100 +145,13 @@
     <!-- /HEADER -->
 
     <!-- PAGE -->
-    <section id="top" class="site-section intro">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <h1 class="page-title">Download the App</h1>
-            <h3 class="font-italic mb-5">Get started with Metronome Wallet.</h3>
-            <p>
-              <a
-                href="https://github.com/autonomoussoftware/metronome-wallet-desktop/releases/download/v1.3.0/metronome-desktop-wallet_v1.3.0.dmg"
-                class="btn btn-primary mr-4"
-                >Download for MAC OS 10.14.6 &raquo;</a
-              >
-              <a href="#options">See all Download Options &raquo;</a>
-            </p>
-          </div>
-        </div>
+    <!-- Dynamic content -->
+    <div id="root" content="wallet">
+      <div id="loader-container">
+        <div id="loader"><div id="loader-bar"></div></div>
       </div>
-    </section>
-
-    <section id="look" class="site-section look pb-5 mb-4">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <img
-              src="../dist/images/wallet-look.png"
-              class="img-fluid"
-              alt="Wallet screenshot"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="download" class="site-section download pb-5">
-      <div class="container">
-        <div class="row pb-5">
-          <div class="col-lg-6 col-xl-4">
-            <h4 id="options" class="text-light offset mb-4">
-              Desktop Downloads
-            </h4>
-            <ul class="list-unstyled">
-              <li class="mb-2">
-                <a
-                  href="https://github.com/autonomoussoftware/metronome-wallet-desktop/releases/download/v1.3.0/metronome-desktop-wallet_v1.3.0.dmg"
-                  class="btn btn-primary w-75 text-left"
-                  >Download for MAC OS &raquo;</a
-                >
-              </li>
-              <li class="mb-2">
-                <a
-                  href="https://github.com/autonomoussoftware/metronome-wallet-desktop/releases/download/v1.3.0/metronome-desktop-wallet_v1.3.0.exe"
-                  class="btn btn-primary w-75 text-left"
-                  >Download for Windows &raquo;</a
-                >
-              </li>
-              <li class="mb-2">
-                <a
-                  href="https://github.com/autonomoussoftware/metronome-wallet-desktop/releases/download/v1.3.0/metronome-desktop-wallet_v1.3.0.deb"
-                  class="btn btn-primary w-75 text-left"
-                  >Download for Linux &raquo;</a
-                >
-              </li>
-              <li class="mb-2">
-                <a
-                  href="https://github.com/autonomoussoftware/metronome-wallet-desktop/releases"
-                  target="_blank"
-                  class="btn btn-default w-75 text-left txt-mute"
-                  >View All Releases &raquo;</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-6 col-xl-4">
-            <h4 class="text-light mb-4">Mobile Downloads</h4>
-            <a
-              class="mr-2"
-              href="https://itunes.apple.com/app/id1434362697"
-              target="_blank"
-              ><img
-                src="../dist/images/apple-download.png"
-                alt="Apple app download"
-            /></a>
-            <a
-              href="https://play.google.com/store/apps/details?id=sh.autonomous.wallet.mobile"
-              target="_blank"
-              ><img
-                src="../dist/images/android-download.png"
-                alt="Android app download"
-            /></a>
-          </div>
-          <div class="col-lg-6 visible-lg visible-xl"></div>
-        </div>
-      </div>
-    </section>
+    </div>
+    <!-- /Dynamic content -->
     <!-- /PAGE -->
 
     <!-- FOOTER -->

@@ -14,8 +14,8 @@ import WalletInfo from './providers/WalletInfo'
 import DashboardPage from './components/dashboard/Dashboard'
 import ChainWarning from './components/common/ChainWarning'
 import AuctionPage from './components/auction/Auction'
+import WalletPage from './components/wallet/Wallet'
 import HomePage from './components/home/Home'
-import AppsPage from './components/apps/Apps'
 
 analytics.init()
 
@@ -43,12 +43,12 @@ function getAppContent(content) {
   switch (content) {
     case 'home':
       return <HomePage />
-    case 'apps':
-      return <AppsPage />
-    case 'auction':
-      return <AuctionPage />
     case 'dashboard':
       return <DashboardPage />
+    case 'auction':
+      return <AuctionPage />
+    case 'wallet':
+      return <WalletPage />
     default:
       return null
   }
