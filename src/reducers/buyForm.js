@@ -10,6 +10,7 @@ BigNumber.config({ DECIMAL_PLACES })
 
 // Values are in ETH and MET, not wei and aMET
 const initialState = {
+  tokensRemaining: '0',
   eth: '0',
   met: '0',
   wait: false
@@ -26,9 +27,10 @@ const reducer = handleActions(
     UPDATE_BUY_ETH: (state, { payload }) => ({
       ...state,
       eth: new BigNumber(payload.value).toFixed(DECIMAL_PLACES),
-      met: new BigNumber(payload.value)
-        .div(fromWei(payload.rate))
-        .toFixed(DECIMAL_PLACES)
+      met: BigNumber.min(
+        new BigNumber(payload.value).div(fromWei(payload.rate)),
+        fromWei(state.tokensRemaining)
+      ).toFixed(DECIMAL_PLACES)
     }),
     UPDATE_BUY_MET: (state, { payload }) => ({
       ...state,
@@ -39,15 +41,17 @@ const reducer = handleActions(
     }),
     UPDATE_AUCTION_STATUS: (state, { payload }) => ({
       ...state,
+      tokensRemaining: payload.tokensRemaining,
       eth: state.wait
         ? state.eth
         : new BigNumber(state.met)
             .times(fromWei(payload.currentPrice))
             .toFixed(DECIMAL_PLACES),
       met: state.wait
-        ? new BigNumber(state.eth)
-            .div(fromWei(payload.currentPrice))
-            .toFixed(DECIMAL_PLACES)
+        ? BigNumber.min(
+            new BigNumber(payload.value).div(fromWei(payload.rate)),
+            fromWei(state.tokensRemaining)
+          ).toFixed(DECIMAL_PLACES)
         : state.met
     })
   },
