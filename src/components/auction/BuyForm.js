@@ -363,7 +363,7 @@ const mapStateToProps = state => ({
   userAccount: state.wallet.address,
   errorData: state.buyPanel.errorData,
   symbol: state.config.chains[state.chain.active].symbol,
-  rate: state.rates[`${state.config.chains[state.chain.active].symbol}_USD`],
+  rate: state.rates[state.config.chains[state.chain.active].symbol],
   warn: state.buyPanel.warn
 })
 

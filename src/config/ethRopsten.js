@@ -14,6 +14,7 @@ const wsApiUrl = REACT_APP_ROPSTEN_NODE_URL || 'ws://localhost:8546'
 
 export default {
   displayName: 'Ropsten',
+  coincapId: 'ethereum',
   chainId: '3',
   symbol: 'ETH',
 

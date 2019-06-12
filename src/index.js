@@ -10,6 +10,7 @@ import config from './config'
 import MetronomeStatus from './providers/MetronomeStatus'
 import WalletVersion from './providers/WalletVersion'
 import WalletInfo from './providers/WalletInfo'
+import Rates from './providers/Rates'
 
 import DashboardPage from './components/dashboard/Dashboard'
 import ChainWarning from './components/common/ChainWarning'
@@ -66,6 +67,7 @@ if (rootElement) {
         <MetronomeStatus />
         <WalletVersion />
         <ChainWarning />
+        <Rates />
         {getAppContent(rootContent)}
       </React.Fragment>
     </Provider>,

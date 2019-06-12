@@ -4,6 +4,7 @@ const contracts = MetronomeContracts.mainnet
 
 export default {
   displayName: 'Ethereum',
+  coincapId: 'ethereum',
   chainId: '1',
   symbol: 'ETH',
 

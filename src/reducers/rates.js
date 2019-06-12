@@ -1,8 +1,6 @@
 import { handleActions } from 'redux-actions'
 
-const initialState = {
-  ETH_USD: 500
-}
+const initialState = {}
 
 const reducer = handleActions(
   {

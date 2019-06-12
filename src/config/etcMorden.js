@@ -14,6 +14,7 @@ const wsApiUrl = REACT_APP_MORDEN_NODE_URL || 'ws://localhost:8556'
 
 export default {
   displayName: 'Morden',
+  coincapId: 'ethereum-classic',
   chainId: '2',
   symbol: 'ETC',
 

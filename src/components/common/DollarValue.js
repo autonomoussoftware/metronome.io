@@ -24,7 +24,7 @@ class DollarValue extends Component {
 }
 
 const mapStateToProps = state => ({
-  rate: state.rates[`${state.config.chains[state.chain.active].symbol}_USD`]
+  rate: state.rates[state.config.chains[state.chain.active].symbol]
 })
 
 export default connect(mapStateToProps)(DollarValue)
