@@ -2,7 +2,9 @@ import { handleActions } from 'redux-actions'
 
 import config from '../config'
 
-const defaultChain = Object.keys(config.chains)[0]
+const defaultChain = Object.keys(config.chains).includes('3')
+  ? '3'
+  : Object.keys(config.chains)[0]
 
 const initialState = {
   active: defaultChain

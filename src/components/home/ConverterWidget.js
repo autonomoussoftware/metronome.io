@@ -77,7 +77,7 @@ const Value = styled.div`
 `
 
 function ConverterWidget(props) {
-  const { currentPrice, availableEth, availableMet } = props
+  const { currentPrice, availableEth, availableMet, symbol } = props
 
   return (
     <Container>
@@ -99,7 +99,7 @@ function ConverterWidget(props) {
             </Value>
           </Row>
           <Row>
-            <Label>Remaining ETH</Label>
+            <Label>Remaining {symbol}</Label>
             <Value>
               <EthValue>{availableEth}</EthValue>
             </Value>
@@ -113,11 +113,15 @@ function ConverterWidget(props) {
 ConverterWidget.propTypes = {
   currentPrice: PropTypes.string.isRequired,
   availableEth: PropTypes.string.isRequired,
-  availableMet: PropTypes.string.isRequired
+  availableMet: PropTypes.string.isRequired,
+  symbol: PropTypes.string.isRequired
 }
 
 function mapStateToProps(state) {
-  return state.converter.status
+  return {
+    ...state.converter.status,
+    symbol: state.config.chains[state.chain.active].symbol
+  }
 }
 
 export default connect(mapStateToProps)(ConverterWidget)

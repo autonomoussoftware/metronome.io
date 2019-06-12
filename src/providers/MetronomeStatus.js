@@ -48,14 +48,9 @@ class MetronomeStatus extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const cfg = Object.values(state.config.chains).find(
-    ({ chainId }) => chainId === state.chain.active
-  )
-  return {
-    metApiUrl: cfg ? cfg.metApiUrl : null
-  }
-}
+const mapStateToProps = state => ({
+  metApiUrl: state.config.chains[state.chain.active].metApiUrl
+})
 
 const mapDispatchToProps = dispatch => ({
   onError: payload => dispatch({ type: 'METRONOME_STATUS_ERROR', payload }),

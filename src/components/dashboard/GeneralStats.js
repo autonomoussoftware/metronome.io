@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import CoinCapRate from '../../providers/CoinCapRate'
 import MetValue from '../common/MetValue'
 
 const Container = styled.div`
@@ -73,7 +72,6 @@ const smartRound = smartRounder(3, 0, 10)
 
 class GeneralStats extends Component {
   static propTypes = {
-    updateEthUsdRate: PropTypes.func.isRequired,
     auction: PropTypes.shape({
       remainingPercentage: PropTypes.string.isRequired,
       auctionSupply: PropTypes.string.isRequired,
@@ -83,13 +81,11 @@ class GeneralStats extends Component {
 
   render() {
     const {
-      updateEthUsdRate,
       auction: { remainingPercentage, auctionSupply, tokenSupply }
     } = this.props
 
     return (
       <React.Fragment>
-        <CoinCapRate onData={updateEthUsdRate} />
         <Container>
           <CellContainer>
             <Cell first>
@@ -117,19 +113,7 @@ class GeneralStats extends Component {
 }
 
 const mapStateToProps = state => ({
-  auction: state.auction.status,
-  rates: state.rates
+  auction: state.auction.status
 })
 
-const mapDispatchToProps = dispatch => ({
-  updateEthUsdRate: value =>
-    dispatch({
-      type: 'UPDATE_RATE',
-      payload: { type: 'ETH_USD', value }
-    })
-})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(GeneralStats)
+export default connect(mapStateToProps)(GeneralStats)

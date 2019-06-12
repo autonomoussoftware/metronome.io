@@ -162,9 +162,8 @@ class BuyForm extends Component {
         message: PropTypes.string.isRequired
       })
     }),
-    rates: PropTypes.shape({
-      ETH_USD: PropTypes.number.isRequired
-    }).isRequired,
+    symbol: PropTypes.string.isRequired,
+    rate: PropTypes.number.isRequired,
     warn: PropTypes.string,
     web3: PropTypes.shape({
       utils: PropTypes.shape({
@@ -276,13 +275,14 @@ class BuyForm extends Component {
       userAccount,
       updateEth,
       errorData,
-      rates,
+      symbol,
+      rate,
       warn,
       eth,
       met
     } = this.props
 
-    const fiatValue = new BigNumber(eth).times(rates.ETH_USD).toString()
+    const fiatValue = new BigNumber(eth).times(rate).toString()
 
     const allowBuy = !new BigNumber(eth).eq(0) && userAccount && !warn
 
@@ -321,7 +321,7 @@ class BuyForm extends Component {
             placeholder="0.00"
             autoFocus
             onChange={withRate(updateEth)}
-            suffix="ETH"
+            suffix={symbol}
             value={formatValue(eth)}
             type="number"
             id="coinAmount"
@@ -362,7 +362,8 @@ const mapStateToProps = state => ({
   currentPrice: state.auction.status.currentPrice,
   userAccount: state.wallet.address,
   errorData: state.buyPanel.errorData,
-  rates: state.rates,
+  symbol: state.config.chains[state.chain.active].symbol,
+  rate: state.rates[`${state.config.chains[state.chain.active].symbol}_USD`],
   warn: state.buyPanel.warn
 })
 

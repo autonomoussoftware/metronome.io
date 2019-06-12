@@ -4,43 +4,27 @@ import { connect } from 'react-redux'
 import { fromWei } from 'web3-utils'
 import PropTypes from 'prop-types'
 
-import CoinCapRate from '../../providers/CoinCapRate'
-
 const smartRound = smartRounder(6, 0, 6)
 
 class DollarValue extends Component {
   static propTypes = {
-    updateEthUsdRate: PropTypes.func.isRequired,
     children: PropTypes.node,
-    rates: PropTypes.shape({
-      ETH_USD: PropTypes.number.isRequired
-    }).isRequired
+    rate: PropTypes.number.isRequired
   }
 
   render() {
-    const { updateEthUsdRate, children, rates } = this.props
+    const { children, rate } = this.props
 
     return (
       <span>
-        <CoinCapRate onData={updateEthUsdRate} />
-        {rates.ETH_USD &&
-          children &&
-          `$${smartRound(fromWei(children) * rates.ETH_USD)} USD`}
+        {rate && children && `$${smartRound(fromWei(children) * rate)} USD`}
       </span>
     )
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  updateEthUsdRate: value =>
-    dispatch({ type: 'UPDATE_RATE', payload: { type: 'ETH_USD', value } })
-})
-
 const mapStateToProps = state => ({
-  rates: state.rates
+  rate: state.rates[`${state.config.chains[state.chain.active].symbol}_USD`]
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DollarValue)
+export default connect(mapStateToProps)(DollarValue)

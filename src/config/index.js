@@ -17,7 +17,6 @@ const chains = enabledChains.reduce(function(allChains, chainName) {
 
 module.exports = {
   ratesUpdateMs: 30000,
-  enabledChains,
   chains,
   env: NODE_ENV,
   gaTrackingId: REACT_APP_GA_TRACKING_ID || 'UA-116275666-1',

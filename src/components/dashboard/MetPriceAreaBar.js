@@ -261,6 +261,7 @@ class MetPriceAreaBar extends Component {
       currentAuction: PropTypes.string.isRequired,
       currentPrice: PropTypes.string.isRequired
     }).isRequired,
+    symbol: PropTypes.string.isRequired,
     config: PropTypes.shape({
       metApiUrl: PropTypes.string.isRequired
     }).isRequired
@@ -410,7 +411,8 @@ class MetPriceAreaBar extends Component {
     const { history: data, showDropdown, timeWindow } = this.state
 
     const {
-      auction: { isAuctionActive, currentPrice }
+      auction: { isAuctionActive, currentPrice },
+      symbol
     } = this.props
 
     const auctionChartData = this.parseHistory(data)
@@ -509,7 +511,7 @@ class MetPriceAreaBar extends Component {
               <VictoryAxis
                 dependentAxis
                 height={400}
-                label="PRICE [ETH]"
+                label={`PRICE [${symbol}]`}
                 orientation="right"
                 style={foregroudTickStyle}
                 tickFormat={y => `${smartRound(y)}`}
@@ -557,6 +559,7 @@ class MetPriceAreaBar extends Component {
 
 const mapStateToProps = state => ({
   auction: state.auction.status,
+  symbol: state.config.chains[state.chain.active].symbol,
   config: state.config
 })
 
