@@ -28,6 +28,8 @@ class MetronomeStatus extends Component {
   killStream() {
     if (this.statusStream) {
       this.statusStream.destroy()
+      this.statusStream.off('data', this.props.onData)
+      this.statusStream.off('error', this.props.onError)
       this.statusStream = null
     }
   }

@@ -50,7 +50,7 @@ const GetLabel = styled.span`
 `
 
 function ProviderInfo(props) {
-  const { provider, address, balance, warn } = props
+  const { provider, address, balance } = props
 
   const isWeb3Available = provider !== 'none'
 
@@ -75,12 +75,13 @@ function ProviderInfo(props) {
         alt={provider}
       />
       <Info>
-        {address && (
+        {address ? (
           <Label>
             Acct *{address.slice(0, 6)}…{address.slice(-4)}
           </Label>
+        ) : (
+          <Label>Log into your web wallet</Label>
         )}
-        {warn && <Label>{warn}</Label>}
         {balance && (
           <Balance>
             <EthValue>{balance}</EthValue>
@@ -107,15 +108,13 @@ function ProviderInfo(props) {
 ProviderInfo.propTypes = {
   provider: PropTypes.string.isRequired,
   address: PropTypes.string,
-  balance: PropTypes.string,
-  warn: PropTypes.string
+  balance: PropTypes.string
 }
 
 const mapStateToProps = state => ({
   provider: detectProvider('web wallet'),
   address: state.wallet.address,
-  balance: state.wallet.balance,
-  warn: state.buyPanel.warn
+  balance: state.wallet.balance
 })
 
 export default connect(mapStateToProps)(ProviderInfo)

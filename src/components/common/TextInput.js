@@ -6,7 +6,6 @@ import ValueInput from './ValueInput'
 
 const Container = styled.div`
   position: relative;
-  background-color: silver;
 
   & input {
     border: none;
@@ -24,6 +23,11 @@ const Container = styled.div`
   & input:focus {
     box-shadow: 0 0 0 2px #7e61f8 inset;
     outline: none;
+  }
+
+  & input[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 `
 
@@ -55,6 +59,10 @@ const Suffix = styled.span`
   position: absolute;
   right: 18px;
   top: 10px;
+
+  [disabled] + & {
+    opacity: 0.5;
+  }
 `
 
 export default function TextInput(props) {

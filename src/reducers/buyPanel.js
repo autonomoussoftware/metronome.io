@@ -5,8 +5,7 @@ const initialState = {
   ongoingTx: { hash: '' },
   receipt: null,
   show: false,
-  showStep: 'options',
-  warn: ''
+  showStep: 'options'
 }
 
 const reducer = handleActions(
@@ -51,10 +50,6 @@ const reducer = handleActions(
       ...state,
       ongoingTx:
         payload.hash === state.ongoingTx.hash ? payload : state.ongoingTx
-    }),
-    UPDATE_WALLET_INFO: (state, { payload }) => ({
-      ...state,
-      warn: payload.address ? '' : 'Log into your web wallet'
     })
   },
   initialState

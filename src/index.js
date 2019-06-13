@@ -1,6 +1,8 @@
+import ReactHintFactory from 'react-hint'
 import { Provider } from 'react-redux'
 import reactDOM from 'react-dom'
 import React from 'react'
+import 'react-hint/css/index.css'
 
 import getInitialState from './get-initial-state'
 import createStore from './create-store'
@@ -31,14 +33,7 @@ if (config.env === 'production' && window.Raven) {
   })
 }
 
-const reduxDevtoolsOptions = {
-  features: { dispatch: true },
-  actionCreators: {
-    showPanel: () => ({ type: 'SHOW_BUY_PANEL', payload: true })
-  }
-}
-
-const store = createStore(reduxDevtoolsOptions, getInitialState(config))
+const store = createStore(getInitialState(config))
 
 function getAppContent(content) {
   switch (content) {
@@ -59,16 +54,18 @@ const rootElement = document.getElementById('root')
 
 if (rootElement) {
   const rootContent = rootElement.getAttribute('content')
+  const ReactHint = ReactHintFactory(React)
 
   reactDOM.render(
     <Provider store={store}>
       <React.Fragment>
-        <WalletInfo />
+        {getAppContent(rootContent)}
         <MetronomeStatus />
         <WalletVersion />
         <ChainWarning />
+        <WalletInfo />
+        <ReactHint autoPosition events />
         <Rates />
-        {getAppContent(rootContent)}
       </React.Fragment>
     </Provider>,
     rootElement

@@ -180,7 +180,11 @@ class AuctionsPage extends React.Component {
 
 const mapStateToProps = state => ({
   isAuctionActive: state.auction.status.isAuctionActive,
-  isLoading: state.auction.loading
+  isLoading:
+    state.auction.loading ||
+    !state.auction.status.currentPrice ||
+    typeof state.rates[state.config.chains[state.chain.active].symbol] !==
+      'number'
 })
 
 export default connect(mapStateToProps)(AuctionsPage)

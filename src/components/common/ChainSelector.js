@@ -1,3 +1,4 @@
+import detectProvider from 'web3-detect-provider'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
@@ -36,6 +37,7 @@ const Toggle = styled.button`
   &:hover:not([disabled]),
   &:focus:not([disabled]),
   &:active:not([disabled]) {
+    pointer-events: none;
     outline: none;
     color: #7e61f8;
   }
@@ -101,18 +103,28 @@ class ChainSelector extends React.Component {
     this.setState(state => ({ ...state, isOpen: !state.isOpen }))
 
   render() {
+    const web3Provider = detectProvider('web wallet')
+
     return (
       <Container>
-        <Toggle
-          disabled={!this.props.canChangeChain}
-          onClick={this.handleSelectorClick}
-          type="button"
+        <div
+          data-rh={
+            this.props.canChangeChain
+              ? undefined
+              : `Use ${web3Provider} to change the current chain`
+          }
         >
-          MET:{config.chains[this.props.activeChain].symbol}
-          <Chevron
-            className={`fas fa-chevron-${this.state.isOpen ? 'up' : 'down'}`}
-          />
-        </Toggle>
+          <Toggle
+            disabled={!this.props.canChangeChain}
+            onClick={this.handleSelectorClick}
+            type="button"
+          >
+            MET:{config.chains[this.props.activeChain].symbol}
+            <Chevron
+              className={`fas fa-chevron-${this.state.isOpen ? 'up' : 'down'}`}
+            />
+          </Toggle>
+        </div>
 
         {this.state.isOpen && (
           <OptionsContainer>

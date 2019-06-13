@@ -9,7 +9,7 @@ const smartRound = smartRounder(6, 0, 6)
 class DollarValue extends Component {
   static propTypes = {
     children: PropTypes.node,
-    rate: PropTypes.number.isRequired
+    rate: PropTypes.number
   }
 
   render() {

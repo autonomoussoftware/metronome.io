@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+
 import detectProvider from 'web3-detect-provider'
 import { connect } from 'react-redux'
 import BigNumber from 'bignumber.js'
 import PropTypes from 'prop-types'
 import pRetry from 'p-retry'
 import styled from 'styled-components'
+import utils from 'web3-utils'
 
 import DollarValue from '../common/DollarValue'
 import TextInput from '../common/TextInput'
@@ -23,7 +25,8 @@ const ErrorMessage = styled.div`
   background: #ff00001f;
   font-size: 13px;
   color: #bc1818;
-  padding: 4px 8px;
+  padding: 8px;
+  line-height: 1.5;
   margin-top: 24px;
   border-radius: 2px;
 `
@@ -85,6 +88,7 @@ const SubmitBtn = styled.button`
     background-color: rgb(209, 209, 209);
     color: rgb(124, 124, 124);
     cursor: not-allowed;
+    pointer-events: none;
   }
 
   &:not([disabled]):focus,
@@ -149,7 +153,6 @@ class BuyForm extends Component {
   static propTypes = {
     auctionsAddress: PropTypes.string.isRequired,
     currentPrice: PropTypes.string.isRequired,
-    userAccount: PropTypes.string,
     showReceipt: PropTypes.func.isRequired,
     showWaiting: PropTypes.func.isRequired,
     storeTxData: PropTypes.func.isRequired,
@@ -162,17 +165,15 @@ class BuyForm extends Component {
         message: PropTypes.string.isRequired
       })
     }),
+    balance: PropTypes.string,
+    address: PropTypes.string,
     symbol: PropTypes.string.isRequired,
     rate: PropTypes.number.isRequired,
-    warn: PropTypes.string,
     web3: PropTypes.shape({
-      utils: PropTypes.shape({
-        toWei: PropTypes.func.isRequired
-      }).isRequired,
       eth: PropTypes.shape({
         getTransaction: PropTypes.func.isRequired
       }).isRequired
-    }).isRequired,
+    }),
     eth: PropTypes.string.isRequired,
     met: PropTypes.string.isRequired
   }
@@ -183,9 +184,9 @@ class BuyForm extends Component {
       showReceipt,
       showWaiting,
       storeTxData,
-      userAccount,
       clearForm,
       showError,
+      address,
       web3,
       eth
     } = this.props
@@ -193,8 +194,8 @@ class BuyForm extends Component {
     e.preventDefault()
 
     const txObject = {
-      value: web3.utils.toWei(eth.replace(',', '.')),
-      from: userAccount,
+      value: utils.toWei(eth.replace(',', '.')),
+      from: address,
       to: auctionsAddress
     }
 
@@ -236,7 +237,7 @@ class BuyForm extends Component {
             minTimeout: GET_TX_TIMEOUT,
             retries: GET_TX_RETRIES
           })
-            .catch(() => ({ from: userAccount, hash }))
+            .catch(() => ({ from: address, hash }))
             .then(function(tx) {
               window.gtag('event', 'Buy MET in auction succeeded', {
                 event_category: 'Buy'
@@ -269,29 +270,35 @@ class BuyForm extends Component {
     }
   }
 
+  // eslint-disable-next-line complexity
   render() {
     const {
       currentPrice,
-      userAccount,
       updateEth,
       errorData,
+      balance,
+      address,
       symbol,
       rate,
-      warn,
       eth,
       met
     } = this.props
 
     const fiatValue = new BigNumber(eth).times(rate).toString()
 
-    const allowBuy = !new BigNumber(eth).eq(0) && userAccount && !warn
+    const allowBuy =
+      new BigNumber(eth).gt(0) &&
+      address &&
+      new BigNumber(eth).lte(utils.fromWei(balance))
 
     function withRate(eventHandler) {
       return function(ev) {
-        eventHandler({
-          value: ev.target.value || '0',
-          rate: currentPrice
-        })
+        if (currentPrice) {
+          eventHandler({
+            value: ev.target.value || '0',
+            rate: currentPrice
+          })
+        }
       }
     }
 
@@ -320,6 +327,7 @@ class BuyForm extends Component {
             label="Amount"
             placeholder="0.00"
             autoFocus
+            disabled={!currentPrice}
             onChange={withRate(updateEth)}
             suffix={symbol}
             value={formatValue(eth)}
@@ -339,17 +347,32 @@ class BuyForm extends Component {
             </EstimateValue>
           </EstimateContainer>
 
-          {errorData && errorData.err && errorData.err.message && (
-            <ErrorMessage title={errorData.err.message}>
-              {errorData.hint}
-            </ErrorMessage>
-          )}
+          {errorData &&
+            errorData.hint &&
+            errorData.err &&
+            errorData.err.message && (
+              <ErrorMessage title={errorData.err.message}>
+                {errorData.hint}
+              </ErrorMessage>
+            )}
 
-          <SubmitBtn disabled={!allowBuy} type="submit">
-            {web3Provider === 'none'
-              ? 'REVIEW PURCHASE'
-              : `REVIEW IN ${web3Provider.toUpperCase()}`}
-          </SubmitBtn>
+          <div
+            data-rh={
+              !address
+                ? 'You need to login to your wallet'
+                : !new BigNumber(eth).gt(0)
+                ? 'Enter a valid amount'
+                : new BigNumber(eth).gt(utils.fromWei(balance))
+                ? 'Insufficient funds'
+                : undefined
+            }
+          >
+            <SubmitBtn disabled={!allowBuy} type="submit">
+              {web3Provider === 'none'
+                ? 'REVIEW PURCHASE'
+                : `REVIEW IN ${web3Provider.toUpperCase()}`}
+            </SubmitBtn>
+          </div>
         </Form>
       </Container>
     )
@@ -360,11 +383,11 @@ const mapStateToProps = state => ({
   ...state.buyForm,
   auctionsAddress: state.config.chains[state.chain.active].auctionAddress,
   currentPrice: state.auction.status.currentPrice,
-  userAccount: state.wallet.address,
   errorData: state.buyPanel.errorData,
+  address: state.wallet.address,
+  balance: state.wallet.balance,
   symbol: state.config.chains[state.chain.active].symbol,
-  rate: state.rates[state.config.chains[state.chain.active].symbol],
-  warn: state.buyPanel.warn
+  rate: state.rates[state.config.chains[state.chain.active].symbol]
 })
 
 const mapDispatchToProps = dispatch => ({

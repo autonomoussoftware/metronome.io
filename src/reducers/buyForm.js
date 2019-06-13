@@ -1,5 +1,5 @@
-import { fromWei } from 'web3-utils'
 import { handleActions } from 'redux-actions'
+import { fromWei } from 'web3-utils'
 import BigNumber from 'bignumber.js'
 
 // Since both ETH and MET are 18 decimal places, we can use a single const

@@ -143,10 +143,9 @@ class Receipt extends React.Component {
       gasUsed: PropTypes.number.isRequired,
       logs: PropTypes.array.isRequireds
     }).isRequired,
-    config: PropTypes.shape({
-      defaultGasPrice: PropTypes.string.isRequired,
-      metExplorerUrl: PropTypes.string.isRequired
-    }).isRequired,
+    defaultGasPrice: PropTypes.string.isRequired,
+    explorerUrl: PropTypes.string.isRequired,
+    chainId: PropTypes.string.isRequired,
     tx: PropTypes.shape({
       gasPrice: PropTypes.string.isRequired,
       from: PropTypes.string.isRequired,
@@ -156,12 +155,14 @@ class Receipt extends React.Component {
 
   render() {
     const {
+      defaultGasPrice,
+      explorerUrl,
       receipt: { blockHash, blockNumber, gasUsed, logs, transactionIndex },
-      config: { defaultGasPrice, metExplorerUrl },
+      chainId,
       tx: { from, gasPrice, hash }
     } = this.props
 
-    const auctionLogs = auctionLogsParser(logs)
+    const auctionLogs = auctionLogsParser(logs, chainId)
 
     const auctionLog = auctionLogs.find(log => log.decoded.sender === from)
 
@@ -217,7 +218,7 @@ class Receipt extends React.Component {
             MAKE ANOTHER PURCHASE
           </MakeAnother>
           <ExplorerLink>
-            <a href={metExplorerUrl.replace('{{hash}}', hash)} target="_blank">
+            <a href={explorerUrl.replace('{{hash}}', hash)} target="_blank">
               View is Explorer
             </a>
           </ExplorerLink>
@@ -236,9 +237,11 @@ class Receipt extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  defaultGasPrice: state.config.chains[state.chain.active].defaultGasPrice,
   currentPrice: state.auction.status.currentPrice,
+  explorerUrl: state.config.chains[state.chain.active].explorerUrl,
   receipt: state.buyPanel.receipt,
-  config: state.config,
+  chainId: state.chain.active,
   rates: state.rates,
   tx: state.buyPanel.ongoingTx
   // receipt: {
