@@ -151,6 +151,7 @@ function throwIfNull(obj) {
 
 class BuyForm extends Component {
   static propTypes = {
+    gasOverestimation: PropTypes.number.isRequired,
     auctionsAddress: PropTypes.string.isRequired,
     currentPrice: PropTypes.string.isRequired,
     showReceipt: PropTypes.func.isRequired,
@@ -180,6 +181,7 @@ class BuyForm extends Component {
 
   sendTransaction = e => {
     const {
+      gasOverestimation,
       auctionsAddress,
       showReceipt,
       showWaiting,
@@ -206,62 +208,72 @@ class BuyForm extends Component {
         event_category: 'Buy'
       })
       web3.eth
-        .sendTransaction(txObject)
-        .on('transactionHash', function(hash) {
-          showWaiting(hash)
-        })
-        .on('receipt', function(receipt) {
-          if (!receipt.status) {
-            window.gtag('event', 'Buy MET in auction failed', {
-              event_category: 'Buy'
+        .estimateGas(txObject)
+        .then(gas =>
+          web3.eth.getGasPrice().then(gasPrice => ({
+            gasPrice,
+            gas: Math.round(gas * gasOverestimation)
+          }))
+        )
+        .then(gasData =>
+          web3.eth
+            .sendTransaction({ ...txObject, ...gasData })
+            .on('transactionHash', function(hash) {
+              showWaiting(hash)
             })
-            showError(
-              'Purchase reverted - Try again',
-              new Error('Transaction status is falsy')
-            )
-            return
-          }
-          if (!receipt.logs.length) {
-            window.gtag('event', 'Buy MET in auction failed', {
-              event_category: 'Buy'
-            })
-            showError(
-              'Purchase failed - Try again',
-              new Error('Transaction logs missing')
-            )
-            return
-          }
+            .on('receipt', function(receipt) {
+              if (!receipt.status) {
+                window.gtag('event', 'Buy MET in auction failed', {
+                  event_category: 'Buy'
+                })
+                showError(
+                  'Purchase reverted - Try again',
+                  new Error('Transaction status is falsy')
+                )
+                return
+              }
+              if (!receipt.logs.length) {
+                window.gtag('event', 'Buy MET in auction failed', {
+                  event_category: 'Buy'
+                })
+                showError(
+                  'Purchase failed - Try again',
+                  new Error('Transaction logs missing')
+                )
+                return
+              }
 
-          const hash = receipt.transactionHash
-          pRetry(() => web3.eth.getTransaction(hash).then(throwIfNull), {
-            minTimeout: GET_TX_TIMEOUT,
-            retries: GET_TX_RETRIES
-          })
-            .catch(() => ({ from: address, hash }))
-            .then(function(tx) {
-              window.gtag('event', 'Buy MET in auction succeeded', {
-                event_category: 'Buy'
+              const hash = receipt.transactionHash
+              pRetry(() => web3.eth.getTransaction(hash).then(throwIfNull), {
+                minTimeout: GET_TX_TIMEOUT,
+                retries: GET_TX_RETRIES
               })
-              storeTxData(tx)
-              showReceipt(receipt)
-              clearForm()
+                .catch(() => ({ from: address, hash }))
+                .then(function(tx) {
+                  window.gtag('event', 'Buy MET in auction succeeded', {
+                    event_category: 'Buy'
+                  })
+                  storeTxData(tx)
+                  showReceipt(receipt)
+                  clearForm()
+                })
+                .catch(function(err) {
+                  window.gtag('event', 'Buy MET in auction failed', {
+                    event_category: 'Buy'
+                  })
+                  showError(
+                    `Something went wrong - Check your wallet or explorer for transaction ${hash}`,
+                    err
+                  )
+                })
             })
-            .catch(function(err) {
+            .on('error', function(err) {
               window.gtag('event', 'Buy MET in auction failed', {
                 event_category: 'Buy'
               })
-              showError(
-                `Something went wrong - Check your wallet or explorer for transaction ${hash}`,
-                err
-              )
+              showError('Transaction error - Try again', err)
             })
-        })
-        .on('error', function(err) {
-          window.gtag('event', 'Buy MET in auction failed', {
-            event_category: 'Buy'
-          })
-          showError('Transaction error - Try again', err)
-        })
+        )
     } catch (err) {
       window.gtag('event', 'Buy MET in auction failed', {
         event_category: 'Buy'
@@ -381,6 +393,7 @@ class BuyForm extends Component {
 
 const mapStateToProps = state => ({
   ...state.buyForm,
+  gasOverestimation: state.config.chains[state.chain.active].gasOverestimation,
   auctionsAddress: state.config.chains[state.chain.active].auctionAddress,
   currentPrice: state.auction.status.currentPrice,
   errorData: state.buyPanel.errorData,

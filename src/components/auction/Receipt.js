@@ -79,9 +79,16 @@ const Row = styled.div`
 
 const Label = styled.div`
   flex-grow: 1;
+  white-space: nowrap;
 `
 
-const Value = styled.div``
+const Value = styled.div`
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 16px;
+  text-align: right;
+`
 
 const MakeAnother = styled.button`
   background-color: rgb(126, 97, 248);
@@ -185,7 +192,7 @@ class Receipt extends React.Component {
           <Title>Purchase Complete</Title>
           <div>
             <Row>
-              <Label>Amount</Label>
+              <Label>Amount Purchased</Label>
               <Value>
                 <MetValue>{auctionLog.decoded.tokens}</MetValue>
               </Value>
@@ -193,8 +200,8 @@ class Receipt extends React.Component {
             <Row>
               <Label>Cost</Label>
               <Value>
-                <EthValue>{totalValue}</EthValue>
-                <EthValue>{value}</EthValue> + {gasUsed} gas
+                <EthValue>{totalValue}</EthValue> (<EthValue>{value}</EthValue>{' '}
+                + {gasUsed} gas)
               </Value>
             </Row>
             <Row>

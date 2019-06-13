@@ -21,6 +21,8 @@ export default {
   metApiUrl: 'https://api.metronome.io/',
   wsApiUrl: 'wss://eth.wallet.metronome.io:8546',
 
+  gasOverestimation: 1.1,
+
   // defaults
   coinDefaultGasLimit: '21000',
   metDefaultGasLimit: '250000',

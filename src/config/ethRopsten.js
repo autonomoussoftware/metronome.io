@@ -31,6 +31,8 @@ export default {
   metApiUrl,
   wsApiUrl,
 
+  gasOverestimation: 1.1,
+
   // defaults
   coinDefaultGasLimit: '21000',
   metDefaultGasLimit: '250000',
