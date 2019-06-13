@@ -9,12 +9,31 @@ const persistState =
     ? identity
     : reduxLocalStorage(['auction', 'rates', 'wallet'])
 
-export default function(reduxDevtoolsOptions, initialState) {
+export default function(initialState) {
+  const reduxDevtoolsOptions = {
+    features: { dispatch: true }
+  }
+
   const composeEnhancers =
     (typeof window !== 'undefined' &&
       window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&
       window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(reduxDevtoolsOptions)) ||
     compose
 
-  return createStore(rootReducer, initialState, composeEnhancers(persistState))
+  const store = createStore(
+    rootReducer,
+    initialState,
+    composeEnhancers(persistState)
+  )
+
+  // @see https://github.com/reduxjs/react-redux/releases/tag/v2.0.0
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('./reducers', () => {
+      const nextRootReducer = require('./reducers/index')
+      store.replaceReducer(nextRootReducer)
+    })
+  }
+
+  return store
 }
