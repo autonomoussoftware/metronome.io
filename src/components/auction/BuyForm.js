@@ -9,6 +9,7 @@ import styled from 'styled-components'
 import DollarValue from '../common/DollarValue'
 import TextInput from '../common/TextInput'
 import FiatValue from '../common/FiatValue'
+import withWeb3 from '../../hocs/withWeb3'
 import EthValue from '../common/EthValue'
 import MetValue from '../common/MetValue'
 
@@ -20,16 +21,11 @@ const Container = styled.div`
 
 const ErrorMessage = styled.div`
   background: #ff00001f;
-  padding: 8px 24px;
   font-size: 13px;
   color: #bc1818;
-`
-
-const WarningMessage = styled.div`
-  padding: 8px 24px;
-  font-size: 13px;
-  background: #ffcc003d;
-  color: #b67104;
+  padding: 4px 8px;
+  margin-top: 24px;
+  border-radius: 2px;
 `
 
 const Header = styled.div`
@@ -175,15 +171,14 @@ class BuyForm extends Component {
         toWei: PropTypes.func.isRequired
       }).isRequired,
       eth: PropTypes.shape({
-        getTransaction: PropTypes.func.isRequired,
-        setTransaction: PropTypes.func.isRequired
+        getTransaction: PropTypes.func.isRequired
       }).isRequired
-    }),
+    }).isRequired,
     eth: PropTypes.string.isRequired,
     met: PropTypes.string.isRequired
   }
 
-  sendTransaction = () => {
+  sendTransaction = e => {
     const {
       auctionsAddress,
       showReceipt,
@@ -195,6 +190,8 @@ class BuyForm extends Component {
       web3,
       eth
     } = this.props
+
+    e.preventDefault()
 
     const txObject = {
       value: web3.utils.toWei(eth.replace(',', '.')),
@@ -305,14 +302,6 @@ class BuyForm extends Component {
 
     return (
       <Container>
-        {errorData && errorData.err && errorData.err.message && (
-          <ErrorMessage title={errorData.err.message}>
-            {errorData.hint}
-          </ErrorMessage>
-        )}
-
-        {warn && <WarningMessage>{warn}</WarningMessage>}
-
         <Header>
           <PriceLabelContainer>
             <PriceLabel>Price per MET</PriceLabel>
@@ -350,6 +339,12 @@ class BuyForm extends Component {
             </EstimateValue>
           </EstimateContainer>
 
+          {errorData && errorData.err && errorData.err.message && (
+            <ErrorMessage title={errorData.err.message}>
+              {errorData.hint}
+            </ErrorMessage>
+          )}
+
           <SubmitBtn disabled={!allowBuy} type="submit">
             {web3Provider === 'none'
               ? 'REVIEW PURCHASE'
@@ -363,9 +358,9 @@ class BuyForm extends Component {
 
 const mapStateToProps = state => ({
   ...state.buyForm,
-  auctionsAddress: state.config.auctionsAddress,
+  auctionsAddress: state.config.chains[state.chain.active].auctionAddress,
   currentPrice: state.auction.status.currentPrice,
-  userAccount: state.wallet.accounts[0],
+  userAccount: state.wallet.address,
   errorData: state.buyPanel.errorData,
   rates: state.rates,
   warn: state.buyPanel.warn
@@ -385,4 +380,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BuyForm)
+)(withWeb3(BuyForm))

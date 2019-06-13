@@ -54,7 +54,7 @@ const reducer = handleActions(
     }),
     UPDATE_WALLET_INFO: (state, { payload }) => ({
       ...state,
-      warn: payload.accounts.length ? '' : 'Log into your web wallet'
+      warn: payload.address ? '' : 'Log into your web wallet'
     })
   },
   initialState

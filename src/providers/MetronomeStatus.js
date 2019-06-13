@@ -10,7 +10,13 @@ class MetronomeStatus extends Component {
     onData: PropTypes.func.isRequired
   }
 
+  statusStream = null
+
   componentDidMount() {
+    this.initStream()
+  }
+
+  initStream() {
     this.statusStream = createMetronomeStatusStream({
       web3currentProvider: window.web3 && window.web3.currentProvider,
       metApiUrl: this.props.metApiUrl
@@ -19,8 +25,22 @@ class MetronomeStatus extends Component {
     this.statusStream.on('error', this.props.onError)
   }
 
+  killStream() {
+    if (this.statusStream) {
+      this.statusStream.destroy()
+      this.statusStream = null
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.metApiUrl !== prevProps.metApiUrl) {
+      this.killStream()
+      this.initStream()
+    }
+  }
+
   componentWillUnmount() {
-    this.statusStream.destroy()
+    this.killStream()
   }
 
   render() {
@@ -28,9 +48,14 @@ class MetronomeStatus extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  metApiUrl: state.config.metApiUrl
-})
+const mapStateToProps = state => {
+  const cfg = Object.values(state.config.chains).find(
+    ({ chainId }) => chainId === state.chain.active
+  )
+  return {
+    metApiUrl: cfg ? cfg.metApiUrl : null
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
   onError: payload => dispatch({ type: 'METRONOME_STATUS_ERROR', payload }),

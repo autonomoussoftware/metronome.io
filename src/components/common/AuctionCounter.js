@@ -72,9 +72,9 @@ class AuctionCounter extends Component {
   static propTypes = {
     loading: PropTypes.bool.isRequired,
     status: PropTypes.shape({
-      currentAuctionEndTime: PropTypes.number.isRequired,
-      nextAuctionStartTime: PropTypes.number.isRequired,
-      isAuctionActive: PropTypes.bool.isRequired
+      currentAuctionEndTime: PropTypes.number,
+      nextAuctionStartTime: PropTypes.number,
+      isAuctionActive: PropTypes.bool
     }).isRequired
   }
 
@@ -92,7 +92,9 @@ class AuctionCounter extends Component {
 
     return (
       <div>
-        {!loading && <Countdown date={targetTime} renderer={renderer} />}
+        {!loading && targetTime && (
+          <Countdown date={targetTime} renderer={renderer} />
+        )}
       </div>
     )
   }

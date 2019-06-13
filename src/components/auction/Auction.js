@@ -4,22 +4,30 @@ import styled from 'styled-components'
 import React from 'react'
 
 import AuctionCounter from '../common/AuctionCounter'
+import ChainSelector from '../common/ChainSelector'
 import ProviderInfo from './ProviderInfo'
 import METLoader from '../common/METLoader'
 import BuyForm from './BuyForm'
+import Modal from './Modal'
 
 const Container = styled.div`
   margin-top: 48px;
 `
 
-const ProviderInfoContainer = styled.div`
+const Header = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 48px;
 `
 
 const Row = styled.div`
-  @media (min-width: 840px) {
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (min-width: 992px) {
+    flex-direction: row;
+    align-items: flex-start;
     justify-content: center;
   }
 `
@@ -28,7 +36,12 @@ const Col = styled.div`
   max-width: 352px;
 
   & + & {
-    margin-left: 118px;
+    margin-top: 64px;
+
+    @media (min-width: 992px) {
+      margin-top: 0;
+      margin-left: 118px;
+    }
   }
 `
 
@@ -114,9 +127,10 @@ class AuctionsPage extends React.Component {
       <METLoader height="200px" />
     ) : (
       <Container>
-        <ProviderInfoContainer>
+        <Header>
+          <ChainSelector />
           <ProviderInfo />
-        </ProviderInfoContainer>
+        </Header>
         <Row>
           <Col>
             <Subtitle>BUY METRONOME</Subtitle>
@@ -158,6 +172,7 @@ class AuctionsPage extends React.Component {
             </DisclaimerMessage>
           </Col>
         </Row>
+        <Modal />
       </Container>
     )
   }

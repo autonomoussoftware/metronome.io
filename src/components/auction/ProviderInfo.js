@@ -24,7 +24,6 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 8px 16px;
-  margin-bottom: 48px;
 `
 
 const Icon = styled.img``
@@ -33,7 +32,7 @@ const Info = styled.div`
   margin-left: 16px;
 `
 
-const Address = styled.div`
+const Label = styled.div`
   font-size: 16px;
   letter-spacing: 0.3px;
   color: #626262;
@@ -51,7 +50,7 @@ const GetLabel = styled.span`
 `
 
 function ProviderInfo(props) {
-  const { provider, address, balance } = props
+  const { provider, address, balance, warn } = props
 
   const isWeb3Available = provider !== 'none'
 
@@ -76,10 +75,17 @@ function ProviderInfo(props) {
         alt={provider}
       />
       <Info>
-        <Address>Acct *{address.slice(-4)}</Address>
-        <Balance>
-          <EthValue>{balance}</EthValue>
-        </Balance>
+        {address && (
+          <Label>
+            Acct *{address.slice(0, 6)}…{address.slice(-4)}
+          </Label>
+        )}
+        {warn && <Label>{warn}</Label>}
+        {balance && (
+          <Balance>
+            <EthValue>{balance}</EthValue>
+          </Balance>
+        )}
       </Info>
     </Container>
   ) : (
@@ -101,13 +107,15 @@ function ProviderInfo(props) {
 ProviderInfo.propTypes = {
   provider: PropTypes.string.isRequired,
   address: PropTypes.string,
-  balance: PropTypes.string
+  balance: PropTypes.string,
+  warn: PropTypes.string
 }
 
 const mapStateToProps = state => ({
   provider: detectProvider('web wallet'),
-  address: state.wallet.accounts[0],
-  balance: state.wallet.balances[0]
+  address: state.wallet.address,
+  balance: state.wallet.balance,
+  warn: state.buyPanel.warn
 })
 
 export default connect(mapStateToProps)(ProviderInfo)

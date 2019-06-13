@@ -1,20 +1,147 @@
-import React, { Component } from 'react'
 import auctionLogsParser from 'metronome-auction-logs-parser'
 import { connect } from 'react-redux'
 import BigNumber from 'bignumber.js'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import React from 'react'
 
-import checkIcon from '../../img/check.svg'
-import closeIcon from '../../img/close.svg'
 import EthValue from '../common/EthValue'
 import MetValue from '../common/MetValue'
+import arrow from '../../img/arrow-forward-24-px.svg'
+import metro from '../../img/metro-icon.svg'
+import close from '../../img/cancel.svg'
+import check from '../../img/check.svg'
 
-class AuctionReceipt extends Component {
+const Header = styled.header`
+  display: flex;
+  justify-content: flex-end;
+`
+
+const CloseBtn = styled.button`
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+
+  &:focus,
+  &:hover,
+  &:active {
+    opacity: 0.9;
+  }
+
+  & > img {
+    display: block;
+  }
+`
+
+const SuccessIcon = styled.img`
+  display: block;
+  margin: 8px auto 16px;
+`
+
+const Title = styled.h1`
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.3px;
+  text-align: center;
+  color: rgb(51, 51, 53);
+  max-width: 200px;
+  text-align: center;
+  margin: 0 auto 24px;
+`
+
+const Box = styled.div`
+  pointer-events: initial;
+  background-color: white;
+  border-radius: 4px;
+  padding: 16px;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.16), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+`
+
+const Row = styled.div`
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 1.69;
+  letter-spacing: 0.4px;
+  color: rgb(98, 98, 98);
+  border-top: 1px solid #d1d1d1;
+  padding: 13px 0;
+
+  &:last-child {
+    border-bottom: 1px solid #d1d1d1;
+  }
+`
+
+const Label = styled.div`
+  flex-grow: 1;
+`
+
+const Value = styled.div``
+
+const MakeAnother = styled.button`
+  background-color: rgb(126, 97, 248);
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 2.06;
+  letter-spacing: 0.3px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  border: none;
+  display: block;
+  width: 100%;
+  padding: 10px 28px;
+  margin-top: 32px;
+`
+
+const FooterBox = styled(Box)`
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(98, 98, 98);
+
+  &:hover {
+    text-decoration: none;
+    color: rgb(126, 97, 248);
+    opacity: 0.95;
+  }
+`
+
+const GetStartedMessage = styled.div`
+  flex-grow: 1;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.3px;
+  padding: 0 16px;
+  font-weight: normal;
+
+  & > b {
+    font-weight: normal;
+    color: rgb(126, 97, 248);
+  }
+`
+
+const ExplorerLink = styled.div`
+  margin-top: 10px;
+  margin-bottom: 16px;
+  text-align: center;
+`
+
+class Receipt extends React.Component {
   static propTypes = {
-    hideBuyPanel: PropTypes.func.isRequired,
-    showBuyForm: PropTypes.func.isRequired,
+    onRequestClose: PropTypes.func.isRequired,
     receipt: PropTypes.shape({
-      ETH_USD: PropTypes.number.isRequired
+      transactionIndex: PropTypes.number.isRequired,
+      blockNumber: PropTypes.number.isRequired,
+      blockHash: PropTypes.string.isRequired,
+      gasUsed: PropTypes.number.isRequired,
+      logs: PropTypes.array.isRequireds
     }).isRequired,
     config: PropTypes.shape({
       defaultGasPrice: PropTypes.string.isRequired,
@@ -29,8 +156,6 @@ class AuctionReceipt extends Component {
 
   render() {
     const {
-      hideBuyPanel,
-      showBuyForm,
       receipt: { blockHash, blockNumber, gasUsed, logs, transactionIndex },
       config: { defaultGasPrice, metExplorerUrl },
       tx: { from, gasPrice, hash }
@@ -49,85 +174,62 @@ class AuctionReceipt extends Component {
 
     return (
       <React.Fragment>
-        <div className="auction-panel__header header__buy-met --showBuyMetHeader">
-          <div className="auction-panel__header--inner">
-            <h2>Receipt</h2>
-            <a onClick={hideBuyPanel} className="auction-panel__close">
-              <img alt="" src={closeIcon} />
+        <Box>
+          <Header>
+            <CloseBtn onClick={this.props.onRequestClose}>
+              <img src={close} alt="" />
+            </CloseBtn>
+          </Header>
+          <SuccessIcon src={check} alt="" />
+          <Title>Purchase Complete</Title>
+          <div>
+            <Row>
+              <Label>Amount</Label>
+              <Value>
+                <MetValue>{auctionLog.decoded.tokens}</MetValue>
+              </Value>
+            </Row>
+            <Row>
+              <Label>Cost</Label>
+              <Value>
+                <EthValue>{totalValue}</EthValue>
+                <EthValue>{value}</EthValue> + {gasUsed} gas
+              </Value>
+            </Row>
+            <Row>
+              <Label>Transaction Hash</Label>
+              <Value>{hash}</Value>
+            </Row>
+            <Row>
+              <Label>Block Number</Label>
+              <Value>{blockNumber}</Value>
+            </Row>
+            <Row>
+              <Label>Transaction Index</Label>
+              <Value>{transactionIndex}</Value>
+            </Row>
+            <Row>
+              <Label>Block Hash</Label>
+              <Value>{blockHash}</Value>
+            </Row>
+          </div>
+          <MakeAnother onClick={this.props.onRequestClose}>
+            MAKE ANOTHER PURCHASE
+          </MakeAnother>
+          <ExplorerLink>
+            <a href={metExplorerUrl.replace('{{hash}}', hash)} target="_blank">
+              View is Explorer
             </a>
-          </div>
-        </div>
-        <div className="auction-panel__body panel__receipt">
-          <div className="auction-panel__body--inner">
-            <div className="panel__buy-metronome --showBuyMet">
-              <section>
-                <img src={checkIcon} alt="ok" />
-                <h2>Purchase Complete!</h2>
-              </section>
-              <section>
-                <label>Amount</label>
-                <span className="amount__total-text">
-                  <MetValue>{auctionLog.decoded.tokens}</MetValue>
-                </span>
-              </section>
-              <section className="panel__receipt-cost">
-                <label>Cost</label>
-                <ul>
-                  <li className="amount__total-li">
-                    <EthValue>{totalValue}</EthValue>
-                    {gasPrice ? (
-                      ''
-                    ) : (
-                      <span title="Gas price was estimated">*</span>
-                    )}
-                  </li>
-                  <li className="amount__total-li">
-                    <EthValue>{value}</EthValue> + {gasUsed} gas
-                  </li>
-                </ul>
-              </section>
-              <section>
-                <label>Transaction Hash</label>
-                <div className="amount__hash">
-                  <span>{hash}</span>
-                </div>
-              </section>
-              <section>
-                <label>Transaction Details</label>
-                <ul className="panel__receipt-details">
-                  <li>
-                    <label>Block Number</label>
-                    <span className="amount__total-text">{blockNumber}</span>
-                  </li>
-                  <li>
-                    <label>Transaction Index</label>
-                    <span className="amount__total-text">
-                      {transactionIndex}
-                    </span>
-                  </li>
-                  <li>
-                    <label>Block Hash</label>
-                    <div className="amount__hash">
-                      <span>{blockHash}</span>
-                    </div>
-                  </li>
-                </ul>
-              </section>
-              <section className="panel__purchase-btn-container">
-                <a className="btn" onClick={showBuyForm}>
-                  Make Another Purchase
-                </a>
-                <a
-                  className="btn btn-inverted"
-                  href={`${metExplorerUrl}/transactions/${hash}`}
-                  target="_blank"
-                >
-                  View in Explorer
-                </a>
-              </section>
-            </div>
-          </div>
-        </div>
+          </ExplorerLink>
+        </Box>
+
+        <FooterBox as="a" href="../wallet">
+          <img src={metro} alt="" />
+          <GetStartedMessage>
+            Get Started with the <b>Metronome Wallet</b>
+          </GetStartedMessage>
+          <img src={arrow} alt="" />
+        </FooterBox>
       </React.Fragment>
     )
   }
@@ -139,6 +241,18 @@ const mapStateToProps = state => ({
   config: state.config,
   rates: state.rates,
   tx: state.buyPanel.ongoingTx
+  // receipt: {
+  // transactionIndex: 12,
+  // blockNumber: 123987123,
+  // blockHash: '0x12386123',
+  // gasUsed: '123',
+  // logs: []
+  // },
+  // tx: {
+  // gasPrice: 12,
+  // from: '0x12222234567898765434567',
+  // hash: '0x123978123723712876123'
+  // }
 })
 
-export default connect(mapStateToProps)(AuctionReceipt)
+export default connect(mapStateToProps)(Receipt)

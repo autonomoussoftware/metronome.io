@@ -6,7 +6,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "react-app-rewired build",
+    "build": "gulp && react-app-rewired build",
     "build:libs": "npm run build:libs:status",
     "build:libs:status": "cd lib/metronome-status-js && npm i && npm run build",
     "build:static": "gulp",
@@ -27,7 +27,7 @@
     "coincap-lib": "1.0.0",
     "lodash.throttle": "4.1.1",
     "metronome-auction-logs-parser": "file:lib/metronome-auction-logs-parser-js",
-    "metronome-contracts": "1.4.1",
+    "metronome-contracts": "2.3.0",
     "metronome-status": "file:lib/metronome-status-js",
     "moment": "2.22.2",
     "p-retry": "2.0.0",

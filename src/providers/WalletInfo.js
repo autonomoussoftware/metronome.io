@@ -6,10 +6,6 @@ import PropTypes from 'prop-types'
 
 import withWeb3 from '../hocs/withWeb3'
 
-function chainIdToName(id) {
-  return [null, 'mainnet', null, 'ropsten'][id]
-}
-
 class WalletInfo extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -32,13 +28,18 @@ class WalletInfo extends Component {
 
     this.interval = startInterval(function() {
       promiseAllProps({
-        accounts: web3.eth.getAccounts(),
-        chain: web3.eth.net.getId().then(chainIdToName)
+        address: web3.eth
+          .getAccounts()
+          .then(acc => (acc && acc.length > 0 ? acc[0] : null)),
+        chainId: web3.eth.net.getId().then(id => id.toString())
       })
         .then(payload =>
-          Promise.all(payload.accounts.map(web3.eth.getBalance)).then(
-            balances => ({ balances, ...payload })
-          )
+          // wallet might be not logged in
+          payload.address
+            ? web3.eth
+                .getBalance(payload.address)
+                .then(balance => ({ balance, ...payload }))
+            : payload
         )
         .then(payload => dispatch({ type: 'UPDATE_WALLET_INFO', payload }))
         .catch(function(err) {

@@ -19,16 +19,21 @@ const Container = styled.div`
   }
 `
 
-const ChainWarning = ({ isCorrectChain, configChain }) =>
+const ChainWarning = ({ isCorrectChain, chains }) =>
   !isCorrectChain && (
-    <Container>Wrong chain - Connect wallet to {configChain}</Container>
+    <Container>
+      Unsupported chain. Connect wallet to a valid chain:{' '}
+      {chains
+        .map(({ displayName, chainId }) => `${displayName} (id: ${chainId})`)
+        .join(', ')}
+    </Container>
   )
 
 const mapStateToProps = state => ({
   isCorrectChain:
-    typeof state.wallet.chain === 'undefined' ||
-    state.wallet.chain === state.config.chain,
-  configChain: state.config.chain
+    state.wallet.chainId === null ||
+    Object.keys(state.config.chains).includes(state.wallet.chainId),
+  chains: Object.values(state.config.chains)
 })
 
 export default connect(mapStateToProps)(ChainWarning)
