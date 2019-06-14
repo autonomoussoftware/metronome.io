@@ -4,10 +4,10 @@ import styled from 'styled-components'
 import React from 'react'
 
 import AuctionCounter from '../common/AuctionCounter'
-import ChainSelector from '../common/ChainSelector'
 import ProviderInfo from './ProviderInfo'
 import METLoader from '../common/METLoader'
 import BuyForm from './BuyForm'
+import NavBar from '../common/NavBar'
 import Modal from './Modal'
 
 const Container = styled.div`
@@ -16,7 +16,7 @@ const Container = styled.div`
 
 const Header = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin-bottom: 48px;
 `
@@ -127,8 +127,8 @@ class AuctionsPage extends React.Component {
       <METLoader height="200px" />
     ) : (
       <Container>
+        <NavBar activePage="auction" />
         <Header>
-          <ChainSelector />
           <ProviderInfo />
         </Header>
         <Row>

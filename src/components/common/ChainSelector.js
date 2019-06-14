@@ -32,19 +32,19 @@ const Toggle = styled.button`
   border: none;
   padding: 0;
   margin: 0;
-  cursor: pointer;
 
   &:hover:not([disabled]),
   &:focus:not([disabled]),
   &:active:not([disabled]) {
-    pointer-events: none;
     outline: none;
     color: #7e61f8;
   }
 
   &[disabled] {
-    cursor: not-allowed;
     color: #aaa;
+    &:hover {
+      pointer-events: none;
+    }
   }
 `
 
