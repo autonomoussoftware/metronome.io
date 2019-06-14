@@ -9,9 +9,10 @@ import HeaderDashboard from './HeaderDashboard'
 import MetPriceAreaBar from './MetPriceAreaBar'
 import GeneralStats from './GeneralStats'
 import METLoader from '../common/METLoader'
+import NavBar from '../common/NavBar'
 
 const Container = styled.section`
-  margin-top: 32px;
+  margin-top: 48px;
 `
 
 const Title = styled.h2`
@@ -31,14 +32,16 @@ class DashboardPage extends Component {
     return isLoading ? (
       <METLoader />
     ) : (
-      <div>
+      <Container>
+        <NavBar activePage="dashboard" />
+
         <GeneralStats />
 
         <HeaderDashboard />
 
         <MetPriceAreaBar />
 
-        <Container className="container-fluid">
+        <div className="container-fluid mt-5">
           <Title>Stats</Title>
           <div className="row my-4">
             <div className="col-lg-4 col-md-6">
@@ -48,8 +51,8 @@ class DashboardPage extends Component {
               <ConverterStatCard />
             </div>
           </div>
-        </Container>
-      </div>
+        </div>
+      </Container>
     )
   }
 }
