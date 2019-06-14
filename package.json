@@ -51,8 +51,7 @@
     "victory": "0.27.0",
     "web3": "1.0.0-beta.37",
     "web3-detect-provider": "file:lib/web3-detect-provider",
-    "web3-utils": "1.0.0-beta.37",
-    "websocket-reconnector": "1.1.1"
+    "web3-patches": "1.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^9.5.0",
