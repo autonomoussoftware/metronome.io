@@ -30,7 +30,7 @@ class DashboardPage extends Component {
     const { isLoading } = this.props
 
     return isLoading ? (
-      <METLoader />
+      <METLoader height="200px" />
     ) : (
       <Container>
         <NavBar activePage="dashboard" />

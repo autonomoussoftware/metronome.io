@@ -22,7 +22,13 @@ HomePage.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  isLoading: state.auction.loading || state.converter.loading
+  isLoading:
+    state.auction.loading ||
+    state.converter.loading ||
+    !state.auction.status.currentPrice ||
+    !state.converter.status.currentPrice ||
+    typeof state.rates[state.config.chains[state.chain.active].symbol] !==
+      'number'
 })
 
 export default connect(mapStateToProps)(HomePage)

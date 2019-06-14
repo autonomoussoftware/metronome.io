@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 const TimeString = ({ hours, minutes, seconds, completed }) => (
-  <span>{completed ? 'Waiting...' : `$${hours}:${minutes}:${seconds}`}</span>
+  <span>{completed ? 'Waiting...' : `${hours}h:${minutes}m:${seconds}s`}</span>
 )
 
 TimeString.propTypes = {
