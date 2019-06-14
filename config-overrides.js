@@ -29,7 +29,7 @@ module.exports = {
           inject: true,
           template: path.join(__dirname, `./public/${filename}`),
           filename,
-          params: { gaTrackingId }
+          gaTrackingId
         })
       )
     })
