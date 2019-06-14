@@ -17,9 +17,7 @@ class ConverterStatCard extends Component {
     converter: PropTypes.shape({
       currentPrice: PropTypes.string.isRequired
     }).isRequired,
-    config: PropTypes.shape({
-      metApiUrl: PropTypes.string.isRequired
-    }).isRequired
+    metApiUrl: PropTypes.string.isRequired
   }
 
   state = {
@@ -32,11 +30,11 @@ class ConverterStatCard extends Component {
   retrieveData = () => {
     this.setState({ chartStatus: 'pending', chartError: null, chartData: [] })
 
-    const { metApiUrl } = this.props.config
+    const { metApiUrl } = this.props
     const from = sevenDaysAgo()
     const now = moment().unix()
 
-    fetch(`${metApiUrl}/history?from=${from}&to=${now}`)
+    fetch(`${metApiUrl}history?from=${from}&to=${now}`)
       .then(response => response.json())
       .then(data => data.filter(p => Boolean(p.currentConverterPrice)))
       .then(data =>
@@ -93,7 +91,7 @@ class ConverterStatCard extends Component {
 
 const mapStateToProps = state => ({
   converter: state.converter.status,
-  config: state.config
+  metApiUrl: state.config.chains[state.chain.active].metApiUrl
 })
 
 export default connect(mapStateToProps)(ConverterStatCard)

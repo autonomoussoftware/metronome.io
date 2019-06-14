@@ -256,15 +256,13 @@ const timeWindows = {
 
 class MetPriceAreaBar extends Component {
   static propTypes = {
+    metApiUrl: PropTypes.string.isRequired,
     auction: PropTypes.shape({
       tokensRemaining: PropTypes.string.isRequired,
-      currentAuction: PropTypes.string.isRequired,
+      currentAuction: PropTypes.number.isRequired,
       currentPrice: PropTypes.string.isRequired
     }).isRequired,
-    symbol: PropTypes.string.isRequired,
-    config: PropTypes.shape({
-      metApiUrl: PropTypes.string.isRequired
-    }).isRequired
+    symbol: PropTypes.string.isRequired
   }
 
   constructor(props) {
@@ -281,14 +279,14 @@ class MetPriceAreaBar extends Component {
   }
 
   retrieveData() {
-    const { metApiUrl } = this.props.config
+    const { metApiUrl } = this.props
 
     const now = moment().unix()
     const from = moment()
       .subtract(timeWindows[this.state.timeWindow])
       .unix()
 
-    fetch(`${metApiUrl}/history?from=${from}&to=${now}`)
+    fetch(`${metApiUrl}history?from=${from}&to=${now}`)
       .then(response => response.json())
       .then(data => this.setState({ err: null, history: data, timestamp: now }))
       .catch(err => this.setState({ err }))
@@ -558,9 +556,9 @@ class MetPriceAreaBar extends Component {
 }
 
 const mapStateToProps = state => ({
+  metApiUrl: state.config.chains[state.chain.active].metApiUrl,
   auction: state.auction.status,
-  symbol: state.config.chains[state.chain.active].symbol,
-  config: state.config
+  symbol: state.config.chains[state.chain.active].symbol
 })
 
 export default connect(mapStateToProps)(MetPriceAreaBar)

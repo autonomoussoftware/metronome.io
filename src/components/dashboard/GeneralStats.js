@@ -73,8 +73,8 @@ const smartRound = smartRounder(3, 0, 10)
 class GeneralStats extends Component {
   static propTypes = {
     auction: PropTypes.shape({
-      remainingPercentage: PropTypes.string.isRequired,
-      auctionSupply: PropTypes.string.isRequired,
+      remainingPercentage: PropTypes.number.isRequired,
+      auctionSupply: PropTypes.number.isRequired,
       tokenSupply: PropTypes.string.isRequired
     }).isRequired
   }
@@ -105,7 +105,7 @@ class GeneralStats extends Component {
               </Value>
             </Cell>
           </CellContainer>
-          <Btn href="../buy">Buy Metronome</Btn>
+          <Btn href="../auction">Buy Metronome</Btn>
         </Container>
       </React.Fragment>
     )

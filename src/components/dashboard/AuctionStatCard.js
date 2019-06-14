@@ -9,11 +9,9 @@ import StatCard from '../common/StatCard'
 
 class AuctionStatCard extends Component {
   static propTypes = {
+    metApiUrl: PropTypes.string.isRequired,
     auction: PropTypes.shape({
       currentPrice: PropTypes.string.isRequired
-    }).isRequired,
-    config: PropTypes.shape({
-      metApiUrl: PropTypes.string.isRequired
     }).isRequired
   }
 
@@ -27,13 +25,13 @@ class AuctionStatCard extends Component {
   retrieveData = () => {
     this.setState({ chartStatus: 'pending', chartError: null, chartData: [] })
 
-    const { metApiUrl } = this.props.config
+    const { metApiUrl } = this.props
     const from = moment()
       .subtract({ days: 7 })
       .unix()
     const now = moment().unix()
 
-    fetch(`${metApiUrl}/history?from=${from}&to=${now}`)
+    fetch(`${metApiUrl}history?from=${from}&to=${now}`)
       .then(response => response.json())
       .then(chartData =>
         this.setState({
@@ -89,8 +87,8 @@ class AuctionStatCard extends Component {
 }
 
 const mapStateToProps = state => ({
-  auction: state.auction.status,
-  config: state.config
+  metApiUrl: state.config.chains[state.chain.active].metApiUrl,
+  auction: state.auction.status
 })
 
 export default connect(mapStateToProps)(AuctionStatCard)

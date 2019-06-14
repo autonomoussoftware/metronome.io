@@ -93,9 +93,9 @@ const ProgressBarLabel = styled.div`
 
 class AuctionTokens extends Component {
   static propTypes = {
-    remainingPercentage: PropTypes.string,
+    remainingPercentage: PropTypes.number,
     tokensRemaining: PropTypes.string,
-    auctionSupply: PropTypes.string
+    auctionSupply: PropTypes.number
   }
 
   render() {

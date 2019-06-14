@@ -141,7 +141,7 @@ function AuctionWidget(props) {
           </Row>
         </RowContainer>
 
-        <Btn href="./buy">Buy Metronome</Btn>
+        <Btn href="./auction">Buy Metronome</Btn>
       </Body>
     </Container>
   )
