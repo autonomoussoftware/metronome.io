@@ -56,12 +56,12 @@ export default class NavBar extends React.Component {
       <Container>
         {isMultichain && <ChainSelector />}
         <LinkContainer isMultichain={isMultichain}>
-          {/* <Link
+          <Link
             isActive={this.props.activePage === 'converter'}
             href="../converter"
           >
             Converter
-          </Link> */}
+          </Link>
           <Link
             isActive={this.props.activePage === 'auction'}
             href="../auction"

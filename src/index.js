@@ -15,6 +15,7 @@ import WalletInfo from './providers/WalletInfo'
 import Rates from './providers/Rates'
 
 import DashboardPage from './components/dashboard/Dashboard'
+import ConverterPage from './components/converter/Converter'
 import ChainWarning from './components/common/ChainWarning'
 import AuctionPage from './components/auction/Auction'
 import WalletPage from './components/wallet/Wallet'
@@ -41,6 +42,8 @@ function getAppContent(content) {
       return <HomePage />
     case 'dashboard':
       return <DashboardPage />
+    case 'converter':
+      return <ConverterPage />
     case 'auction':
       return <AuctionPage />
     case 'wallet':

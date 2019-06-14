@@ -23,8 +23,7 @@
   "dependencies": {
     "accounting": "0.4.1",
     "bignumber.js": "7.2.1",
-    "bootstrap": "^4.3.1",
-    "lodash.throttle": "4.1.1",
+    "lodash.debounce": "4.0.8",
     "metronome-auction-logs-parser": "file:lib/metronome-auction-logs-parser-js",
     "metronome-contracts": "2.3.0",
     "metronome-status": "file:lib/metronome-status-js",
@@ -36,7 +35,6 @@
     "react-countdown-now": "1.3.0",
     "react-dom": "16.4.1",
     "react-hint": "3.2.0",
-    "react-less-watcher": "1.1.4",
     "react-modal": "3.8.1",
     "react-redux": "5.0.7",
     "react-scripts": "1.1.5",

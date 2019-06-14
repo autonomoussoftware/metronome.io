@@ -3,10 +3,9 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import React from 'react'
 
-import AuctionCounter from '../common/AuctionCounter'
 import ProviderInfo from '../common/ProviderInfo'
+import ConvertForm from './ConvertForm'
 import METLoader from '../common/METLoader'
-import BuyForm from './BuyForm'
 import NavBar from '../common/NavBar'
 import Modal from './Modal'
 
@@ -70,35 +69,6 @@ const Lead = styled.div`
   color: rgb(51, 51, 53);
 `
 
-const CountdownContainer = styled.div`
-  border-top: 1px solid #d1d1d1;
-  margin-top: 32px;
-  padding: 16px 0;
-  display: flex;
-  align-items: center;
-`
-
-const Label = styled.div`
-  flex-grow: 1;
-  font-size: 16px;
-  line-height: 1.5;
-  letter-spacing: 0.3px;
-  color: rgb(98, 98, 98);
-  padding-bottom: 21px;
-  padding-right: 42px;
-`
-
-const DepletedMessage = styled.div`
-  border-radius: 4px;
-  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.16), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
-  background-color: rgba(126, 97, 248, 0.08);
-  border-top: 4px solid rgb(126, 97, 248);
-  padding: 16px;
-  margin-top: 8px;
-  font-size: 13px;
-  line-height: 22px;
-`
-
 const DisclaimerMessage = styled.div`
   font-size: 13px;
   line-height: 1.69;
@@ -116,9 +86,8 @@ const LearnMore = styled.a`
   color: rgb(126, 97, 248);
 `
 
-class AuctionsPage extends React.Component {
+class ConverterPage extends React.Component {
   static propTypes = {
-    isAuctionActive: PropTypes.bool.isRequired,
     isLoading: PropTypes.bool.isRequired
   }
 
@@ -127,46 +96,23 @@ class AuctionsPage extends React.Component {
       <METLoader height="200px" />
     ) : (
       <Container>
-        <NavBar activePage="auction" />
+        <NavBar activePage="converter" />
         <Header>
           <ProviderInfo />
         </Header>
         <Row>
           <Col>
-            <Subtitle>BUY METRONOME</Subtitle>
-            <Title>Daily Auction</Title>
+            <Subtitle>GET METRONOME</Subtitle>
+            <Title>Converter</Title>
             <Lead>
-              Metronome has a daily supply of 2880 MET minted and auctioned.
+              Convert ETH to MET via the Autonomous Converter Contract.
             </Lead>
-            <CountdownContainer>
-              <Label>
-                {this.props.isAuctionActive
-                  ? 'Auction Time Remaining'
-                  : 'Next Auction Starts In'}
-              </Label>
-              <AuctionCounter />
-            </CountdownContainer>
-            {!this.props.isAuctionActive && (
-              <DepletedMessage>
-                This auction supply has all been purchased. Each daily auction
-                begins at Midnight UTC.
-                <br />
-                <a
-                  href="https://twitter.com/METAuction"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Follow Metronome Auction
-                </a>{' '}
-                on Twitter for <strong>auction updates</strong>.
-              </DepletedMessage>
-            )}
-            <LearnMore href="../buy">Learn more about The Auction</LearnMore>
+            <LearnMore href="../buy">Learn more about The Converter</LearnMore>
           </Col>
           <Col>
-            <BuyForm />
+            <ConvertForm />
             <DisclaimerMessage>
-              By choosing “Review Purchase” you are agreeing to our{' '}
+              By choosing “Review Conversion you are agreeing to our{' '}
               <a href="../privacy">disclaimer</a> and{' '}
               <a href="../privacy">terms of service</a>.
             </DisclaimerMessage>
@@ -179,12 +125,11 @@ class AuctionsPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  isAuctionActive: state.auction.status.isAuctionActive,
   isLoading:
-    state.auction.loading ||
-    !state.auction.status.currentPrice ||
+    state.converter.loading ||
+    !state.converter.status.currentPrice ||
     typeof state.rates[state.config.chains[state.chain.active].symbol] !==
       'number'
 })
 
-export default connect(mapStateToProps)(AuctionsPage)
+export default connect(mapStateToProps)(ConverterPage)

@@ -6,27 +6,7 @@ import React from 'react'
 import DollarValue from '../common/DollarValue'
 import EthValue from '../common/EthValue'
 import MetValue from '../common/MetValue'
-
-const Container = styled.section`
-  border-radius: 4px;
-  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.16), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
-  background-color: #ffffff;
-`
-
-const Title = styled.h2`
-  font-family: Roboto;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: 0.3px;
-  color: #333335;
-  border-bottom: 2px solid #d1d1d1;
-  padding: 16px 24px;
-`
-
-const Body = styled.div`
-  padding: 16px 24px 24px 24px;
-`
+import Widget from '../common/Widget'
 
 const UsdPrice = styled.div`
   font-family: Roboto Mono;
@@ -51,6 +31,7 @@ const RowContainer = styled.div`
   border-bottom: 1px solid #d1d1d1;
   padding: 8px 0;
   margin-top: 16px;
+  margin-bottom: 24px;
 `
 
 const Row = styled.div`
@@ -80,33 +61,33 @@ function ConverterWidget(props) {
   const { currentPrice, availableEth, availableMet, symbol } = props
 
   return (
-    <Container>
-      <Title>Autonomous Converter</Title>
-      <Body>
-        <div>Price per MET</div>
-
-        <UsdPrice>
-          <DollarValue>{currentPrice}</DollarValue>
-        </UsdPrice>
-        <EthPrice>
-          <EthValue>{currentPrice}</EthValue>
-        </EthPrice>
-        <RowContainer>
-          <Row>
-            <Label>Remaining MET</Label>
-            <Value>
-              <MetValue>{availableMet}</MetValue>
-            </Value>
-          </Row>
-          <Row>
-            <Label>Remaining {symbol}</Label>
-            <Value>
-              <EthValue>{availableEth}</EthValue>
-            </Value>
-          </Row>
-        </RowContainer>
-      </Body>
-    </Container>
+    <Widget
+      title="Autonomous Converter"
+      btnUrl="./converter"
+      btnLabel="Convert ETH to MET"
+    >
+      <div>Price per MET</div>
+      <UsdPrice>
+        <DollarValue>{currentPrice}</DollarValue>
+      </UsdPrice>
+      <EthPrice>
+        <EthValue>{currentPrice}</EthValue>
+      </EthPrice>
+      <RowContainer>
+        <Row>
+          <Label>Remaining MET</Label>
+          <Value>
+            <MetValue>{availableMet}</MetValue>
+          </Value>
+        </Row>
+        <Row>
+          <Label>Remaining {symbol}</Label>
+          <Value>
+            <EthValue>{availableEth}</EthValue>
+          </Value>
+        </Row>
+      </RowContainer>
+    </Widget>
   )
 }
 

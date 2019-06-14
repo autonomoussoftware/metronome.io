@@ -7,28 +7,7 @@ import AuctionMetAvailableSm from './AuctionMetAvailableSm'
 import AuctionCounterSm from './AuctionCounterSm'
 import DollarValue from '../common/DollarValue'
 import EthValue from '../common/EthValue'
-
-const Container = styled.section`
-  border-radius: 4px;
-  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.16), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
-  background-color: #ffffff;
-  margin-bottom: 24px;
-`
-
-const Title = styled.h2`
-  font-family: Roboto;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: 0.3px;
-  color: #333335;
-  border-bottom: 2px solid #d1d1d1;
-  padding: 16px 24px;
-`
-
-const Body = styled.div`
-  padding: 16px 24px 24px 24px;
-`
+import Widget from '../common/Widget'
 
 const UsdPrice = styled.div`
   font-family: Roboto Mono;
@@ -79,71 +58,42 @@ const Value = styled.div`
   color: #7e61f8;
 `
 
-const Btn = styled.a`
-  font-family: Roboto;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 2.06;
-  letter-spacing: 0.3px;
-  text-align: center;
-  color: #ffffff;
-  background-color: #7e61f8;
-  display: block;
-  text-transform: uppercase;
-  padding: 10px 28px;
-  text-decoration: none;
-
-  &:hover,
-  &:active,
-  &:focus {
-    opacity: 0.9;
-    text-decoration: none;
-    color: #ffffff;
-  }
-`
-
 function AuctionWidget(props) {
   const { lastPurchasePrice, isAuctionActive, currentPrice } = props
 
   return (
-    <Container>
-      <Title>Daily Auction</Title>
-      <Body>
-        <div>Price per MET</div>
+    <Widget title="Daily Auction" btnUrl="./auction" btnLabel="Buy Metronome">
+      <div>Price per MET</div>
+      <UsdPrice>
+        <DollarValue>
+          {isAuctionActive ? currentPrice : lastPurchasePrice}
+        </DollarValue>
+      </UsdPrice>
+      <EthPrice>
+        <EthValue>
+          {isAuctionActive ? currentPrice : lastPurchasePrice}
+        </EthValue>
+      </EthPrice>
 
-        <UsdPrice>
-          <DollarValue>
-            {isAuctionActive ? currentPrice : lastPurchasePrice}
-          </DollarValue>
-        </UsdPrice>
-        <EthPrice>
-          <EthValue>
-            {isAuctionActive ? currentPrice : lastPurchasePrice}
-          </EthValue>
-        </EthPrice>
-
-        <RowContainer>
-          <Row>
-            <Label>
-              {isAuctionActive ? 'Time Available' : 'Time Until Next Auction'}
-            </Label>
-            <Value>
-              <AuctionCounterSm />
-            </Value>
-          </Row>
-          <Row>
-            <Label>
-              {isAuctionActive ? 'Available Supply' : 'Next Starting Price'}
-            </Label>
-            <Value>
-              <AuctionMetAvailableSm />
-            </Value>
-          </Row>
-        </RowContainer>
-
-        <Btn href="./auction">Buy Metronome</Btn>
-      </Body>
-    </Container>
+      <RowContainer>
+        <Row>
+          <Label>
+            {isAuctionActive ? 'Time Available' : 'Time Until Next Auction'}
+          </Label>
+          <Value>
+            <AuctionCounterSm />
+          </Value>
+        </Row>
+        <Row>
+          <Label>
+            {isAuctionActive ? 'Available Supply' : 'Next Starting Price'}
+          </Label>
+          <Value>
+            <AuctionMetAvailableSm />
+          </Value>
+        </Row>
+      </RowContainer>
+    </Widget>
   )
 }
 

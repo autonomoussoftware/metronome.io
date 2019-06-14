@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
+import MetronomeContracts from 'metronome-contracts'
 import detectProvider from 'web3-detect-provider'
 import { connect } from 'react-redux'
 import BigNumber from 'bignumber.js'
 import PropTypes from 'prop-types'
+import debounce from 'lodash.debounce'
 import pRetry from 'p-retry'
 import styled from 'styled-components'
 import utils from 'web3-utils'
 
+import MinReturnCheckbox from './MinReturnCheckbox'
 import DollarValue from '../common/DollarValue'
 import TextInput from '../common/TextInput'
-import FiatValue from '../common/FiatValue'
 import withWeb3 from '../../hocs/withWeb3'
 import EthValue from '../common/EthValue'
 import MetValue from '../common/MetValue'
@@ -128,12 +130,11 @@ const EstimateMet = styled.div`
   white-space: nowrap;
 `
 
-const EstimateUsd = styled.div`
-  font-size: 11px;
-  line-height: 1.5;
-  font-weight: 500;
-  text-align: right;
-  color: rgb(98, 98, 98);
+const Estimate = styled.div`
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+  color: ${p => (p.status === 'failure' ? '#d46045' : '#626262')};
 `
 
 const GET_TX_RETRIES = 5
@@ -148,14 +149,22 @@ function throwIfNull(obj) {
   return obj
 }
 
-class BuyForm extends Component {
+class ConvertForm extends Component {
   static propTypes = {
+    updateEstimateSuccess: PropTypes.func.isRequired,
+    updateEstimateFailure: PropTypes.func.isRequired,
+    updateEstimateStart: PropTypes.func.isRequired,
+    onUseMinimumToggle: PropTypes.func.isRequired,
+    estimateStatus: PropTypes.oneOf(['init', 'pending', 'success', 'failure'])
+      .isRequired,
+    estimateError: PropTypes.string,
     gasOverestimation: PropTypes.number.isRequired,
-    auctionsAddress: PropTypes.string.isRequired,
+    converterAddress: PropTypes.string.isRequired,
     currentPrice: PropTypes.string.isRequired,
     showReceipt: PropTypes.func.isRequired,
     showWaiting: PropTypes.func.isRequired,
     storeTxData: PropTypes.func.isRequired,
+    useMinimum: PropTypes.bool.isRequired,
     showError: PropTypes.func.isRequired,
     clearForm: PropTypes.func.isRequired,
     updateEth: PropTypes.func.isRequired,
@@ -165,28 +174,37 @@ class BuyForm extends Component {
         message: PropTypes.string.isRequired
       })
     }),
+    estimate: PropTypes.string,
+    chainId: PropTypes.string.isRequired,
     balance: PropTypes.string,
     address: PropTypes.string,
     symbol: PropTypes.string.isRequired,
-    rate: PropTypes.number.isRequired,
     web3: PropTypes.shape({
       eth: PropTypes.shape({
-        getTransaction: PropTypes.func.isRequired
+        getTransaction: PropTypes.func.isRequired,
+        Contract: PropTypes.func.isRequired
       }).isRequired
     }),
-    eth: PropTypes.string.isRequired,
-    met: PropTypes.string.isRequired
+    eth: PropTypes.string.isRequired
+  }
+
+  constructor(props) {
+    super(props)
+    const abi = MetronomeContracts[props.chainId].AutonomousConverter.abi
+    this.contract = new props.web3.eth.Contract(abi, props.converterAddress)
   }
 
   sendTransaction = e => {
     const {
       gasOverestimation,
-      auctionsAddress,
+      converterAddress,
       showReceipt,
       showWaiting,
       storeTxData,
+      useMinimum,
       clearForm,
       showError,
+      estimate,
       address,
       web3,
       eth
@@ -194,17 +212,20 @@ class BuyForm extends Component {
 
     e.preventDefault()
 
+    const minReturn = useMinimum && typeof estimate === 'string' ? estimate : 1
+
     const txObject = {
       value: utils.toWei(eth.replace(',', '.')),
+      data: this.contract.methods.convertEthToMet(minReturn).encodeABI(),
       from: address,
-      to: auctionsAddress
+      to: converterAddress
     }
 
     showWaiting()
 
     try {
-      window.gtag('event', 'Buy MET in auction initiated', {
-        event_category: 'Buy'
+      window.gtag('event', 'Convert ETH to MET initiated', {
+        event_category: 'Convert'
       })
       web3.eth
         .estimateGas(txObject)
@@ -222,21 +243,21 @@ class BuyForm extends Component {
             })
             .on('receipt', function(receipt) {
               if (!receipt.status) {
-                window.gtag('event', 'Buy MET in auction failed', {
-                  event_category: 'Buy'
+                window.gtag('event', 'Convert ETH to MET failed', {
+                  event_category: 'Convert'
                 })
                 showError(
-                  'Purchase reverted - Try again',
+                  'Conversion reverted - Try again',
                   new Error('Transaction status is falsy')
                 )
                 return
               }
               if (!receipt.logs.length) {
-                window.gtag('event', 'Buy MET in auction failed', {
-                  event_category: 'Buy'
+                window.gtag('event', 'Convert ETH to MET failed', {
+                  event_category: 'Convert'
                 })
                 showError(
-                  'Purchase failed - Try again',
+                  'Conversion failed - Try again',
                   new Error('Transaction logs missing')
                 )
                 return
@@ -249,16 +270,16 @@ class BuyForm extends Component {
               })
                 .catch(() => ({ from: address, hash }))
                 .then(function(tx) {
-                  window.gtag('event', 'Buy MET in auction succeeded', {
-                    event_category: 'Buy'
+                  window.gtag('event', 'Convert ETH to MET succeeded', {
+                    event_category: 'Convert'
                   })
                   storeTxData(tx)
                   showReceipt(receipt)
                   clearForm()
                 })
                 .catch(function(err) {
-                  window.gtag('event', 'Buy MET in auction failed', {
-                    event_category: 'Buy'
+                  window.gtag('event', 'Convert ETH to MET failed', {
+                    event_category: 'Convert'
                   })
                   showError(
                     `Something went wrong - Check your wallet or explorer for transaction ${hash}`,
@@ -267,51 +288,84 @@ class BuyForm extends Component {
                 })
             })
             .on('error', function(err) {
-              window.gtag('event', 'Buy MET in auction failed', {
-                event_category: 'Buy'
+              window.gtag('event', 'Convert ETH to MET failed', {
+                event_category: 'Convert'
               })
               showError('Transaction error - Try again', err)
             })
         )
     } catch (err) {
-      window.gtag('event', 'Buy MET in auction failed', {
-        event_category: 'Buy'
+      window.gtag('event', 'Convert ETH to MET failed', {
+        event_category: 'Convert'
       })
       showError('Transaction could not be sent - Try again', err)
+    }
+  }
+
+  getEstimate = debounce(
+    // eslint-disable-next-line
+    ethValue => {
+      const {
+        updateEstimateSuccess,
+        updateEstimateFailure,
+        updateEstimateStart,
+        web3
+      } = this.props
+
+      updateEstimateStart()
+
+      let weiValue
+
+      try {
+        weiValue = web3.utils.toWei(ethValue.replace(',', '.'))
+      } catch (e) {
+        updateEstimateFailure({ message: 'Invalid value' })
+      }
+
+      if (!weiValue) return
+
+      this.contract.methods
+        .getMetForEthResult(weiValue)
+        .call()
+        .then(updateEstimateSuccess)
+        .catch(updateEstimateFailure)
+    },
+    500,
+    { leading: true, trailing: true }
+  )
+
+  componentWillUpdate({ currentPrice, eth }) {
+    // Recalculate estimate if amount or price changed
+    if (
+      eth &&
+      new BigNumber(eth).gt(0) &&
+      (this.props.currentPrice !== currentPrice || this.props.eth !== eth)
+    ) {
+      this.getEstimate(eth)
     }
   }
 
   // eslint-disable-next-line complexity
   render() {
     const {
+      estimateStatus,
+      estimateError,
       currentPrice,
+      useMinimum,
       updateEth,
       errorData,
+      estimate,
       balance,
       address,
       symbol,
-      rate,
-      eth,
-      met
+      eth
     } = this.props
 
-    const fiatValue = new BigNumber(eth).times(rate).toString()
-
-    const allowBuy =
+    const allowConversion =
       new BigNumber(eth).gt(0) &&
       address &&
+      (!useMinimum || estimate) &&
       new BigNumber(eth).lte(utils.fromWei(balance))
-
-    function withRate(eventHandler) {
-      return function(ev) {
-        if (currentPrice) {
-          eventHandler({
-            value: ev.target.value || '0',
-            rate: currentPrice
-          })
-        }
-      }
-    }
 
     function formatValue(value) {
       const bigValue = new BigNumber(value)
@@ -339,7 +393,7 @@ class BuyForm extends Component {
             placeholder="0.00"
             autoFocus
             disabled={!currentPrice}
-            onChange={withRate(updateEth)}
+            onChange={e => updateEth(e.target.value)}
             suffix={symbol}
             value={formatValue(eth)}
             type="number"
@@ -347,16 +401,36 @@ class BuyForm extends Component {
           />
 
           <EstimateContainer>
-            <EstimateLabel>You will receive:</EstimateLabel>
-            <EstimateValue>
-              <EstimateMet>
-                <MetValue unit="met">{met}</MetValue>
-              </EstimateMet>
-              <EstimateUsd>
-                <FiatValue suffix="USD">{fiatValue}</FiatValue>
-              </EstimateUsd>
-            </EstimateValue>
+            {estimateStatus === 'init' && (
+              <Estimate status={estimateStatus}>
+                Enter a valid amount to get a conversion estimate.
+              </Estimate>
+            )}
+            {estimateStatus === 'pending' && (
+              <Estimate status={estimateStatus}>
+                Getting conversion estimate...
+              </Estimate>
+            )}
+            {estimateStatus === 'success' && (
+              <React.Fragment>
+                <EstimateLabel>You will receive:</EstimateLabel>
+                <EstimateValue>
+                  <EstimateMet>
+                    <MetValue unit="met">{estimate}</MetValue>
+                  </EstimateMet>
+                </EstimateValue>
+              </React.Fragment>
+            )}
+            {estimateStatus === 'failure' && (
+              <Estimate status={estimateStatus}>{estimateError}</Estimate>
+            )}
           </EstimateContainer>
+
+          <MinReturnCheckbox
+            useMinimum={this.props.useMinimum}
+            onToggle={this.props.onUseMinimumToggle}
+            label="Get expected MET amount or cancel"
+          />
 
           {errorData &&
             errorData.hint &&
@@ -378,9 +452,9 @@ class BuyForm extends Component {
                 : undefined
             }
           >
-            <SubmitBtn disabled={!allowBuy} type="submit">
+            <SubmitBtn disabled={!allowConversion} type="submit">
               {web3Provider === 'none'
-                ? 'REVIEW PURCHASE'
+                ? 'REVIEW CONVERSION'
                 : `REVIEW IN ${web3Provider.toUpperCase()}`}
             </SubmitBtn>
           </div>
@@ -391,29 +465,35 @@ class BuyForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state.buyForm,
+  ...state.convertForm,
   gasOverestimation: state.config.chains[state.chain.active].gasOverestimation,
-  auctionsAddress: state.config.chains[state.chain.active].auctionAddress,
-  currentPrice: state.auction.status.currentPrice,
-  errorData: state.buyPanel.errorData,
+  converterAddress: state.config.chains[state.chain.active].converterAddress,
+  currentPrice: state.converter.status.currentPrice,
+  errorData: state.convertPanel.errorData,
   address: state.wallet.address,
   balance: state.wallet.balance,
-  symbol: state.config.chains[state.chain.active].symbol,
-  rate: state.rates[state.config.chains[state.chain.active].symbol]
+  chainId: state.chain.active,
+  symbol: state.config.chains[state.chain.active].symbol
 })
 
 const mapDispatchToProps = dispatch => ({
   showError: (hint, err) =>
-    dispatch({ type: 'SHOW_BUY_ERROR', payload: { hint, err } }),
-  showReceipt: payload => dispatch({ type: 'SHOW_BUY_RECEIPT', payload }),
-  showWaiting: payload => dispatch({ type: 'SHOW_BUY_WAITING', payload }),
+    dispatch({ type: 'SHOW_CONVERT_ERROR', payload: { hint, err } }),
+  showReceipt: payload => dispatch({ type: 'SHOW_CONVERT_RECEIPT', payload }),
+  showWaiting: payload => dispatch({ type: 'SHOW_CONVERT_WAITING', payload }),
   storeTxData: payload => dispatch({ type: 'UPDATE_ONGOING_TX', payload }),
-  updateEth: payload => dispatch({ type: 'UPDATE_BUY_ETH', payload }),
-  updateMet: payload => dispatch({ type: 'UPDATE_BUY_MET', payload }),
-  clearForm: () => dispatch({ type: 'CLEAR_BUY_FORM' })
+  updateEth: payload => dispatch({ type: 'UPDATE_CONVERT_ETH', payload }),
+  clearForm: () => dispatch({ type: 'CLEAR_CONVERT_FORM' }),
+  updateEstimateStart: payload =>
+    dispatch({ type: 'UPDATE_CONVERT_ESTIMATE_START', payload }),
+  updateEstimateSuccess: payload =>
+    dispatch({ type: 'UPDATE_CONVERT_ESTIMATE_SUCCESS', payload }),
+  updateEstimateFailure: payload =>
+    dispatch({ type: 'UPDATE_CONVERT_ESTIMATE_FAILURE', payload }),
+  onUseMinimumToggle: () => dispatch({ type: 'USE_MINIMUM_TOGGLE' })
 })
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withWeb3(BuyForm))
+)(withWeb3(ConvertForm))
