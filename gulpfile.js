@@ -95,7 +95,7 @@ function script() {
 const timeStamp = new Date().getTime()
 function cacheBust() {
   return gulp
-    .src(['public/index.html'])
+    .src(['public/**/*.html'])
     .pipe(replace(/cb=\d+/g, `cb=${timeStamp}`))
     .pipe(gulp.dest('./public/.'))
 }
