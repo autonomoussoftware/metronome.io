@@ -6,6 +6,7 @@ import React from 'react'
 import AuctionCounter from '../common/AuctionCounter'
 import ProviderInfo from '../common/ProviderInfo'
 import METLoader from '../common/METLoader'
+import MetValue from '../common/MetValue'
 import BuyForm from './BuyForm'
 import NavBar from '../common/NavBar'
 import Modal from './Modal'
@@ -25,6 +26,7 @@ const Row = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   @media (min-width: 992px) {
     flex-direction: row;
     align-items: flex-start;
@@ -116,8 +118,35 @@ const LearnMore = styled.a`
   color: rgb(126, 97, 248);
 `
 
+const SupplyContainer = styled.div`
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+`
+
+const SupplyLabel = styled.div`
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.3px;
+  color: rgb(98, 98, 98);
+  flex-grow: 1;
+  padding-right: 24px;
+`
+
+const SupplyValue = styled.div`
+  text-align: right;
+  font-family: Roboto Mono;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: rgb(126, 97, 248);
+  text-align: right;
+  white-space: nowrap;
+`
+
 class AuctionsPage extends React.Component {
   static propTypes = {
+    tokensRemaining: PropTypes.string,
     isAuctionActive: PropTypes.bool.isRequired,
     isLoading: PropTypes.bool.isRequired
   }
@@ -146,7 +175,14 @@ class AuctionsPage extends React.Component {
               </Label>
               <AuctionCounter />
             </CountdownContainer>
-            {!this.props.isAuctionActive && (
+            {this.props.isAuctionActive ? (
+              <SupplyContainer>
+                <SupplyLabel>Available Supply</SupplyLabel>
+                <SupplyValue>
+                  <MetValue>{this.props.tokensRemaining}</MetValue>
+                </SupplyValue>
+              </SupplyContainer>
+            ) : (
               <DepletedMessage>
                 This auction supply has all been purchased. Each daily auction
                 begins at Midnight UTC.
@@ -180,6 +216,7 @@ class AuctionsPage extends React.Component {
 
 const mapStateToProps = state => ({
   isAuctionActive: state.auction.status.isAuctionActive,
+  tokensRemaining: state.auction.status.tokensRemaining,
   isLoading:
     state.auction.loading ||
     !state.auction.status.currentPrice ||
