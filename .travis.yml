@@ -27,6 +27,7 @@ deploy:
   file: build-$TRAVIS_TAG.zip
   skip_cleanup: true
   draft: true
+  name: $TRAVIS_TAG
   on:
     tags: true
-    all_branches: true
+    branch: master
