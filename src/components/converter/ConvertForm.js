@@ -416,7 +416,7 @@ class ConvertForm extends Component {
                 <EstimateLabel>You will receive:</EstimateLabel>
                 <EstimateValue>
                   <EstimateMet>
-                    <MetValue unit="met">{estimate}</MetValue>
+                    <MetValue>{estimate}</MetValue>
                   </EstimateMet>
                 </EstimateValue>
               </React.Fragment>
