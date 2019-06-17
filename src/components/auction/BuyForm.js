@@ -166,6 +166,7 @@ class BuyForm extends Component {
         message: PropTypes.string.isRequired
       })
     }),
+    estimate: PropTypes.string.isRequired,
     balance: PropTypes.string,
     address: PropTypes.string,
     symbol: PropTypes.string.isRequired,
@@ -175,8 +176,7 @@ class BuyForm extends Component {
         getTransaction: PropTypes.func.isRequired
       }).isRequired
     }),
-    eth: PropTypes.string.isRequired,
-    met: PropTypes.string.isRequired
+    eth: PropTypes.string.isRequired
   }
 
   sendTransaction = e => {
@@ -289,12 +289,12 @@ class BuyForm extends Component {
       currentPrice,
       updateEth,
       errorData,
+      estimate,
       balance,
       address,
       symbol,
       rate,
-      eth,
-      met
+      eth
     } = this.props
 
     const fiatValue = new BigNumber(eth).times(rate).toString()
@@ -353,7 +353,7 @@ class BuyForm extends Component {
             <EstimateLabel>You will receive:</EstimateLabel>
             <EstimateValue>
               <EstimateMet>
-                <MetValue unit="met">{met}</MetValue>
+                <MetValue unit="met">{estimate}</MetValue>
               </EstimateMet>
               <EstimateUsd>
                 <FiatValue suffix="USD">{fiatValue}</FiatValue>
@@ -415,7 +415,6 @@ const mapDispatchToProps = dispatch => ({
   showWaiting: payload => dispatch({ type: 'SHOW_BUY_WAITING', payload }),
   storeTxData: payload => dispatch({ type: 'UPDATE_ONGOING_TX', payload }),
   updateEth: payload => dispatch({ type: 'UPDATE_BUY_ETH', payload }),
-  updateMet: payload => dispatch({ type: 'UPDATE_BUY_MET', payload }),
   clearForm: () => dispatch({ type: 'CLEAR_BUY_FORM' })
 })
 

@@ -10,10 +10,18 @@ BigNumber.config({ DECIMAL_PLACES })
 
 // Values are in ETH and MET, not wei and aMET
 const initialState = {
-  tokensRemaining: '0',
-  eth: '0',
-  met: '0',
-  wait: false
+  tokensRemaining: null,
+  currentPrice: null,
+  estimate: '0',
+  wait: false,
+  eth: '0'
+}
+
+function getEstimate(input, available, rate) {
+  return BigNumber.min(
+    new BigNumber(input).div(fromWei(rate)),
+    fromWei(available)
+  ).toFixed(DECIMAL_PLACES)
 }
 
 const reducer = handleActions(
@@ -27,33 +35,26 @@ const reducer = handleActions(
     UPDATE_BUY_ETH: (state, { payload }) => ({
       ...state,
       eth: new BigNumber(payload.value).toFixed(DECIMAL_PLACES),
-      met: BigNumber.min(
-        new BigNumber(payload.value).div(fromWei(payload.rate)),
-        fromWei(state.tokensRemaining)
-      ).toFixed(DECIMAL_PLACES)
+      estimate: getEstimate(
+        payload.value,
+        state.tokensRemaining,
+        state.currentPrice
+      )
     }),
-    UPDATE_BUY_MET: (state, { payload }) => ({
-      ...state,
-      eth: new BigNumber(payload.value)
-        .times(fromWei(payload.rate))
-        .toFixed(DECIMAL_PLACES),
-      met: new BigNumber(payload.value).toFixed(DECIMAL_PLACES)
-    }),
-    UPDATE_AUCTION_STATUS: (state, { payload }) => ({
-      ...state,
-      tokensRemaining: payload.tokensRemaining,
-      eth: state.wait
-        ? state.eth
-        : new BigNumber(state.met)
-            .times(fromWei(payload.currentPrice))
-            .toFixed(DECIMAL_PLACES),
-      met: state.wait
-        ? BigNumber.min(
-            new BigNumber(payload.value).div(fromWei(payload.rate)),
-            fromWei(state.tokensRemaining)
-          ).toFixed(DECIMAL_PLACES)
-        : state.met
-    })
+    UPDATE_AUCTION_STATUS: (state, { payload }) =>
+      // avoid updating estimate if status still not received
+      state.currentPrice
+        ? {
+            ...state,
+            tokensRemaining: payload.tokensRemaining,
+            currentPrice: payload.currentPrice,
+            estimate: getEstimate(
+              state.eth,
+              payload.tokensRemaining,
+              payload.currentPrice
+            )
+          }
+        : state
   },
   initialState
 )
