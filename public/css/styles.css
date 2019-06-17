@@ -471,7 +471,7 @@ input::placeholder {
     position: absolute;
 }
 #video .skewed-bg {
-    position: absolute;
+    /* position: absolute;
     right: 0;
     bottom: 300px;
     height: 700px;
@@ -482,7 +482,8 @@ input::placeholder {
     -webkit-transform: skewY(-20deg);
     transform: skewY(-20deg);
     -webkit-backface-visibility: hidden;
-    backface-visibility: initial;
+    backface-visibility: initial; */
+    display: none;
 }
 #video .color-fill {
     height: 680px;
