@@ -152,6 +152,7 @@ class BuyForm extends Component {
   static propTypes = {
     gasOverestimation: PropTypes.number.isRequired,
     auctionsAddress: PropTypes.string.isRequired,
+    isAuctionActive: PropTypes.bool,
     currentPrice: PropTypes.string.isRequired,
     showReceipt: PropTypes.func.isRequired,
     showWaiting: PropTypes.func.isRequired,
@@ -284,6 +285,7 @@ class BuyForm extends Component {
   // eslint-disable-next-line complexity
   render() {
     const {
+      isAuctionActive,
       currentPrice,
       updateEth,
       errorData,
@@ -298,6 +300,7 @@ class BuyForm extends Component {
     const fiatValue = new BigNumber(eth).times(rate).toString()
 
     const allowBuy =
+      isAuctionActive &&
       new BigNumber(eth).gt(0) &&
       address &&
       new BigNumber(eth).lte(utils.fromWei(balance))
@@ -338,7 +341,7 @@ class BuyForm extends Component {
             label="Amount"
             placeholder="0.00"
             autoFocus
-            disabled={!currentPrice}
+            disabled={!currentPrice || !isAuctionActive || !address}
             onChange={withRate(updateEth)}
             suffix={symbol}
             value={formatValue(eth)}
@@ -369,7 +372,9 @@ class BuyForm extends Component {
 
           <div
             data-rh={
-              !address
+              !isAuctionActive
+                ? 'Current auction is depleted'
+                : !address
                 ? 'You need to login to your wallet'
                 : !new BigNumber(eth).gt(0)
                 ? 'Enter a valid amount'
@@ -394,6 +399,7 @@ const mapStateToProps = state => ({
   ...state.buyForm,
   gasOverestimation: state.config.chains[state.chain.active].gasOverestimation,
   auctionsAddress: state.config.chains[state.chain.active].auctionAddress,
+  isAuctionActive: state.auction.status.isAuctionActive,
   currentPrice: state.auction.status.currentPrice,
   errorData: state.buyPanel.errorData,
   address: state.wallet.address,
