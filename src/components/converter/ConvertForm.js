@@ -191,7 +191,9 @@ class ConvertForm extends Component {
   constructor(props) {
     super(props)
     const abi = MetronomeContracts[props.chainId].AutonomousConverter.abi
-    this.contract = new props.web3.eth.Contract(abi, props.converterAddress)
+    this.contract = props.web3
+      ? new props.web3.eth.Contract(abi, props.converterAddress)
+      : null
   }
 
   sendTransaction = e => {
@@ -211,6 +213,8 @@ class ConvertForm extends Component {
     } = this.props
 
     e.preventDefault()
+
+    if (!this.contract) return
 
     const minReturn = useMinimum && typeof estimate === 'string' ? estimate : 1
 
@@ -312,6 +316,8 @@ class ConvertForm extends Component {
         web3
       } = this.props
 
+      if (!this.contract) return
+
       updateEstimateStart()
 
       let weiValue
@@ -392,7 +398,7 @@ class ConvertForm extends Component {
             label="Amount"
             placeholder="0.00"
             autoFocus
-            disabled={!currentPrice}
+            disabled={!currentPrice || !address}
             onChange={e => updateEth(e.target.value)}
             suffix={symbol}
             value={formatValue(eth)}
