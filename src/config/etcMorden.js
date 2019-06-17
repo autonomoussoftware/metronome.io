@@ -2,16 +2,6 @@ import MetronomeContracts from 'metronome-contracts'
 
 const contracts = MetronomeContracts.morden
 
-const {
-  REACT_APP_MORDEN_INDEXER_URL,
-  REACT_APP_MORDEN_API_URL,
-  REACT_APP_MORDEN_NODE_URL
-} = process.env
-
-const indexerUrl = REACT_APP_MORDEN_INDEXER_URL || 'http://localhost:3015'
-const metApiUrl = REACT_APP_MORDEN_API_URL || 'http://localhost:3012/'
-const wsApiUrl = REACT_APP_MORDEN_NODE_URL || 'ws://localhost:8556'
-
 export default {
   displayName: 'Morden',
   coincapId: 'ethereum-classic',
@@ -27,9 +17,7 @@ export default {
 
   // urls
   explorerUrl: 'https://mordenexplorer.ethertrack.io/tx/{{hash}}',
-  indexerUrl,
-  metApiUrl,
-  wsApiUrl,
+  metApiUrl: process.env.REACT_APP_MORDEN_API_URL || 'http://localhost:3012/',
 
   gasOverestimation: 1.1,
 

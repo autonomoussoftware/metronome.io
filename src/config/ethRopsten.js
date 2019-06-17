@@ -2,16 +2,6 @@ import MetronomeContracts from 'metronome-contracts'
 
 const contracts = MetronomeContracts.ropsten
 
-const {
-  REACT_APP_ROPSTEN_INDEXER_URL,
-  REACT_APP_ROPSTEN_API_URL,
-  REACT_APP_ROPSTEN_NODE_URL
-} = process.env
-
-const indexerUrl = REACT_APP_ROPSTEN_INDEXER_URL || 'http://localhost:3005'
-const metApiUrl = REACT_APP_ROPSTEN_API_URL || 'http://localhost:3002/'
-const wsApiUrl = REACT_APP_ROPSTEN_NODE_URL || 'ws://localhost:8546'
-
 export default {
   displayName: 'Ropsten',
   coincapId: 'ethereum',
@@ -27,9 +17,7 @@ export default {
 
   // urls
   explorerUrl: 'https://ropsten.etherscan.io/tx/{{hash}}',
-  indexerUrl,
-  metApiUrl,
-  wsApiUrl,
+  metApiUrl: process.env.REACT_APP_ROPSTEN_API_URL || 'http://localhost:3002/',
 
   gasOverestimation: 1.1,
 
