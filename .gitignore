@@ -21,3 +21,6 @@ npm-debug.log*
 
 # ESLint
 .eslintcache
+
+# patches added by web3-patches
+/patches/web3*
