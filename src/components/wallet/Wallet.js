@@ -33,7 +33,7 @@ class Wallet extends Component {
                       className="btn btn-primary mr-4"
                       href={walletInstaller.url}
                     >
-                      Download For {currentOS.name} {currentOS.version} &raquo;
+                      Download For {currentOS.name} &raquo;
                     </a>
                   )}
                   <a href="#options">See all Download Options &raquo;</a>
