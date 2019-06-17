@@ -145,7 +145,7 @@ class Receipt extends React.Component {
       blockNumber: PropTypes.number.isRequired,
       blockHash: PropTypes.string.isRequired,
       gasUsed: PropTypes.number.isRequired,
-      logs: PropTypes.array.isRequireds
+      logs: PropTypes.array.isRequired
     }).isRequired,
     explorerUrl: PropTypes.string.isRequired,
     tx: PropTypes.shape({
