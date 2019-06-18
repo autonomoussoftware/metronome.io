@@ -5,8 +5,7 @@ const initialState = {
   ongoingTx: { hash: '' },
   receipt: null,
   show: false,
-  showStep: 'options',
-  warn: ''
+  showStep: 'options'
 }
 
 const reducer = handleActions(
@@ -27,9 +26,10 @@ const reducer = handleActions(
     SHOW_BUY_RECEIPT: (state, { payload }) => ({
       ...state,
       errorData: {},
-      receipt: payload.transactionHash === state.ongoingTx.hash
-        ? payload
-        : state.receipt,
+      receipt:
+        payload.transactionHash === state.ongoingTx.hash
+          ? payload
+          : state.receipt,
       showStep: 'receipt'
     }),
     SHOW_BUY_WAITING: (state, { payload }) => ({
@@ -48,15 +48,8 @@ const reducer = handleActions(
     }),
     UPDATE_ONGOING_TX: (state, { payload }) => ({
       ...state,
-      ongoingTx: payload.hash === state.ongoingTx.hash
-        ? payload
-        : state.ongoingTx
-    }),
-    UPDATE_WALLET_INFO: (state, { payload }) => ({
-      ...state,
-      warn: payload.accounts.length
-        ? ''
-        : 'Log into your web wallet'
+      ongoingTx:
+        payload.hash === state.ongoingTx.hash ? payload : state.ongoingTx
     })
   },
   initialState

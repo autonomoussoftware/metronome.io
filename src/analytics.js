@@ -1,11 +1,13 @@
 import config from './config'
 
-function init () {
+function init() {
   window.dataLayer = window.dataLayer || []
 
-  window.gtag = window.gtag || function () {
-    window.dataLayer.push(arguments)
-  }
+  window.gtag =
+    window.gtag ||
+    function() {
+      window.dataLayer.push(arguments)
+    }
 
   if (!config.gaTrackingId) {
     return

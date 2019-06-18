@@ -1,9 +1,22 @@
+import createMetronomeStatusStream from 'metronome-status'
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import createMetronomeStatusStream from 'metronome-status'
+import PropTypes from 'prop-types'
 
 class MetronomeStatus extends Component {
-  componentDidMount () {
+  static propTypes = {
+    metApiUrl: PropTypes.string.isRequired,
+    onError: PropTypes.func.isRequired,
+    onData: PropTypes.func.isRequired
+  }
+
+  statusStream = null
+
+  componentDidMount() {
+    this.initStream()
+  }
+
+  initStream() {
     this.statusStream = createMetronomeStatusStream({
       web3currentProvider: window.web3 && window.web3.currentProvider,
       metApiUrl: this.props.metApiUrl
@@ -12,34 +25,44 @@ class MetronomeStatus extends Component {
     this.statusStream.on('error', this.props.onError)
   }
 
-  componentWillUnmount () {
-    this.statusStream.destroy()
+  killStream() {
+    if (this.statusStream) {
+      this.statusStream.destroy()
+      this.statusStream.off('data', this.props.onData)
+      this.statusStream.off('error', this.props.onError)
+      this.statusStream = null
+    }
   }
 
-  render () {
+  componentDidUpdate(prevProps) {
+    if (this.props.metApiUrl !== prevProps.metApiUrl) {
+      this.killStream()
+      this.initStream()
+    }
+  }
+
+  componentWillUnmount() {
+    this.killStream()
+  }
+
+  render() {
     return null
   }
 }
 
 const mapStateToProps = state => ({
-  metApiUrl: state.config.metApiUrl
+  metApiUrl: state.config.chains[state.chain.active].metApiUrl
 })
 
 const mapDispatchToProps = dispatch => ({
-  onData ({ auction, converter }) {
-    dispatch({
-      type: 'UPDATE_AUCTION_STATUS',
-      payload: auction
-    })
-    dispatch({
-      type: 'UPDATE_CONVERTER_STATUS',
-      payload: converter
-    })
-  },
-  onError: payload => dispatch({
-    type: 'METRONOME_STATUS_ERROR',
-    payload
-  })
+  onError: payload => dispatch({ type: 'METRONOME_STATUS_ERROR', payload }),
+  onData({ auction, converter }) {
+    dispatch({ type: 'UPDATE_AUCTION_STATUS', payload: auction })
+    dispatch({ type: 'UPDATE_CONVERTER_STATUS', payload: converter })
+  }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(MetronomeStatus)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MetronomeStatus)

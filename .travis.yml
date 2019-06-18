@@ -3,11 +3,32 @@ sudo: false
 
 language: node_js
 node_js:
-  - "8"
+  - '8.15'
+
+notifications:
+  on_success: never
+  on_failure: always
 
 cache:
   directories:
-    - "node_modules"
+    - node_modules
 
 script:
+  - echo $TRAVIS_TAG
+
+before_deploy:
   - npm run build
+  - ls .
+  - zip -r build-$TRAVIS_TAG.zip build
+
+deploy:
+  provider: releases
+  api_key: $GH_TOKEN
+  file: build-$TRAVIS_TAG.zip
+  skip_cleanup: true
+  draft: true
+  name: $TRAVIS_TAG
+  on:
+    tags: true
+    branch: master
+    condition: $TRAVIS_TAG =~ ^[0-9]+-[0-9]+-[0-9]+-[0-9]+$

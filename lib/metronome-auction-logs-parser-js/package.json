@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
-    "metronome-contracts": "^1.1.1",
-    "web3": "1.0.0-beta.34"
+    "metronome-contracts": "2.3.0",
+    "web3": "1.0.0-beta.37"
   }
 }

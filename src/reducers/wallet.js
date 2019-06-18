@@ -1,7 +1,9 @@
 import { handleActions } from 'redux-actions'
 
 const initialState = {
-  accounts: []
+  address: null,
+  balance: null,
+  chainId: null
 }
 
 const reducer = handleActions(

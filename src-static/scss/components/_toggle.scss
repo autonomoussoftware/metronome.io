@@ -1,0 +1,123 @@
+.toggler {
+  padding: 15px 15px;
+  display: inline-block;
+  cursor: pointer;
+  transition-property: opacity, filter;
+  transition-duration: 0.15s;
+  transition-timing-function: linear;
+  font: inherit;
+  color: inherit;
+  text-transform: none;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  overflow: visible;
+  outline: none !important;
+
+  @media (min-width: 992px) {
+    display: none;
+  }
+}
+.toggler:hover {
+  /* opacity: 0.7; */
+}
+.toggler.is-active:hover {
+  /* opacity: 0.7; */
+}
+.toggler.is-active .toggler-inner,
+.toggler.is-active .toggler-inner::before,
+.toggler.is-active .toggler-inner::after {
+  background-color: $purple;
+}
+
+.toggler-box {
+  width: 40px;
+  height: 24px;
+  display: inline-block;
+  position: relative;
+}
+
+.toggler-inner {
+  display: block;
+  top: 50%;
+  margin-top: -2px;
+}
+.toggler-inner,
+.toggler-inner::before,
+.toggler-inner::after {
+  width: 40px;
+  height: 4px;
+  background-color: $purple;
+  border-radius: 4px;
+  position: absolute;
+  transition-property: transform;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
+.toggler-inner::before,
+.toggler-inner::after {
+  content: '';
+  display: block;
+}
+.toggler-inner::before {
+  top: -10px;
+}
+.toggler-inner::after {
+  bottom: -10px;
+}
+
+/*
+ * Elastic
+*/
+.toggler--elastic .toggler-inner {
+  top: 2px;
+  transition-duration: 0.275s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.toggler--elastic .toggler-inner::before {
+  top: 10px;
+  transition: opacity 0.125s 0.275s ease;
+}
+.toggler--elastic .toggler-inner::after {
+  top: 20px;
+  transition: transform 0.275s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.toggler--elastic.is-active .toggler-inner {
+  transform: translate3d(0, 10px, 0) rotate(135deg);
+  transition-delay: 0.075s;
+}
+.toggler--elastic.is-active .toggler-inner::before {
+  transition-delay: 0s;
+  opacity: 0;
+}
+.toggler--elastic.is-active .toggler-inner::after {
+  transform: translate3d(0, -20px, 0) rotate(-270deg);
+  transition-delay: 0.075s;
+}
+
+/*
+   * 3DX
+   */
+.toggler--3dx .toggler-box {
+  perspective: 80px;
+}
+
+.toggler--3dx .toggler-inner {
+  transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+    background-color 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.toggler--3dx .toggler-inner::before,
+.toggler--3dx .toggler-inner::after {
+  transition: transform 0s 0.1s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.toggler--3dx.is-active .toggler-inner {
+  background-color: transparent !important;
+  transform: rotateY(180deg);
+}
+.toggler--3dx.is-active .toggler-inner::before {
+  transform: translate3d(0, 10px, 0) rotate(45deg);
+}
+.toggler--3dx.is-active .toggler-inner::after {
+  transform: translate3d(0, -10px, 0) rotate(-45deg);
+}

@@ -1,25 +1,25 @@
+import ReactHintFactory from 'react-hint'
 import { Provider } from 'react-redux'
-import React from 'react'
 import reactDOM from 'react-dom'
+import React from 'react'
+import 'react-hint/css/index.css'
 
-import './css/styles.css'
-
+import getInitialState from './get-initial-state'
+import createStore from './create-store'
 import analytics from './analytics'
 import config from './config'
-import createStore from './create-store'
-import getInitialState from './get-initial-state'
 
 import MetronomeStatus from './providers/MetronomeStatus'
 import WalletVersion from './providers/WalletVersion'
-
-import ChainWarning from './components/ChainWarning'
-import AppsPage from './components/AppsPage'
-import HomePage from './components/pages/HomePage'
-import AuctionPage from './components/pages/AuctionPage'
-import DashboardPage from './components/pages/DashboardPage'
-
-import AuctionPanel from './components/AuctionPanel'
 import WalletInfo from './providers/WalletInfo'
+import Rates from './providers/Rates'
+
+import DashboardPage from './components/dashboard/Dashboard'
+import ConverterPage from './components/converter/Converter'
+import ChainWarning from './components/common/ChainWarning'
+import AuctionPage from './components/auction/Auction'
+import WalletPage from './components/wallet/Wallet'
+import HomePage from './components/home/Home'
 
 analytics.init()
 
@@ -29,30 +29,25 @@ if (module.hot) {
 
 if (config.env === 'production' && window.Raven) {
   window.Raven.config(config.sentryDns).install()
-  window.addEventListener('unhandledrejection', function (e) {
+  window.addEventListener('unhandledrejection', function(e) {
     window.Raven.captureException(e.reason)
   })
 }
 
-const reduxDevtoolsOptions = {
-  features: { dispatch: true },
-  actionCreators: {
-    showPanel: () => ({ type: 'SHOW_BUY_PANEL', payload: true })
-  }
-}
+const store = createStore(getInitialState(config))
 
-const store = createStore(reduxDevtoolsOptions, getInitialState(config))
-
-function getAppContent (content) {
+function getAppContent(content) {
   switch (content) {
     case 'home':
       return <HomePage />
-    case 'apps':
-      return <AppsPage />
-    case 'auction':
-      return <AuctionPage />
     case 'dashboard':
       return <DashboardPage />
+    case 'converter':
+      return <ConverterPage />
+    case 'auction':
+      return <AuctionPage />
+    case 'wallet':
+      return <WalletPage />
     default:
       return null
   }
@@ -62,16 +57,18 @@ const rootElement = document.getElementById('root')
 
 if (rootElement) {
   const rootContent = rootElement.getAttribute('content')
+  const ReactHint = ReactHintFactory(React)
 
   reactDOM.render(
     <Provider store={store}>
       <React.Fragment>
-        <WalletInfo />
+        {getAppContent(rootContent)}
         <MetronomeStatus />
         <WalletVersion />
         <ChainWarning />
-        {getAppContent(rootContent)}
-        <AuctionPanel/>
+        <WalletInfo />
+        <ReactHint autoPosition events />
+        <Rates />
       </React.Fragment>
     </Provider>,
     rootElement

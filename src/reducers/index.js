@@ -1,21 +1,27 @@
 import { combineReducers } from 'redux'
 
+import convertPanel from './convertPanel'
+import convertForm from './convertForm'
 import converter from './converter'
+import buyPanel from './buyPanel'
 import auction from './auction'
 import buyForm from './buyForm'
-import buyPanel from './buyPanel'
+import wallet from './wallet'
 import config from './config'
 import rates from './rates'
-import wallet from './wallet'
+import chain from './chain'
 
 const rootReducer = combineReducers({
+  convertPanel,
+  convertForm,
   converter,
-  auction,
-  buyForm,
   buyPanel,
+  buyForm,
+  auction,
   config,
+  wallet,
   rates,
-  wallet
+  chain
 })
 
 export default rootReducer

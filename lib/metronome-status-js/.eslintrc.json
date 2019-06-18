@@ -1,7 +1,5 @@
 {
-  "extends": [
-    "bloq"
-  ],
+  "extends": ["bloq"],
   "root": true,
   "rules": {
     "no-shadow": ["warn", { "allow": ["err"] }]
