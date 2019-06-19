@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import ConverterWidget from './ConverterWidget'
+import QuickBuyButton from './QuickBuyButton'
 import AuctionWidget from './AuctionWidget'
 import METLoader from '../common/METLoader'
 
@@ -13,6 +14,7 @@ const HomePage = function({ isLoading }) {
     <div>
       <AuctionWidget />
       <ConverterWidget />
+      <QuickBuyButton />
     </div>
   )
 }
