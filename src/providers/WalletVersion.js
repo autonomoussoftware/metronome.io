@@ -2,6 +2,8 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
+import config from '../config'
+
 class WalletVersion extends Component {
   static propTypes = {
     onVersion: PropTypes.func.isRequired
@@ -14,9 +16,10 @@ class WalletVersion extends Component {
     )
       .then(res => res.json())
       .then(function(release) {
-        onVersion(release.tag_name)
+        onVersion(release.tag_name || config.defaultDesktopWalletVersion)
       })
       .catch(function(err) {
+        onVersion(config.defaultDesktopWalletVersion)
         // eslint-disable-next-line no-console
         console.warn('Could not get latest release info', err.message)
       })
