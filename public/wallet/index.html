@@ -46,8 +46,8 @@
       }
       #loader {
         display: block;
-        margin: 0 auto;
-        height: 200px;
+        margin: 0 0 16px 50px;
+        height: 35px;
       }
       #loader-line {
         animation: loader 2s ease-in-out infinite;
@@ -165,36 +165,85 @@
     <!-- /HEADER -->
 
     <!-- PAGE -->
-    <!-- Dynamic content -->
-    <div id="root" content="wallet">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        viewBox="0 0 88 88"
-        version="1.1"
-        height="88"
-        width="88"
-        id="loader"
-      >
-        <path
-          stroke-width="5"
-          stroke="#7e61f8"
-          fill="none"
-          d="M75.2,78.5H12.8c-3.8,0-6.2-4.1-4.4-7.4l31.2-58.1c1.9-3.5,7-3.5,8.9,0l31.2,58.1C81.4,74.4,79,78.5,75.2,78.5z"
-        />
-        <line
-          id="loader-line"
-          x1="44"
-          y1="22.5"
-          x2="44"
-          y2="78.5"
-          stroke="#7e61f8"
-          stroke-linecap="round"
-          stroke-width="5"
-        />
-      </svg>
-    </div>
-    <!-- /Dynamic content -->
+    <section id="top" class="site-section intro">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h1 class="page-title">Download the App</h1>
+            <h3 class="font-italic mb-5">Get started with Metronome Wallet.</h3>
+            <div>
+              <!-- Dynamic content -->
+              <div id="root" content="wallet">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  viewBox="0 0 88 88"
+                  version="1.1"
+                  height="88"
+                  width="88"
+                  id="loader"
+                >
+                  <path
+                    stroke-width="5"
+                    stroke="#7e61f8"
+                    fill="none"
+                    d="M75.2,78.5H12.8c-3.8,0-6.2-4.1-4.4-7.4l31.2-58.1c1.9-3.5,7-3.5,8.9,0l31.2,58.1C81.4,74.4,79,78.5,75.2,78.5z"
+                  />
+                  <line
+                    id="loader-line"
+                    x1="44"
+                    y1="22.5"
+                    x2="44"
+                    y2="78.5"
+                    stroke="#7e61f8"
+                    stroke-linecap="round"
+                    stroke-width="5"
+                  />
+                </svg>
+              </div>
+              <!-- /Dynamic content -->
+              <a href="#options">See all Download Options &raquo;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="look" class="site-section look pb-5 mb-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <img
+              src="../dist/images/wallet-look.png"
+              class="img-fluid"
+              alt="Wallet screenshot"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="download" class="site-section download pb-5">
+      <div class="container">
+        <div class="row pb-5">
+          <div class="col-lg-6 col-xl-4">
+            <h4 id="options" class="text-light offset mb-4">
+              Desktop Downloads
+            </h4>
+            <!-- Dynamic content: Do not remove! -->
+            <div id="desktop-downloads"></div>
+            <!-- /Dynamic content -->
+          </div>
+          <div class="col-lg-6 col-xl-4">
+            <h4 class="text-light mb-4">Mobile Downloads</h4>
+            <!-- Dynamic content: Do not remove! -->
+            <div id="mobile-downloads"></div>
+            <!-- /Dynamic content -->
+          </div>
+          <div class="col-lg-6 visible-lg visible-xl"></div>
+        </div>
+      </div>
+    </section>
     <!-- /PAGE -->
 
     <!-- FOOTER -->
