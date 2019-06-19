@@ -143,11 +143,13 @@ exports.cacheBust = cacheBust
 /*
  * Specify if tasks run in series or parallel using `gulp.series` and `gulp.parallel`
  */
+const local = gulp.parallel(style, image, font, lib, script)
 const build = gulp.parallel(style, image, font, lib, script, cacheBust)
 
 /*
  * You can still use `gulp.task` to expose tasks
  */
+gulp.task('local', local)
 gulp.task('build', build)
 
 /*

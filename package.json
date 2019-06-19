@@ -16,7 +16,7 @@
     "postinstall": "patch-package",
     "prestart": "npm run fix-deps",
     "prebuild": "npm run fix-deps && npm run build:libs && gulp",
-    "start": "gulp && PORT=3001 react-app-rewired start",
+    "start": "gulp local && PORT=3001 react-app-rewired start",
     "start:static": "PORT=3001 react-app-rewired start && gulp watch",
     "test": "react-app-rewired test --env=jsdom"
   },
