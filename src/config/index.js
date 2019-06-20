@@ -19,6 +19,7 @@ module.exports = {
   ratesUpdateMs: 30000,
   chains,
   env: NODE_ENV,
+  defaultDesktopWalletVersion: 'v.1.3.0',
   gaTrackingId: REACT_APP_GA_TRACKING_ID || 'UA-116275666-1',
   sentryDns:
     REACT_APP_SENTRY_DNS ||
