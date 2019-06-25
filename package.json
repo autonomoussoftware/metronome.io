@@ -25,7 +25,7 @@
     "bignumber.js": "7.2.1",
     "lodash.debounce": "4.0.8",
     "metronome-auction-logs-parser": "file:lib/metronome-auction-logs-parser-js",
-    "metronome-contracts": "2.3.0",
+    "metronome-contracts": "2.4.0",
     "metronome-status": "file:lib/metronome-status-js",
     "moment": "2.22.2",
     "p-retry": "2.0.0",

@@ -5,7 +5,7 @@ const {
   NODE_ENV
 } = process.env
 
-const enabledChains = (REACT_APP_ENABLED_CHAINS || 'ethMainnet')
+const enabledChains = (REACT_APP_ENABLED_CHAINS || 'ethMainnet,etcMainnet')
   .split(',')
   .map(name => name.trim())
 
@@ -19,7 +19,7 @@ module.exports = {
   ratesUpdateMs: 30000,
   chains,
   env: NODE_ENV,
-  defaultDesktopWalletVersion: 'v.1.3.0',
+  defaultDesktopWalletVersion: 'v1.4.0',
   gaTrackingId: REACT_APP_GA_TRACKING_ID || 'UA-116275666-1',
   sentryDns:
     REACT_APP_SENTRY_DNS ||
