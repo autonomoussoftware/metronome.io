@@ -1,8 +1,8 @@
 import MetronomeContracts from 'metronome-contracts'
 
-const contracts = MetronomeContracts['classic']
+const contracts = MetronomeContracts.classic
 
-module.exports = {
+export default {
   displayName: 'Classic',
   coincapId: 'ethereum-classic',
   chainId: '61',

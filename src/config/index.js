@@ -5,7 +5,7 @@ const {
   NODE_ENV
 } = process.env
 
-const enabledChains = (REACT_APP_ENABLED_CHAINS || 'ethMainnet')
+const enabledChains = (REACT_APP_ENABLED_CHAINS || 'ethMainnet,etcMainnet')
   .split(',')
   .map(name => name.trim())
 
