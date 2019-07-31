@@ -2,65 +2,58 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta content="ie=edge" http-equiv="x-ua-compatible" />
     <title>Metronome | About</title>
-
     <link
-      rel="stylesheet"
-      type="text/css"
       href="../dist/lib/bootstrap/css/bootstrap.min.css"
-    />
-    <link
       rel="stylesheet"
       type="text/css"
+    />
+    <link
       href="../dist/lib/fontawesome/css/all.min.css"
-    />
-    <link
       rel="stylesheet"
       type="text/css"
-      href="../dist/css/main.css?cb=1561478124882"
     />
-
-    <meta name="description" content="The Built-to-Last Cryptocurrency" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
+      href="../dist/css/main.css?cb=1564088610112"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <meta content="The Built-to-Last Cryptocurrency" name="description" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link
+      href="../dist/images/metronome_touch_icon.png"
       rel="apple-touch-icon"
       sizes="180x180"
-      href="../dist/images/metronome_touch_icon.png"
     />
     <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
       href="../dist/images/metronome_favicon.png"
+      rel="icon"
+      sizes="16x16"
+      type="image/png"
     />
   </head>
   <body class="about">
     <!-- HEADER -->
-    <div class="white-half"></div>
-    <div class="gray-fade"></div>
-    <header id="masthead" class="site-header">
+    <header class="site-header" id="masthead">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand" href="/"
             ><img
-              src="../dist/images/metronome-logo.png"
-              class="d-inline-block align-top"
               alt="Metronome Logo"
+              class="d-inline-block align-top"
+              src="../dist/images/metronome-logo.png"
           /></a>
           <button
-            class="toggler toggler--3dx"
-            type="button"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav"
             aria-controls="navbarNav"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            class="toggler toggler--3dx"
+            data-target="#navbarNav"
+            data-toggle="collapse"
+            type="button"
           >
-            <span class="toggler-box">
-              <span class="toggler-inner"></span>
-            </span>
+            <span class="toggler-box"><span class="toggler-inner"></span></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
@@ -74,18 +67,21 @@
               <li class="nav-item">
                 <a class="nav-link" href="/wallet/">Wallet</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/roadmap/">Roadmap</a>
+              </li>
               <li class="nav-item active dropdown">
                 <a
+                  aria-expanded="false"
+                  aria-haspopup="true"
                   class="nav-link dropdown-toggle"
+                  data-toggle="dropdown"
                   href="#"
                   id="navbarDropdown"
                   role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
                   >About <i class="fas fa-chevron-down txt-purple pl-1"></i
                 ></a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div aria-labelledby="navbarDropdown" class="dropdown-menu">
                   <a class="dropdown-item active" href="/about/"
                     >About MET<span class="sr-only">(current)</span></a
                   >
@@ -143,114 +139,186 @@
       </nav>
     </header>
     <!-- /HEADER -->
-
     <!-- PAGE -->
-    <section id="top" class="site-section intro">
+    <section class="site-section intro" id="top">
       <div class="container">
         <div class="row">
-          <div class="col-12">
+          <div class="col-sm-8">
             <h1 class="page-title">About Metronome.</h1>
-            <h3 class="font-italic mb-5">
-              The self-governing, reliable, and portable cryptocurrency.
-            </h3>
-            <div class="row mb-5">
-              <div class="col-lg-7">
-                <p>
-                  Leading figures in the cryptocurrency space built Metronome. A
-                  diverse array of partners and advisors support Metronome
-                  because it was engineered to meet and exceed the high
-                  standards of the cryptocurrency community.
-                </p>
+            <p>
+              Metronome was engineered to exceed the high standards of the
+              community. In developing an enduring cryptocurrency, three core
+              design principles build Metronome’s foundation:
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="about-page">
+      <section class="site-section buy-nav" id="buy-nav">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 mb-2 text-center txt-light">
+              <div class="buy-block">
+                <div class="nav-intro bg-purple-dark">
+                  <h4 class="">Self-Governance</h4>
+                  <p>No outside influences. Ever.</p>
+                </div>
+                <a href="#self-governance" class="d-block bg-purple txt-light">
+                  <span class="d-block">MORE INFO</span>
+                  <span class="d-block"
+                    ><i class="fas fa-chevron-down"></i
+                  ></span>
+                </a>
               </div>
             </div>
-            <p class="lead pt-3">
-              In developing an enduring cryptocurrency, three core design
-              principles build Metronome’s foundation:
-            </p>
+            <div class="col-md-4 mb-2 text-center txt-light">
+              <div class="buy-block">
+                <div class="nav-intro bg-purple-dark">
+                  <h4 class="">Reliability</h4>
+                  <p>The highest level of issuance predictability.</p>
+                </div>
+                <a href="#reliability" class="d-block bg-purple txt-light">
+                  <span class="d-block">MORE INFO</span>
+                  <span class="d-block"
+                    ><i class="fas fa-chevron-down"></i
+                  ></span>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-4 mb-2 text-center txt-light">
+              <div class="buy-block">
+                <div class="nav-intro bg-purple-dark">
+                  <h4 class="">Portability</h4>
+                  <p>Now moving freely across blockchains.</p>
+                </div>
+                <a href="#portability" class="d-block bg-purple txt-light">
+                  <span class="d-block">MORE INFO</span>
+                  <span class="d-block"
+                    ><i class="fas fa-chevron-down"></i
+                  ></span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section id="principles" class="site-section principles pb-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <h3 class="text-light p-3 mb-4">
-              <span>Self-Governance</span><span class="angle"></span>
-            </h3>
-            <p class="txt-purple">
-              With no undue influence from founders after initial launch,
-              Metronome’s founders transitioned to community members, and each
-              MET owner chooses for themselves where they hold their MET.
-            </p>
+      </section>
+      <section class="site-section options">
+        <div class="container">
+          <div class="row option self-governance" id="self-governance">
+            <div class="col-lg-5 col-md-6 mb-4">
+              <img
+                src="../dist/images/staples-1@2x.png"
+                alt="Auction countdown"
+                width="164"
+                class="index"
+                alt="number one"
+              />
+              <h4 class="sup">SELF-GOVERNANCE</h4>
+              <h2 class="txt-dark font-weight-bold">
+                No Outside Influences. Ever.
+              </h2>
+              <p class="d-block mb-4">
+                With no undue influence from founders after initial launch,
+                Metronome’s founders transitioned to community members, and each
+                MET owner chooses for themselves where they hold their MET.
+              </p>
+              <a class="font-weight-bold reverse btn btn-dark" href="/buy/"
+                >LEARN MORE &raquo;</a
+              >
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5 col-lg-6">
+              <img
+                src="../dist/images/self-governance-graph@2x.png"
+                alt="Auction countdown"
+                width="687"
+              />
+            </div>
           </div>
-          <div class="col-md-4">
-            <h3 class="text-light p-3 mb-4">
-              <span>Reliability</span><span class="angle"></span>
-            </h3>
-            <p class="txt-purple">
-              With a highly predictability issuance and supply, community
-              members, individuals, and groups can calculate the supply of MET
-              at any date in the future with a high degree of confidence.
-            </p>
+          <div class="row option reliability" id="reliability">
+            <div class="col-lg-5 col-md-6 mb-4">
+              <img
+                src="../dist/images/staples-2@2x.png"
+                alt="Auction countdown"
+                width="164"
+                class="index"
+                alt="number two"
+              />
+              <h4 class="sup">RELIABILITY</h4>
+              <h2 class="txt-dark font-weight-bold">
+                The Highest Level of Issuance Predictability.
+              </h2>
+              <p class="d-block mb-4">
+                With a highly predictable issuance and supply, community
+                members, individuals, and groups can calculate the supply of MET
+                at any date in the future with a high degree of confidence.
+              </p>
+              <a class="font-weight-bold reverse btn btn-dark" href="/buy/"
+                >MORE ABOUT TOKEN SUPPLY &raquo;</a
+              >
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5 col-lg-6">
+              <img
+                src="../dist/images/reliability-chart@2x.png"
+                alt="Auction countdown"
+                width="609"
+              />
+            </div>
           </div>
-          <div class="col-md-4">
-            <h3 class="text-light p-3 mb-4">
-              <span>Portability</span><span class="angle"></span>
-            </h3>
-            <p class="txt-purple">
-              Metronome enables maximum decentralization, even across different
-              blockchains.
-            </p>
+          <div class="row option portability" id="portability">
+            <div class="col-lg-5 col-md-6 mb-4">
+              <img
+                src="../dist/images/staples-3@2x.png"
+                alt="Auction countdown"
+                width="164"
+                class="index"
+                alt="number three"
+              />
+              <h4 class="sup">PORTABILTY</h4>
+              <h2 class="txt-dark font-weight-bold">
+                Now moving freely across blockchains.
+              </h2>
+              <p class="d-block mb-4">
+                Portability frees Metronome from the fate of any one chain.
+                Select the chain that suits your requirements for management and
+                security, or even upgrade the MET contract if needed.
+              </p>
+              <a class="font-weight-bold reverse btn btn-dark" href="/buy/"
+                >MORE ABOUT CHAINHOP &raquo;</a
+              >
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5 col-lg-6">
+              <img
+                src="../dist/images/chainhop-bars@2x.png"
+                alt="Auction countdown"
+                width="688"
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+        <!-- .container -->
+      </section>
+    </div>
+    <!-- .about-page -->
 
-    <section id="origin" class="site-section origin">
-      <img
-        src="../dist/images/about-cross-chain.png"
-        width="794"
-        class="img-fluid"
-        alt="Metronome Grid"
-      />
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <p class="lead">
-              Metronome is the first cryptocurrency capable of being exported
-              and imported across chains.
-            </p>
-            <p>
-              Metronome was initially issued on Ethereum with Ethereum Classic,
-              Rootstock on Bitcoin, and Qtum support expected to follow. Users
-              can select the chain that suits their requirements for management
-              and security, or even upgrade the MET contract if needed.
-              Metronome’s main goal is to be a built-to-last cryptocurrency.
-              Portability furthers this goal by freeing Metronome from the fate
-              of any one chain.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="subscribe" class="site-section subscribe">
+    <section class="site-section subscribe" id="subscribe">
       <div class="container">
         <div class="bg-dark">
           <span class="plus text-light"><i class="fas fa-plus"></i></span>
           <div class="row">
-            <div class="col-md-5 d-flex align-items-center">
+            <div class="col-md-6 d-flex align-items-center">
               <h3 class="text-light">
                 Receive updates on all-things-Metronome:
               </h3>
             </div>
-            <div class="col-md-7 d-flex align-items-center justify-content-end">
+            <div class="col-md-6 d-flex align-items-center justify-content-end">
               <div class="sendgrid">
                 <script
-                  type="text/javascript"
                   src="//sgwidget.leaderapps.co/js/sendgrid-widget.js"
+                  type="text/javascript"
                 ></script>
                 <style>
                   .sendgrid-subscription-widget .response {
@@ -267,26 +335,27 @@
                   }
                 </style>
                 <div
-                  id="sendgrid-subscription-widget"
                   class="sendgrid-subscription-widget"
+                  id="sendgrid-subscription-widget"
                 >
                   <form
-                    id="sg-widget"
                     data-token="ad8b1f4cd2963a816efc51879519201e"
+                    id="sg-widget"
+                    name="sg-widget"
                     onsubmit="return false;"
                   >
                     <input
-                      id="sg_email"
                       class="email form-control"
-                      type="email"
+                      id="sg_email"
                       name="sg_email"
                       placeholder="Email Address"
-                      required
+                      required=""
+                      type="email"
                     />
                     <input
-                      type="submit"
+                      class="btn btn-primary form-control font-weight-bold ml-1"
                       id="sg-submit-btn"
-                      class="btn btn-primary form-control font-weight-bold ml-3"
+                      type="submit"
                       value="SUBMIT &raquo;"
                     />
                     <div class="sg-response" id="sg-response"></div>
@@ -298,205 +367,203 @@
         </div>
       </div>
     </section>
-
-    <section id="team" class="site-section team pt-5">
+    <section class="site-section team pt-5" id="team">
       <div class="container">
-        <h2 class="txt-purple">Team</h2>
-        <p class="lead pt-3">
-          A project as advanced and ambitious as Metronome requires known,
-          proven talent and leadership in cryptocurrencies - people who uniquely
-          understand the engineering and marketplace chaillenges.
-        </p>
+        <h2 class="txt-dark font-weight-bold">
+          A Team with Proven Talent and Leadership in the Ecosystem
+        </h2>
         <div class="row mt-5">
           <div class="col-md-6 col-lg-4 mb-4">
             <img
-              src="../dist/images/Jeff-Garzik.png"
-              class="img-fluid mb-3"
               alt="Jeff Garzik"
+              class="img-fluid mb-3"
+              src="../dist/images/Jeff-Garzik.png"
             />
             <h4 class="txt-dark mb-0">Jeff Garzik</h4>
             <p>CEO / Co-Founder / Chief Designer</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
-              src="../dist/images/Matthew-Roszak.png"
-              class="img-fluid mb-3"
               alt="Matthew Roszak"
+              class="img-fluid mb-3"
+              src="../dist/images/Matthew-Roszak.png"
             />
             <h4 class="txt-dark mb-0">Matthew Roszak</h4>
             <p>CEO / Co-Founder</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
-              src="../dist/images/Peter-Vessenes.png"
-              class="img-fluid mb-3"
               alt="Peter Vessenes"
+              class="img-fluid mb-3"
+              src="../dist/images/Peter-Vessenes.png"
             />
             <h4 class="txt-dark mb-0">Peter Vessenes</h4>
             <p>Chief Cryptographer</p>
           </div>
           <div class="col-md-6 col-lg-4 mb-4">
             <img
-              src="../dist/images/Ryan-Condron.png"
-              class="img-fluid mb-3"
               alt="Ryan Condron"
+              class="img-fluid mb-3"
+              src="../dist/images/Ryan-Condron.png"
             />
             <h4 class="txt-dark mb-0">Ryan Condron</h4>
             <p>Principal Engineer</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
-              src="../dist/images/Troy-Benjegerdes.png"
-              class="img-fluid mb-3"
               alt="Troy Benjegerdes"
+              class="img-fluid mb-3"
+              src="../dist/images/Manoj-Patidar.png"
             />
-            <h4 class="txt-dark mb-0">Troy Benjegerdes</h4>
+            <h4 class="txt-dark mb-0">Manoj Patidar</h4>
             <p>Principal Engineer</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
-              src="../dist/images/Jordan-Kruger.png"
-              class="img-fluid mb-3"
               alt="Jordan Kruger"
+              class="img-fluid mb-3"
+              src="../dist/images/Jordan-Kruger.png"
             />
             <h4 class="txt-dark mb-0">Jordan Kruger</h4>
             <p>Data Scientist</p>
           </div>
           <div class="col-md-6 col-lg-4 mb-4">
             <img
-              src="../dist/images/Gabriel-Montes.png"
-              class="img-fluid mb-3"
               alt="Gabriel Montes"
+              class="img-fluid mb-3"
+              src="../dist/images/Gabriel-Montes.png"
             />
             <h4 class="txt-dark mb-0">Gabriel Montes</h4>
             <p>Engineering Lead</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
-              src="../dist/images/Pablo-Enrici.png"
-              class="img-fluid mb-3"
               alt="Pablo Enrici"
+              class="img-fluid mb-3"
+              src="../dist/images/Pablo-Enrici.png"
             />
             <h4 class="txt-dark mb-0">Pablo Enrici</h4>
             <p>Software Engineer</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
-              src="../dist/images/Ignacio-Anaya.png"
-              class="img-fluid mb-3"
               alt="Ignacio Anaya"
+              class="img-fluid mb-3"
+              src="../dist/images/Ignacio-Anaya.png"
             />
             <h4 class="txt-dark mb-0">Ignacio Anaya</h4>
             <p>Software Engineer</p>
           </div>
           <div class="col-md-6 col-lg-4 mb-4">
             <img
-              src="../dist/images/Jaclyn-Kramer.png"
-              class="img-fluid mb-3"
               alt="Jaclyn Kramer"
+              class="img-fluid mb-3"
+              src="../dist/images/Jaclyn-Kramer.png"
             />
             <h4 class="txt-dark mb-0">Jaclyn Kramer</h4>
             <p>Marketing</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
-              src="../dist/images/Dariusz-Jakubowski.png"
-              class="img-fluid mb-3"
               alt="Dariusz Jakubowski"
+              class="img-fluid mb-3"
+              src="../dist/images/Dariusz-Jakubowski.png"
             />
             <h4 class="txt-dark mb-0">Dariusz Jakubowski</h4>
             <p>Community Advocate</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
-              src="../dist/images/Steve-Beauregard.png"
-              class="img-fluid mb-3"
               alt="Steve Beauregard"
+              class="img-fluid mb-3"
+              src="../dist/images/Steve-Beauregard.png"
             />
             <h4 class="txt-dark mb-0">Steve Beauregard</h4>
             <p>Partnerships</p>
           </div>
           <div class="col-md-6 col-lg-4 mb-4">
             <img
-              src="../dist/images/Ted-Parvu.png"
-              class="img-fluid mb-3"
               alt="Ted Parvu"
+              class="img-fluid mb-3"
+              src="../dist/images/Ted-Parvu.png"
             />
             <h4 class="txt-dark mb-0">Ted Parvu</h4>
             <p>Infrastructure</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
-              src="../dist/images/Matt-Lam.png"
-              class="img-fluid mb-3"
               alt="Matt Lam"
+              class="img-fluid mb-3"
+              src="../dist/images/Matt-Lam.png"
             />
             <h4 class="txt-dark mb-0">Matt Lam</h4>
             <p>Blockchain Strategist</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
-              src="../dist/images/Iwona-Zdanowicz.png"
-              class="img-fluid mb-3"
               alt="Iwona Zdanowicz"
+              class="img-fluid mb-3"
+              src="../dist/images/Iwona-Zdanowicz.png"
             />
             <h4 class="txt-dark mb-0">Iwona Zdanowicz</h4>
             <p>Administrative</p>
           </div>
         </div>
-
         <h2 class="txt-purple mt-5 mb-3">Advisors</h2>
         <div class="row">
           <div class="col-md-6 col-lg-4">
             <img
-              src="../dist/images/Gustav-Simonsson.png"
-              class="img-fluid mb-3"
               alt="Gustav Simonsson"
+              class="img-fluid mb-3"
+              src="../dist/images/Gustav-Simonsson.png"
             />
             <h4 class="txt-dark mb-0">Gustav Simonsson</h4>
-            <p>Orchid Labs Co-Founder<br />Former Ethereum Core Dev</p>
+            <p>
+              Orchid Labs Co-Founder<br />
+              Former Ethereum Core Dev
+            </p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
-              src="../dist/images/Jim-Newsome.png"
-              class="img-fluid mb-3"
               alt="Jim Newsome"
+              class="img-fluid mb-3"
+              src="../dist/images/Jim-Newsome.png"
             />
             <h4 class="txt-dark mb-0">Jim Newsome</h4>
             <p>Delta Strategy & Former CFTC Chairman</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
-              src="../dist/images/Don-Tapscott.png"
-              class="img-fluid mb-3"
               alt="Don Tapscott"
+              class="img-fluid mb-3"
+              src="../dist/images/Don-Tapscott.png"
             />
             <h4 class="txt-dark mb-0">Don Tapscott</h4>
             <p>Blockchain Research Institute</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
-              src="../dist/images/Vinny-Lingham.png"
-              class="img-fluid mb-3"
               alt="Vinny Lingham"
+              class="img-fluid mb-3"
+              src="../dist/images/Vinny-Lingham.png"
             />
             <h4 class="txt-dark mb-0">Vinny Lingham</h4>
             <p>Civic</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
-              src="../dist/images/Don-Wilson.png"
-              class="img-fluid mb-3"
               alt="Don Wilson"
+              class="img-fluid mb-3"
+              src="../dist/images/Don-Wilson.png"
             />
             <h4 class="txt-dark mb-0">Don Wilson</h4>
             <p>DRW</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
-              src="../dist/images/William-Mougayar.png"
-              class="img-fluid mb-3"
               alt="William Mougayar"
+              class="img-fluid mb-3"
+              src="../dist/images/William-Mougayar.png"
             />
             <h4 class="txt-dark mb-0">William Mougayar</h4>
             <p>Token Summit</p>
@@ -504,124 +571,129 @@
         </div>
       </div>
     </section>
-
-    <section id="partners" class="site-section partners">
+    <section class="site-section partners" id="partners">
       <div class="container">
+        <h2 class="txt-purple mb-4">Strategic Advisors & Partners</h2>
         <div class="row">
-          <div class="col-md-6 mb-4">
-            <h2 class="txt-purple mb-4">Strategic Advisors</h2>
-            <div>
-              <img
-                src="../dist/images/strategy-delta@2x.png"
-                class="img-fluid mb-2 mr-2"
-                alt="Delta Strategy Group Logo"
-                width="242"
-              />
-              <img
-                src="../dist/images/strategy-jaxx@2x.png"
-                class="img-fluid mb-2 mr-2"
-                alt="JAXX Logo"
-                width="242"
-              />
-              <img
-                src="../dist/images/strategy-perkins@2x.png"
-                class="img-fluid mb-2 mr-2"
-                alt="Perkins Coie Logo"
-                width="242"
-              />
-              <img
-                src="../dist/images/strategy-smith-crown@2x.png"
-                class="img-fluid mb-2 mr-2"
-                alt="Smith Crown Logo"
-                width="242"
-              />
-              <img
-                src="../dist/images/strategy-zeppelin@2x.png"
-                class="img-fluid mb-2 mr-2"
-                alt="Zeppelin Logo"
-                width="242"
-              />
-            </div>
+          <div class="col-md-4 mb-4">
+            <img
+              alt="Delta Strategy Group Logo"
+              class="img-fluid mb-1 mr-1"
+              src="../dist/images/strategy-delta@2x.png"
+              width="352"
+              height="190"
+            />
           </div>
-          <div class="col-md-6 mb-4">
-            <h2 class="txt-purple mb-4">Partners</h2>
-            <div>
-              <img
-                src="../dist/images/strategy-new-alchemy@2x.png"
-                class="img-fluid mb-2 mr-2"
-                alt="New Alchemy Logo"
-                width="242"
-              />
-            </div>
+          <div class="col-md-4 mb-4">
+            <img
+              alt="JAXX Logo"
+              class="img-fluid mb-1 mr-1"
+              src="../dist/images/strategy-jaxx@2x.png"
+              width="352"
+              height="190"
+            />
+          </div>
+          <div class="col-md-4 mb-4">
+            <img
+              alt="Perkins Coie Logo"
+              class="img-fluid mb-1 mr-1"
+              src="../dist/images/strategy-perkins@2x.png"
+              width="352"
+              height="190"
+            />
+          </div>
+          <div class="col-md-4 mb-4">
+            <img
+              alt="Smith Crown Logo"
+              class="img-fluid mb-1 mr-1"
+              src="../dist/images/strategy-smithcrown@2x.png"
+              width="352"
+              height="190"
+            />
+          </div>
+          <div class="col-md-4 mb-4">
+            <img
+              alt="Zeppelin Logo"
+              class="img-fluid mb-1 mr-1"
+              src="../dist/images/strategy-zeppelin@2x.png"
+              width="352"
+              height="190"
+            />
+          </div>
+          <div class="col-md-4 mb-4">
+            <img
+              alt="New Alchemy Logo"
+              class="img-fluid mb-1 mr-1"
+              src="../dist/images/strategy-newalchemy@2x.png"
+              width="352"
+              height="190"
+            />
           </div>
         </div>
       </div>
     </section>
-
-    <section id="info" class="site-section info offset">
+    <section class="site-section info" id="info">
       <div class="container">
         <div class="row">
-          <div class="col-md-6 mb-5">
-            <h2 class="txt-purple mb-4">Frequently Asked Questions</h2>
-            <p class="mb-4">
-              <strong
-                >Learn about Metronome with answers to some of the most
-                frequently asked questions.</strong
-              >
-              What can Metronome be used for? How can I participate? Why is the
-              token called ‘Metronome’? Just to name a few.
-            </p>
-            <a
-              href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md"
-              target="_blank"
-              class="btn btn-primary"
-              >Frequently Asked Questions &raquo;</a
-            >
-          </div>
-          <div class="col-md-6 mb-5">
-            <h2 class="txt-purple mb-4">Owner's Manual</h2>
-            <p class="mb-4">
+          <div class="col-md-6 mb-md-0 mb-5">
+            <h2 class="txt-light mb-4">Owner's Manual</h2>
+            <p class="mb-4 txt-light">
               <strong>Like with any other asset or technology</strong>, it’s
               important for users to know how Metronome works - the Owner’s
-              Manual, along with the documents and information referenced
-              therein, is required reading for any Metronome owner.
+              Manual is required reading for any Metronome owner.
             </p>
             <a
+              class="btn btn-dark"
               href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md"
               target="_blank"
-              class="btn btn-primary"
               >Owner's Manual &raquo;</a
+            >
+          </div>
+          <div class="col-md-6 mb-5 mb-sm-0">
+            <h2 class="txt-light mb-4">Frequently Asked Questions</h2>
+            <p class="mb-4 txt-light">
+              What can Metronome be used for? How can I participate? Why is the
+              token called ‘Metronome’?
+              <strong
+                >Get answers to some of the most frequently asked
+                questions</strong
+              >.
+            </p>
+            <a
+              class="btn btn-dark"
+              href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md"
+              target="_blank"
+              >Frequently Asked Questions &raquo;</a
             >
           </div>
         </div>
       </div>
     </section>
     <!-- /PAGE -->
-
     <!-- FOOTER -->
-    <footer id="colophon" class="site-footer">
+    <footer class="site-footer" id="colophon">
       <div class="container">
         <div class="row">
           <div class="col-sm-6 col-lg-3">
             <h5>METRONOME</h5>
             <ul class="nav flex-column pl-0">
               <li class="nav-item">
-                <a href="/buy/" class="nav-link">Buy MET</a>
+                <a class="nav-link" href="/buy/">Buy MET</a>
               </li>
               <li class="nav-item">
-                <a href="/build/" class="nav-link">Build with Metronome</a>
+                <a class="nav-link" href="/build/">Build with Metronome</a>
               </li>
               <li class="nav-item">
-                <a href="/engage/" class="nav-link">Engage With Us</a>
+                <a class="nav-link" href="/engage/">Engage With Us</a>
               </li>
               <li class="nav-item">
-                <a href="/wallet/" class="nav-link">Download the Wallet</a>
+                <a class="nav-link" href="/wallet/">Download the Wallet</a>
               </li>
               <li class="nav-item">
-                <a href="/about/" class="nav-link">About Us</a>
+                <a class="nav-link" href="/about/">About Us</a>
               </li>
               <li class="nav-item">
-                <a href="/#milestones" class="nav-link">Timeline</a>
+                <a class="nav-link" href="/#milestones">Timeline</a>
               </li>
             </ul>
           </div>
@@ -630,28 +702,28 @@
             <ul class="nav flex-column pl-0">
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md"
                   target="_blank"
-                  class="nav-link"
                   >The Owner's Manual</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md"
                   target="_blank"
-                  class="nav-link"
                   >Frequently Asked Questions</a
                 >
               </li>
               <li class="nav-item">
-                <a href="/engage/#tabs" class="nav-link">Media Kit</a>
+                <a class="nav-link" href="/engage/#tabs">Media Kit</a>
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://github.com/autonomoussoftware/"
                   target="_blank"
-                  class="nav-link"
                   >Github</a
                 >
               </li>
@@ -662,49 +734,49 @@
             <ul class="nav nav-collaborate flex-column">
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://twitter.com/MET_Token"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-twitter"></i> Twitter</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://medium.com/@MetronomeToken"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-medium-m"></i> Medium</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://www.facebook.com/MetronomeToken/"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-facebook-square"></i> Facebook</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://t.me/metronometoken"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-telegram-plane"></i> Telegram</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://github.com/autonomoussoftware"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-github-alt"></i> Github</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://www.reddit.com/r/metronometoken"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-reddit-alien"></i> Reddit</a
                 >
               </li>
@@ -717,8 +789,8 @@
             </p>
             <div class="sendgrid">
               <script
-                type="text/javascript"
                 src="//sgwidget.leaderapps.co/js/sendgrid-widget.js"
+                type="text/javascript"
               ></script>
               <style>
                 .sendgrid-subscription-widget .response {
@@ -735,26 +807,27 @@
                 }
               </style>
               <div
-                id="sendgrid-subscription-widget"
                 class="sendgrid-subscription-widget"
+                id="sendgrid-subscription-widget"
               >
                 <form
-                  id="sg-widget"
                   data-token="ad8b1f4cd2963a816efc51879519201e"
+                  id="sg-widget"
+                  name="sg-widget"
                   onsubmit="return false;"
                 >
                   <input
-                    id="sg_email"
                     class="email form-control mb-1"
-                    type="email"
+                    id="sg_email"
                     name="sg_email"
                     placeholder="Email Address"
-                    required
+                    required=""
+                    type="email"
                   />
                   <input
-                    type="submit"
-                    id="sg-submit-btn"
                     class="btn btn-primary font-weight-bold w-100"
+                    id="sg-submit-btn"
+                    type="submit"
                     value="SIGN UP FOR UPDATES &raquo;"
                   />
                   <div class="sg-response" id="sg-response"></div>
@@ -777,12 +850,11 @@
       </div>
     </footer>
     <!-- /FOOTER -->
-
     <!-- SCRIPTS -->
-    <script src="../dist/js/main.js?cb=1561478124882"></script>
+    <script src="../dist/js/main.js?cb=1564088610112"></script>
     <script
       async
-      src="https://www.googletagmanager.com/gtag/js?id=<%-htmlWebpackPlugin.options.gaTrackingId%>"
+      src="https://www.googletagmanager.com/gtag/js?id=%3C%-htmlWebpackPlugin.options.gaTrackingId%%3E"
     ></script>
   </body>
 </html>

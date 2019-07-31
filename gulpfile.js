@@ -60,7 +60,14 @@ function style() {
 function image() {
   return gulp
     .src(paths.images.src)
-    .pipe(imagemin())
+    .pipe(imagemin([
+	    imagemin.svgo({
+        plugins: [
+            {removeViewBox: true},
+            {cleanupIDs: false}
+        ]
+    	})
+    ]))
     .pipe(gulp.dest(paths.images.dest))
     .pipe(browserSync.stream())
 }
@@ -79,9 +86,10 @@ function lib() {
 function script() {
   return gulp
     .src([
-      'src-static/lib/bootstrap/js/jquery-3.3.1.slim.min.js',
+      'src-static/lib/bootstrap/js/jquery-3.4.1.min.js',
       'src-static/lib/bootstrap/js/popper.min.js',
       'src-static/lib/bootstrap/js/bootstrap.4.3.min.js',
+      'src-static/lib/slick/slick.min.js',
       'src-static/lib/raven.min.js',
       'src-static/js/main.js'
     ])

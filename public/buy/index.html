@@ -2,61 +2,56 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta content="ie=edge" http-equiv="x-ua-compatible" />
     <title>Metronome | Buy</title>
-
     <link
-      rel="stylesheet"
-      type="text/css"
       href="../dist/lib/bootstrap/css/bootstrap.min.css"
-    />
-    <link
       rel="stylesheet"
       type="text/css"
+    />
+    <link
       href="../dist/lib/fontawesome/css/all.min.css"
-    />
-    <link
       rel="stylesheet"
       type="text/css"
-      href="../dist/css/main.css?cb=1561478124882"
     />
-
-    <meta name="description" content="The Built-to-Last Cryptocurrency" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
+      href="../dist/css/main.css?cb=1564088610112"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <meta content="The Built-to-Last Cryptocurrency" name="description" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link
+      href="../dist/images/metronome_touch_icon.png"
       rel="apple-touch-icon"
       sizes="180x180"
-      href="../dist/images/metronome_touch_icon.png"
     />
     <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
       href="../dist/images/metronome_favicon.png"
+      rel="icon"
+      sizes="32x32"
+      type="image/png"
     />
   </head>
   <body class="buy">
     <!-- HEADER -->
-    <div class="white-half"></div>
-    <div class="gray-fade"></div>
-    <header id="masthead" class="site-header">
+    <header class="site-header" id="masthead">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand" href="/"
             ><img
-              src="../dist/images/metronome-logo.png"
-              class="d-inline-block align-top"
               alt="Metronome Logo"
+              class="d-inline-block align-top"
+              src="../dist/images/metronome-logo.png"
           /></a>
           <button
-            class="toggler toggler--3dx"
-            type="button"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav"
             aria-controls="navbarNav"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            class="toggler toggler--3dx"
+            data-target="#navbarNav"
+            data-toggle="collapse"
+            type="button"
           >
             <span class="toggler-box">
               <span class="toggler-inner"></span>
@@ -78,18 +73,21 @@
               <li class="nav-item">
                 <a class="nav-link" href="/wallet/">Wallet</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/roadmap/">Roadmap</a>
+              </li>
               <li class="nav-item dropdown">
                 <a
+                  aria-expanded="false"
+                  aria-haspopup="true"
                   class="nav-link dropdown-toggle"
+                  data-toggle="dropdown"
                   href="#"
                   id="navbarDropdown"
                   role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
                   >About <i class="fas fa-chevron-down txt-purple pl-1"></i
                 ></a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div aria-labelledby="navbarDropdown" class="dropdown-menu">
                   <a class="dropdown-item" href="/about/">About MET</a>
                   <a class="dropdown-item pb-0 disabled" href="/about/#info"
                     >Owner's Manual</a
@@ -145,146 +143,298 @@
       </nav>
     </header>
     <!-- /HEADER -->
-
     <!-- PAGE -->
-    <section id="top" class="site-section intro">
+    <section class="site-section intro" id="top">
       <div class="container">
         <div class="row">
           <div class="col-12 welcome">
-            <h1 class="page-title">Buy MET with ease.</h1>
+            <h1 class="page-title">Buy Metronome with ease.</h1>
             <h3 class="font-italic">
-              Via the Auction Contract or Autonomous Converter Contract..
+              Via the Auction Contract or Autonomous Converter Contract.
             </h3>
-            <div class="mt-5">
-              <a href="../auction" class="btn btn-primary"> BUY NOW &raquo;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="buy-page">
+      <section class="site-section buy-nav" id="buy-nav">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 mb-2 text-center txt-light">
+              <div class="buy-block">
+                <div class="nav-intro bg-purple-dark">
+                  <h4 class="">Auction Contract</h4>
+                  <p>
+                    Join the daily auction and purchase MET at the price you
+                    deem fair
+                  </p>
+                </div>
+                <a href="#auction-contract" class="d-block bg-purple txt-light">
+                  <span class="d-block">MORE INFO</span>
+                  <span class="d-block"
+                    ><i class="fas fa-chevron-down"></i
+                  ></span>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-4 mb-2 text-center txt-light">
+              <div class="buy-block">
+                <div class="nav-intro bg-purple-dark">
+                  <h4 class="">Autonomous Converter</h4>
+                  <p>
+                    Convert your ETH to MET at a price determined by the current
+                    contract
+                  </p>
+                </div>
+                <a href="#convert-eth" class="d-block bg-purple txt-light">
+                  <span class="d-block">MORE INFO</span>
+                  <span class="d-block"
+                    ><i class="fas fa-chevron-down"></i
+                  ></span>
+                </a>
+              </div>
+            </div>
+            <div class="col-md-4 mb-2 text-center txt-light">
+              <div class="buy-block">
+                <div class="nav-intro bg-purple-dark">
+                  <h4 class="">Third Party Exchange</h4>
+                  <p>Purchase from exchanges that support Metronome</p>
+                </div>
+                <a href="#third-party" class="d-block bg-purple txt-light">
+                  <span class="d-block">MORE INFO</span>
+                  <span class="d-block"
+                    ><i class="fas fa-chevron-down"></i
+                  ></span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section id="purchase" class="site-section options">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 lead mb-5">
-            <p>
-              Community members can purchase Metronome without relying on third
-              party exchanges. <br />There are two ways to purchase:
-            </p>
-          </div>
-          <div class="col-12 mb-5"></div>
-        </div>
-        <div class="row option">
-          <div class="col-md-6 pt-3">
-            <img
-              src="../dist/images/buy-auction-contract.png"
-              width="476"
-              class="img-fluid"
-              alt="Metronome options"
-            />
-          </div>
-          <div class="col-md-6">
-            <h2 class="txt-purple mb-4">01.<br />Auction Contract</h2>
-            <p>
-              Starting at midnight UTC every day, the Auction Contract
-              autonomously mints and auctions 2,880 MET to the public. It uses a
-              descending price auction, with its starting price set at 2x the
-              price auction closing price. The proceeds from these auction stay
-              within the Metronome ecosystem. <a href="#">(More details)</a>.
-            </p>
-            <h3 class="txt-dark mt-4 mb-4">How to buy MET via Auction:</h3>
-            <p class="mb-4">
-              Once the Daily Supply Lot starts, purchasers can wait until the
-              price is what they deem fair, then purchase. They can do this via
-              Metamask or the contract address on the website or via the
-              Metronome wallet itself.
-            </p>
-            <a href="../auction" class="btn btn-primary">BUY MET &raquo;</a>
-          </div>
-        </div>
-        <div class="row option">
-          <div class="col-md-6 pt-3">
-            <img
-              src="../dist/images/buy-autonomous-converter-contract.png"
-              width="438"
-              class="img-fluid"
-              alt="Metronome letterhead"
-            />
-          </div>
-          <div class="col-md-6">
-            <h2 class="txt-purple mb-4">
-              02.<br />Autonomous Converter Contract
-            </h2>
-            <p>
-              Community members are able to sell MET or a chain’s underlying
-              token to the Autonomous Converter Contract at a price determined
-              by the current contents of the contract itself.
-              <a href="#">(How the conversion price is determined)</a>.
-            </p>
-            <h3 class="txt-dark mt-4 mb-4">
-              How to buy MET via Autonomous Converter:
-            </h3>
-            <p class="mb-4">
-              The Metronome community can interact with the Autnomous Converter
-              Contract through the Metronome Wallet. The ‘Converter’ tab of the
-              wallet shows the current price, the current contents, and has a
-              ‘Buy Metronome’ button, allowing users to initiate selling an
-              underlying token for MET.
-            </p>
-            <a href="../converter" class="btn btn-primary"
-              >CONVERT ETH TO MET &raquo;</a
-            >
-          </div>
-        </div>
-        <div class="row option">
-          <div class="col-md-6 pt-3">
-            <img
-              src="../dist/images/buy-third-party-exchanges.png"
-              width="443"
-              class="img-fluid"
-              alt="Metronome graph"
-            />
-          </div>
-          <div class="col-md-6">
-            <h2 class="mb-4 txt-mute">03.<br />Third Party Exchanges</h2>
-            <p>
-              MET can also be purchased from
-              <a href="https://coinmarketcap.com/currencies/metronome/#markets"
-                >third party exchanges</a
+      </section>
+      <section class="site-section options" id="options">
+        <div class="container">
+          <div class="row option auction-contract" id="auction-contract">
+            <div class="col-md-5 mb-4">
+              <h2 class="txt-dark font-weight-bold">
+                Buy MET via the Auction Contract
+              </h2>
+              <p class="d-block mb-4">
+                Every day, the Auction Contract autonomously mints and auctions
+                2,880 MET to the public. It uses a descending price auction,
+                with its starting price set at 2x the price auction closing
+                price. The proceeds from these auctions stay
+                <a
+                  href="https://medium.com/@MetronomeToken/on-metronome-author-retention-and-contract-behavior-73dad8f16494"
+                  target="_blank"
+                  >within the Metronome ecosystem</a
+                >. Once the Daily Supply Lot starts, purchase at the price you
+                deem fair
+                <a
+                  href="https://medium.com/@MetronomeToken/how-to-purchase-metronome-from-the-auction-board-ed36672f8ff2"
+                  target="_blank"
+                  >via Metamask or the contract address on the website</a
+                >
+                or the
+                <a
+                  href="https://medium.com/@MetronomeToken/how-to-purchase-metronome-from-the-metronome-wallet-51457f22239e"
+                  target="_blank"
+                  >Metronome wallet</a
+                >.
+              </p>
+              <a class="font-weight-bold reverse btn btn-dark" href="/buy/"
+                >BUY MET &raquo;</a
               >
-              that have elected to support Metronome..
-            </p>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-6">
+              <img
+                src="../dist/images/auction-countdown@2x.png"
+                alt="Auction countdown"
+                width="608"
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-
+        <div class="option-wrap">
+          <div class="container">
+            <div class="row option convert" id="convert-eth">
+              <div class="col-md-5 mb-4">
+                <h2 class="txt-dark font-weight-bold">
+                  Convert ETH to MET Autonomously
+                </h2>
+                <p class="d-block mb-4">
+                  Sell MET or a chain’s underlying token to the Autonomous
+                  Converter Contract at a
+                  <a
+                    href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md"
+                    target="_blank"
+                    >price determined by the current contents of the contract
+                    itself</a
+                  >. Interact with the Autnomous Converter Contract through the
+                  <a href="/wallet/">Metronome Wallet</a>. The Converter tab
+                  displays the current price, current contents, and Buy button,
+                  allowing users to initiate selling an underlying token for
+                  MET.
+                </p>
+                <a class="font-weight-bold reverse btn btn-dark" href="/buy/"
+                  >CONVERT ETH TO MET &raquo;</a
+                >
+              </div>
+              <div class="col-md-1"></div>
+              <div class="col-md-6">
+                <img
+                  src="../dist/images/converter-mobile@2x.png"
+                  alt="Auction countdown"
+                  width="594"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="option third-party mb-5" id="third-party">
+            <div class="mb-5">
+              <h2 class="txt-dark font-weight-bold">
+                Or Purchase MET from Third Party Exchanges
+              </h2>
+              <p class="d-block mb-4">
+                See our list of
+                <a
+                  href="https://coinmarketcap.com/currencies/metronome/#markets"
+                  target="_blank"
+                  >third party exchanges</a
+                >
+                that have elected to support Metronome.
+              </p>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+                <div class="party clearfix d-flex align-items-center">
+                  <img
+                    src="../dist/images/icon-hotbit@2x.png"
+                    alt="Hotbit Icon"
+                    width="100"
+                    height="100"
+                    class="float-left"
+                  />
+                  <a href="#" target="_blank">HOTBIT &raquo;</a>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+                <div class="party clearfix d-flex align-items-center">
+                  <img
+                    src="../dist/images/icon-bittrex@2x.png"
+                    alt="Bittrex Icon"
+                    width="100"
+                    height="100"
+                    class="float-left"
+                  />
+                  <a href="#" target="_blank">BITTREX &raquo;</a>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+                <div class="party clearfix d-flex align-items-center">
+                  <img
+                    src="../dist/images/icon-upbit@2x.png"
+                    alt="Upbit Icon"
+                    width="100"
+                    height="100"
+                    class="float-left"
+                  />
+                  <a href="#" target="_blank">UPBIT &raquo;</a>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+                <div class="party clearfix d-flex align-items-center">
+                  <img
+                    src="../dist/images/icon-bilaxy@2x.png"
+                    alt="Bilaxy Icon"
+                    width="100"
+                    height="100"
+                    class="float-left"
+                  />
+                  <a href="#" target="_blank">BILAXY &raquo;</a>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+                <div class="party clearfix d-flex align-items-center">
+                  <img
+                    src="../dist/images/icon-gate@2x.png"
+                    alt="Gate.io Icon"
+                    width="100"
+                    height="100"
+                    class="float-left"
+                  />
+                  <a href="#" target="_blank">GATE.IO &raquo;</a>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+                <div class="party clearfix d-flex align-items-center">
+                  <img
+                    src="../dist/images/icon-idex@2x.png"
+                    alt="IDEX Icon"
+                    width="100"
+                    height="100"
+                    class="float-left"
+                  />
+                  <a href="#" target="_blank">IDEX &raquo;</a>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+                <div class="party clearfix d-flex align-items-center">
+                  <img
+                    src="../dist/images/icon-ddex@2x.png"
+                    alt="DDEX Icon"
+                    width="100"
+                    height="100"
+                    class="float-left"
+                  />
+                  <a href="#" target="_blank">DDEX &raquo;</a>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+                <div class="party clearfix d-flex align-items-center">
+                  <img
+                    src="../dist/images/icon-yobit@2x.png"
+                    alt="Yobit Icon"
+                    width="100"
+                    height="100"
+                    class="float-left"
+                  />
+                  <a href="#" target="_blank">YOBIT &raquo;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
     <!-- /PAGE -->
-
     <!-- FOOTER -->
-    <footer id="colophon" class="site-footer">
+    <footer class="site-footer" id="colophon">
       <div class="container">
         <div class="row">
           <div class="col-sm-6 col-lg-3">
             <h5>METRONOME</h5>
             <ul class="nav flex-column pl-0">
               <li class="nav-item">
-                <a href="/buy/" class="nav-link">Buy MET</a>
+                <a class="nav-link" href="/buy/">Buy MET</a>
               </li>
               <li class="nav-item">
-                <a href="/build/" class="nav-link">Build with Metronome</a>
+                <a class="nav-link" href="/build/">Build with Metronome</a>
               </li>
               <li class="nav-item">
-                <a href="/engage/" class="nav-link">Engage With Us</a>
+                <a class="nav-link" href="/engage/">Engage With Us</a>
               </li>
               <li class="nav-item">
-                <a href="/wallet/" class="nav-link">Download the Wallet</a>
+                <a class="nav-link" href="/wallet/">Download the Wallet</a>
               </li>
               <li class="nav-item">
-                <a href="/about/" class="nav-link">About Us</a>
+                <a class="nav-link" href="/about/">About Us</a>
               </li>
               <li class="nav-item">
-                <a href="/#milestones" class="nav-link">Timeline</a>
+                <a class="nav-link" href="/#milestones">Timeline</a>
               </li>
             </ul>
           </div>
@@ -293,28 +443,28 @@
             <ul class="nav flex-column pl-0">
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md"
                   target="_blank"
-                  class="nav-link"
                   >The Owner's Manual</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md"
                   target="_blank"
-                  class="nav-link"
                   >Frequently Asked Questions</a
                 >
               </li>
               <li class="nav-item">
-                <a href="/engage/#tabs" class="nav-link">Media Kit</a>
+                <a class="nav-link" href="/engage/#tabs">Media Kit</a>
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://github.com/autonomoussoftware/"
                   target="_blank"
-                  class="nav-link"
                   >Github</a
                 >
               </li>
@@ -325,49 +475,49 @@
             <ul class="nav nav-collaborate flex-column">
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://twitter.com/MET_Token"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-twitter"></i> Twitter</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://medium.com/@MetronomeToken"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-medium-m"></i> Medium</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://www.facebook.com/MetronomeToken/"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-facebook-square"></i> Facebook</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://t.me/metronometoken"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-telegram-plane"></i> Telegram</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://github.com/autonomoussoftware"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-github-alt"></i> Github</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://www.reddit.com/r/metronometoken"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-reddit-alien"></i> Reddit</a
                 >
               </li>
@@ -380,8 +530,8 @@
             </p>
             <div class="sendgrid">
               <script
-                type="text/javascript"
                 src="//sgwidget.leaderapps.co/js/sendgrid-widget.js"
+                type="text/javascript"
               ></script>
               <style>
                 .sendgrid-subscription-widget .response {
@@ -398,26 +548,27 @@
                 }
               </style>
               <div
-                id="sendgrid-subscription-widget"
                 class="sendgrid-subscription-widget"
+                id="sendgrid-subscription-widget"
               >
                 <form
-                  id="sg-widget"
                   data-token="ad8b1f4cd2963a816efc51879519201e"
+                  id="sg-widget"
+                  name="sg-widget"
                   onsubmit="return false;"
                 >
                   <input
-                    id="sg_email"
                     class="email form-control mb-1"
-                    type="email"
+                    id="sg_email"
                     name="sg_email"
                     placeholder="Email Address"
-                    required
+                    required=""
+                    type="email"
                   />
                   <input
-                    type="submit"
-                    id="sg-submit-btn"
                     class="btn btn-primary font-weight-bold w-100"
+                    id="sg-submit-btn"
+                    type="submit"
                     value="SIGN UP FOR UPDATES &raquo;"
                   />
                   <div class="sg-response" id="sg-response"></div>
@@ -440,12 +591,11 @@
       </div>
     </footer>
     <!-- /FOOTER -->
-
     <!-- SCRIPTS -->
-    <script src="../dist/js/main.js?cb=1561478124882"></script>
+    <script src="../dist/js/main.js?cb=1564088610112"></script>
     <script
       async
-      src="https://www.googletagmanager.com/gtag/js?id=<%-htmlWebpackPlugin.options.gaTrackingId%>"
+      src="https://www.googletagmanager.com/gtag/js?id=%3C%-htmlWebpackPlugin.options.gaTrackingId%%3E"
     ></script>
   </body>
 </html>

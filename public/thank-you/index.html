@@ -2,65 +2,60 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta content="ie=edge" http-equiv="x-ua-compatible" />
     <title>Metronome | Engage</title>
-
     <link
-      rel="stylesheet"
-      type="text/css"
       href="../dist/lib/bootstrap/css/bootstrap.min.css"
-    />
-    <link
       rel="stylesheet"
       type="text/css"
+    />
+    <link
       href="../dist/lib/fontawesome/css/all.min.css"
-    />
-    <link
       rel="stylesheet"
       type="text/css"
-      href="../dist/css/main.css?cb=1561478124882"
     />
-
-    <meta name="description" content="The Built-to-Last Cryptocurrency" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
+      href="../dist/css/main.css?cb=1564088610112"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <meta content="The Built-to-Last Cryptocurrency" name="description" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link
+      href="../dist/images/metronome_touch_icon.png"
       rel="apple-touch-icon"
       sizes="180x180"
-      href="../dist/images/metronome_touch_icon.png"
     />
     <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
       href="../dist/images/metronome_favicon.png"
+      rel="icon"
+      sizes="32x32"
+      type="image/png"
     />
   </head>
   <body class="engage">
     <!-- HEADER -->
     <div class="white-half"></div>
     <div class="gray-fade"></div>
-    <header id="masthead" class="site-header">
+    <header class="site-header" id="masthead">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand" href="/"
             ><img
-              src="../dist/images/metronome-logo.png"
-              class="d-inline-block align-top"
               alt="Metronome Logo"
+              class="d-inline-block align-top"
+              src="../dist/images/metronome-logo.png"
           /></a>
           <button
-            class="toggler toggler--3dx"
-            type="button"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav"
             aria-controls="navbarNav"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            class="toggler toggler--3dx"
+            data-target="#navbarNav"
+            data-toggle="collapse"
+            type="button"
           >
-            <span class="toggler-box">
-              <span class="toggler-inner"></span>
-            </span>
+            <span class="toggler-box"><span class="toggler-inner"></span></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
@@ -76,18 +71,21 @@
               <li class="nav-item">
                 <a class="nav-link" href="/wallet/">Wallet</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/roadmap/">Roadmap</a>
+              </li>
               <li class="nav-item dropdown">
                 <a
+                  aria-expanded="false"
+                  aria-haspopup="true"
                   class="nav-link dropdown-toggle"
+                  data-toggle="dropdown"
                   href="#"
                   id="navbarDropdown"
                   role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
                   >About <i class="fas fa-chevron-down txt-purple pl-1"></i
                 ></a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div aria-labelledby="navbarDropdown" class="dropdown-menu">
                   <a class="dropdown-item" href="/about/">About MET</a>
                   <a class="dropdown-item pb-0 disabled" href="/about/#info"
                     >Owner's Manual</a
@@ -143,9 +141,8 @@
       </nav>
     </header>
     <!-- /HEADER -->
-
     <!-- PAGE -->
-    <section id="top" class="site-section intro pb-5 mb-4">
+    <section class="site-section intro pb-5 mb-4" id="top">
       <div class="container">
         <div class="row">
           <div class="col-12 welcome">
@@ -159,9 +156,8 @@
       </div>
     </section>
     <!-- /PAGE -->
-
     <!-- FOOTER -->
-    <footer id="colophon" class="site-footer">
+    <footer class="site-footer" id="colophon">
       <div class="container">
         <div class="row">
           <div class="col-sm-6 col-lg-3">
@@ -242,8 +238,8 @@
             </p>
             <div class="sendgrid">
               <script
-                type="text/javascript"
                 src="//sgwidget.leaderapps.co/js/sendgrid-widget.js"
+                type="text/javascript"
               ></script>
               <style>
                 .sendgrid-subscription-widget .response {
@@ -260,26 +256,27 @@
                 }
               </style>
               <div
-                id="sendgrid-subscription-widget"
                 class="sendgrid-subscription-widget"
+                id="sendgrid-subscription-widget"
               >
                 <form
-                  id="sg-widget"
                   data-token="ad8b1f4cd2963a816efc51879519201e"
+                  id="sg-widget"
+                  name="sg-widget"
                   onsubmit="return false;"
                 >
                   <input
-                    id="sg_email"
                     class="email form-control mb-1"
-                    type="email"
+                    id="sg_email"
                     name="sg_email"
                     placeholder="Email Address"
-                    required
+                    required=""
+                    type="email"
                   />
                   <input
-                    type="submit"
-                    id="sg-submit-btn"
                     class="btn btn-primary font-weight-bold w-100"
+                    id="sg-submit-btn"
+                    type="submit"
                     value="SIGN UP FOR UPDATES &raquo;"
                   />
                   <div class="sg-response" id="sg-response"></div>
@@ -302,12 +299,11 @@
       </div>
     </footer>
     <!-- /FOOTER -->
-
     <!-- SCRIPTS -->
-    <script src="../dist/js/main.js?cb=1561478124882"></script>
+    <script src="../dist/js/main.js?cb=1564088610112"></script>
     <script
       async
-      src="https://www.googletagmanager.com/gtag/js?id=<%-htmlWebpackPlugin.options.gaTrackingId%>"
+      src="https://www.googletagmanager.com/gtag/js?id=%3C%-htmlWebpackPlugin.options.gaTrackingId%%3E"
     ></script>
   </body>
 </html>
