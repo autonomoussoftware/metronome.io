@@ -61,13 +61,32 @@ function image() {
   return gulp
     .src(paths.images.src)
     .pipe(imagemin([
-	    imagemin.svgo({
-        plugins: [
-            {removeViewBox: true},
-            {cleanupIDs: false}
-        ]
-    	})
-    ]))
+		imagemin.svgo({
+			plugins: [
+			 { removeXMLProcInst: false },
+			 { removeMetadata: false },
+			 { removeXMLNS: false },
+			 { removeEditorsNSData: false },
+			 { removeEmptyAttrs: false },
+			 { removeHiddenElems: false },
+			 { removeEmptyText: false },
+			 { removeEmptyContainers: false },
+			 { removeViewBox: false },
+			 { cleanupEnableBackground: false },
+			 { minifyStyles: false },
+			 { convertStyleToAttrs: false },
+			 { convertPathData: false },
+			 { convertTransform: false },
+			 { rremoveUnknownsAndDefaults: false },
+			 { removeNonInheritableGroupAttrs: false },
+			 { removeUselessStrokeAndFill: false },
+			 { removeUnusedNS: false },
+			 { prefixIds: false },
+			 { cleanupNumericValues: false },
+			 { cleanupListOfValues: false }
+			]
+		})
+     ]))
     .pipe(gulp.dest(paths.images.dest))
     .pipe(browserSync.stream())
 }

@@ -168,17 +168,28 @@ body.home {
 		.slick-slide {
 			text-align: center;
 			padding: 20px 40px;
+			display: flex;
 			&:before {
 				content: '';
 				display: inline-block;
 				height: 100%;
 				vertical-align: middle;
 			}
-			img {
-				vertical-align: middle;
-				display: inline-block;
-				margin: 0 auto;
-				max-width: 100%;
+			a {
+				outline: none !important;
+
+				img {
+					align-self: center!important;
+					vertical-align: middle;
+					display: inline-block;
+					margin: 0 auto;
+					max-width: 100%;
+				}
+
+				&:hover,
+				&:focus {
+					opacity: .65;
+				}
 			}
 		}
 	}
@@ -434,12 +445,19 @@ body.engage {
 	}
 	@media(max-width:768px) {
 		.intro-img img {
-			max-width: 70%;
+			max-width: 100%;
+			height: auto;
 			margin: 0 auto;
 			display: block;
 		}
 	}
 
+}
+.build .intro-img img {
+	margin-left: -150px;
+	@media(max-width:767px) {
+		margin-left: 0;
+	}
 }
 /*################################################################################### ENGAGE */
 .engage {
@@ -756,46 +774,6 @@ body.wallet {
 		background-position: right top;
 		background-size: cover;
 
-		/*
-		background: url('../images/grid_purple-25.png') repeat 0 0 #7E61F8;
-		-webkit-animation: bg-scrolling-reverse .92s infinite;
-		-moz-animation:    bg-scrolling-reverse .92s infinite;
-		-o-animation:      bg-scrolling-reverse .92s infinite;
-		animation:         bg-scrolling-reverse .92s infinite;
-		-webkit-animation-timing-function: linear;
-		-moz-animation-timing-function:    linear;
-		-o-animation-timing-function:      linear;
-		animation-timing-function:         linear;
-		$bg-width: 25px;
-		$bg-height: 25px;
-
-		@-webkit-keyframes bg-scrolling-reverse {
-		  100% { background-position: $bg-width $bg-height; }
-		}
-		@-moz-keyframes    bg-scrolling-reverse {
-		  100% { background-position: $bg-width $bg-height; }
-		}
-		@-o-keyframes      bg-scrolling-reverse {
-		  100% { background-position: $bg-width $bg-height; }
-		}
-		@keyframes         bg-scrolling-reverse {
-		  100% { background-position: $bg-width $bg-height; }
-		}
-
-		@-webkit-keyframes bg-scrolling {
-		  0% { background-position: $bg-width $bg-height; }
-		}
-		@-moz-keyframes    bg-scrolling {
-		  0% { background-position: $bg-width $bg-height; }
-		}
-		@-o-keyframes      bg-scrolling {
-		  0% { background-position: $bg-width $bg-height; }
-		}
-		@keyframes         bg-scrolling {
-		  0% { background-position: $bg-width $bg-height; }
-		}
-		*/
-
 		h4.sup-title {
 			display: inline-block;
 		    padding-top: 100px;
@@ -1043,4 +1021,21 @@ body.wallet {
 
 	}
 
+}
+/*################################################################################### PRIVACY */
+.privacy {
+
+		background: #eaeaea;
+		background: -moz-linear-gradient( top, #eaeaea 0%, #ffffff 100%);
+		background: -webkit-linear-gradient( top, #eaeaea 0%, #ffffff 100%);
+		background: linear-gradient( to bottom, #eaeaea 0%, #ffffff 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eaeaea', endColorstr='#ffffff', GradientType=0);
+
+	.legal {
+		padding-top: 117px;
+
+		@media(max-width:768px) {
+			padding-top: 0;
+		}
+	}
 }

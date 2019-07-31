@@ -170,12 +170,6 @@ h5, .h5 {
 	padding-top: 75px;
 	margin-top: -75px;
 }
-:target {
-  display: block;
-  position: relative;
-  top: -120px;
-  visibility: hidden;
-}
 /*################################################################################### HEADER */
 
 header.site-header {
@@ -519,7 +513,7 @@ header.site-header {
 .options {
 
 	.option {
-		padding: 50px 0;
+		padding: 60px 0;
 
 		.index {
 			position: absolute;
@@ -600,7 +594,7 @@ header.site-header {
 		.option {
 			padding: 50px 0 0;
 			img {
-				max-width: 60%;
+				max-width: 100%;
 				display: block;
 				margin: 15px 0;
 			}
