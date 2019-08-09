@@ -15,7 +15,7 @@
       type="text/css"
     />
     <link
-      href="./dist/css/main.css?cb=1564614981070"
+      href="./dist/css/main.css?cb=1565366399747"
       rel="stylesheet"
       type="text/css"
     />
@@ -56,13 +56,59 @@
   <body class="home">
     <!-- HEADER -->
     <header class="site-header" id="masthead">
+      <div class="met-marquee bg-dark d-flex align-items-center">
+        <!-- Dynamic content start -->
+        <div class="container">
+          <div class="mover">
+            <span class="met-stat"
+              ><label>Market Supply:</label>
+              <span class="data data-market">00000000</span></span
+            >
+            <span class="met-stat"
+              ><label>Next Auction:</label>
+              <span class="data data-auction">00000000</span></span
+            >
+            <span class="met-stat"
+              ><label>Last Auction ETH:</label>
+              <span class="data data-eth mr-2">00000000</span>
+              <label>ETC:</label>
+              <span class="data data-etc">00000000</span></span
+            >
+            <span class="met-stat last"
+              ><label>TVL:</label>
+              <span class="data data-tvl">00000000</span></span
+            >
+
+            <span class="met-stat copy"
+              ><label>Market Supply:</label>
+              <span class="data data-market">00000000</span></span
+            >
+            <span class="met-stat copy"
+              ><label>Next Auction:</label>
+              <span class="data data-auction">00000000</span></span
+            >
+            <span class="met-stat copy"
+              ><label>Last Auction ETH:</label>
+              <span class="data data-eth mr-2">00000000</span>
+              <label>ETC:</label>
+              <span class="data data-etc">00000000</span></span
+            >
+            <span class="met-stat copy"
+              ><label>TVL:</label>
+              <span class="data data-tvl">00000000</span></span
+            >
+          </div>
+        </div>
+        <!-- Dynamic content end -->
+      </div>
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand" href="/"
             ><img
               alt="Metronome Logo"
               class="d-inline-block align-top"
-              src="./dist/images/metronome-logo.png"
+              src="./dist/images/metronome-logo-white@2x.png"
+              width="213"
           /></a>
           <button
             aria-controls="navbarNav"
@@ -90,6 +136,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="/roadmap/">Roadmap</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/about/">About</a>
+              </li>
               <li class="nav-item dropdown">
                 <a
                   aria-expanded="false"
@@ -99,11 +148,11 @@
                   href="#"
                   id="navbarDropdown"
                   role="button"
-                  >About <i class="fas fa-chevron-down txt-purple pl-1"></i
+                  >Resources <i class="fas fa-minus"></i>
+                  <i class="fas fa-chevron-down"></i
                 ></a>
                 <div aria-labelledby="navbarDropdown" class="dropdown-menu">
-                  <a class="dropdown-item" href="/about/">About MET</a>
-                  <a class="dropdown-item pb-0 disabled" href="/about/#info"
+                  <a class="dropdown-item disabled" href="/about/#info"
                     >Owner's Manual</a
                   >
                   <ul class="sub-menu">
@@ -143,6 +192,7 @@
                       >
                     </li>
                   </ul>
+                  <a class="dropdown-item" href="/engage/#media">Media</a>
                   <a
                     class="dropdown-item"
                     href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md"
@@ -159,85 +209,336 @@
     <!-- /HEADER -->
     <!-- PAGE -->
     <section class="site-section top" id="top">
+      <div class="whisp">
+        <img
+          alt="Whispy purple background"
+          src="./dist/images/whispy-bg-trans.png"
+        />
+      </div>
       <div class="container">
-        <h1 class="page-title">The Built-to-Last Cryptocurrency</h1>
+        <div class="hero">
+          <div class="row">
+            <div class="col-md-2 d-none d-md-block">
+              <div class="met-token">
+                <img
+                  alt="Metronome Token"
+                  class="img-fluid"
+                  src="./dist/images/metronome-token@2x.png"
+                  width="186"
+                />
+              </div>
+            </div>
+            <div class="col-md-10 d-flex align-items-center">
+              <div class="typing-titles">
+                <h1 class="page-title" id="typed-strings">
+                  <span>Built to <span>last</span></span>
+                  <span>Built to be <span>portable</span></span>
+                  <span>Built to be <span>reliable</span></span>
+                  <span>Built to be <span>autonomous</span></span>
+                </h1>
+                <h2 class="h1 page-title"><span id="typed"></span></h2>
+                <div class="sub-rotate">
+                  <h3 class="quotes">Autonomous. Reliable. Portable.</h3>
+                  <h3 class="quotes">Moving freely across blockchains.</h3>
+                  <h3 class="quotes">
+                    Issuance predictability determined by code.
+                  </h3>
+                  <h3 class="quotes">Self-Governing, by each MET owner.</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="buy-options">
+          <div class="row">
+            <div class="col-lg-4 br">
+              <div class="option option-buy">
+                <h4>DAILY AUCTION</h4>
+                <div class="prices">
+                  <div class="row">
+                    <div class="col-12 col-sm-5 col-lg-12 col-xl-5">
+                      <label>Price per MET:</label>
+                    </div>
+                    <div class="col-12 col-sm-7 col-lg-12 col-xl-7">
+                      <div class="price met-price">$1.2764 USD</div>
+                      <div class="price eth-price">0.004163 ETH</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="buy-info">
+                  <div class="row">
+                    <div class="col-12 col-sm-7 col-lg-12 col-xl-7">
+                      <label>Time Until Next Auction:</label>
+                    </div>
+                    <div class="col-12 col-sm-5 col-lg-12 col-xl-5">
+                      <span>01h:27m:45s</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-sm-7 col-lg-12 col-xl-7">
+                      <label>Next Starting Price:</label>
+                    </div>
+                    <div class="col-12 col-sm-5 col-lg-12 col-xl-5">
+                      <span>0.008288 ETH</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="buy-links">
+                  <a href="#" class="btn btn-buy">BUY MET &raquo;</a>
+                  <a href="#" class="btn btn-info">INFO +</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 br">
+              <div class="option option-convert">
+                <h4>CONVERTER</h4>
+                <div class="prices">
+                  <div class="row">
+                    <div class="col-12 col-sm-5 col-lg-12 col-xl-5">
+                      <label>Price per MET:</label>
+                    </div>
+                    <div class="col-12 col-sm-7 col-lg-12 col-xl-7">
+                      <div class="price met-price">$1.2821 USD</div>
+                      <div class="price eth-price">0.004163 ETH</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="buy-info">
+                  <div class="row">
+                    <div class="col-12 col-sm-7 col-lg-12 col-xl-7">
+                      <label>Remaining MET:</label>
+                    </div>
+                    <div class="col-12 col-sm-5 col-lg-12 col-xl-5">
+                      <span>1,845,021 MET</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-sm-7 col-lg-12 col-xl-7">
+                      <label>Remaining ETH:</label>
+                    </div>
+                    <div class="col-12 col-sm-5 col-lg-12 col-xl-5">
+                      <span>7,680.34 ETH</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="buy-links">
+                  <a href="#" class="btn btn-buy">CONVERT MET &raquo;</a>
+                  <a href="#" class="btn btn-info">INFO +</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="option option-market">
+                <h4>MARKET PRICE</h4>
+                <div class="prices">
+                  <div class="row">
+                    <div class="col-12 col-sm-5 col-lg-12 col-xl-5">
+                      <label>Price per MET:</label>
+                    </div>
+                    <div class="col-12 col-sm-7 col-lg-12 col-xl-7">
+                      <div class="price met-price">$0.9158 USD</div>
+                      <div class="price eth-price">0.003914 ETH</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="buy-info">
+                  <div class="row">
+                    <div class="col-12 col-sm-7 col-lg-12 col-xl-7">
+                      <label>Circulating Supply:</label>
+                    </div>
+                    <div class="col-12 col-sm-5 col-lg-12 col-xl-5">
+                      <span>9,397,557 MET</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-sm-7 col-lg-12 col-xl-7">
+                      <label>Total Supply:</label>
+                    </div>
+                    <div class="col-12 col-sm-5 col-lg-12 col-xl-5">
+                      <span>11,159,681 MET</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="buy-links">
+                  <a href="#" class="btn btn-buy">TRADE MET &raquo;</a>
+                  <a href="#" class="btn btn-info">INFO +</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wallet" id="wallet">
+          <div class="row">
+            <div class="col-lg-5 col-xl-4 d-flex aign-items-center">
+              <div class="wallet-info">
+                <h2 class="txt-dark">Download the Wallet</h2>
+                <p class="my-4">
+                  Metronome Desktop Wallet is available on
+                  <a
+                    href="https://github.com/autonomoussoftware/metronome-wallet-desktop/releases/download/v1.4.1/metronome-desktop-wallet_v1.4.1.dmg"
+                    target="_blank"
+                    >Mac</a
+                  >,
+                  <a
+                    href="https://github.com/autonomoussoftware/metronome-wallet-desktop/releases/download/v1.4.1/metronome-desktop-wallet_v1.4.1.exe"
+                    target="_blank"
+                    >Windows</a
+                  >
+                  and
+                  <a
+                    href="https://github.com/autonomoussoftware/metronome-wallet-desktop/releases/download/v1.4.1/metronome-desktop-wallet_v1.4.1.deb"
+                    target="_blank"
+                    >Linux</a
+                  >. Metronome Mobile Wallet is available on
+                  <a
+                    href="https://itunes.apple.com/app/id1434362697"
+                    target="_blank"
+                    >Android</a
+                  >
+                  and
+                  <a
+                    href="https://play.google.com/store/apps/details?id=sh.autonomous.wallet.mobile"
+                    target="_blank"
+                    >iOS</a
+                  >.
+                </p>
+                <div id="mobile-downloads" class="my-4">
+                  <a
+                    href="https://itunes.apple.com/app/id1434362697"
+                    target="_blank"
+                    ><img
+                      srcset="../dist/images/appstore-btn.svg"
+                      src="../dist/images/apple-download.png"
+                      alt="Apple download"
+                      class="img-fluid mb-2"
+                  /></a>
+                  &nbsp;
+                  <a
+                    href="https://play.google.com/store/apps/details?id=sh.autonomous.wallet.mobile"
+                    target="_blank"
+                    ><img
+                      srcset="../dist/images/gplay-btn.svg"
+                      src="../dist/images/android-download.png"
+                      alt="Android Download"
+                      class="img-fluid mb-2"
+                  /></a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-7 col-xl-8">
+              <img
+                src="../dist/images/white-wallet@2x.png"
+                alt="Metronome Wallet Screenshot"
+                width="890"
+                class="wallet-img"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="site-section news" id="news">
+      <div class="container">
+        <div class="clearfix">
+          <h2 class="txt-dark font-weight-bold">In the News</h2>
+          <div
+            class="news-items d-md-flex align-items-center justify-content-around"
+          >
+            <a
+              href="https://www.bloomberg.com/news/articles/2017-10-24/bitcoin-pioneer-says-new-coin-to-work-on-multiple-blockchains"
+              target="_blank"
+            >
+              <img
+                alt="Bloomberg Logo"
+                class="img-fluid"
+                src="./dist/images/news-p-bloomberg@2x.png"
+                width="150"
+              />
+            </a>
+            <a
+              href="https://www.reuters.com/article/us-bloq-token-funding/u-s-blockchain-start-up-bloq-to-launch-bitcoin-like-token-idUSKBN1CT2G1"
+              target="_blank"
+            >
+              <img
+                alt="Reuters Logo"
+                class="img-fluid"
+                src="./dist/images/news-p-reuters@2x.png"
+                width="186"
+              />
+            </a>
+            <a
+              href="https://www.americanbanker.com/news/bitcoin-pioneers-cryptocurrency-alternative-allows-for-multiple-networks"
+              target="_blank"
+            >
+              <img
+                alt="American Banker Logo"
+                class="img-fluid"
+                src="./dist/images/news-p-american-banker@2x.png"
+                width="178"
+              />
+            </a>
+            <a
+              href="https://www.coindesk.com/metronome-now-lets-users-move-tokens-between-blockchains"
+              target="_blank"
+            >
+              <img
+                alt="Coindesk Logo"
+                class="img-fluid"
+                src="./dist/images/news-p-coindesk@2x.png"
+                width="164"
+              />
+            </a>
+          </div>
+        </div>
       </div>
     </section>
     <section class="site-section mb-3 process" id="process">
       <div class="process-inner">
         <div class="container">
-          <div class="quick-buy placeholder">
-            <img
-              alt="Dynamic content placeholder"
-              class="d-block mx-auto img-fluid"
-              src="./dist/images/dynamic-placeholder.png"
-            />
-            <!-- <div id="quick-buy"></div><!== /Dynamic content -->
-            <!-- <div id="root" content="home"></div><!== /Dynamic content -->
-          </div>
-          <!-- Buy -->
-          <div class="row step step-buy" id="buy">
-            <div class="col-lg-5 mb-2 d-flex align-items-center">
+          <div class="row step step-buy">
+            <div class="col-md-4 mb-2" id="buy">
               <div class="step-info">
-                <div class="process-nav">
-                  <ul>
-                    <li class="active">
-                      <a href="#buy"><i class="fas fa-circle"></i></a>
-                    </li>
-                    <li>
-                      <a href="#build"><i class="fas fa-circle"></i></a>
-                    </li>
-                    <li>
-                      <a href="#engage"><i class="fas fa-circle"></i></a>
-                    </li>
-                  </ul>
-                </div>
-                <h2 class="txt-dark font-weight-bold mx-auto d-block mb-3 pb-3">
-                  Buy Metronome Safely and Securely
+                <h2 class="txt-dark step-title">
+                  <span></span><span>Buy</span>
                 </h2>
+                <div class="card-image d-flex align-items-center">
+                  <img
+                    alt="Buy graph"
+                    class="img-fluid"
+                    src="./dist/images/home-buy@2x.png"
+                    width="326"
+                  />
+                </div>
+                <h3 class="txt-dark font-weight-bold mx-auto d-block mb-3 pb-3">
+                  Buy Metronome Safely and Securely
+                </h3>
                 <p class="d-block mb-4">
-                  <strong>Purchase</strong> from Auction, from the Autonomous
-                  Converter, or from third party exchanges.
+                  <strong>Purchase MET</strong> from the Daily Auction,
+                  Autonomous Converter, or from various third party exchanges.
                 </p>
                 <a class="font-weight-bold reverse" href="/buy/"
                   >LEARN MORE &raquo;</a
                 >
               </div>
             </div>
-            <div class="col-lg-1"></div>
-            <div class="col-lg-6">
-              <div class="card-image d-flex align-items-center">
-                <img
-                  alt="Buy graph"
-                  class=""
-                  src="./dist/images/buy-graph@2x.png"
-                  width="783"
-                />
-              </div>
-            </div>
-          </div>
-          <!-- Build -->
-          <div class="row step step-build" id="build">
-            <div class="col-lg-5 mb-2 d-flex align-items-center">
+            <div class="col-md-4 mb-2" id="build">
               <div class="step-info">
-                <div class="process-nav">
-                  <ul>
-                    <li>
-                      <a href="#buy"><i class="fas fa-circle"></i></a>
-                    </li>
-                    <li class="active">
-                      <a href="#build"><i class="fas fa-circle"></i></a>
-                    </li>
-                    <li>
-                      <a href="#engage"><i class="fas fa-circle"></i></a>
-                    </li>
-                  </ul>
-                </div>
-                <h2 class="txt-dark font-weight-bold mx-auto d-block mb-3 pb-3">
-                  Build the Latest and Greatest Applications
+                <h2 class="txt-dark step-title">
+                  <span></span><span>Build</span>
                 </h2>
+                <div class="card-image d-flex align-items-center">
+                  <img
+                    alt="Buy graph"
+                    class="img-fluid"
+                    src="./dist/images/home-build@2x.png"
+                    width="326"
+                  />
+                </div>
+                <h3 class="txt-dark font-weight-bold mx-auto d-block mb-3 pb-3">
+                  Build the Latest and Greatest Applications
+                </h3>
                 <p class="d-block mb-4">
-                  <strong>Build</strong> out new use cases with Metronome’s
+                  <strong>Build out new use cases</strong> with Metronome’s
                   deployed contracts, or work on building the next application
                   set to deploy.
                 </p>
@@ -246,74 +547,277 @@
                 >
               </div>
             </div>
-            <div class="col-lg-1"></div>
-            <div class="col-lg-6">
-              <div class="card-image d-flex align-items-center">
-                <img
-                  alt="Build code sample"
-                  class=""
-                  src="./dist/images/build-code-sample@2x.png"
-                  width="712"
-                />
-              </div>
-            </div>
-          </div>
-          <!-- Engage -->
-          <div class="row step step-engage" id="engage">
-            <div class="col-lg-5 mb-2 d-flex align-items-center">
+            <div class="col-md-4 mb-2" id="engage">
               <div class="step-info">
-                <div class="process-nav">
-                  <ul>
-                    <li>
-                      <a href="#buy"><i class="fas fa-circle"></i></a>
-                    </li>
-                    <li>
-                      <a href="#build"><i class="fas fa-circle"></i></a>
-                    </li>
-                    <li class="active">
-                      <a href="#engage"><i class="fas fa-circle"></i></a>
-                    </li>
-                  </ul>
-                </div>
-                <h2 class="txt-dark font-weight-bold mx-auto d-block mb-3 pb-3">
-                  Engage with the Metronome Community
+                <h2 class="txt-dark step-title">
+                  <span></span><span>Engage</span>
                 </h2>
+                <div class="card-image d-flex align-items-center">
+                  <img
+                    alt="Buy graph"
+                    class="img-fluid"
+                    src="./dist/images/engage-tix-web@2x.png"
+                    width="326"
+                  />
+                </div>
+                <h3 class="txt-dark font-weight-bold mx-auto d-block mb-3 pb-3">
+                  Engage with the Metronome Community
+                </h3>
                 <p class="d-block mb-4">
-                  <strong>Strengthen the Metronome community</strong> with
-                  ready-to-go resources for meet-ups, friends, or colleagues.
+                  <strong>Strengthen the community</strong> by participating in
+                  events, meet-ups and conversations with the Metronome team.
                 </p>
                 <a class="font-weight-bold reverse" href="/engage/"
                   >LEARN MORE &raquo;</a
                 >
               </div>
             </div>
-            <div class="col-lg-1"></div>
-            <div class="col-lg-6">
-              <div class="card-image d-flex align-items-center">
-                <img
-                  alt="Engage Tickets"
-                  class=""
-                  src="./dist/images/engage-tickets@2x.png"
-                  width="687"
-                />
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="site-section news" id="news">
+    <section class="site-section milestones" id="milestones">
+      <div class="container">
+        <h2 class="pb-4 txt-dark font-weight-bold">Metronome Milestones</h2>
+        <div class="milestone-slider">
+          <div>
+            <div class="milestone">
+              <div class="ms-icon">
+                <img
+                  src="./dist/images/milestone-01-metronome-idea.png"
+                  alt="Metronome Icon"
+                  width="180"
+                />
+              </div>
+              <div class="ms-title"><h5>Metronome Idea</h5></div>
+              <div class="ms-date font-weight-bold">April 2017</div>
+            </div>
+          </div>
+          <div>
+            <div class="milestone">
+              <div class="ms-icon">
+                <img
+                  src="./dist/images/milestone-02-partnership-new-alchemy.png"
+                  alt="Alchemy partnership icon"
+                  width="180"
+                />
+              </div>
+              <div class="ms-title">
+                <h5>Partnership with New Alchemy Formed</h5>
+              </div>
+              <div class="ms-date font-weight-bold">May 2017</div>
+            </div>
+          </div>
+          <div>
+            <div class="milestone">
+              <div class="ms-icon">
+                <img
+                  src="./dist/images/milestone-03-public-announcement.png"
+                  alt="Metronome announcement icon"
+                  width="180"
+                />
+              </div>
+              <div class="ms-title">
+                <h5>
+                  Public Announcement, Website Launch, Owner's Manual Published
+                </h5>
+              </div>
+              <div class="ms-date font-weight-bold">October 2017</div>
+            </div>
+          </div>
+          <div>
+            <div class="milestone">
+              <div class="ms-icon">
+                <img
+                  src="./dist/images/milestone-04-smart-contract-begins.png"
+                  alt="Smart Contract Icon"
+                  width="180"
+                />
+              </div>
+              <div class="ms-title"><h5>Smart Contract Audits Begin</h5></div>
+              <div class="ms-date font-weight-bold">Jan 2018</div>
+            </div>
+          </div>
+          <div>
+            <div class="milestone">
+              <div class="ms-icon">
+                <img
+                  src="./dist/images/milestone-05-initial-supply-auction.png"
+                  alt="LIVE icon"
+                  width="180"
+                />
+              </div>
+              <div class="ms-title"><h5>ISA Launch</h5></div>
+              <div class="ms-date font-weight-bold">June 18, 2018</div>
+            </div>
+          </div>
+          <div>
+            <div class="milestone">
+              <div class="ms-icon">
+                <img
+                  src="./dist/images/milestone-06-initial-supply-auction-completion.png"
+                  alt="Metronome Icon"
+                  width="180"
+                />
+              </div>
+              <div class="ms-title">
+                <h5>ISA Completion and first Daily Supply Auction</h5>
+              </div>
+              <div class="ms-date font-weight-bold">June 26, 20187</div>
+            </div>
+          </div>
+          <div>
+            <div class="milestone">
+              <div class="ms-icon">
+                <img
+                  src="./dist/images/milestone-07-first-meetup.png"
+                  alt="Meetup Icon"
+                  width="180"
+                />
+              </div>
+              <div class="ms-title">
+                <h5>First Official Metronome Meetup</h5>
+              </div>
+              <div class="ms-date font-weight-bold">August 28, 2018</div>
+            </div>
+          </div>
+          <div>
+            <div class="milestone">
+              <div class="ms-icon">
+                <img
+                  src="./dist/images/milestone-08-world-crypto-con.png"
+                  alt="Cryptocon icon"
+                  width="180"
+                />
+              </div>
+              <div class="ms-title">
+                <h5>World Crypto Con Presentation and Hackathon</h5>
+              </div>
+              <div class="ms-date font-weight-bold">October 31, 2018</div>
+            </div>
+          </div>
+          <div>
+            <div class="milestone">
+              <div class="ms-icon">
+                <img
+                  src="./dist/images/milestone-09-validator-document-published.png"
+                  alt="Abstract Chainhop icon"
+                  width="180"
+                />
+              </div>
+              <div class="ms-title"><h5>Validator Document Published</h5></div>
+              <div class="ms-date font-weight-bold">February 2019</div>
+            </div>
+          </div>
+          <div>
+            <div class="milestone">
+              <div class="ms-icon">
+                <img
+                  src="./dist/images/milestone-10-bitcoin-wednesday.png"
+                  alt="Bitcoin icon"
+                  width="180"
+                />
+              </div>
+              <div class="ms-title">
+                <h5>Bitcoin Wednesday Presentation with Jenna Pilgrim</h5>
+              </div>
+              <div class="ms-date font-weight-bold">March 6, 2019</div>
+            </div>
+          </div>
+          <div>
+            <div class="milestone">
+              <div class="ms-icon">
+                <img
+                  src="./dist/images/milestone-11-consensus-2019.png"
+                  alt="Consensus icon"
+                  width="180"
+                />
+              </div>
+              <div class="ms-title">
+                <h5>Consensus 2019 Workshop and Booth</h5>
+              </div>
+              <div class="ms-date font-weight-bold">May 15, 2019</div>
+            </div>
+          </div>
+          <div>
+            <div class="milestone">
+              <div class="ms-icon">
+                <img
+                  src="./dist/images/milestone-12-active-research-eos-cardano.png"
+                  alt="Active research eos icon"
+                  width="180"
+                />
+              </div>
+              <div class="ms-title">
+                <h5>Active Research into EOS and Cardano Chainhops begins</h5>
+              </div>
+              <div class="ms-date font-weight-bold">June, 2019</div>
+            </div>
+          </div>
+          <div>
+            <div class="milestone">
+              <div class="ms-icon">
+                <img
+                  src="./dist/images/milestone-13-ethereum-classic-chainhop.png"
+                  alt="Etherum icon"
+                  width="180"
+                />
+              </div>
+              <div class="ms-title">
+                <h5>Ethereum Classic Chainhop launch</h5>
+              </div>
+              <div class="ms-date font-weight-bold">June 24, 2019</div>
+            </div>
+          </div>
+          <div>
+            <div class="milestone">
+              <div class="ms-icon">
+                <img
+                  src="./dist/images/milestone-14-meetup-jordan-kruger.png"
+                  alt="Meetup icon"
+                  width="180"
+                />
+              </div>
+              <div class="ms-title">
+                <h5>Metronome Meetup with Jordan Kruger</h5>
+              </div>
+              <div class="ms-date font-weight-bold">July 10, 2019</div>
+            </div>
+          </div>
+          <div>
+            <div class="milestone">
+              <div class="ms-icon">
+                <img
+                  src="./dist/images/milestone-15-qtum-rsk-chainhop.png"
+                  alt="Qtum and RSK icons"
+                  width="180"
+                />
+              </div>
+              <div class="ms-title">
+                <h5>Qtum and RSK chainhop launches</h5>
+              </div>
+              <div class="ms-date font-weight-bold">Late 2019</div>
+            </div>
+          </div>
+          <span class="slider-dots align-self-center"></span>
+        </div>
+      </div>
+    </section>
+    <!-- .news -->
+    <!-- /PAGE -->
+    <!-- FOOTER -->
+    <footer class="site-footer" id="colophon">
       <div class="site-section connect" id="connect">
         <div class="container">
           <div class="connect-inner bg-xdark">
             <span class="plus"><i class="fas fa-plus"></i></span>
             <div class="row">
-              <div class="col-sm-6 d-flex align-items-center">
+              <div class="col-md-5 d-flex align-items-center">
                 <p class="lead txt-light mb-0">
                   Connect and collaborate with the Metronome team:
                 </p>
               </div>
-              <div class="col-sm-6">
+              <div class="col-md-7">
                 <ul class="nav nav-connect justify-content-end">
                   <li class="nav-item">
                     <a
@@ -363,121 +867,22 @@
                       ><i class="fab fa-reddit-alien"></i
                     ></a>
                   </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="https://www.meetup.com/Official-Metronome-Meetup/"
+                      target="_blank"
+                      ><i class="fab fa-meetup"></i
+                    ></a>
+                  </li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="site-section bs-slider" id="slider-news">
-        <div class="container">
-          <h2 class="my-5 txt-light font-weight-bold">In the News</h2>
-          <div class="news-slider d-flex align-items-center">
-            <div>
-              <a
-                href="https://www.bloomberg.com/news/articles/2017-10-24/bitcoin-pioneer-says-new-coin-to-work-on-multiple-blockchains"
-                target="_blank"
-              >
-                <img
-                  alt="Bloomberg Logo"
-                  class="img-fluid"
-                  src="./dist/images/bloomberg-logo.png"
-                />
-              </a>
-            </div>
-            <div>
-              <a
-                href="http://fortune.com/2017/10/24/bitcoin-metronome/"
-                target="_blank"
-              >
-                <img
-                  alt="Fortune Logo"
-                  class="img-fluid"
-                  src="./dist/images/fortune-logo.png"
-                />
-              </a>
-            </div>
-            <div>
-              <a
-                href="https://www.reuters.com/article/us-bloq-token-funding/u-s-blockchain-start-up-bloq-to-launch-bitcoin-like-token-idUSKBN1CT2G1"
-                target="_blank"
-              >
-                <img
-                  alt="Reuters Logo"
-                  class="img-fluid"
-                  src="./dist/images/reuters-logo.png"
-                />
-              </a>
-            </div>
-            <div>
-              <a
-                href="https://www.americanbanker.com/news/bitcoin-pioneers-cryptocurrency-alternative-allows-for-multiple-networks"
-                target="_blank"
-              >
-                <img
-                  alt="American Banker Logo"
-                  class="img-fluid"
-                  src="./dist/images/american-banker-logo.png"
-                />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="site-section milestones offset" id="milestones">
-        <div class="container">
-          <h2 class="my-5 txt-light font-weight-bold">Metronome Milestones</h2>
-          <div class="milestone-slider">
-            <div>
-              <div class="milestone">
-                <div class="ms-date bg-dark font-weight-bold">NOV 2018</div>
-                <div class="ms-title">
-                  <h5>Metronome Hackathon in Las Vegas</h5>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="milestone">
-                <div class="ms-date bg-dark font-weight-bold">Q1 2019</div>
-                <div class="ms-title">
-                  <h5>Metronome Mobile Wallet Launches for iOS and Android</h5>
-                  <a href="/wallet/#options">DOWNLOAD NOW &raquo;</a>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="milestone">
-                <div class="ms-date bg-dark font-weight-bold">Q1 2019</div>
-                <div class="ms-title">
-                  <h5>
-                    Cross-Chain and Validator Technical Documentation Released
-                  </h5>
-                  <a
-                    href="https://github.com/autonomoussoftware/documentation/blob/master/validatordocument/validatordocument.md"
-                    target="_blank"
-                    >VIEW &raquo;</a
-                  >
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="milestone">
-                <div class="ms-date bg-dark font-weight-bold">Q2 2019</div>
-                <div class="ms-title">
-                  <h5>Ethereum Classic Target Chain Port</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- .news -->
-    <!-- /PAGE -->
-    <!-- FOOTER -->
-    <footer class="site-footer" id="colophon">
       <div class="container">
-        <div class="row">
+        <div class="row navs">
           <div class="col-sm-6 col-lg-3">
             <h5>METRONOME</h5>
             <ul class="nav flex-column pl-0">
@@ -541,7 +946,7 @@
                   class="nav-link"
                   href="https://twitter.com/MET_Token"
                   target="_blank"
-                  >Twitter</a
+                  ><i class="fab fa-twitter"></i> Twitter</a
                 >
               </li>
               <li class="nav-item">
@@ -549,7 +954,7 @@
                   class="nav-link"
                   href="https://medium.com/@MetronomeToken"
                   target="_blank"
-                  >Medium</a
+                  ><i class="fab fa-medium-m"></i> Medium</a
                 >
               </li>
               <li class="nav-item">
@@ -557,7 +962,7 @@
                   class="nav-link"
                   href="https://www.facebook.com/MetronomeToken/"
                   target="_blank"
-                  >Facebook</a
+                  ><i class="fab fa-facebook-square"></i> Facebook</a
                 >
               </li>
               <li class="nav-item">
@@ -565,7 +970,7 @@
                   class="nav-link"
                   href="https://t.me/metronometoken"
                   target="_blank"
-                  >Telegram</a
+                  ><i class="fab fa-telegram-plane"></i> Telegram</a
                 >
               </li>
               <li class="nav-item">
@@ -573,7 +978,7 @@
                   class="nav-link"
                   href="https://github.com/autonomoussoftware"
                   target="_blank"
-                  >Github</a
+                  ><i class="fab fa-github-alt"></i> Github</a
                 >
               </li>
               <li class="nav-item">
@@ -581,7 +986,15 @@
                   class="nav-link"
                   href="https://www.reddit.com/r/metronometoken"
                   target="_blank"
-                  >Reddit</a
+                  ><i class="fab fa-reddit-alien"></i> Reddit</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://www.meetup.com/Official-Metronome-Meetup/"
+                  target="_blank"
+                  ><i class="fab fa-meetup"></i> Meetup</a
                 >
               </li>
             </ul>
@@ -655,7 +1068,8 @@
     </footer>
     <!-- /FOOTER -->
     <!-- SCRIPTS -->
-    <script src="./dist/js/main.js?cb=1564614981070"></script>
+    <script src="./dist/js/main.js?cb=1565366399747"></script>
+    <script src="./dist/lib/typed/typed.js"></script>
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=&lt;%-htmlWebpackPlugin.options.gaTrackingId%&gt;"

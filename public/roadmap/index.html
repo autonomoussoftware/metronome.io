@@ -15,7 +15,7 @@
       type="text/css"
     />
     <link
-      href="../dist/css/main.css?cb=1564614981070"
+      href="../dist/css/main.css?cb=1565366399747"
       rel="stylesheet"
       type="text/css"
     />
@@ -36,6 +36,51 @@
   <body class="roadmap">
     <!-- HEADER -->
     <header class="site-header" id="masthead">
+      <div class="met-marquee bg-dark d-flex align-items-center">
+        <!-- Dynamic content start -->
+        <div class="container">
+          <div class="mover">
+            <span class="met-stat"
+              ><label>Market Supply:</label>
+              <span class="data data-market">00000000</span></span
+            >
+            <span class="met-stat"
+              ><label>Next Auction:</label>
+              <span class="data data-auction">00000000</span></span
+            >
+            <span class="met-stat"
+              ><label>Last Auction ETH:</label>
+              <span class="data data-eth mr-2">00000000</span>
+              <label>ETC:</label>
+              <span class="data data-etc">00000000</span></span
+            >
+            <span class="met-stat last"
+              ><label>TVL:</label>
+              <span class="data data-tvl">00000000</span></span
+            >
+
+            <span class="met-stat copy"
+              ><label>Market Supply:</label>
+              <span class="data data-market">00000000</span></span
+            >
+            <span class="met-stat copy"
+              ><label>Next Auction:</label>
+              <span class="data data-auction">00000000</span></span
+            >
+            <span class="met-stat copy"
+              ><label>Last Auction ETH:</label>
+              <span class="data data-eth mr-2">00000000</span>
+              <label>ETC:</label>
+              <span class="data data-etc">00000000</span></span
+            >
+            <span class="met-stat copy"
+              ><label>TVL:</label>
+              <span class="data data-tvl">00000000</span></span
+            >
+          </div>
+        </div>
+        <!-- Dynamic content end -->
+      </div>
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand" href="/"
@@ -71,6 +116,9 @@
               <li class="nav-item active">
                 <a class="nav-link" href="/roadmap/">Roadmap</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/about/">About</a>
+              </li>
               <li class="nav-item dropdown">
                 <a
                   aria-expanded="false"
@@ -80,13 +128,11 @@
                   href="#"
                   id="navbarDropdown"
                   role="button"
-                  >About <i class="fas fa-chevron-down txt-purple pl-1"></i
+                  >Resources <i class="fas fa-minus"></i>
+                  <i class="fas fa-chevron-down"></i
                 ></a>
                 <div aria-labelledby="navbarDropdown" class="dropdown-menu">
-                  <a class="dropdown-item active" href="/about/"
-                    >About MET<span class="sr-only">(current)</span></a
-                  >
-                  <a class="dropdown-item pb-0 disabled" href="/about/#info"
+                  <a class="dropdown-item disabled" href="/about/#info"
                     >Owner's Manual</a
                   >
                   <ul class="sub-menu">
@@ -126,6 +172,7 @@
                       >
                     </li>
                   </ul>
+                  <a class="dropdown-item" href="/engage/#media">Media</a>
                   <a
                     class="dropdown-item"
                     href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md"
@@ -245,8 +292,8 @@
                   <div class="nav-intro bg-purple-dark">
                     <h4 class="">Phase 3</h4>
                     <p>
-                      Fully Autonomous, Stake-Weighted<br />Cross Chain
-                      Transfers
+                      Fully autonomous, decentralized, stake-weighted
+                      chain-hops.
                     </p>
                   </div>
                   <a href="#phase-three" class="d-block bg-purple txt-light">
@@ -601,7 +648,7 @@
     <!-- FOOTER -->
     <footer class="site-footer" id="colophon">
       <div class="container">
-        <div class="row">
+        <div class="row navs">
           <div class="col-sm-6 col-lg-3">
             <h5>METRONOME</h5>
             <ul class="nav flex-column pl-0">
@@ -708,6 +755,14 @@
                   ><i class="fab fa-reddit-alien"></i> Reddit</a
                 >
               </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://www.meetup.com/Official-Metronome-Meetup/"
+                  target="_blank"
+                  ><i class="fab fa-meetup"></i> Meetup</a
+                >
+              </li>
             </ul>
           </div>
           <div class="col-sm-6 col-lg-3">
@@ -779,7 +834,7 @@
     </footer>
     <!-- /FOOTER -->
     <!-- SCRIPTS -->
-    <script src="../dist/js/main.js?cb=1564614981070"></script>
+    <script src="../dist/js/main.js?cb=1565366399747"></script>
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=%3C%-htmlWebpackPlugin.options.gaTrackingId%%3E"

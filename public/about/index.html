@@ -15,7 +15,7 @@
       type="text/css"
     />
     <link
-      href="../dist/css/main.css?cb=1564614981070"
+      href="../dist/css/main.css?cb=1565366399747"
       rel="stylesheet"
       type="text/css"
     />
@@ -36,14 +36,67 @@
   <body class="about">
     <!-- HEADER -->
     <header class="site-header" id="masthead">
+      <div class="met-marquee bg-dark d-flex align-items-center">
+        <!-- Dynamic content start -->
+        <div class="container">
+          <div class="mover">
+            <span class="met-stat"
+              ><label>Market Supply:</label>
+              <span class="data data-market">00000000</span></span
+            >
+            <span class="met-stat"
+              ><label>Next Auction:</label>
+              <span class="data data-auction">00000000</span></span
+            >
+            <span class="met-stat"
+              ><label>Last Auction ETH:</label>
+              <span class="data data-eth mr-2">00000000</span>
+              <label>ETC:</label>
+              <span class="data data-etc">00000000</span></span
+            >
+            <span class="met-stat last"
+              ><label>TVL:</label>
+              <span class="data data-tvl">00000000</span></span
+            >
+
+            <span class="met-stat copy"
+              ><label>Market Supply:</label>
+              <span class="data data-market">00000000</span></span
+            >
+            <span class="met-stat copy"
+              ><label>Next Auction:</label>
+              <span class="data data-auction">00000000</span></span
+            >
+            <span class="met-stat copy"
+              ><label>Last Auction ETH:</label>
+              <span class="data data-eth mr-2">00000000</span>
+              <label>ETC:</label>
+              <span class="data data-etc">00000000</span></span
+            >
+            <span class="met-stat copy"
+              ><label>TVL:</label>
+              <span class="data data-tvl">00000000</span></span
+            >
+          </div>
+        </div>
+        <!-- Dynamic content end -->
+      </div>
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand" href="/"
-            ><img
+          <a class="navbar-brand" href="/">
+            <img
               alt="Metronome Logo"
-              class="d-inline-block align-top"
+              class="d-inline-block align-top logo-purp"
               src="../dist/images/metronome-logo.png"
-          /></a>
+              width="213"
+            />
+            <img
+              alt="Metronome Logo"
+              class="align-top logo-white"
+              src="../dist/images/metronome-logo-white@2x.png"
+              width="213"
+            />
+          </a>
           <button
             aria-controls="navbarNav"
             aria-expanded="false"
@@ -70,7 +123,10 @@
               <li class="nav-item">
                 <a class="nav-link" href="/roadmap/">Roadmap</a>
               </li>
-              <li class="nav-item active dropdown">
+              <li class="nav-item active">
+                <a class="nav-link" href="/about/">About</a>
+              </li>
+              <li class="nav-item dropdown">
                 <a
                   aria-expanded="false"
                   aria-haspopup="true"
@@ -79,13 +135,11 @@
                   href="#"
                   id="navbarDropdown"
                   role="button"
-                  >About <i class="fas fa-chevron-down txt-purple pl-1"></i
+                  >Resources <i class="fas fa-minus"></i>
+                  <i class="fas fa-chevron-down"></i
                 ></a>
                 <div aria-labelledby="navbarDropdown" class="dropdown-menu">
-                  <a class="dropdown-item active" href="/about/"
-                    >About MET<span class="sr-only">(current)</span></a
-                  >
-                  <a class="dropdown-item pb-0 disabled" href="/about/#info"
+                  <a class="dropdown-item disabled" href="/about/#info"
                     >Owner's Manual</a
                   >
                   <ul class="sub-menu">
@@ -125,6 +179,7 @@
                       >
                     </li>
                   </ul>
+                  <a class="dropdown-item" href="/engage/#media">Media</a>
                   <a
                     class="dropdown-item"
                     href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md"
@@ -143,7 +198,7 @@
     <section class="site-section intro" id="top">
       <div class="container">
         <div class="row">
-          <div class="col-sm-8">
+          <div class="col-lg-6 col-md-8">
             <h1 class="page-title">About Metronome.</h1>
             <p>
               Metronome was engineered to exceed the high standards of the
@@ -151,151 +206,77 @@
               design principles build Metronome’s foundation:
             </p>
           </div>
+          <div class="col-lg-6 col-md-4">
+            <img
+              src="../dist/images/about-banner@2x.png"
+              alt="metronome token"
+              width="540"
+            />
+          </div>
         </div>
       </div>
     </section>
     <div class="about-page">
-      <section class="site-section buy-nav" id="buy-nav">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4 mb-2 text-center txt-light">
-              <div class="buy-block">
-                <div class="nav-intro bg-purple-dark">
-                  <h4 class="">Self-Governance</h4>
-                  <p>No outside influences. Ever.</p>
-                </div>
-                <a href="#self-governance" class="d-block bg-purple txt-light">
-                  <span class="d-block">MORE INFO</span>
-                  <span class="d-block"
-                    ><i class="fas fa-chevron-down"></i
-                  ></span>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-4 mb-2 text-center txt-light">
-              <div class="buy-block">
-                <div class="nav-intro bg-purple-dark">
-                  <h4 class="">Reliability</h4>
-                  <p>The highest level of issuance predictability.</p>
-                </div>
-                <a href="#reliability" class="d-block bg-purple txt-light">
-                  <span class="d-block">MORE INFO</span>
-                  <span class="d-block"
-                    ><i class="fas fa-chevron-down"></i
-                  ></span>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-4 mb-2 text-center txt-light">
-              <div class="buy-block">
-                <div class="nav-intro bg-purple-dark">
-                  <h4 class="">Portability</h4>
-                  <p>Now moving freely across blockchains.</p>
-                </div>
-                <a href="#portability" class="d-block bg-purple txt-light">
-                  <span class="d-block">MORE INFO</span>
-                  <span class="d-block"
-                    ><i class="fas fa-chevron-down"></i
-                  ></span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
       <section class="site-section options">
         <div class="container">
-          <div class="row option self-governance" id="self-governance">
-            <div class="col-lg-5 col-md-6 mb-4">
-              <img
-                src="../dist/images/staples-1@2x.png"
-                alt="Auction countdown"
-                width="164"
-                class="index"
-                alt="number one"
-              />
+          <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4 self-governance option">
               <h4 class="sup">SELF-GOVERNANCE</h4>
+              <img
+                alt="Self Governance Bar Graph"
+                class="img-fluid d-block mx-auto"
+                src="../dist/images/about-self-governance@2x.png"
+                width="326"
+              />
               <h2 class="txt-dark font-weight-bold">
-                No Outside Influences. Ever.
+                Self-Governing, By Each MET Owner
               </h2>
               <p class="d-block mb-4">
-                With no undue influence from founders after initial launch,
-                Metronome’s founders transitioned to community members, and each
-                MET owner chooses for themselves where they hold their MET.
+                With no undue influence after initial launch, Metronome’s
+                founders transitioned to community members — and each Metronome
+                owner chooses where to hold their MET.
               </p>
-              <a class="font-weight-bold reverse btn btn-dark" href="/buy/"
-                >LEARN MORE &raquo;</a
-              >
+              <a class="font-weight-bold" href="/buy/">LEARN MORE &raquo;</a>
             </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-5 col-lg-6">
-              <img
-                src="../dist/images/self-governance-graph@2x.png"
-                alt="Auction countdown"
-                width="687"
-              />
-            </div>
-          </div>
-          <div class="row option reliability" id="reliability">
-            <div class="col-lg-5 col-md-6 mb-4">
-              <img
-                src="../dist/images/staples-2@2x.png"
-                alt="Auction countdown"
-                width="164"
-                class="index"
-                alt="number two"
-              />
+            <div class="col-lg-4 col-md-6 mb-4 reliability option">
               <h4 class="sup">RELIABILITY</h4>
+              <img
+                alt="Reliability line Graph"
+                class="img-fluid d-block mx-auto"
+                src="../dist/images/about-reliability@2x.png"
+                width="326"
+              />
               <h2 class="txt-dark font-weight-bold">
-                The Highest Level of Issuance Predictability.
+                Issuance Predictability Determined by Code
               </h2>
               <p class="d-block mb-4">
-                With a highly predictable issuance and supply, community
-                members, individuals, and groups can calculate the supply of MET
-                at any date in the future with a high degree of confidence.
+                With a highly predictable issuance and supply, community members
+                can calculate the supply of MET at any date in the future with a
+                high degree of confidence.
               </p>
-              <a class="font-weight-bold reverse btn btn-dark" href="/buy/"
-                >MORE ABOUT TOKEN SUPPLY &raquo;</a
+              <a class="font-weight-bold reverse" href="/buy/"
+                >ABOUT TOKEN SUPPLY &raquo;</a
               >
             </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-5 col-lg-6">
-              <img
-                src="../dist/images/reliability-chart@2x.png"
-                alt="Auction countdown"
-                width="609"
-              />
-            </div>
-          </div>
-          <div class="row option portability" id="portability">
-            <div class="col-lg-5 col-md-6 mb-4">
-              <img
-                src="../dist/images/staples-3@2x.png"
-                alt="Auction countdown"
-                width="164"
-                class="index"
-                alt="number three"
-              />
+            <div class="col-lg-4 col-md-6 mb-4 portability option">
               <h4 class="sup">PORTABILTY</h4>
+              <img
+                alt="Mouse clicking icon"
+                class="img-fluid d-block mx-auto"
+                src="../dist/images/about-portability@2x.png"
+                width="326"
+              />
               <h2 class="txt-dark font-weight-bold">
-                Now moving freely across blockchains.
+                Moving Freely Across Blockchains
               </h2>
               <p class="d-block mb-4">
                 Portability frees Metronome from the fate of any one chain.
                 Select the chain that suits your requirements for management and
-                security, or even upgrade the MET contract if needed.
+                security, or even upgrade the contract.
               </p>
-              <a class="font-weight-bold reverse btn btn-dark" href="/roadmap/"
+              <a class="font-weight-bold" href="/roadmap/"
                 >MORE ABOUT CHAINHOP &raquo;</a
               >
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-5 col-lg-6">
-              <img
-                src="../dist/images/chainhop-bars@2x.png"
-                alt="Auction countdown"
-                width="688"
-              />
             </div>
           </div>
         </div>
@@ -303,7 +284,6 @@
       </section>
     </div>
     <!-- .about-page -->
-
     <section class="site-section subscribe" id="subscribe">
       <div class="container">
         <div class="bg-dark">
@@ -378,135 +358,180 @@
               alt="Jeff Garzik"
               class="img-fluid mb-3"
               src="../dist/images/Jeff-Garzik.png"
+              width="352"
             />
             <h4 class="txt-dark mb-0">Jeff Garzik</h4>
-            <p>CEO / Co-Founder / Chief Designer</p>
+            <p>Co-Founder / Chief Designer</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
               alt="Matthew Roszak"
               class="img-fluid mb-3"
               src="../dist/images/Matthew-Roszak.png"
+              width="352"
             />
             <h4 class="txt-dark mb-0">Matthew Roszak</h4>
-            <p>CEO / Co-Founder</p>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <img
-              alt="Peter Vessenes"
-              class="img-fluid mb-3"
-              src="../dist/images/Peter-Vessenes.png"
-            />
-            <h4 class="txt-dark mb-0">Peter Vessenes</h4>
-            <p>Chief Cryptographer</p>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-4">
-            <img
-              alt="Ryan Condron"
-              class="img-fluid mb-3"
-              src="../dist/images/Ryan-Condron.png"
-            />
-            <h4 class="txt-dark mb-0">Ryan Condron</h4>
-            <p>Principal Engineer</p>
-          </div>
-          <div class="col-md-6 col-lg-4">
-            <img
-              alt="Troy Benjegerdes"
-              class="img-fluid mb-3"
-              src="../dist/images/Manoj-Patidar.png"
-            />
-            <h4 class="txt-dark mb-0">Manoj Patidar</h4>
-            <p>Principal Engineer</p>
+            <p>Co-Founder</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
               alt="Jordan Kruger"
               class="img-fluid mb-3"
               src="../dist/images/Jordan-Kruger.png"
+              width="352"
             />
             <h4 class="txt-dark mb-0">Jordan Kruger</h4>
-            <p>Data Scientist</p>
-          </div>
-          <div class="col-md-6 col-lg-4 mb-4">
-            <img
-              alt="Gabriel Montes"
-              class="img-fluid mb-3"
-              src="../dist/images/Gabriel-Montes.png"
-            />
-            <h4 class="txt-dark mb-0">Gabriel Montes</h4>
-            <p>Engineering Lead</p>
+            <p>Managing Director</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
-              alt="Pablo Enrici"
+              alt="Peter Vessenes"
               class="img-fluid mb-3"
-              src="../dist/images/Pablo-Enrici.png"
+              src="../dist/images/Peter-Vessenes.png"
+              width="352"
             />
-            <h4 class="txt-dark mb-0">Pablo Enrici</h4>
-            <p>Software Engineer</p>
+            <h4 class="txt-dark mb-0">Peter Vessenes</h4>
+            <p>Cryptographer</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
-              alt="Ignacio Anaya"
+              alt="Troy Benjegerdes"
               class="img-fluid mb-3"
-              src="../dist/images/Ignacio-Anaya.png"
+              src="../dist/images/Manoj-Patidar.png"
+              width="352"
             />
-            <h4 class="txt-dark mb-0">Ignacio Anaya</h4>
-            <p>Software Engineer</p>
+            <h4 class="txt-dark mb-0">Manoj Patidar</h4>
+            <p>Principal Engineer</p>
           </div>
           <div class="col-md-6 col-lg-4 mb-4">
             <img
-              alt="Jaclyn Kramer"
+              alt="Phil Gomes"
               class="img-fluid mb-3"
-              src="../dist/images/Jaclyn-Kramer.png"
+              src="../dist/images/Phil-Gomes.jpg"
+              width="352"
             />
-            <h4 class="txt-dark mb-0">Jaclyn Kramer</h4>
-            <p>Marketing</p>
+            <h4 class="txt-dark mb-0">Phil Gomes</h4>
+            <p>Communications & Marketing</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
               alt="Dariusz Jakubowski"
               class="img-fluid mb-3"
               src="../dist/images/Dariusz-Jakubowski.png"
+              width="352"
             />
             <h4 class="txt-dark mb-0">Dariusz Jakubowski</h4>
-            <p>Community Advocate</p>
+            <p>Community</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
-              alt="Steve Beauregard"
+              alt="Jenna Pilgrim"
               class="img-fluid mb-3"
-              src="../dist/images/Steve-Beauregard.png"
+              src="../dist/images/Jenna-Pilgrim.jpg"
+              width="352"
             />
-            <h4 class="txt-dark mb-0">Steve Beauregard</h4>
+            <h4 class="txt-dark mb-0">Jenna Pilgrim</h4>
             <p>Partnerships</p>
           </div>
-          <div class="col-md-6 col-lg-4 mb-4">
+          <div class="col-md-6 col-lg-4">
             <img
-              alt="Ted Parvu"
+              alt="Alice Lin"
               class="img-fluid mb-3"
-              src="../dist/images/Ted-Parvu.png"
+              src="../dist/images/Alice-Lin.jpg"
+              width="352"
             />
-            <h4 class="txt-dark mb-0">Ted Parvu</h4>
-            <p>Infrastructure</p>
+            <h4 class="txt-dark mb-0">Alice Lin</h4>
+            <p>Blockchain Strategist</p>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <img
+              alt="Matt Kirincic"
+              class="img-fluid mb-3"
+              src="../dist/images/Matt-Kirincic.jpg"
+              width="352"
+            />
+            <h4 class="txt-dark mb-0">Matt Kirincic</h4>
+            <p>DeFi Strategy</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
               alt="Matt Lam"
               class="img-fluid mb-3"
               src="../dist/images/Matt-Lam.png"
+              width="352"
             />
             <h4 class="txt-dark mb-0">Matt Lam</h4>
             <p>Blockchain Strategist</p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
+              alt="Rohit Solia"
+              class="img-fluid mb-3"
+              src="../dist/images/Rohit-Solia.jpg"
+              width="352"
+            />
+            <h4 class="txt-dark mb-0">Rohit Solia</h4>
+            <p>Smart Contract Engineer</p>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <img
+              alt="Jed Bridges"
+              class="img-fluid mb-3"
+              src="../dist/images/Jed-Bridges.jpg"
+              width="352"
+            />
+            <h4 class="txt-dark mb-0">Jed Bridges</h4>
+            <p>Design</p>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <img
+              alt="Ted Parvu"
+              class="img-fluid mb-3"
+              src="../dist/images/Ted-Parvu.png"
+              width="352"
+            />
+            <h4 class="txt-dark mb-0">Ted Parvu</h4>
+            <p>Infrastructure</p>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <img
+              alt="Gabriel Montes"
+              class="img-fluid mb-3"
+              src="../dist/images/Gabriel-Montes.png"
+              width="352"
+            />
+            <h4 class="txt-dark mb-0">Gabriel Montes</h4>
+            <p>Blockchain Engineer</p>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <img
+              alt="Pablo Enrici"
+              class="img-fluid mb-3"
+              src="../dist/images/Pablo-Enrici.png"
+              width="352"
+            />
+            <h4 class="txt-dark mb-0">Pablo Enrici</h4>
+            <p>Blockchain Engineer</p>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <img
+              alt="Ignacio Anaya"
+              class="img-fluid mb-3"
+              src="../dist/images/Ignacio-Anaya.png"
+              width="352"
+            />
+            <h4 class="txt-dark mb-0">Ignacio Anaya</h4>
+            <p>Blockchain Engineer</p>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <img
               alt="Iwona Zdanowicz"
               class="img-fluid mb-3"
               src="../dist/images/Iwona-Zdanowicz.png"
+              width="352"
             />
             <h4 class="txt-dark mb-0">Iwona Zdanowicz</h4>
-            <p>Administrative</p>
+            <p>Admin</p>
           </div>
         </div>
         <h2 class="txt-purple mt-5 mb-3">Advisors</h2>
@@ -516,6 +541,7 @@
               alt="Gustav Simonsson"
               class="img-fluid mb-3"
               src="../dist/images/Gustav-Simonsson.png"
+              width="352"
             />
             <h4 class="txt-dark mb-0">Gustav Simonsson</h4>
             <p>
@@ -528,15 +554,20 @@
               alt="Jim Newsome"
               class="img-fluid mb-3"
               src="../dist/images/Jim-Newsome.png"
+              width="352"
             />
             <h4 class="txt-dark mb-0">Jim Newsome</h4>
-            <p>Delta Strategy & Former CFTC Chairman</p>
+            <p>
+              Delta Strategy & Former CFTC Chairman<br />
+              Former CFTC Chairman
+            </p>
           </div>
           <div class="col-md-6 col-lg-4">
             <img
               alt="Don Tapscott"
               class="img-fluid mb-3"
               src="../dist/images/Don-Tapscott.png"
+              width="352"
             />
             <h4 class="txt-dark mb-0">Don Tapscott</h4>
             <p>Blockchain Research Institute</p>
@@ -546,6 +577,7 @@
               alt="Vinny Lingham"
               class="img-fluid mb-3"
               src="../dist/images/Vinny-Lingham.png"
+              width="352"
             />
             <h4 class="txt-dark mb-0">Vinny Lingham</h4>
             <p>Civic</p>
@@ -555,6 +587,7 @@
               alt="Don Wilson"
               class="img-fluid mb-3"
               src="../dist/images/Don-Wilson.png"
+              width="352"
             />
             <h4 class="txt-dark mb-0">Don Wilson</h4>
             <p>DRW</p>
@@ -564,6 +597,7 @@
               alt="William Mougayar"
               class="img-fluid mb-3"
               src="../dist/images/William-Mougayar.png"
+              width="352"
             />
             <h4 class="txt-dark mb-0">William Mougayar</h4>
             <p>Token Summit</p>
@@ -573,60 +607,60 @@
     </section>
     <section class="site-section partners" id="partners">
       <div class="container">
-        <h2 class="txt-purple mb-4">Strategic Advisors & Partners</h2>
+        <h2 class="txt-purple mb-4">Strategic Partners</h2>
         <div class="row">
           <div class="col-md-4 mb-4">
             <img
               alt="Delta Strategy Group Logo"
               class="img-fluid mb-1 mr-1"
+              height="190"
               src="../dist/images/strategy-delta@2x.png"
               width="352"
-              height="190"
             />
           </div>
           <div class="col-md-4 mb-4">
             <img
               alt="JAXX Logo"
               class="img-fluid mb-1 mr-1"
+              height="190"
               src="../dist/images/strategy-jaxx@2x.png"
               width="352"
-              height="190"
             />
           </div>
           <div class="col-md-4 mb-4">
             <img
               alt="Perkins Coie Logo"
               class="img-fluid mb-1 mr-1"
+              height="190"
               src="../dist/images/strategy-perkins@2x.png"
               width="352"
-              height="190"
             />
           </div>
           <div class="col-md-4 mb-4">
             <img
               alt="Smith Crown Logo"
               class="img-fluid mb-1 mr-1"
+              height="190"
               src="../dist/images/strategy-smithcrown@2x.png"
               width="352"
-              height="190"
             />
           </div>
           <div class="col-md-4 mb-4">
             <img
               alt="Zeppelin Logo"
               class="img-fluid mb-1 mr-1"
+              height="190"
               src="../dist/images/strategy-zeppelin@2x.png"
               width="352"
-              height="190"
             />
           </div>
           <div class="col-md-4 mb-4">
             <img
               alt="New Alchemy Logo"
               class="img-fluid mb-1 mr-1"
+              height="190"
               src="../dist/images/strategy-newalchemy@2x.png"
               width="352"
-              height="190"
             />
           </div>
         </div>
@@ -673,7 +707,7 @@
     <!-- FOOTER -->
     <footer class="site-footer" id="colophon">
       <div class="container">
-        <div class="row">
+        <div class="row navs">
           <div class="col-sm-6 col-lg-3">
             <h5>METRONOME</h5>
             <ul class="nav flex-column pl-0">
@@ -780,6 +814,14 @@
                   ><i class="fab fa-reddit-alien"></i> Reddit</a
                 >
               </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://www.meetup.com/Official-Metronome-Meetup/"
+                  target="_blank"
+                  ><i class="fab fa-meetup"></i> Meetup</a
+                >
+              </li>
             </ul>
           </div>
           <div class="col-sm-6 col-lg-3">
@@ -851,7 +893,7 @@
     </footer>
     <!-- /FOOTER -->
     <!-- SCRIPTS -->
-    <script src="../dist/js/main.js?cb=1564614981070"></script>
+    <script src="../dist/js/main.js?cb=1565366399747"></script>
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=%3C%-htmlWebpackPlugin.options.gaTrackingId%%3E"

@@ -15,7 +15,7 @@
       type="text/css"
     />
     <link
-      href="../dist/css/main.css?cb=1564614981070"
+      href="../dist/css/main.css?cb=1565366399747"
       rel="stylesheet"
       type="text/css"
     />
@@ -36,14 +36,67 @@
   <body class="build">
     <!-- HEADER -->
     <header class="site-header" id="masthead">
+      <div class="met-marquee bg-dark d-flex align-items-center">
+        <!-- Dynamic content start -->
+        <div class="container">
+          <div class="mover">
+            <span class="met-stat"
+              ><label>Market Supply:</label>
+              <span class="data data-market">00000000</span></span
+            >
+            <span class="met-stat"
+              ><label>Next Auction:</label>
+              <span class="data data-auction">00000000</span></span
+            >
+            <span class="met-stat"
+              ><label>Last Auction ETH:</label>
+              <span class="data data-eth mr-2">00000000</span>
+              <label>ETC:</label>
+              <span class="data data-etc">00000000</span></span
+            >
+            <span class="met-stat last"
+              ><label>TVL:</label>
+              <span class="data data-tvl">00000000</span></span
+            >
+
+            <span class="met-stat copy"
+              ><label>Market Supply:</label>
+              <span class="data data-market">00000000</span></span
+            >
+            <span class="met-stat copy"
+              ><label>Next Auction:</label>
+              <span class="data data-auction">00000000</span></span
+            >
+            <span class="met-stat copy"
+              ><label>Last Auction ETH:</label>
+              <span class="data data-eth mr-2">00000000</span>
+              <label>ETC:</label>
+              <span class="data data-etc">00000000</span></span
+            >
+            <span class="met-stat copy"
+              ><label>TVL:</label>
+              <span class="data data-tvl">00000000</span></span
+            >
+          </div>
+        </div>
+        <!-- Dynamic content end -->
+      </div>
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand" href="/"
-            ><img
+          <a class="navbar-brand" href="/">
+            <img
               alt="Metronome Logo"
-              class="d-inline-block align-top"
+              class="d-inline-block align-top logo-purp"
               src="../dist/images/metronome-logo.png"
-          /></a>
+              width="213"
+            />
+            <img
+              alt="Metronome Logo"
+              class="align-top logo-white"
+              src="../dist/images/metronome-logo-white@2x.png"
+              width="213"
+            />
+          </a>
           <button
             aria-controls="navbarNav"
             aria-expanded="false"
@@ -72,6 +125,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="/roadmap/">Roadmap</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/about/">About</a>
+              </li>
               <li class="nav-item dropdown">
                 <a
                   aria-expanded="false"
@@ -81,11 +137,11 @@
                   href="#"
                   id="navbarDropdown"
                   role="button"
-                  >About <i class="fas fa-chevron-down txt-purple pl-1"></i
+                  >Resources <i class="fas fa-minus"></i>
+                  <i class="fas fa-chevron-down"></i
                 ></a>
                 <div aria-labelledby="navbarDropdown" class="dropdown-menu">
-                  <a class="dropdown-item" href="/about/">About MET</a>
-                  <a class="dropdown-item pb-0 disabled" href="/about/#info"
+                  <a class="dropdown-item disabled" href="/about/#info"
                     >Owner's Manual</a
                   >
                   <ul class="sub-menu">
@@ -125,6 +181,7 @@
                       >
                     </li>
                   </ul>
+                  <a class="dropdown-item" href="/engage/#media">Media</a>
                   <a
                     class="dropdown-item"
                     href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md"
@@ -151,26 +208,22 @@
             <p class="w-75">
               Help build the next set of contracts, Metronome-using apps, or
               integrations. Is there a chain you’d like to see MET on? Head over
-              to
-              <a href="https://github.com/autonomoussoftware/" target="_blank"
-                >Metronome’s GitHub</a
-              >
-              and expand the Metronome ecosystem!
+              to our GitHub and expand the Metronome ecosystem!
             </p>
             <a
-              class="btn btn-dark mt-4"
+              class="btn btn-dark btn-fa mt-2 txt-purple"
               href="https://github.com/autonomoussoftware/"
               target="_blank"
-              >METRONOME GITHUB &raquo;</a
+              ><i class="fab fa-github"></i> VIEW METRONOME'S GITHUB &raquo;</a
             >
           </div>
           <div class="col-md-4">
             <div class="intro-img mt-5">
               <img
-                src="../dist/images/met-build@2x.png"
-                width="704"
                 alt="Purple grid"
+                src="../dist/images/met-build@2x.png"
                 srcset="../dist/images/build-foundation.svg"
+                width="704"
               />
             </div>
           </div>
@@ -324,7 +377,7 @@
     <!-- FOOTER -->
     <footer class="site-footer" id="colophon">
       <div class="container">
-        <div class="row">
+        <div class="row navs">
           <div class="col-sm-6 col-lg-3">
             <h5>METRONOME</h5>
             <ul class="nav flex-column pl-0">
@@ -431,6 +484,14 @@
                   ><i class="fab fa-reddit-alien"></i> Reddit</a
                 >
               </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://www.meetup.com/Official-Metronome-Meetup/"
+                  target="_blank"
+                  ><i class="fab fa-meetup"></i> Meetup</a
+                >
+              </li>
             </ul>
           </div>
           <div class="col-sm-6 col-lg-3">
@@ -502,7 +563,7 @@
     </footer>
     <!-- /FOOTER -->
     <!-- SCRIPTS -->
-    <script src="../dist/js/main.js?cb=1564614981070"></script>
+    <script src="../dist/js/main.js?cb=1565366399747"></script>
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=%3C%-htmlWebpackPlugin.options.gaTrackingId%%3E"

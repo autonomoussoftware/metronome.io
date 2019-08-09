@@ -19,7 +19,7 @@ $(document).ready(function($) {
 			height: e[a + 'Height']
 		}
 	}
-	$windowWidth = viewport().width
+
 	// Select all links with hashes
 	$('a[href*="#"]')
 		// Remove links that don't actually link to anything
@@ -50,9 +50,10 @@ $(document).ready(function($) {
 				}
 			}
 		});
+
 	/* Handle resizing header on scroll */
 	$(window).resize(function() {
-		if ($windowWidth >= 992) {
+		//if ($windowWidth >= 992) {
 			var navbar = $('.navbar')
 			var origOffsetY = navbar.offset().top
 
@@ -66,11 +67,12 @@ $(document).ready(function($) {
 				}
 			}
 			document.onscroll = scroll
-		}
+		//}
 	}).resize()
 	/* Initialize main nav toggle */
 	$('.toggler').on('click', function() {
 		$(this).toggleClass('is-active')
+		$('.site-header').toggleClass('cover');
 	})
 
 	/* Slick Init */
@@ -95,6 +97,7 @@ $(document).ready(function($) {
 	});
 	$('.milestone-slider').slick({
 		infinite: true,
+		slide: 'div',
 		slidesToShow: 4,
 		slidesToScroll: 1,
 		responsive: [
@@ -137,4 +140,49 @@ $(document).ready(function($) {
 			}
 		]
 	});
+
+	/* Typewriter :: https://github.com/mattboldt/typed.js/ */
+
+	if(  typeof Typed === "function" ) {
+
+		var typed = new Typed("#typed", {
+			stringsElement: '#typed-strings',
+			typeSpeed: 50,
+			backSpeed: 10,
+			backDelay: 3000,
+			smartBackspace: true,
+			loop: false,
+		});
+
+		/* Subhead rotating text (sync's with typing text) */
+	    var quotes = $(".quotes");
+	    var quoteNum = quotes.length - 1;
+	    var quoteIndex = -1;
+
+	    function showNextQuote() {
+			quoteIndex++;
+
+	        if (quoteIndex == 0) {
+		       quotes.eq(quoteIndex % quotes.length)
+		            .fadeIn(500)
+		            .delay(3800)
+		            .fadeOut(500, showNextQuote);
+			} else if (quoteIndex == quoteNum) {
+			     quotes.eq(quoteIndex % quotes.length)
+		            .fadeIn(500);
+			} else {
+			     quotes.eq(quoteIndex % quotes.length)
+		            .fadeIn(500)
+		            .delay(3000)
+		            .fadeOut(500, showNextQuote);
+			}
+	    }
+
+	    showNextQuote();
+
+
+		$('.typed-cursor').text('');
+
+    }
+
 });
