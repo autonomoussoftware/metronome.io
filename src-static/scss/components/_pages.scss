@@ -64,6 +64,11 @@ body.home {
 			.typing-titles {
 				margin-left: 25px;
 
+				h1.page-title {
+					visibility: hidden;
+					padding-top: 0;
+				}
+
 				h2.page-title {
 					padding-top: 0;
 					color: #FFF;
@@ -183,16 +188,31 @@ body.home {
 				}
 				.buy-links {
 					background-color: $purple;
+
 					.btn-buy {
 						color: #FFF;
 						text-align: left;
 						width: 66%;
 						padding: 15px 20px;
 						background-color: #6C50E2;
+						outline: none !important;
+						box-shadow: none !important;
+
+						&:hover,
+						&:focus {
+							background-color: #6448d9;
+						}
 					}
 					.btn-info {
 						background-color: transparent;
 						border: none;
+						outline: none !important;
+						box-shadow: none !important;
+
+						&:hover,
+						&:focus {
+							opacity: .6
+						}
 					}
 				}
 			}
