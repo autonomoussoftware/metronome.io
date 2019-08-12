@@ -60,7 +60,33 @@ function style() {
 function image() {
   return gulp
     .src(paths.images.src)
-    .pipe(imagemin())
+    .pipe(imagemin([
+		imagemin.svgo({
+			plugins: [
+			 { removeXMLProcInst: false },
+			 { removeMetadata: false },
+			 { removeXMLNS: false },
+			 { removeEditorsNSData: false },
+			 { removeEmptyAttrs: false },
+			 { removeHiddenElems: false },
+			 { removeEmptyText: false },
+			 { removeEmptyContainers: false },
+			 { removeViewBox: false },
+			 { cleanupEnableBackground: false },
+			 { minifyStyles: false },
+			 { convertStyleToAttrs: false },
+			 { convertPathData: false },
+			 { convertTransform: false },
+			 { rremoveUnknownsAndDefaults: false },
+			 { removeNonInheritableGroupAttrs: false },
+			 { removeUselessStrokeAndFill: false },
+			 { removeUnusedNS: false },
+			 { prefixIds: false },
+			 { cleanupNumericValues: false },
+			 { cleanupListOfValues: false }
+			]
+		})
+     ]))
     .pipe(gulp.dest(paths.images.dest))
     .pipe(browserSync.stream())
 }
@@ -79,9 +105,10 @@ function lib() {
 function script() {
   return gulp
     .src([
-      'src-static/lib/bootstrap/js/jquery-3.3.1.slim.min.js',
+      'src-static/lib/bootstrap/js/jquery-3.4.1.min.js',
       'src-static/lib/bootstrap/js/popper.min.js',
       'src-static/lib/bootstrap/js/bootstrap.4.3.min.js',
+      'src-static/lib/slick/slick.min.js',
       'src-static/lib/raven.min.js',
       'src-static/js/main.js'
     ])

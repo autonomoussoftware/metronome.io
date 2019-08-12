@@ -2,65 +2,107 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta content="ie=edge" http-equiv="x-ua-compatible" />
     <title>Metronome | Engage</title>
-
     <link
-      rel="stylesheet"
-      type="text/css"
       href="../dist/lib/bootstrap/css/bootstrap.min.css"
-    />
-    <link
       rel="stylesheet"
       type="text/css"
+    />
+    <link
       href="../dist/lib/fontawesome/css/all.min.css"
-    />
-    <link
       rel="stylesheet"
       type="text/css"
-      href="../dist/css/main.css?cb=1560549378137"
     />
-
-    <meta name="description" content="The Built-to-Last Cryptocurrency" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
+      href="../dist/css/main.css?cb=1565383778713"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <meta content="The Built-to-Last Cryptocurrency" name="description" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link
+      href="../dist/images/metronome_touch_icon.png"
       rel="apple-touch-icon"
       sizes="180x180"
-      href="../dist/images/metronome_touch_icon.png"
     />
     <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
       href="../dist/images/metronome_favicon.png"
+      rel="icon"
+      sizes="32x32"
+      type="image/png"
     />
   </head>
   <body class="engage">
     <!-- HEADER -->
-    <div class="white-half"></div>
-    <div class="gray-fade"></div>
-    <header id="masthead" class="site-header">
+    <header class="site-header" id="masthead">
+      <div class="met-marquee bg-dark d-flex align-items-center">
+        <!-- Dynamic content start -->
+        <div class="container">
+          <div class="mover">
+            <span class="met-stat"
+              ><label>Market Supply:</label>
+              <span class="data data-market">00000000</span></span
+            >
+            <span class="met-stat"
+              ><label>Next Auction:</label>
+              <span class="data data-auction">00000000</span></span
+            >
+            <span class="met-stat"
+              ><label>Last Auction ETH:</label>
+              <span class="data data-eth">00000000</span></span
+            >
+            <span class="met-stat last"
+              ><label>TVL:</label>
+              <span class="data data-tvl">00000000</span></span
+            >
+
+            <span class="met-stat copy"
+              ><label>Market Supply:</label>
+              <span class="data data-market">00000000</span></span
+            >
+            <span class="met-stat copy"
+              ><label>Next Auction:</label>
+              <span class="data data-auction">00000000</span></span
+            >
+            <span class="met-stat copy"
+              ><label>Last Auction ETH:</label>
+              <span class="data data-eth">00000000</span></span
+            >
+            <span class="met-stat copy"
+              ><label>TVL:</label>
+              <span class="data data-tvl">00000000</span></span
+            >
+          </div>
+        </div>
+        <!-- Dynamic content end -->
+      </div>
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand" href="/"
-            ><img
-              src="../dist/images/metronome-logo.png"
-              class="d-inline-block align-top"
+          <a class="navbar-brand" href="/">
+            <img
               alt="Metronome Logo"
-          /></a>
+              class="d-inline-block align-top logo-purp"
+              src="../dist/images/metronome-logo.png"
+              width="213"
+            />
+            <img
+              alt="Metronome Logo"
+              class="align-top logo-white"
+              src="../dist/images/metronome-logo-white@2x.png"
+              width="213"
+            />
+          </a>
           <button
-            class="toggler toggler--3dx"
-            type="button"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav"
             aria-controls="navbarNav"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            class="toggler toggler--3dx"
+            data-target="#navbarNav"
+            data-toggle="collapse"
+            type="button"
           >
-            <span class="toggler-box">
-              <span class="toggler-inner"></span>
-            </span>
+            <span class="toggler-box"><span class="toggler-inner"></span></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
@@ -76,20 +118,26 @@
               <li class="nav-item">
                 <a class="nav-link" href="/wallet/">Wallet</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/roadmap/">Roadmap</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/about/">About</a>
+              </li>
               <li class="nav-item dropdown">
                 <a
+                  aria-expanded="false"
+                  aria-haspopup="true"
                   class="nav-link dropdown-toggle"
+                  data-toggle="dropdown"
                   href="#"
                   id="navbarDropdown"
                   role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  >About <i class="fas fa-chevron-down txt-purple pl-1"></i
+                  >Resources <i class="fas fa-minus"></i>
+                  <i class="fas fa-chevron-down"></i
                 ></a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/about/">About MET</a>
-                  <a class="dropdown-item pb-0 disabled" href="/about/#info"
+                <div aria-labelledby="navbarDropdown" class="dropdown-menu">
+                  <a class="dropdown-item disabled" href="/about/#info"
                     >Owner's Manual</a
                   >
                   <ul class="sub-menu">
@@ -129,6 +177,7 @@
                       >
                     </li>
                   </ul>
+                  <a class="dropdown-item" href="/engage/#media">Media</a>
                   <a
                     class="dropdown-item"
                     href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md"
@@ -143,233 +192,252 @@
       </nav>
     </header>
     <!-- /HEADER -->
-
     <!-- PAGE -->
-    <section id="top" class="site-section intro pb-5 mb-4">
+    <section class="site-section intro" id="top">
       <div class="container">
         <div class="row">
-          <div class="col-12 welcome">
-            <h1 class="page-title">Engage with us.</h1>
-            <h3 class="font-italic mb-5">
+          <div class="col-md-8">
+            <h4 class="sup-title">ENGAGE WITH US</h4>
+            <h1 class="page-title mb-4">
               Now is the time to expand and explore with Metronome.
-            </h3>
-            <div class="row mb-5">
-              <div class="col-lg-7">
-                <p>
-                  Metronome is a community-driven and community-defined
-                  cryptocurrency that will live across multiple blockchains.
-                  Want to strengthen your local Metronome community, or build a
-                  new one?
+            </h1>
+            <p class="w-75">
+              Metronome is community-driven and community-defined, living across
+              multiple blockchains. Strengthen your local Metronome community,
+              or build a new one with the
+              <a href="#media">brand materials</a> and
+              <a href="#resources">resources</a> below.
+            </p>
+          </div>
+          <div class="col-md-4">
+            <div class="intro-img mt-5">
+              <img
+                alt="Purple globe"
+                height="523"
+                src="../dist/images/met-globe.png"
+                srcset="../dist/images/engage-globe.svg"
+                width="777"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="site-section join" id="join">
+      <div class="site-section connect" id="connect">
+        <div class="container">
+          <div class="connect-inner bg-xdark">
+            <span class="plus"><i class="fas fa-plus"></i></span>
+            <div class="row">
+              <div class="col-md-5 d-flex align-items-center">
+                <p class="lead txt-light mb-0">
+                  Connect and collaborate with the Metronome team:
                 </p>
               </div>
+              <div class="col-md-7">
+                <ul class="nav nav-connect justify-content-end">
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="https://twitter.com/MET_Token"
+                      target="_blank"
+                      ><i class="fab fa-twitter"></i
+                    ></a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="https://medium.com/@MetronomeToken"
+                      target="_blank"
+                      ><i class="fab fa-medium-m"></i
+                    ></a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="https://www.facebook.com/MetronomeToken/"
+                      target="_blank"
+                      ><i class="fab fa-facebook-square"></i
+                    ></a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="https://t.me/metronometoken"
+                      target="_blank"
+                      ><i class="fab fa-telegram-plane"></i
+                    ></a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="https://github.com/autonomoussoftware"
+                      target="_blank"
+                      ><i class="fab fa-github-alt"></i
+                    ></a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="https://www.reddit.com/r/metronometoken"
+                      target="_blank"
+                      ><i class="fab fa-reddit-alien"></i
+                    ></a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="https://www.meetup.com/Official-Metronome-Meetup/"
+                      target="_blank"
+                      ><i class="fab fa-meetup"></i
+                    ></a>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <p class="lead">
-              Below are resources to build up Metronome meetups, or make
-              existing ones even stronger.
-            </p>
+          </div>
+        </div>
+      </div>
+      <div class="telegram">
+        <div class="container">
+          <h2 class="txt-light text-center">
+            Join thousands of community members on Telegram.
+          </h2>
+          <img
+            alt="iPhone chat bubbles"
+            class="mx-auto mt-5 pt-4 img-fluid desktop-chat"
+            src="../dist/images/telegram-chat@2x.png"
+            width="904"
+          />
+          <img
+            alt="iPhone chat bubbles"
+            class="mx-auto mt-5 pt-4 img-fluid mobile-chat"
+            src="../dist/images/telegram-chat-righty@2x.png"
+            width="904"
+          />
+          <div class="telegram-connect">
+            <a href="https://t.me/metronometoken" target="_blank"
+              ><img
+                alt="telegram-icon"
+                class="img-fluid"
+                src="../dist/images/telegram-connect@2x.png"
+                width="215"
+            /></a>
           </div>
         </div>
       </div>
     </section>
-
-    <section id="tabs" class="site-section tabs offset">
-      <div class="container">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item flex-match-fill">
-            <a
-              class="nav-link pl-5 active"
-              id="primary-tab"
-              data-toggle="tab"
-              href="#primary"
-              role="tab"
-              aria-controls="primary"
-              aria-selected="true"
-              >Primary Logo</a
-            >
-          </li>
-          <li class="nav-item flex-match-fill">
-            <a
-              class="nav-link pl-5"
-              id="secondary-tab"
-              data-toggle="tab"
-              href="#secondary"
-              role="tab"
-              aria-controls="secondary"
-              aria-selected="false"
-              >Secondary Logo</a
-            >
-          </li>
-          <li class="nav-item flex-match-fill">
-            <a
-              class="nav-link pl-5"
-              id="token-tab"
-              data-toggle="tab"
-              href="#token"
-              role="tab"
-              aria-controls="token"
-              aria-selected="false"
-              >Token Icon</a
-            >
-          </li>
-        </ul>
-
-        <!-- Tab panes -->
-        <div class="tab-content">
-          <div
-            class="tab-pane active primary-tab"
-            id="primary"
-            role="tabpanel"
-            aria-labelledby="primary-tab"
-          >
-            <h2 class="txt-light mt-5 mb-5">Primary Logo</h2>
-            <p class="txt-mute mb-5">
-              The Metronome Primary logo is the foundation of our brand. Use it
-              for meetup presentations, apparel, cups, koozies, and more -
-              anything that gets the word out.
-            </p>
-            <a
-              href="/download/Metronome_logo.zip"
-              class="font-weight-bold reverse"
-              >DOWNLOAD &raquo;</a
-            >
-          </div>
-          <div
-            class="tab-pane secondary-tab"
-            id="secondary"
-            role="tabpanel"
-            aria-labelledby="secondary-tab"
-          >
-            <h2 class="txt-light mt-5 mb-5">Secondary Logo</h2>
-            <p class="txt-mute mb-5">
-              The Metronome Secondary logo combines our wordmark with the simple
-              Metronome ‘M’ - perfect for shirts and promo items.
-            </p>
-            <a
-              href="/download/Metronome_Secondary_Logo.zip"
-              class="font-weight-bold reverse"
-              >DOWNLOAD &raquo;</a
-            >
-          </div>
-          <div
-            class="tab-pane token-tab"
-            id="token"
-            role="tabpanel"
-            aria-labelledby="token-tab"
-          >
-            <h2 class="txt-light mt-5 mb-5">Token Icon</h2>
-            <p class="txt-mute mb-5">
-              The Metronome Token icon represents the MET cryptocurrency. Use it
-              to create stickers, labels, pins, infographics, posters, and
-              anything else!
-            </p>
-            <a
-              href="/download/Metronome_Token_Icon.zip"
-              class="font-weight-bold reverse"
-              >DOWNLOAD &raquo;</a
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="meet" class="site-section meet">
+    <section class="site-section meet" id="meet">
       <div class="container">
         <div class="row">
-          <div class="col-md-6 pr-5 mb-5">
-            <h3 class="txt-purple mb-4">Want to meet with our team?</h3>
-            <p class="mb-5">
-              We love meeting with our community. Most of our team members
-              travel or work remotely, such that we might be in your area.
-              <strong
-                >Fill out the form below to check our availability.</strong
+          <div class="col-md-6 d-flex align-items-center mb-4">
+            <div>
+              <h2 class="txt-dark mt-5">
+                We circle the globe to meet with the Metronome community. From
+                Chicago to Singapore to Los Angeles and back.
+              </h2>
+              <p class="mb-3">
+                Fill out the form to check our availability. Or join our Meetup
+                Group for the latest Metronome events.
+              </p>
+              <a
+                class="btn btn-fa txt-coral"
+                href="https://www.meetup.com/Official-Metronome-Meetup/"
+                target="_blank"
+                ><i class="fab fa-meetup"></i> VIEW MEETUP EVENTS &raquo;</a
               >
-            </p>
+            </div>
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-5 mb-4">
             <form
-              id="contact-met"
               action="sendmail.php"
-              method="POST"
               enctype="multipart/form-data"
+              id="contact-met"
+              method="post"
+              name="contact-met"
             >
               <input
                 class="form-control mb-3"
-                type="text"
                 name="name"
                 placeholder="Name"
-                required
+                required=""
+                type="text"
               />
               <input
                 class="form-control mb-3"
-                type="email"
                 name="email"
                 placeholder="Email"
-                required
+                required=""
+                type="email"
               />
               <input
                 class="form-control mb-3"
-                type="text"
                 name="location"
                 placeholder="Your Location"
+                type="text"
               />
               <input
                 class="form-control mb-3"
-                type="text"
                 name="url"
                 placeholder="Event/Meet Up Link"
+                type="text"
               />
               <textarea
                 class="form-control mb-3"
+                cols="50"
                 name="comment"
                 placeholder="Comment"
                 rows="8"
-                cols="50"
               ></textarea>
               <div
                 class="g-recaptcha mb-3"
                 data-sitekey="6LdupogUAAAAAPCdYIzKH_J6cheVaJptZZ3-gfMK"
               ></div>
               <input
-                class="btn btn-primary w-100 text-left pl-4"
-                type="submit"
+                class="btn btn-dark w-100 text-left pl-4"
                 name="submit"
+                type="submit"
                 value="Submit to Check Availability &raquo;"
               />
             </form>
           </div>
-          <div class="col-md-6 mb-4">
-            <h3 class="txt-purple mb-4">Or become a community leader?</h3>
-            <p class="mb-5">
-              Metronome is community-driven cryptocurrency, and we always
-              welcome new community leaders and volunteers.
-              <strong
-                >Reach out via Telegram, or at
-                <a href="mailto:info@metronome.io" target="_blank"
-                  >info@metronome.io</a
-                ></strong
+        </div>
+      </div>
+    </section>
+    <section class="site-section media" id="media">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 clearfix">
+            <img
+              alt="Metronome logo t-shirt"
+              class="float-right d-block"
+              src="../dist/images/Mockup-Shirt-Test1.jpg"
+              width="675"
+            />
+          </div>
+          <div class="col-md-1"></div>
+          <div class="col-md-5 d-flex align-items-center">
+            <div>
+              <h2 class="txt-dark">
+                Create your own MET swag, shirts, stickers, and promo items.
+              </h2>
+              <p class="mb-3">
+                Use the Metronome logo and token icon to promote your events and
+                meetups - feel free to have fun with it, but don’t change the
+                logo itself.
+              </p>
+              <a class="font-weight-bold" href="/download/Metronome-Logos.zip"
+                >DOWNLOAD THE LOGOS &raquo;</a
               >
-            </p>
-            <p class="d-block position-relative">
-              <img
-                src="../dist/images/engage-connect-with-met.png"
-                width="536"
-                class="img-fluid"
-                alt="Mobile phone"
-              />
-              <a
-                href="https://t.me/metronometoken"
-                target="_blank"
-                class="btn btn-default connect"
-                >Connect with MET &raquo;</a
-              >
-            </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
-
-    <section id="resources" class="site-section links resources">
+    <section class="site-section links resources" id="resources">
       <div class="container">
-        <h2 class="txt-purple mb-4">Slides and Other Resources</h2>
+        <h2 class="txt-dark mb-4">Slides and Other Resources</h2>
         <p class="mb-4">
           View and download slides from our talks, as well as a Metronome
           Overview. Feel free to use for your local MET community.
@@ -377,131 +445,123 @@
         <div class="row mx-n1">
           <div class="col-sm-6 col-lg-4 mb-2 q-link px-1">
             <a
+              class="d-flex align-items-center q-first"
               href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md"
               target="_blank"
-              class="d-flex align-items-center q-first"
-            >
-              <span class="page-turn"></span> <span class="accent">MANUAL</span>
+              ><span class="page-turn"></span>
+              <span class="accent">MANUAL</span>
               <div>
                 <span class="d-block">Metronome</span>
                 <span class="font-weight-bold">Owner's Manual &raquo;</span>
-              </div>
-            </a>
+              </div></a
+            >
           </div>
           <div class="col-sm-6 col-lg-4 mb-2 q-link px-1">
             <a
+              class="d-flex align-items-center"
               href="/download/Metronome-Overview-Presentation.zip"
               target="_blank"
-              class="d-flex align-items-center"
-            >
-              <span class="page-turn"></span>
+              ><span class="page-turn"></span>
               <span class="accent">OVERVIEW</span>
               <div>
                 <span class="d-block">Metronome Overview</span>
                 <span class="font-weight-bold">Presentation &raquo;</span>
-              </div>
-            </a>
+              </div></a
+            >
           </div>
           <div class="col-sm-6 col-lg-4 mb-2 q-link px-1">
             <a
+              class="d-flex align-items-center"
               href="/download/Why-MET-is-Different.pdf"
               target="_blank"
-              class="d-flex align-items-center"
-            >
-              <span class="page-turn"></span> <span class="accent">WHY</span>
+              ><span class="page-turn"></span> <span class="accent">WHY</span>
               <div>
                 <span class="d-block">Why MET is Different:</span>
                 <span class="font-weight-bold">TopFive Reasons &raquo;</span>
-              </div>
-            </a>
+              </div></a
+            >
           </div>
           <div class="col-sm-6 col-lg-4 mb-2 q-link px-1">
             <a
+              class="d-flex align-items-center"
               href="/download/Making-Metronome-Meetups.pdf"
               target="_blank"
-              class="d-flex align-items-center"
-            >
-              <span class="page-turn"></span>
+              ><span class="page-turn"></span>
               <span class="accent">MEETUPS</span>
               <div>
                 <span class="d-block">Making Metronome Meetups</span>
                 <span class="font-weight-bold">How to Present &raquo;</span>
-              </div>
-            </a>
+              </div></a
+            >
           </div>
           <div class="col-sm-6 col-lg-4 mb-2 q-link px-1">
             <a
+              class="d-flex align-items-center"
               href="/download/MET_Oslo_Presentation.pdf"
               target="_blank"
-              class="d-flex align-items-center"
-            >
-              <span class="page-turn"></span> <span class="accent">OSLO</span>
+              ><span class="page-turn"></span> <span class="accent">OSLO</span>
               <div>
                 <span class="d-block">Oslo Talk</span>
                 <span class="font-weight-bold">Presentation &raquo;</span>
-              </div>
-            </a>
+              </div></a
+            >
           </div>
           <div class="col-sm-6 col-lg-4 mb-2 q-link px-1">
             <a
+              class="d-flex align-items-center"
               href="/download/MET_Toronto_Presentation.pdf"
               target="_blank"
-              class="d-flex align-items-center"
-            >
-              <span class="page-turn"></span>
+              ><span class="page-turn"></span>
               <span class="accent">TORONTO</span>
               <div>
                 <span class="d-block">Toronto Talk</span>
                 <span class="font-weight-bold">Presentation &raquo;</span>
-              </div>
-            </a>
+              </div></a
+            >
           </div>
           <div class="col-sm-6 col-lg-4 mb-2 q-link px-1">
             <a
+              class="d-flex align-items-center"
               href="/download/Chainhop.pdf"
               target="_blank"
-              class="d-flex align-items-center"
-            >
-              <span class="page-turn"></span>
+              ><span class="page-turn"></span>
               <span class="accent">CHAINDROP</span>
               <div>
                 <span class="d-block">Interoperability Solutions</span>
                 <span class="font-weight-bold"
                   >How a Chainhop is Different &raquo;</span
                 >
-              </div>
-            </a>
+              </div></a
+            >
           </div>
         </div>
       </div>
     </section>
-
     <!-- /PAGE -->
-
     <!-- FOOTER -->
-    <footer id="colophon" class="site-footer">
+    <footer class="site-footer" id="colophon">
       <div class="container">
-        <div class="row">
+        <div class="row navs">
           <div class="col-sm-6 col-lg-3">
             <h5>METRONOME</h5>
             <ul class="nav flex-column pl-0">
               <li class="nav-item">
-                <a href="/buy/" class="nav-link">Buy MET</a>
+                <a class="nav-link" href="/buy/">Buy MET</a>
               </li>
               <li class="nav-item">
-                <a href="/build/" class="nav-link">Build with Metronome</a>
+                <a class="nav-link" href="/build/">Build with Metronome</a>
               </li>
               <li class="nav-item">
-                <a href="/engage/" class="nav-link">Engage With Us</a>
+                <a class="nav-link" href="/engage/">Engage With Us</a>
               </li>
               <li class="nav-item">
-                <a href="/wallet/" class="nav-link">Download the Wallet</a>
+                <a class="nav-link" href="/wallet/">Download the Wallet</a>
               </li>
               <li class="nav-item">
-                <a href="/about/" class="nav-link">About Us</a>
+                <a class="nav-link" href="/about/">About</a>
               </li>
               <li class="nav-item">
-                <a href="/#milestones" class="nav-link">Timeline</a>
+                <a class="nav-link" href="/#milestones">Timeline</a>
               </li>
             </ul>
           </div>
@@ -510,28 +570,28 @@
             <ul class="nav flex-column pl-0">
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md"
                   target="_blank"
-                  class="nav-link"
                   >The Owner's Manual</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md"
                   target="_blank"
-                  class="nav-link"
                   >Frequently Asked Questions</a
                 >
               </li>
               <li class="nav-item">
-                <a href="/engage/#tabs" class="nav-link">Media Kit</a>
+                <a class="nav-link" href="/engage/#media">Media Kit</a>
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://github.com/autonomoussoftware/"
                   target="_blank"
-                  class="nav-link"
                   >Github</a
                 >
               </li>
@@ -542,50 +602,58 @@
             <ul class="nav nav-collaborate flex-column">
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://twitter.com/MET_Token"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-twitter"></i> Twitter</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://medium.com/@MetronomeToken"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-medium-m"></i> Medium</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://www.facebook.com/MetronomeToken/"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-facebook-square"></i> Facebook</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://t.me/metronometoken"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-telegram-plane"></i> Telegram</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://github.com/autonomoussoftware"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-github-alt"></i> Github</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://www.reddit.com/r/metronometoken"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-reddit-alien"></i> Reddit</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://www.meetup.com/Official-Metronome-Meetup/"
+                  target="_blank"
+                  ><i class="fab fa-meetup"></i> Meetup</a
                 >
               </li>
             </ul>
@@ -597,8 +665,8 @@
             </p>
             <div class="sendgrid">
               <script
-                type="text/javascript"
                 src="//sgwidget.leaderapps.co/js/sendgrid-widget.js"
+                type="text/javascript"
               ></script>
               <style>
                 .sendgrid-subscription-widget .response {
@@ -615,26 +683,27 @@
                 }
               </style>
               <div
-                id="sendgrid-subscription-widget"
                 class="sendgrid-subscription-widget"
+                id="sendgrid-subscription-widget"
               >
                 <form
-                  id="sg-widget"
                   data-token="ad8b1f4cd2963a816efc51879519201e"
+                  id="sg-widget"
+                  name="sg-widget"
                   onsubmit="return false;"
                 >
                   <input
-                    id="sg_email"
                     class="email form-control mb-1"
-                    type="email"
+                    id="sg_email"
                     name="sg_email"
                     placeholder="Email Address"
-                    required
+                    required=""
+                    type="email"
                   />
                   <input
-                    type="submit"
-                    id="sg-submit-btn"
                     class="btn btn-primary font-weight-bold w-100"
+                    id="sg-submit-btn"
+                    type="submit"
                     value="SIGN UP FOR UPDATES &raquo;"
                   />
                   <div class="sg-response" id="sg-response"></div>
@@ -657,12 +726,11 @@
       </div>
     </footer>
     <!-- /FOOTER -->
-
     <!-- SCRIPTS -->
-    <script src="../dist/js/main.js?cb=1560549378137"></script>
+    <script src="../dist/js/main.js?cb=1565383778713"></script>
     <script
       async
-      src="https://www.googletagmanager.com/gtag/js?id=<%-htmlWebpackPlugin.options.gaTrackingId%>"
+      src="https://www.googletagmanager.com/gtag/js?id=%3C%-htmlWebpackPlugin.options.gaTrackingId%%3E"
     ></script>
   </body>
 </html>

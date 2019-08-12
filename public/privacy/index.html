@@ -2,65 +2,107 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta content="ie=edge" http-equiv="x-ua-compatible" />
     <title>Metronome | Wallet</title>
-
     <link
-      rel="stylesheet"
-      type="text/css"
       href="../dist/lib/bootstrap/css/bootstrap.min.css"
-    />
-    <link
       rel="stylesheet"
       type="text/css"
+    />
+    <link
       href="../dist/lib/fontawesome/css/all.min.css"
-    />
-    <link
       rel="stylesheet"
       type="text/css"
-      href="../dist/css/main.css?cb=1560549378137"
     />
-
-    <meta name="description" content="The Built-to-Last Cryptocurrency" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
+      href="../dist/css/main.css?cb=1565383778713"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <meta content="The Built-to-Last Cryptocurrency" name="description" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link
+      href="../dist/images/metronome_touch_icon.png"
       rel="apple-touch-icon"
       sizes="180x180"
-      href="../dist/images/metronome_touch_icon.png"
     />
     <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
       href="../dist/images/metronome_favicon.png"
+      rel="icon"
+      sizes="32x32"
+      type="image/png"
     />
   </head>
-  <body class="wallet">
+  <body class="privacy">
     <!-- HEADER -->
-    <div class="white-half"></div>
-    <div class="gray-fade"></div>
-    <header id="masthead" class="site-header">
+    <header class="site-header" id="masthead">
+      <div class="met-marquee bg-dark d-flex align-items-center">
+        <!-- Dynamic content start -->
+        <div class="container">
+          <div class="mover">
+            <span class="met-stat"
+              ><label>Market Supply:</label>
+              <span class="data data-market">00000000</span></span
+            >
+            <span class="met-stat"
+              ><label>Next Auction:</label>
+              <span class="data data-auction">00000000</span></span
+            >
+            <span class="met-stat"
+              ><label>Last Auction ETH:</label>
+              <span class="data data-eth">00000000</span></span
+            >
+            <span class="met-stat last"
+              ><label>TVL:</label>
+              <span class="data data-tvl">00000000</span></span
+            >
+
+            <span class="met-stat copy"
+              ><label>Market Supply:</label>
+              <span class="data data-market">00000000</span></span
+            >
+            <span class="met-stat copy"
+              ><label>Next Auction:</label>
+              <span class="data data-auction">00000000</span></span
+            >
+            <span class="met-stat copy"
+              ><label>Last Auction ETH:</label>
+              <span class="data data-eth">00000000</span></span
+            >
+            <span class="met-stat copy"
+              ><label>TVL:</label>
+              <span class="data data-tvl">00000000</span></span
+            >
+          </div>
+        </div>
+        <!-- Dynamic content end -->
+      </div>
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand" href="/"
-            ><img
-              src="../dist/images/metronome-logo.png"
-              class="d-inline-block align-top"
+          <a class="navbar-brand" href="/">
+            <img
               alt="Metronome Logo"
-          /></a>
+              class="d-inline-block align-top logo-purp"
+              src="../dist/images/metronome-logo.png"
+              width="213"
+            />
+            <img
+              alt="Metronome Logo"
+              class="align-top logo-white"
+              src="../dist/images/metronome-logo-white@2x.png"
+              width="213"
+            />
+          </a>
           <button
-            class="toggler toggler--3dx"
-            type="button"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav"
             aria-controls="navbarNav"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            class="toggler toggler--3dx"
+            data-target="#navbarNav"
+            data-toggle="collapse"
+            type="button"
           >
-            <span class="toggler-box">
-              <span class="toggler-inner"></span>
-            </span>
+            <span class="toggler-box"><span class="toggler-inner"></span></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
@@ -74,20 +116,26 @@
               <li class="nav-item">
                 <a class="nav-link" href="/wallet/">Wallet</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/roadmap/">Roadmap</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/about/">About</a>
+              </li>
               <li class="nav-item dropdown">
                 <a
+                  aria-expanded="false"
+                  aria-haspopup="true"
                   class="nav-link dropdown-toggle"
+                  data-toggle="dropdown"
                   href="#"
                   id="navbarDropdown"
                   role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  >About <i class="fas fa-chevron-down txt-purple pl-1"></i
+                  >Resources <i class="fas fa-minus"></i>
+                  <i class="fas fa-chevron-down"></i
                 ></a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/about/">About MET</a>
-                  <a class="dropdown-item pb-0 disabled" href="/about/#info"
+                <div aria-labelledby="navbarDropdown" class="dropdown-menu">
+                  <a class="dropdown-item disabled" href="/about/#info"
                     >Owner's Manual</a
                   >
                   <ul class="sub-menu">
@@ -127,6 +175,7 @@
                       >
                     </li>
                   </ul>
+                  <a class="dropdown-item" href="/engage/#media">Media</a>
                   <a
                     class="dropdown-item"
                     href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md"
@@ -141,12 +190,10 @@
       </nav>
     </header>
     <!-- /HEADER -->
-
     <!-- PAGE -->
-    <section id="privacy" class="site-section privacy mt-5">
+    <section class="site-section legal" id="legal">
       <div class="container">
-        <h1 class="mb-5">Privacy Policy</h1>
-
+        <h1 class="my-5">Privacy Policy</h1>
         <h2 class="txt-purple">Last Updated: May 25, 2018</h2>
         <p>
           Bloq operates https://metronome.io (the "Site"). This page informs you
@@ -157,7 +204,6 @@
           By using the Site, you agree to the collection and use of information
           in accordance with this policy.
         </p>
-
         <h2 class="txt-purple">Information Collection, Use, and Sharing</h2>
         <p>
           While using our Site, we may ask you to provide us with certain
@@ -169,13 +215,11 @@
           providers, commercial email providers, and security consultants, so
           that they may provide services to us or on our behalf.
         </p>
-
         <h2 class="txt-purple">Log Data</h2>
         <p>
           Like many site operators, we collect information that your browser
           sends whenever you visit our Site ("Log Data").
         </p>
-
         <p>
           This Log Data bay include information such as your computer's IP
           address, browser type, browser version, the pages of our Site that you
@@ -193,7 +237,6 @@
           industry information that pertains to the content on our Site.
         </p>
         <p>We will not sell or rent this information to any third parties.</p>
-
         <h2 class="txt-purple">Residents of the European Economic Area</h2>
         <p>
           If you are a resident of the European Economic Area (“EEA”), you have
@@ -259,7 +302,6 @@
           Authority, please see:
           http://ec.europa.eu/justice/data-protection/article-29/structure/data-protection-authorities/index_en.htm.
         </p>
-
         <h2 class="txt-purple">Cookies</h2>
         <p>
           Cookies are files with small amount of data, which may include an
@@ -272,14 +314,12 @@
           cookie is being sent. However, if you do not accept cookies, you may
           not be able to use some portions of our Site.
         </p>
-
         <h2 class="txt-purple">Your Control Over Information</h2>
         <p>
           You may opt out of any future contacts from us at any time. You can do
           so at any time by contacting us via the email address given on our
           website, or through the unsubscribe link in our emails.
         </p>
-
         <h2 class="txt-purple">Links</h2>
         <p>
           This web site contains links to other sites. Please be aware that we
@@ -288,7 +328,6 @@
           to read the privacy statements of any other site that collects
           personally identifiable information.
         </p>
-
         <h2 class="txt-purple">Security</h2>
         <p>
           The security of your Personal Information is important to us, but
@@ -297,7 +336,6 @@
           commercially acceptable means to protect your Personal Information, we
           cannot guarantee its absolute security.
         </p>
-
         <h2 class="txt-purple">Retention of Personal Information</h2>
         <p>
           We retain Personal Information for as long as is necessary to fulfil
@@ -309,7 +347,6 @@
           our and our partners’ rights, property, or safety, and the rights,
           property, and safety of our users and other third parties.
         </p>
-
         <h2 class="txt-purple">Business Transfer</h2>
         <p>
           We may, in the future, sell or otherwise transfer some or all of our
@@ -319,7 +356,6 @@
           to any potential or actual third-party acquirers and may be among
           those assets transferred.
         </p>
-
         <h2 class="txt-purple">Updates</h2>
         <p>
           Our Privacy Policy may change from time to time and all updates will
@@ -335,31 +371,30 @@
       </div>
     </section>
     <!-- /PAGE -->
-
     <!-- FOOTER -->
-    <footer id="colophon" class="site-footer">
+    <footer class="site-footer" id="colophon">
       <div class="container">
-        <div class="row">
+        <div class="row navs">
           <div class="col-sm-6 col-lg-3">
             <h5>METRONOME</h5>
             <ul class="nav flex-column pl-0">
               <li class="nav-item">
-                <a href="/buy/" class="nav-link">Buy MET</a>
+                <a class="nav-link" href="/buy/">Buy MET</a>
               </li>
               <li class="nav-item">
-                <a href="/build/" class="nav-link">Build with Metronome</a>
+                <a class="nav-link" href="/build/">Build with Metronome</a>
               </li>
               <li class="nav-item">
-                <a href="/engage/" class="nav-link">Engage With Us</a>
+                <a class="nav-link" href="/engage/">Engage With Us</a>
               </li>
               <li class="nav-item">
-                <a href="/wallet/" class="nav-link">Download the Wallet</a>
+                <a class="nav-link" href="/wallet/">Download the Wallet</a>
               </li>
               <li class="nav-item">
-                <a href="/about/" class="nav-link">About Us</a>
+                <a class="nav-link" href="/about/">About</a>
               </li>
               <li class="nav-item">
-                <a href="/#milestones" class="nav-link">Timeline</a>
+                <a class="nav-link" href="/#milestones">Timeline</a>
               </li>
             </ul>
           </div>
@@ -368,28 +403,28 @@
             <ul class="nav flex-column pl-0">
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md"
                   target="_blank"
-                  class="nav-link"
                   >The Owner's Manual</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md"
                   target="_blank"
-                  class="nav-link"
                   >Frequently Asked Questions</a
                 >
               </li>
               <li class="nav-item">
-                <a href="/engage/#tabs" class="nav-link">Media Kit</a>
+                <a class="nav-link" href="/engage/#media">Media Kit</a>
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://github.com/autonomoussoftware/"
                   target="_blank"
-                  class="nav-link"
                   >Github</a
                 >
               </li>
@@ -400,50 +435,58 @@
             <ul class="nav nav-collaborate flex-column">
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://twitter.com/MET_Token"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-twitter"></i> Twitter</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://medium.com/@MetronomeToken"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-medium-m"></i> Medium</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://www.facebook.com/MetronomeToken/"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-facebook-square"></i> Facebook</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://t.me/metronometoken"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-telegram-plane"></i> Telegram</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://github.com/autonomoussoftware"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-github-alt"></i> Github</a
                 >
               </li>
               <li class="nav-item">
                 <a
+                  class="nav-link"
                   href="https://www.reddit.com/r/metronometoken"
                   target="_blank"
-                  class="nav-link"
                   ><i class="fab fa-reddit-alien"></i> Reddit</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://www.meetup.com/Official-Metronome-Meetup/"
+                  target="_blank"
+                  ><i class="fab fa-meetup"></i> Meetup</a
                 >
               </li>
             </ul>
@@ -455,8 +498,8 @@
             </p>
             <div class="sendgrid">
               <script
-                type="text/javascript"
                 src="//sgwidget.leaderapps.co/js/sendgrid-widget.js"
+                type="text/javascript"
               ></script>
               <style>
                 .sendgrid-subscription-widget .response {
@@ -473,26 +516,27 @@
                 }
               </style>
               <div
-                id="sendgrid-subscription-widget"
                 class="sendgrid-subscription-widget"
+                id="sendgrid-subscription-widget"
               >
                 <form
-                  id="sg-widget"
                   data-token="ad8b1f4cd2963a816efc51879519201e"
+                  id="sg-widget"
+                  name="sg-widget"
                   onsubmit="return false;"
                 >
                   <input
-                    id="sg_email"
                     class="email form-control mb-1"
-                    type="email"
+                    id="sg_email"
                     name="sg_email"
                     placeholder="Email Address"
-                    required
+                    required=""
+                    type="email"
                   />
                   <input
-                    type="submit"
-                    id="sg-submit-btn"
                     class="btn btn-primary font-weight-bold w-100"
+                    id="sg-submit-btn"
+                    type="submit"
                     value="SIGN UP FOR UPDATES &raquo;"
                   />
                   <div class="sg-response" id="sg-response"></div>
@@ -517,12 +561,11 @@
       </div>
     </footer>
     <!-- /FOOTER -->
-
     <!-- SCRIPTS -->
-    <script src="../dist/js/main.js?cb=1560549378137"></script>
+    <script src="../dist/js/main.js?cb=1565383778713"></script>
     <script
       async
-      src="https://www.googletagmanager.com/gtag/js?id=<%-htmlWebpackPlugin.options.gaTrackingId%>"
+      src="https://www.googletagmanager.com/gtag/js?id=%3C%-htmlWebpackPlugin.options.gaTrackingId%%3E"
     ></script>
   </body>
 </html>
