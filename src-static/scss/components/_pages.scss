@@ -944,23 +944,87 @@ body.build {
 
 		.connect {
 			margin-top: -187px;
+
+
 		}
-		.telegram-connect {
-			position: absolute;
-			left: 0;
-			right: 0;
-			bottom: 25px;
-			text-align: center;
+		.telegram {
+
+			> .container {
+				position: relative;
+			}
+
+			img {
+				display: block;
+				margin: 0 auto;
+			}
+
+			.mobile-chat {
+				display: none;
+			}
+
+			.telegram-connect {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 105px;
+				text-align: center;
+				a {
+					display: inline-block;
+				}
+			}
+
 		}
-		@media(max-width:767px) {
+
+		@media(max-width:575px) {
 			margin-bottom: 75px;
 
 			.connect {
 				margin-top: -160px;
 			}
-			.telegram-connect img {
-				max-width: 125px;
+			.telegram {
+				text-align: left;
+
+				.desktop-chat {
+					display: none;
+				}
+				.mobile-chat {
+					display: block;
+				}
+				.telegram-connect {
+					text-align: left;
+					right: auto !important;
+					left: 20px;
+					bottom: 46px;
+					max-width: 125px;
+
+				}
 			}
+		}
+		@media(min-width:576px) and (max-width:767px) {
+			margin-bottom: 75px;
+
+			.connect {
+				margin-top: -160px;
+			}
+			.telegram {
+				text-align: left;
+
+				.desktop-chat {
+					display: none;
+				}
+				.mobile-chat {
+					display: block;
+				}
+				.telegram-connect {
+					text-align: left;
+					right: auto !important;
+					left: 60px;
+				    bottom: 46px;
+				    max-width: 175px;
+
+				}
+			}
+
 		}
 		@media(min-width:768px) and (max-width:991px) {
 			margin-bottom: 130px;
@@ -1039,6 +1103,18 @@ body.wallet {
 			height: 50%;
 			background-color: #1C1C1C;
 			z-index: -1;
+		}
+		img.mobile-wallet {
+			display: none;
+		}
+		@media(max-width:767px) {
+			img.desktop-wallet {
+				display: none;
+			}
+			img.mobile-wallet {
+				display: block;
+				margin: 0 auto;
+			}
 		}
 	}
 	.download {

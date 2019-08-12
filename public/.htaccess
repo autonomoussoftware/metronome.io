@@ -1,5 +1,0 @@
-AuthUserFile /home/metronome/.htpasswd
-AuthGroupFile /dev/null
-AuthName "Secured Website"
-AuthType Basic
-require user met
