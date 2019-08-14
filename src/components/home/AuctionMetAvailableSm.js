@@ -8,14 +8,10 @@ import MetValue from '../common/MetValue'
 function AuctionMetAvailableSm(props) {
   const { nextAuctionStartPrice, isAuctionActive, tokensRemaining } = props
 
-  return (
-    <div>
-      {isAuctionActive ? (
-        <MetValue>{tokensRemaining}</MetValue>
-      ) : (
-        <EthValue>{nextAuctionStartPrice}</EthValue>
-      )}
-    </div>
+  return isAuctionActive ? (
+    <MetValue>{tokensRemaining}</MetValue>
+  ) : (
+    <EthValue>{nextAuctionStartPrice}</EthValue>
   )
 }
 

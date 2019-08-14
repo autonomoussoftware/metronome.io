@@ -1,99 +1,68 @@
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import React from 'react'
 
 import AuctionMetAvailableSm from './AuctionMetAvailableSm'
 import AuctionCounterSm from './AuctionCounterSm'
 import DollarValue from '../common/DollarValue'
 import EthValue from '../common/EthValue'
-import Widget from '../common/Widget'
-
-const UsdPrice = styled.div`
-  font-family: Roboto Mono;
-  font-size: 32px;
-  font-weight: 500;
-  line-height: 1.25;
-  letter-spacing: -0.8px;
-  color: #7e61f8;
-`
-
-const EthPrice = styled.div`
-  font-family: Roboto Mono;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.8;
-  letter-spacing: normal;
-  color: #7e61f8;
-`
-
-const RowContainer = styled.div`
-  border-top: 1px solid #d1d1d1;
-  border-bottom: 1px solid #d1d1d1;
-  padding: 8px 0;
-  margin-top: 16px;
-  margin-bottom: 24px;
-`
-
-const Row = styled.div`
-  display: flex;
-  justify-content: space-between;
-`
-
-const Label = styled.div`
-  font-family: Roboto;
-  font-size: 16px;
-  font-weight: normal;
-  line-height: 1.8;
-  letter-spacing: 0.3px;
-  color: #626262;
-`
-
-const Value = styled.div`
-  font-family: Roboto Mono;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.8;
-  letter-spacing: normal;
-  color: #7e61f8;
-`
 
 function AuctionWidget(props) {
   const { lastPurchasePrice, isAuctionActive, currentPrice } = props
 
   return (
-    <Widget title="Daily Auction" btnUrl="./auction" btnLabel="Buy Metronome">
-      <div>Price per MET</div>
-      <UsdPrice>
-        <DollarValue>
-          {isAuctionActive ? currentPrice : lastPurchasePrice}
-        </DollarValue>
-      </UsdPrice>
-      <EthPrice>
-        <EthValue>
-          {isAuctionActive ? currentPrice : lastPurchasePrice}
-        </EthValue>
-      </EthPrice>
-
-      <RowContainer>
-        <Row>
-          <Label>
-            {isAuctionActive ? 'Time Available' : 'Time Until Next Auction'}
-          </Label>
-          <Value>
+    <div className="option option-buy">
+      <h4>DAILY AUCTION</h4>
+      <div className="prices">
+        <div className="row">
+          <div className="col-12 col-sm-5 col-lg-12 col-xl-5">
+            <label>Price per MET:</label>
+          </div>
+          <div className="col-12 col-sm-7 col-lg-12 col-xl-7">
+            <div className="price met-price">
+              <DollarValue>
+                {isAuctionActive ? currentPrice : lastPurchasePrice}
+              </DollarValue>
+            </div>
+            <div className="price eth-price">
+              <EthValue>
+                {isAuctionActive ? currentPrice : lastPurchasePrice}
+              </EthValue>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="buy-info">
+        <div className="row">
+          <div className="col-12 col-sm-7 col-lg-12 col-xl-7">
+            <label>
+              {isAuctionActive ? 'Time Available:' : 'Time Until Next Auction:'}
+            </label>
+          </div>
+          <div className="col-12 col-sm-5 col-lg-12 col-xl-5">
             <AuctionCounterSm />
-          </Value>
-        </Row>
-        <Row>
-          <Label>
-            {isAuctionActive ? 'Available Supply' : 'Next Starting Price'}
-          </Label>
-          <Value>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12 col-sm-7 col-lg-12 col-xl-7">
+            <label>
+              {isAuctionActive ? 'Available Supply:' : 'Next Starting Price:'}
+            </label>
+          </div>
+          <div className="col-12 col-sm-5 col-lg-12 col-xl-5">
             <AuctionMetAvailableSm />
-          </Value>
-        </Row>
-      </RowContainer>
-    </Widget>
+          </div>
+        </div>
+      </div>
+      <div className="buy-links">
+        <a className="btn btn-buy" href="/auction/">
+          BUY MET &raquo;
+        </a>
+        <a className="btn btn-info" href="/buy/">
+          INFO +
+        </a>
+      </div>
+    </div>
   )
 }
 

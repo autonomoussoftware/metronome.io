@@ -13,17 +13,15 @@ function AuctionCounterSm(props) {
     isAuctionActive
   } = props.status
 
-  return (
-    <div>
-      {!loading ? (
-        <Countdown
-          date={isAuctionActive ? currentAuctionEndTime : nextAuctionStartTime}
-          renderer={TimeString}
-        />
-      ) : (
-        <span className="blink">...</span>
-      )}
-    </div>
+  return loading ? (
+    <span className="blink">...</span>
+  ) : (
+    <span>
+      <Countdown
+        renderer={TimeString}
+        date={isAuctionActive ? currentAuctionEndTime : nextAuctionStartTime}
+      />
+    </span>
   )
 }
 

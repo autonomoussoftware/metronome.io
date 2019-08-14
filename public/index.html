@@ -246,180 +246,44 @@
             </div>
           </div>
         </div>
-        <div class="buy-options">
-          <div class="row">
-            <div class="col-lg-4 br">
-              <div class="option option-buy">
-                <h4>DAILY AUCTION</h4>
-                <div class="prices">
-                  <div class="row">
-                    <div class="col-12 col-sm-5 col-lg-12 col-xl-5">
-                      <label>Price per MET:</label>
-                    </div>
-                    <div class="col-12 col-sm-7 col-lg-12 col-xl-7">
-                      <div class="price met-price">$1.2764 USD</div>
-                      <div class="price eth-price">0.004163 ETH</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="buy-info">
-                  <div class="row">
-                    <div class="col-12 col-sm-7 col-lg-12 col-xl-7">
-                      <label>Time Until Next Auction:</label>
-                    </div>
-                    <div class="col-12 col-sm-5 col-lg-12 col-xl-5">
-                      <span>01h:27m:45s</span>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-12 col-sm-7 col-lg-12 col-xl-7">
-                      <label>Next Starting Price:</label>
-                    </div>
-                    <div class="col-12 col-sm-5 col-lg-12 col-xl-5">
-                      <span>0.008288 ETH</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="buy-links">
-                  <a class="btn btn-buy" href="#">BUY MET &raquo;</a>
-                  <a class="btn btn-info" href="#">INFO +</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 br">
-              <div class="option option-convert">
-                <h4>CONVERTER</h4>
-                <div class="prices">
-                  <div class="row">
-                    <div class="col-12 col-sm-5 col-lg-12 col-xl-5">
-                      <label>Price per MET:</label>
-                    </div>
-                    <div class="col-12 col-sm-7 col-lg-12 col-xl-7">
-                      <div class="price met-price">$1.2821 USD</div>
-                      <div class="price eth-price">0.004163 ETH</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="buy-info">
-                  <div class="row">
-                    <div class="col-12 col-sm-7 col-lg-12 col-xl-7">
-                      <label>Remaining MET:</label>
-                    </div>
-                    <div class="col-12 col-sm-5 col-lg-12 col-xl-5">
-                      <span>1,845,021 MET</span>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-12 col-sm-7 col-lg-12 col-xl-7">
-                      <label>Remaining ETH:</label>
-                    </div>
-                    <div class="col-12 col-sm-5 col-lg-12 col-xl-5">
-                      <span>7,680.34 ETH</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="buy-links">
-                  <a class="btn btn-buy" href="#">CONVERT MET &raquo;</a>
-                  <a class="btn btn-info" href="#">INFO +</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="option option-market">
-                <h4>MARKET PRICE</h4>
-                <div class="prices">
-                  <div class="row">
-                    <div class="col-12 col-sm-5 col-lg-12 col-xl-5">
-                      <label>Price per MET:</label>
-                    </div>
-                    <div class="col-12 col-sm-7 col-lg-12 col-xl-7">
-                      <div class="price met-price">$0.9158 USD</div>
-                      <div class="price eth-price">0.003914 ETH</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="buy-info">
-                  <div class="row">
-                    <div class="col-12 col-sm-7 col-lg-12 col-xl-7">
-                      <label>Circulating Supply:</label>
-                    </div>
-                    <div class="col-12 col-sm-5 col-lg-12 col-xl-5">
-                      <span>9,397,557 MET</span>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-12 col-sm-7 col-lg-12 col-xl-7">
-                      <label>Total Supply:</label>
-                    </div>
-                    <div class="col-12 col-sm-5 col-lg-12 col-xl-5">
-                      <span>11,159,681 MET</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="buy-links">
-                  <a class="btn btn-buy" href="#">TRADE MET &raquo;</a>
-                  <a class="btn btn-info" href="#">INFO +</a>
-                </div>
-              </div>
-            </div>
-          </div>
+        <!-- Dynamic content -->
+        <div id="root" content="home">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 0 88 88"
+            version="1.1"
+            height="88"
+            width="88"
+            id="loader"
+          >
+            <path
+              stroke-width="5"
+              stroke="#7e61f8"
+              fill="none"
+              d="M75.2,78.5H12.8c-3.8,0-6.2-4.1-4.4-7.4l31.2-58.1c1.9-3.5,7-3.5,8.9,0l31.2,58.1C81.4,74.4,79,78.5,75.2,78.5z"
+            />
+            <line
+              id="loader-line"
+              x1="44"
+              y1="22.5"
+              x2="44"
+              y2="78.5"
+              stroke="#7e61f8"
+              stroke-linecap="round"
+              stroke-width="5"
+            />
+          </svg>
         </div>
+        <!-- /Dynamic content -->
         <div class="wallet" id="wallet">
           <div class="row">
             <div class="col-lg-5 col-xl-4 d-flex aign-items-center">
               <div class="wallet-info">
                 <h2 class="txt-dark font-weight-bold">Download the Wallet</h2>
-                <p class="my-4">
-                  Metronome Desktop Wallet is available on
-                  <a
-                    href="https://github.com/autonomoussoftware/metronome-wallet-desktop/releases/download/v1.4.1/metronome-desktop-wallet_v1.4.1.dmg"
-                    target="_blank"
-                    >Mac</a
-                  >,
-                  <a
-                    href="https://github.com/autonomoussoftware/metronome-wallet-desktop/releases/download/v1.4.1/metronome-desktop-wallet_v1.4.1.exe"
-                    target="_blank"
-                    >Windows</a
-                  >
-                  and
-                  <a
-                    href="https://github.com/autonomoussoftware/metronome-wallet-desktop/releases/download/v1.4.1/metronome-desktop-wallet_v1.4.1.deb"
-                    target="_blank"
-                    >Linux</a
-                  >. Metronome Mobile Wallet is available on
-                  <a
-                    href="https://itunes.apple.com/app/id1434362697"
-                    target="_blank"
-                    >Android</a
-                  >
-                  and
-                  <a
-                    href="https://play.google.com/store/apps/details?id=sh.autonomous.wallet.mobile"
-                    target="_blank"
-                    >iOS</a
-                  >.
-                </p>
-                <div class="my-4" id="mobile-downloads">
-                  <a
-                    href="https://itunes.apple.com/app/id1434362697"
-                    target="_blank"
-                    ><img
-                      alt="Apple download"
-                      class="img-fluid mb-2"
-                      src="../dist/images/apple-download.png"
-                      srcset="../dist/images/appstore-btn.svg"
-                  /></a>
-                  &nbsp;
-                  <a
-                    href="https://play.google.com/store/apps/details?id=sh.autonomous.wallet.mobile"
-                    target="_blank"
-                    ><img
-                      alt="Android Download"
-                      class="img-fluid mb-2"
-                      src="../dist/images/android-download.png"
-                      srcset="../dist/images/gplay-btn.svg"
-                  /></a>
-                </div>
+                <!-- Dynamic content: Do not remove! -->
+                <div id="download-options"></div>
+                <!-- /Dynamic content -->
               </div>
             </div>
             <div class="col-lg-7 col-xl-8">
