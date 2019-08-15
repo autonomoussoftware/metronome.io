@@ -18,7 +18,7 @@ module.exports = {
       'dashboard/index.html',
       'engage/index.html',
       'privacy/index.html',
-      'thank-you/index.html',
+      'roadmap/index.html',
       'thank-you/index.html',
       'wallet/index.html'
     ]

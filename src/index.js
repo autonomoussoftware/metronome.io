@@ -62,13 +62,21 @@ if (rootElement || marqueeElement) {
   const rootContent = rootElement ? rootElement.getAttribute('content') : null
   const ReactHint = ReactHintFactory(React)
 
+  // If document contains a root node for a main React app inject Marquee as a
+  // React Portal, otherwise render the Marquee as a normal tree element.
   reactDOM.render(
     <Provider store={store}>
       <React.Fragment>
-        <Portal selector="#marquee">
+        {rootElement ? (
+          <React.Fragment>
+            <Portal selector="#marquee">
+              <Marquee />
+            </Portal>
+            {getAppContent(rootContent)}
+          </React.Fragment>
+        ) : (
           <Marquee />
-        </Portal>
-        {rootContent && getAppContent(rootContent)}
+        )}
         <MetronomeStatus />
         <WalletVersion />
         <ChainWarning />
@@ -77,6 +85,6 @@ if (rootElement || marqueeElement) {
         <Rates />
       </React.Fragment>
     </Provider>,
-    rootElement
+    rootElement || marqueeElement
   )
 }
