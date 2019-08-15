@@ -8,6 +8,7 @@ import auction from './auction'
 import buyForm from './buyForm'
 import wallet from './wallet'
 import config from './config'
+import market from './market'
 import rates from './rates'
 import chain from './chain'
 
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   auction,
   config,
   wallet,
+  market,
   rates,
   chain
 })
