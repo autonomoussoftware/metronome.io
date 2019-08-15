@@ -20,6 +20,8 @@ import ChainWarning from './components/common/ChainWarning'
 import AuctionPage from './components/auction/Auction'
 import WalletPage from './components/wallet/Wallet'
 import HomePage from './components/home/Home'
+import Marquee from './components/common/Marquee'
+import Portal from './components/common/Portal'
 
 analytics.init()
 
@@ -54,15 +56,19 @@ function getAppContent(content) {
 }
 
 const rootElement = document.getElementById('root')
+const marqueeElement = document.getElementById('marquee')
 
-if (rootElement) {
-  const rootContent = rootElement.getAttribute('content')
+if (rootElement || marqueeElement) {
+  const rootContent = rootElement ? rootElement.getAttribute('content') : null
   const ReactHint = ReactHintFactory(React)
 
   reactDOM.render(
     <Provider store={store}>
       <React.Fragment>
-        {getAppContent(rootContent)}
+        <Portal selector="#marquee">
+          <Marquee />
+        </Portal>
+        {rootContent && getAppContent(rootContent)}
         <MetronomeStatus />
         <WalletVersion />
         <ChainWarning />

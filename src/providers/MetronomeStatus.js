@@ -56,8 +56,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onError: payload => dispatch({ type: 'METRONOME_STATUS_ERROR', payload }),
-  onData({ auction, converter }) {
+  onData({ auction, converter, proceeds }) {
     dispatch({ type: 'UPDATE_AUCTION_STATUS', payload: auction })
+    dispatch({ type: 'UPDATE_PROCEEDS_STATUS', payload: proceeds })
     dispatch({ type: 'UPDATE_CONVERTER_STATUS', payload: converter })
   }
 })

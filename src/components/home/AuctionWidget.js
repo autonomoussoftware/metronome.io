@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import AuctionMetAvailableSm from './AuctionMetAvailableSm'
-import AuctionCounterSm from './AuctionCounterSm'
+import AuctionCounterSm from '../common/AuctionCounterSm'
 import DollarValue from '../common/DollarValue'
 import EthValue from '../common/EthValue'
 

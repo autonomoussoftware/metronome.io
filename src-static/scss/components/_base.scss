@@ -239,6 +239,7 @@ header.site-header {
 				color: #B2B2B2;
 				margin-bottom: 0;
 				font-weight: 700;
+				margin-right: 8px;
 			}
 			.data {
 				color: $purple;
@@ -279,6 +280,10 @@ header.site-header {
 				}
 				.met-stat {
 					display: inline-block !important;
+
+					&.last{
+						border-right: 1px solid $gray-body;
+					}
 				}
 			}
 

@@ -4,6 +4,7 @@ import convertPanel from './convertPanel'
 import convertForm from './convertForm'
 import converter from './converter'
 import buyPanel from './buyPanel'
+import proceeds from './proceeds'
 import auction from './auction'
 import buyForm from './buyForm'
 import wallet from './wallet'
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   convertForm,
   converter,
   buyPanel,
+  proceeds,
   buyForm,
   auction,
   config,
