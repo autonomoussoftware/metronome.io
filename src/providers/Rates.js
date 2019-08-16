@@ -1,6 +1,7 @@
 import startInterval from 'startinterval2'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { toWei } from 'web3-utils'
 import React from 'react'
 
 import config from '../config'
@@ -17,7 +18,11 @@ class Rates extends React.Component {
       .then(res => res.json())
       .then(({ data }) => {
         if (data && data.symbol && data.priceUsd) {
-          return { type: data.symbol, value: parseFloat(data.priceUsd, 10) }
+          return {
+            type: data.symbol,
+            value: parseFloat(data.priceUsd, 10),
+            supply: data.supply ? toWei(data.supply) : null
+          }
         }
         Promise.reject(new Error('Invalid rate API response'))
       })
@@ -28,12 +33,16 @@ class Rates extends React.Component {
       })
 
   componentDidMount() {
-    this.intervals = Object.keys(config.chains).map(chainId =>
-      startInterval(
-        () => this.fetchData(config.chains[chainId].coincapId),
-        config.ratesUpdateMs
+    this.intervals = Object.keys(config.chains)
+      .map(chainId =>
+        startInterval(
+          () => this.fetchData(config.chains[chainId].coincapId),
+          config.ratesUpdateMs
+        )
       )
-    )
+      .concat(
+        startInterval(() => this.fetchData('metronome'), config.ratesUpdateMs)
+      )
   }
 
   componentWillMount() {

@@ -20,6 +20,8 @@ import ChainWarning from './components/common/ChainWarning'
 import AuctionPage from './components/auction/Auction'
 import WalletPage from './components/wallet/Wallet'
 import HomePage from './components/home/Home'
+import Marquee from './components/common/Marquee'
+import Portal from './components/common/Portal'
 
 analytics.init()
 
@@ -54,15 +56,27 @@ function getAppContent(content) {
 }
 
 const rootElement = document.getElementById('root')
+const marqueeElement = document.getElementById('marquee')
 
-if (rootElement) {
-  const rootContent = rootElement.getAttribute('content')
+if (rootElement || marqueeElement) {
+  const rootContent = rootElement ? rootElement.getAttribute('content') : null
   const ReactHint = ReactHintFactory(React)
 
+  // If document contains a root node for a main React app inject Marquee as a
+  // React Portal, otherwise render the Marquee as a normal tree element.
   reactDOM.render(
     <Provider store={store}>
       <React.Fragment>
-        {getAppContent(rootContent)}
+        {rootElement ? (
+          <React.Fragment>
+            <Portal selector="#marquee">
+              <Marquee />
+            </Portal>
+            {getAppContent(rootContent)}
+          </React.Fragment>
+        ) : (
+          <Marquee />
+        )}
         <MetronomeStatus />
         <WalletVersion />
         <ChainWarning />
@@ -71,6 +85,6 @@ if (rootElement) {
         <Rates />
       </React.Fragment>
     </Provider>,
-    rootElement
+    rootElement || marqueeElement
   )
 }

@@ -48,7 +48,7 @@
   width: 40px;
   height: 4px;
   background-color: $purple;
-  border-radius: 4px;
+  border-radius: 0;
   position: absolute;
   transition-property: transform;
   transition-duration: 0.15s;
@@ -120,4 +120,34 @@
 }
 .toggler--3dx.is-active .toggler-inner::after {
   transform: translate3d(0, -10px, 0) rotate(-45deg);
+}
+
+@media(max-width:767px) {
+	.toggler {
+		padding: 15px 20px 15px;
+	}
+	.toggler-box {
+	  width: 24px;
+	  height: 16px;
+	  display: inline-block;
+	  position: relative;
+	}
+	.toggler-inner,
+	.toggler-inner::before,
+	.toggler-inner::after {
+	  width: 24px;
+	  height: 3px;
+	}
+	.toggler-inner::before {
+	  top: -7px;
+	}
+	.toggler-inner::after {
+	  bottom: -7px;
+	}
+	.toggler--3dx.is-active .toggler-inner::before {
+	  transform: translate3d(0, 7px, 0) rotate(45deg);
+	}
+	.toggler--3dx.is-active .toggler-inner::after {
+	  transform: translate3d(0, -7px, 0) rotate(-45deg);
+	}
 }

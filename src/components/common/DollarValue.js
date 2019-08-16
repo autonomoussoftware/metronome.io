@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { fromWei } from 'web3-utils'
 import PropTypes from 'prop-types'
 
-const smartRound = smartRounder(6, 0, 6)
+const smartRound = smartRounder(6, 2, 4)
 
 class DollarValue extends Component {
   static propTypes = {
