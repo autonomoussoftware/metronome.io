@@ -2,6 +2,7 @@ import { handleActions } from 'redux-actions'
 
 const initialState = {
   circulatingSupply: null,
+  marketCapUsd: null,
   totalSupply: null
 }
 
@@ -16,7 +17,8 @@ const reducer = handleActions(
       payload.type === 'MET'
         ? {
             ...state,
-            circulatingSupply: payload.supply
+            circulatingSupply: payload.supply,
+            marketCapUsd: payload.marketCapUsd
           }
         : state
   },

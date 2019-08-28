@@ -29,10 +29,16 @@ const DataRow = ({
   lastPurchasePrice,
   isAuctionActive,
   currentPrice,
+  marketCapUsd,
   isCopy,
   tvl
 }) => (
   <React.Fragment>
+    {marketCapUsd && (
+      <Item isCopy={isCopy} label="Market Cap">
+        ${smartRound(marketCapUsd, true)} USD
+      </Item>
+    )}
     {circulatingSupply && (
       <Item isCopy={isCopy} label="Circulating Supply">
         <MetValue>{circulatingSupply}</MetValue>
@@ -72,6 +78,7 @@ DataRow.propTypes = {
   circulatingSupply: PropTypes.string,
   lastPurchasePrice: PropTypes.string,
   isAuctionActive: PropTypes.bool,
+  marketCapUsd: PropTypes.string,
   currentPrice: PropTypes.string,
   isCopy: PropTypes.bool,
   tvl: PropTypes.string
@@ -119,6 +126,7 @@ const mapStateToProps = state => ({
   lastPurchasePrice: state.auction.status.lastPurchasePrice,
   isAuctionActive: state.auction.status.isAuctionActive,
   currentPrice: state.auction.status.currentPrice,
+  marketCapUsd: state.market.marketCapUsd,
   tvl: getTvl(state)
 })
 
