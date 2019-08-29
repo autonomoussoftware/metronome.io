@@ -21,7 +21,8 @@ class Rates extends React.Component {
           return {
             type: data.symbol,
             value: parseFloat(data.priceUsd, 10),
-            supply: data.supply ? toWei(data.supply) : null
+            supply: data.supply ? toWei(data.supply) : null,
+            marketCapUsd: data.marketCapUsd
           }
         }
         Promise.reject(new Error('Invalid rate API response'))

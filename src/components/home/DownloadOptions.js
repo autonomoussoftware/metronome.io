@@ -45,19 +45,19 @@ class DownloadOptions extends Component {
             </a>
             . Metronome Mobile Wallet is available on{' '}
             <a
-              href={walletInstallers.Android.url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Android
-            </a>{' '}
-            and{' '}
-            <a
               href={walletInstallers.iOS.url}
               target="_blank"
               rel="noopener noreferrer"
             >
               iOS
+            </a>{' '}
+            and{' '}
+            <a
+              href={walletInstallers.Android.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Android
             </a>
             .
           </p>
