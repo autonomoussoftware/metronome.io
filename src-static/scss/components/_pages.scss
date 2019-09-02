@@ -34,7 +34,7 @@ body.home {
 	}
 
 	.top {
-		height: 1300px;
+		height: 1386px;
 		padding: 117px 0 0 0;
 		/* background-image: url('../images/whispy-bg-purple.jpg');
 		background-position: right top;
@@ -87,6 +87,15 @@ body.home {
 			}
 		}
 
+		.site-tagline {
+			padding-bottom: 75px;
+			text-align: center;
+
+			h2 {
+				font-size: 35px;
+			}
+		}
+
 		@media(max-width:991px) {
 			height: auto;
 			padding: 20px 0 10px;
@@ -127,7 +136,7 @@ body.home {
 		.buy-options {
 			position: relative;
 			padding: 30px;
-			margin-bottom: 115px;
+			margin-bottom: 75px;
 			background-color: rgba(255,255,255,.15);
 
 			.br {
@@ -409,7 +418,52 @@ body.home {
 	}
 
 }
+.messari {
+	h2 {
+		font-size: 35px;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	.messari-content {
+	    background-color: rgba(28,176,255,.15);
+		padding: 30px;
+		text-align: center;
+		font-weight: 700;
+
+		h5 {
+			margin-top: 25px;
+			color: #333335;
+		    font-size: 18px;
+		    line-height: 1.6em;
+		    font-weight: 700;
+
+			a {
+				margin-left: 20px;
+				font-size: 15px;
+
+				&:hover,
+				&:focus {
+					text-decoration: none;
+					opacity: .85;
+				}
+			}
+
+			@media(max-width:767px) {
+				a {
+					display: block;
+					margin: 8px 0;
+				}
+			}
+		}
+	}
+}
 .process {
+
+	background: #eaeaea;
+	background: -moz-linear-gradient( bottom, #eaeaea 0%, #FFFFFF 30%, #eaeaea 100%);
+	background: -webkit-linear-gradient( bottom, #eaeaea 0%, #FFFFFF 30%, #FFFFFF 100%);
+	background: linear-gradient( to top, #eaeaea 0%, #FFFFFF 30%, #FFFFFF 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea', GradientType=0);
 
 	.process-inner {
 		max-width: 1400px;
@@ -453,9 +507,9 @@ body.home {
 					width: 80%;
 					height: 1px;
 					border-top: 2px dotted #B2B2B2;
-					z-index: -1;
 				}
 				span:last-child {
+					position: relative;
 					background: #FFF;
 					padding: 0 13px;
 				}
@@ -511,7 +565,7 @@ body.home {
 	}
 }
 .milestones {
-	padding: 0 0 175px;
+	padding: 75px 0 175px;
 
 	h2 {
 		text-align: center;
@@ -718,9 +772,60 @@ body.buy {
 			padding: 60px 0;
 		}
 		.third-parties {
+			display: flex;
+			justify-content: flex-start !important;
+			flex-wrap: wrap !important;
+
 			a {
-				display: inline-block;
-				padding: 5px;
+				display: flex;
+				align-items: center !important;
+				padding: 10px;
+				width: 80px;
+				height: 80px;
+				margin-right: 10px;
+				border-radius: 100%;
+				box-shadow: none;
+				position: relative;
+				text-align: center;
+
+				img {
+					display: block;
+					margin: 0 auto;
+				}
+			}
+			/* Animated circle thing */
+			a:hover {
+			  color: $purple;
+			}
+			a::before,
+			a::after {
+			  box-sizing: inherit;
+			  content: '';
+			  position: absolute;
+			  width: 100%;
+			  height: 100%;
+			  top: 0;
+			  left: 0;
+			  border-radius: 100%;
+			}
+			a::before {
+			  border: 2px solid transparent;
+			}
+			a:hover::before {
+			  border-top-color: $purple;
+			  border-right-color: $purple;
+			  border-bottom-color: $purple;
+			  transition: border-top-color 0.15s linear, border-right-color 0.15s linear 0.1s, border-bottom-color 0.15s linear 0.2s;
+			}
+			a::after {
+			  border: 0 solid transparent;
+			}
+			a:hover::after {
+			  border-top: 2px solid $purple;
+			  border-left-width: 2px;
+			  border-right-width: 2px;
+			  transform: rotate(270deg);
+			  transition: transform 0.4s linear 0s, border-left-width 0s linear 0.35s;
 			}
 		}
 		@media (max-width: 767px) {
@@ -1154,23 +1259,23 @@ body.wallet {
 }
 
 	/*################################################################################### ABOUT */
-	
+
 	.about {
 		.intro {
 			height: 670px;
 			overflow: hidden;
 			padding: 117px 0 0 0;
-	
+
 			background: #eaeaea;
 			background: -moz-linear-gradient( top, #eaeaea 0%, #ffffff 100%);
 			background: -webkit-linear-gradient( top, #eaeaea 0%, #ffffff 100%);
 			background: linear-gradient( to bottom, #eaeaea 0%, #ffffff 100%);
-	
+
 			img {
 				padding-top: 100px;
 			}
-	
-	
+
+
 		}
 	@media(max-width:767px) {
 	    .intro {
@@ -1349,6 +1454,9 @@ body.wallet {
 	.team {
 		h4 {
 			font-size: 18px;
+		}
+		p {
+			line-height: 1.4em;
 		}
 	}
 	.info {
