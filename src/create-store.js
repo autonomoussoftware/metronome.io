@@ -7,7 +7,14 @@ import rootReducer from './reducers'
 const persistState =
   !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
     ? identity
-    : reduxLocalStorage(['auction', 'rates', 'wallet'])
+    : reduxLocalStorage([
+        'converter',
+        'proceeds',
+        'auction',
+        'market',
+        'wallet',
+        'rates'
+      ])
 
 export default function(initialState) {
   const reduxDevtoolsOptions = {
