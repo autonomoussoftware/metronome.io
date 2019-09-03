@@ -7,6 +7,7 @@ import pRetry from 'p-retry'
 import styled from 'styled-components'
 import utils from 'web3-utils'
 
+import withProviderPermission from '../../hocs/withProviderPermission'
 import DollarValue from '../common/DollarValue'
 import TextInput from '../common/TextInput'
 import FiatValue from '../common/FiatValue'
@@ -150,7 +151,10 @@ function throwIfNull(obj) {
 
 class BuyForm extends Component {
   static propTypes = {
+    PermissionMessage: PropTypes.func.isRequired,
     gasOverestimation: PropTypes.number.isRequired,
+    permissionStatus: PropTypes.oneOf(['not-asked', 'granted', 'denied'])
+      .isRequired,
     auctionsAddress: PropTypes.string.isRequired,
     isAuctionActive: PropTypes.bool,
     currentPrice: PropTypes.string.isRequired,
@@ -285,6 +289,8 @@ class BuyForm extends Component {
   // eslint-disable-next-line complexity
   render() {
     const {
+      PermissionMessage,
+      permissionStatus,
       isAuctionActive,
       currentPrice,
       updateEth,
@@ -370,10 +376,14 @@ class BuyForm extends Component {
               </ErrorMessage>
             )}
 
+          <PermissionMessage web3Provider={web3Provider} />
+
           <div
             data-rh={
               !isAuctionActive
                 ? 'Current auction is depleted'
+                : permissionStatus === 'denied'
+                ? `${web3Provider} permissions required`
                 : !address
                 ? 'You need to login to your wallet'
                 : !new BigNumber(eth).gt(0)
@@ -421,4 +431,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withWeb3(BuyForm))
+)(withWeb3(withProviderPermission(BuyForm)))

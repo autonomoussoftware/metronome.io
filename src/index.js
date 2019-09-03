@@ -79,7 +79,9 @@ if (rootElement || marqueeElement) {
         )}
         <MetronomeStatus />
         <WalletVersion />
-        <ChainWarning />
+        <Portal selector="#marquee">
+          <ChainWarning />
+        </Portal>
         <WalletInfo />
         <ReactHint autoPosition events />
         <Rates />
