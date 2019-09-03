@@ -171,10 +171,10 @@ class BuyForm extends Component {
       })
     }),
     estimate: PropTypes.string.isRequired,
+    metRate: PropTypes.number.isRequired,
     balance: PropTypes.string,
     address: PropTypes.string,
     symbol: PropTypes.string.isRequired,
-    rate: PropTypes.number.isRequired,
     web3: PropTypes.shape({
       eth: PropTypes.shape({
         getTransaction: PropTypes.func.isRequired
@@ -298,12 +298,10 @@ class BuyForm extends Component {
       estimate,
       balance,
       address,
+      metRate,
       symbol,
-      rate,
       eth
     } = this.props
-
-    const fiatValue = new BigNumber(eth).times(rate).toString()
 
     const allowBuy =
       isAuctionActive &&
@@ -362,7 +360,7 @@ class BuyForm extends Component {
                 <MetValue unit="met">{estimate}</MetValue>
               </EstimateMet>
               <EstimateUsd>
-                <FiatValue suffix="USD">{fiatValue}</FiatValue>
+                <FiatValue suffix="USD">{estimate * metRate}</FiatValue>
               </EstimateUsd>
             </EstimateValue>
           </EstimateContainer>
@@ -414,8 +412,8 @@ const mapStateToProps = state => ({
   errorData: state.buyPanel.errorData,
   address: state.wallet.address,
   balance: state.wallet.balance,
-  symbol: state.config.chains[state.chain.active].symbol,
-  rate: state.rates[state.config.chains[state.chain.active].symbol]
+  metRate: state.rates.MET,
+  symbol: state.config.chains[state.chain.active].symbol
 })
 
 const mapDispatchToProps = dispatch => ({
