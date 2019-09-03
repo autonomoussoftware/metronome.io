@@ -31,7 +31,7 @@ const ChainWarning = ({ isCorrectChain, chains }) =>
 
 const mapStateToProps = state => ({
   isCorrectChain:
-    state.wallet.chainId === null ||
+    !state.wallet.chainId ||
     Object.keys(state.config.chains).includes(state.wallet.chainId),
   chains: Object.values(state.config.chains)
 })
