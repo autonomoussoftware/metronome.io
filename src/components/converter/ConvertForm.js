@@ -9,6 +9,7 @@ import pRetry from 'p-retry'
 import styled from 'styled-components'
 import utils from 'web3-utils'
 
+import withProviderPermission from '../../hocs/withProviderPermission'
 import MinReturnCheckbox from './MinReturnCheckbox'
 import DollarValue from '../common/DollarValue'
 import TextInput from '../common/TextInput'
@@ -155,6 +156,9 @@ class ConvertForm extends Component {
     updateEstimateFailure: PropTypes.func.isRequired,
     updateEstimateStart: PropTypes.func.isRequired,
     onUseMinimumToggle: PropTypes.func.isRequired,
+    PermissionMessage: PropTypes.func.isRequired,
+    permissionStatus: PropTypes.oneOf(['not-asked', 'granted', 'denied'])
+      .isRequired,
     estimateStatus: PropTypes.oneOf(['init', 'pending', 'success', 'failure'])
       .isRequired,
     estimateError: PropTypes.string,
@@ -354,6 +358,8 @@ class ConvertForm extends Component {
   // eslint-disable-next-line complexity
   render() {
     const {
+      PermissionMessage,
+      permissionStatus,
       estimateStatus,
       estimateError,
       currentPrice,
@@ -447,9 +453,13 @@ class ConvertForm extends Component {
               </ErrorMessage>
             )}
 
+          <PermissionMessage web3Provider={web3Provider} />
+
           <div
             data-rh={
-              !address
+              permissionStatus === 'denied'
+                ? `${web3Provider} permissions required`
+                : !address
                 ? 'You need to login to your wallet'
                 : !new BigNumber(eth).gt(0)
                 ? 'Enter a valid amount'
@@ -502,4 +512,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withWeb3(ConvertForm))
+)(withWeb3(withProviderPermission(ConvertForm)))

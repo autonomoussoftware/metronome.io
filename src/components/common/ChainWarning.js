@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import React from 'react'
 
 const Container = styled.div`
-  position: fixed;
-  top: 0;
+  position: absolute;
+  top: 40px;
   z-index: 2;
   right: 0;
   left: 0;
@@ -14,7 +14,8 @@ const Container = styled.div`
   color: #ae5b11;
   background: rgb(255, 185, 122);
 
-  .site-header.fixed-top + #top & {
+  body.scrolled & {
+    position: fixed;
     top: 54px;
   }
 `
@@ -31,7 +32,7 @@ const ChainWarning = ({ isCorrectChain, chains }) =>
 
 const mapStateToProps = state => ({
   isCorrectChain:
-    state.wallet.chainId === null ||
+    !state.wallet.chainId ||
     Object.keys(state.config.chains).includes(state.wallet.chainId),
   chains: Object.values(state.config.chains)
 })

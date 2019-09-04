@@ -35,26 +35,28 @@ const reducer = handleActions(
     UPDATE_BUY_ETH: (state, { payload }) => ({
       ...state,
       eth: new BigNumber(payload.value).toFixed(DECIMAL_PLACES),
-      estimate: getEstimate(
-        payload.value,
-        state.tokensRemaining,
-        state.currentPrice
-      )
+      estimate:
+        payload.value && state.tokensRemaining && state.currentPrice
+          ? getEstimate(
+              payload.value,
+              state.tokensRemaining,
+              state.currentPrice
+            )
+          : state.estimate
     }),
-    UPDATE_AUCTION_STATUS: (state, { payload }) =>
-      // avoid updating estimate if status still not received
-      state.currentPrice
-        ? {
-            ...state,
-            tokensRemaining: payload.tokensRemaining,
-            currentPrice: payload.currentPrice,
-            estimate: getEstimate(
+    UPDATE_AUCTION_STATUS: (state, { payload }) => ({
+      ...state,
+      tokensRemaining: payload.tokensRemaining,
+      currentPrice: payload.currentPrice,
+      estimate:
+        state.eth && payload.tokensRemaining && payload.currentPrice
+          ? getEstimate(
               state.eth,
               payload.tokensRemaining,
               payload.currentPrice
             )
-          }
-        : state
+          : state.estimate
+    })
   },
   initialState
 )
