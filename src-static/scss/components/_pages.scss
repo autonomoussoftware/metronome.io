@@ -9,8 +9,6 @@ body.home {
 	}
 
 	&.scrolled {
-		padding-top: 40px;
-
 		.quick-buy {
 			margin-top: -490px;
 			margin-bottom: 65px;
@@ -27,9 +25,9 @@ body.home {
 		.toggler.is-active .toggler-inner:before {
 			background-color: #FFF;
 		}
-		&.scrolled {
+		/* &.scrolled {
 			padding-top: 80px;
-		}
+		} */
 
 	}
 
@@ -332,7 +330,7 @@ body.home {
 	}
 	&.scrolled {
 		.top {
-			padding-top: 77px;
+			/* padding-top: 77px; */
 		}
 	}
 
