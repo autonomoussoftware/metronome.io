@@ -8,7 +8,7 @@ import AuctionCounterSm from './AuctionCounterSm'
 import DollarValue from '../common/DollarValue'
 import MetValue from '../common/MetValue'
 
-const smartRound = smartRounder(6, 2, 4)
+const smartRound = smartRounder(6, 0, 0)
 
 const Item = ({ label, children, isLast, isCopy }) => (
   <span className={`met-stat${isLast ? ' last' : ''}${isCopy ? ' copy' : ''}`}>
