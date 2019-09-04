@@ -53,22 +53,22 @@ $(document).ready(function($) {
 
 	/* Handle resizing header on scroll */
 	$(window).resize(function() {
-		//if ($windowWidth >= 992) {
-			var navbar = $('.navbar')
-			var origOffsetY = navbar.offset().top
+		var navbar = $('.navbar')
+		var origOffsetY = navbar.offset().top
 
-			function scroll() {
-				if ($(window).scrollTop() >= origOffsetY) {
-					$('header#masthead').addClass('scrolled fixed-top')
-					$('body').addClass('scrolled')
-				} else {
-					$('header#masthead').removeClass('scrolled fixed-top')
-					$('body').removeClass('scrolled')
-				}
+		function scroll() {
+			if ($(window).scrollTop() >= 40) { //Updated to hard 40px to accomodate scrolling marquee
+				$('header#masthead').addClass('scrolled fixed-top')
+				$('body').addClass('scrolled')
+			} else {
+				$('header#masthead').removeClass('scrolled')
+				$('body').removeClass('scrolled')
 			}
-			document.onscroll = scroll
-		//}
+		}
+		document.onscroll = scroll
 	}).resize()
+
+
 	/* Initialize main nav toggle */
 	$('.toggler').on('click', function() {
 		$(this).toggleClass('is-active')
