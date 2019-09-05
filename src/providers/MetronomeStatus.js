@@ -18,7 +18,6 @@ class MetronomeStatus extends Component {
 
   initStream() {
     this.statusStream = createMetronomeStatusStream({
-      web3currentProvider: window.web3 && window.web3.currentProvider,
       metApiUrl: this.props.metApiUrl
     })
     this.statusStream.on('data', this.props.onData)

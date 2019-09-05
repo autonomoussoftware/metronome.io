@@ -4,7 +4,7 @@ import React from 'react'
 
 const Container = styled.div`
   position: absolute;
-  top: 40px;
+  top: 102px;
   z-index: 2;
   right: 0;
   left: 0;
@@ -16,16 +16,26 @@ const Container = styled.div`
 
   body.scrolled & {
     position: fixed;
-    top: 54px;
+    top: 62px;
+  }
+
+  @media (min-width: 992px) {
+    top: 40px;
+
+    body.scrolled & {
+      top: 54px;
+    }
   }
 `
 
 const ChainWarning = ({ isCorrectChain, chains }) =>
   !isCorrectChain && (
     <Container>
-      Unsupported chain. Connect wallet to a valid chain:{' '}
+      Your web wallet is connected to the wrong chain. Switch to{' '}
       {chains
-        .map(({ displayName, chainId }) => `${displayName} (id: ${chainId})`)
+        .map(
+          ({ displayName, chainId }) => `${displayName} (net id: ${chainId})`
+        )
         .join(', ')}
     </Container>
   )

@@ -8,12 +8,15 @@ import styled from 'styled-components'
 import utils from 'web3-utils'
 
 import withProviderPermission from '../../hocs/withProviderPermission'
+import WalletInfo from '../../providers/WalletInfo'
+import ChainWarning from '../common/ChainWarning'
 import DollarValue from '../common/DollarValue'
 import TextInput from '../common/TextInput'
 import FiatValue from '../common/FiatValue'
 import withWeb3 from '../../hocs/withWeb3'
 import EthValue from '../common/EthValue'
 import MetValue from '../common/MetValue'
+import Portal from '../common/Portal'
 
 const Container = styled.div`
   border-radius: 4px;
@@ -398,6 +401,10 @@ class BuyForm extends Component {
             </SubmitBtn>
           </div>
         </Form>
+        <Portal selector="#marquee">
+          <ChainWarning />
+        </Portal>
+        <WalletInfo />
       </Container>
     )
   }
