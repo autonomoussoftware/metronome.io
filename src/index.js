@@ -11,12 +11,10 @@ import config from './config'
 
 import MetronomeStatus from './providers/MetronomeStatus'
 import WalletVersion from './providers/WalletVersion'
-import WalletInfo from './providers/WalletInfo'
 import Rates from './providers/Rates'
 
 import DashboardPage from './components/dashboard/Dashboard'
 import ConverterPage from './components/converter/Converter'
-import ChainWarning from './components/common/ChainWarning'
 import AuctionPage from './components/auction/Auction'
 import WalletPage from './components/wallet/Wallet'
 import HomePage from './components/home/Home'
@@ -79,10 +77,6 @@ if (rootElement || marqueeElement) {
         )}
         <MetronomeStatus />
         <WalletVersion />
-        <Portal selector="#marquee">
-          <ChainWarning />
-        </Portal>
-        <WalletInfo />
         <ReactHint autoPosition events />
         <Rates />
       </React.Fragment>
