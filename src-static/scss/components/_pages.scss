@@ -32,7 +32,7 @@ body.home {
 	}
 
 	.top {
-		height: 1386px;
+		height: 1426px;
 		padding: 117px 0 0 0;
 		/* background-image: url('../images/whispy-bg-purple.jpg');
 		background-position: right top;
@@ -417,32 +417,41 @@ body.home {
 
 }
 .messari {
+	padding-bottom: 0;
+
 	h2 {
 		font-size: 35px;
 		text-align: center;
-		margin-bottom: 20px;
+		margin-bottom: 15px;
 	}
 	.messari-content {
-	    background-color: rgba(28,176,255,.15);
-		padding: 30px;
 		text-align: center;
 		font-weight: 700;
+		margin-bottom: 30px;
 
 		h5 {
-			margin-top: 25px;
 			color: #333335;
 		    font-size: 18px;
 		    line-height: 1.6em;
 		    font-weight: 700;
 
 			a {
-				margin-left: 20px;
+
 				font-size: 15px;
+				letter-spacing: .1em;
+
+				&:first-child {
+					margin-right: 30px;
+				}
 
 				&:hover,
 				&:focus {
 					text-decoration: none;
 					opacity: .85;
+				}
+
+				img {
+					margin-right: 5px;
 				}
 			}
 
@@ -454,11 +463,18 @@ body.home {
 			}
 		}
 	}
+
+	background: transparent;
+	background: -moz-linear-gradient( bottom, #B3A3F5 0%, #FFFFFF 100%);
+	background: -webkit-linear-gradient( bottom, #B3A3F5 0%, #FFFFFF 100%);
+	background: linear-gradient( to top, #B3A3F5 0%, #FFFFFF 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#B3A3F5', GradientType=0);
+
 }
 .process {
-
+	padding-top: 75px;
 	background: #eaeaea;
-	background: -moz-linear-gradient( bottom, #eaeaea 0%, #FFFFFF 30%, #eaeaea 100%);
+	background: -moz-linear-gradient( bottom, #eaeaea 0%, #FFFFFF 30%, #FFFFFF 100%);
 	background: -webkit-linear-gradient( bottom, #eaeaea 0%, #FFFFFF 30%, #FFFFFF 100%);
 	background: linear-gradient( to top, #eaeaea 0%, #FFFFFF 30%, #FFFFFF 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea', GradientType=0);
