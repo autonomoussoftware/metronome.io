@@ -23,9 +23,11 @@ const Container = styled.div`
 const ChainWarning = ({ isCorrectChain, chains }) =>
   !isCorrectChain && (
     <Container>
-      Unsupported chain. Connect wallet to a valid chain:{' '}
+      Your web wallet is connected to the wrong chain. Switch to{' '}
       {chains
-        .map(({ displayName, chainId }) => `${displayName} (id: ${chainId})`)
+        .map(
+          ({ displayName, chainId }) => `${displayName} (net id: ${chainId})`
+        )
         .join(', ')}
     </Container>
   )
