@@ -32,6 +32,9 @@ function withProviderPermission(WrappedComponent) {
 
     askForPermission = () => {
       if (window.ethereum) {
+        window.ethereum.autoRefreshOnNetworkChange = false
+        window.ethereum.on('networkChanged', () => window.location.reload())
+
         window.ethereum
           .enable()
           .then(() => this.props.updatePermissionStatus('granted'))
