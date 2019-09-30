@@ -3,7 +3,7 @@ const rewireEslint = require('react-app-rewire-eslint')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const gaTrackingId = process.env.REACT_APP_GA_TRACKING_ID || 'UA-116275666-1'
-const engageFormUrl = process.env.REACT_APP_ENGAGE_FORM_URL || 'https://mailer.metronome.io/contact-met'
+const engageFormUrl = process.env.REACT_APP_ENGAGE_FORM_URL || 'sendmail.php'
 
 module.exports = {
   webpack(config, env) {
