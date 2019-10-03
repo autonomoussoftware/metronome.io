@@ -1272,7 +1272,7 @@ body.wallet {
 	}
 }
 
-	/*################################################################################### ABOUT */
+/*################################################################################### ABOUT */
 
 	.about {
 		.intro {
@@ -1752,6 +1752,26 @@ body.wallet {
 
 		@media(max-width:768px) {
 			padding-top: 0;
+		}
+	}
+}
+/*################################################################################### 404 */
+.err-404 {
+
+	background: #eaeaea;
+	background: -moz-linear-gradient( top, #eaeaea 0%, #ffffff 100%);
+	background: -webkit-linear-gradient( top, #eaeaea 0%, #ffffff 100%);
+	background: linear-gradient( to bottom, #eaeaea 0%, #ffffff 100%);
+
+	.site-section.intro {
+		padding: 150px 0 150px;
+
+		h1.page-title {
+			padding-top: 30px;
+		}
+
+		@media(max-width:991px) {
+			padding: 20px 0 150px;
 		}
 	}
 }
