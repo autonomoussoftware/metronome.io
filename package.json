@@ -11,8 +11,6 @@
     "build:libs:status": "cd lib/metronome-status-js && npm i && npm run build",
     "build:static": "gulp",
     "fix-deps": "rm -rf node_modules/react-scripts/node_modules/eslint",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint --fix ./src",
     "postinstall": "patch-package",
     "prestart": "npm run fix-deps",
     "prebuild": "npm run fix-deps && npm run build:libs && gulp",
