@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="ie=edge" http-equiv="x-ua-compatible" />
-    <title>Metronome | Dashboard</title>
+    <title>Metronome | 404</title>
     <link
       href="../dist/lib/bootstrap/css/bootstrap.min.css"
       rel="stylesheet"
@@ -44,8 +44,8 @@
       }
       #loader {
         display: block;
-        margin: 0 auto;
-        height: 200px;
+        margin: 0 0 16px 50px;
+        height: 35px;
       }
       #loader-line {
         animation: loader 2s ease-in-out infinite;
@@ -53,7 +53,7 @@
       }
     </style>
   </head>
-  <body class="dashboard">
+  <body class="err-404">
     <!-- HEADER -->
     <div class="white-half"></div>
     <div class="gray-fade"></div>
@@ -63,20 +63,18 @@
       <!-- /Dynamic content -->
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand" href="/">
-            <img
+          <a class="navbar-brand" href="/"
+            ><img
               alt="Metronome Logo"
               class="d-inline-block align-top logo-purp"
               src="../dist/images/metronome-logo.png"
-              width="213"
-            />
+              width="213"/>
             <img
               alt="Metronome Logo"
               class="align-top logo-white"
               src="../dist/images/metronome-logo-white@2x.png"
               width="213"
-            />
-          </a>
+          /></a>
           <button
             aria-controls="navbarNav"
             aria-expanded="false"
@@ -90,25 +88,20 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="/buy/"
-                  >Buy<span class="sr-only">(current)</span></a
-                >
-              </li>
+              <li class="nav-item"><a class="nav-link" href="/buy/">Buy</a></li>
               <li class="nav-item">
                 <a class="nav-link" href="/build/">Build</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/engage/">Engage</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/wallet/">Wallet</a>
+              <li class="nav-item active">
+                <a class="nav-link" href="/wallet/"
+                  >Wallet<span class="sr-only">(current)</span></a
+                >
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/roadmap/">Roadmap</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/about/">About</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/about/">About</a>
@@ -182,39 +175,36 @@
     </header>
     <!-- /HEADER -->
     <!-- PAGE -->
-    <section class="site-section" id="top">
+    <section class="site-section intro" id="top">
       <div class="container">
         <div class="row">
-          <div class="col-12 welcome">
-            <!-- Dynamic content -->
-            <div content="dashboard" id="root">
-              <svg
-                height="88"
-                id="loader"
-                version="1.1"
-                viewbox="0 0 88 88"
-                width="88"
-                xmlns="http://www.w3.org/2000/svg"
+          <div class="col-md-6">
+            <h1 class="page-title mb-4">Uh oh.</h1>
+            <p class="w-75 pb-3">
+              That link has moved to a different chain. Hop back on with one of
+              these links:
+            </p>
+            <p>
+              <a href="/">Go Home</a><br />
+              <a
+                href="https://github.com/autonomoussoftware/documentation/blob/master/FAQ.md"
+                target="_blank"
+                >View FAQs</a
+              ><br />
+              <a
+                href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md"
+                target="_blank"
+                >View Owners Manual</a
               >
-                <path
-                  d="M75.2,78.5H12.8c-3.8,0-6.2-4.1-4.4-7.4l31.2-58.1c1.9-3.5,7-3.5,8.9,0l31.2,58.1C81.4,74.4,79,78.5,75.2,78.5z"
-                  fill="none"
-                  stroke="#7e61f8"
-                  stroke-width="5"
-                ></path>
-                <line
-                  id="loader-line"
-                  stroke="#7e61f8"
-                  stroke-linecap="round"
-                  stroke-width="5"
-                  x1="44"
-                  x2="44"
-                  y1="22.5"
-                  y2="78.5"
-                ></line>
-              </svg>
-            </div>
-            <!-- /Dynamic content -->
+            </p>
+          </div>
+          <div class="col-md-6">
+            <img
+              alt="absctract chain with green check"
+              class="wallet-img"
+              src="../dist/images/graphic-chain@2x.png"
+              width="680"
+            />
           </div>
         </div>
       </div>
@@ -222,6 +212,90 @@
     <!-- /PAGE -->
     <!-- FOOTER -->
     <footer class="site-footer" id="colophon">
+      <div class="site-section connect" id="connect">
+        <div class="container">
+          <div class="connect-inner bg-xdark">
+            <span class="plus"><i class="fas fa-plus"></i></span>
+            <div class="row">
+              <div class="col-md-4 d-flex align-items-center">
+                <p class="lead txt-light mb-0">Connect + Collaborate:</p>
+              </div>
+              <div class="col-md-8">
+                <ul class="nav nav-connect justify-content-end">
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="https://twitter.com/MET_Token"
+                      target="_blank"
+                      ><i class="fab fa-twitter"></i
+                    ></a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="https://t.me/metronometoken"
+                      target="_blank"
+                      ><i class="fab fa-telegram-plane"></i
+                    ></a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="https://boards.messari.io/b/metronome-(met)-ei15oi"
+                      target="_blank"
+                      ><img
+                        alt="Messari Icon"
+                        src="../dist/images/Messari_M_72x72.png"
+                        width="36"
+                    /></a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="https://medium.com/@MetronomeToken"
+                      target="_blank"
+                      ><i class="fab fa-medium-m"></i
+                    ></a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="https://www.facebook.com/MetronomeToken/"
+                      target="_blank"
+                      ><i class="fab fa-facebook-square"></i
+                    ></a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="https://github.com/autonomoussoftware"
+                      target="_blank"
+                      ><i class="fab fa-github-alt"></i
+                    ></a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="https://www.reddit.com/r/metronometoken"
+                      target="_blank"
+                      ><i class="fab fa-reddit-alien"></i
+                    ></a>
+                  </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link"
+                      href="https://www.meetup.com/Official-Metronome-Meetup/"
+                      target="_blank"
+                      ><i class="fab fa-meetup"></i
+                    ></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- .site-section -->
       <div class="container">
         <div class="row navs">
           <div class="col-sm-6 col-lg-3">
@@ -307,9 +381,9 @@
                   href="https://boards.messari.io/b/metronome-(met)-ei15oi"
                   target="_blank"
                   ><img
+                    alt="Messari Icon"
                     src="../dist/images/Messari_M_32x32.png"
                     width="16"
-                    alt="Messari Icon"
                   />
                   Messari</a
                 >
