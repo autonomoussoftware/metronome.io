@@ -172,16 +172,18 @@ exports.cacheBust = cacheBust
 /*
  * Specify if tasks run in series or parallel using `gulp.series` and `gulp.parallel`
  */
-const local = gulp.parallel(style, image, font, lib, script)
-const ci = gulp.parallel(style, image, font, lib, script, cacheBust)
+const build = gulp.parallel(
+  ...[style, image, font, lib, script].concat(
+    process.env.TRAVIS ? cacheBust : []
+  )
+)
 
 /*
  * You can still use `gulp.task` to expose tasks
  */
-gulp.task('local', local)
-gulp.task('ci', ci)
+gulp.task('build', build)
 
 /*
  * Define default task that can be called by just running `gulp` from cli
  */
-gulp.task('default', local)
+gulp.task('default', build)
