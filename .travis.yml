@@ -12,7 +12,6 @@ env:
     - PATH=$HOME/.local/bin:$PATH # for `aws`
 
 script:
-  - echo Skipping tests for $TRAVIS_COMMIT
   - npm run build
 
 before_deploy:
