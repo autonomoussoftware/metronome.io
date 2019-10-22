@@ -21,7 +21,8 @@ module.exports = {
       'privacy/index.html',
       'roadmap/index.html',
       'thank-you/index.html',
-      'wallet/index.html'
+      'wallet/index.html',
+      '404/index.html'
     ]
 
     pages.forEach(function(filename) {

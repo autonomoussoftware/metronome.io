@@ -60,33 +60,35 @@ function style() {
 function image() {
   return gulp
     .src(paths.images.src)
-    .pipe(imagemin([
-		imagemin.svgo({
-			plugins: [
-			 { removeXMLProcInst: false },
-			 { removeMetadata: false },
-			 { removeXMLNS: false },
-			 { removeEditorsNSData: false },
-			 { removeEmptyAttrs: false },
-			 { removeHiddenElems: false },
-			 { removeEmptyText: false },
-			 { removeEmptyContainers: false },
-			 { removeViewBox: false },
-			 { cleanupEnableBackground: false },
-			 { minifyStyles: false },
-			 { convertStyleToAttrs: false },
-			 { convertPathData: false },
-			 { convertTransform: false },
-			 { rremoveUnknownsAndDefaults: false },
-			 { removeNonInheritableGroupAttrs: false },
-			 { removeUselessStrokeAndFill: false },
-			 { removeUnusedNS: false },
-			 { prefixIds: false },
-			 { cleanupNumericValues: false },
-			 { cleanupListOfValues: false }
-			]
-		})
-     ]))
+    .pipe(
+      imagemin([
+        imagemin.svgo({
+          plugins: [
+            { removeXMLProcInst: false },
+            { removeMetadata: false },
+            { removeXMLNS: false },
+            { removeEditorsNSData: false },
+            { removeEmptyAttrs: false },
+            { removeHiddenElems: false },
+            { removeEmptyText: false },
+            { removeEmptyContainers: false },
+            { removeViewBox: false },
+            { cleanupEnableBackground: false },
+            { minifyStyles: false },
+            { convertStyleToAttrs: false },
+            { convertPathData: false },
+            { convertTransform: false },
+            { rremoveUnknownsAndDefaults: false },
+            { removeNonInheritableGroupAttrs: false },
+            { removeUselessStrokeAndFill: false },
+            { removeUnusedNS: false },
+            { prefixIds: false },
+            { cleanupNumericValues: false },
+            { cleanupListOfValues: false }
+          ]
+        })
+      ])
+    )
     .pipe(gulp.dest(paths.images.dest))
     .pipe(browserSync.stream())
 }
@@ -123,7 +125,7 @@ const timeStamp = new Date().getTime()
 function cacheBust() {
   return gulp
     .src(['public/**/*.html'])
-    .pipe(replace(/cb=\d+/g, `cb=${timeStamp}`))
+    .pipe(replace(/CACHEBUSTER_TIMESTAMP/g, timeStamp))
     .pipe(gulp.dest('./public/.'))
 }
 
@@ -171,15 +173,15 @@ exports.cacheBust = cacheBust
  * Specify if tasks run in series or parallel using `gulp.series` and `gulp.parallel`
  */
 const local = gulp.parallel(style, image, font, lib, script)
-const build = gulp.parallel(style, image, font, lib, script, cacheBust)
+const ci = gulp.parallel(style, image, font, lib, script, cacheBust)
 
 /*
  * You can still use `gulp.task` to expose tasks
  */
 gulp.task('local', local)
-gulp.task('build', build)
+gulp.task('ci', ci)
 
 /*
  * Define default task that can be called by just running `gulp` from cli
  */
-gulp.task('default', build)
+gulp.task('default', local)
