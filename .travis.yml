@@ -17,6 +17,9 @@ script:
 before_deploy:
   - pip install --user awscli
   - aws s3 rm s3://$S3_BUCKET --recursive
+  - ls .
+  - zip -r build-$TRAVIS_TAG.zip build
+  - echo "Bundle SHA-256 checksum $(sha256sum build-$TRAVIS_TAG.zip)"
 
 deploy:
   - provider: s3
@@ -39,9 +42,16 @@ deploy:
     local_dir: build
     on:
       branch: master
-      tags: true
-      condition: $TRAVIS_TAG =~ ^\d{4}-\d{2}-\d{2}-\d+$
     cache_control: 'max-age=$CACHE_MAX_AGE'
+
+  - provider: releases
+    api_key: $GH_TOKEN
+    file: build-$TRAVIS_TAG.zip
+    skip_cleanup: true
+    draft: true
+    name: $TRAVIS_TAG
+    on:
+      branch: master
 
 after_deploy:
   - aws configure set preview.cloudfront true
