@@ -7,7 +7,6 @@
   "license": "MIT",
   "scripts": {
     "build": "gulp && react-app-rewired build",
-    "build:ci": "gulp ci && react-app-rewired build",
     "build:libs": "npm run build:libs:status",
     "build:libs:status": "cd lib/metronome-status-js && npm i && npm run build",
     "build:static": "gulp",

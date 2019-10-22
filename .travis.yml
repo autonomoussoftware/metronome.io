@@ -11,10 +11,10 @@ env:
   global:
     - PATH=$HOME/.local/bin:$PATH # for `aws`
 
-script: 'echo Skipping tests for $TRAVIS_COMMIT'
+script:
+  - npm run build
 
 before_deploy:
-  - npm run build:ci
   - pip install --user awscli
   - aws s3 rm s3://$S3_BUCKET --recursive
 
