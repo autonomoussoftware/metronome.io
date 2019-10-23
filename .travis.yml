@@ -6,7 +6,7 @@ branches:
   only:
     - develop
     - master
-    - /^\d{4}-\d{2}-\d{2}-\d+$/
+    - /^[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]+$/
 
 env:
   global:
@@ -51,8 +51,7 @@ deploy:
     draft: true
     name: $TRAVIS_TAG
     on:
-      tag: true
-      condition: $TRAVIS_TAG =~ ^\d{4}-\d{2}-\d{2}-\d+$
+      condition: $TRAVIS_TAG =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]+$
 
 after_deploy:
   - aws configure set preview.cloudfront true
