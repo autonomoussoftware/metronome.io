@@ -1,23 +1,23 @@
 language: node_js
-node_js: '10'
+node_js: "10"
 cache: npm
 
 branches:
   only:
     - develop
     - master
+    - /^\d{4}-\d{2}-\d{2}-\d+$/
 
 env:
   global:
     - PATH=$HOME/.local/bin:$PATH # for `aws`
 
+install:
+  - npm ci
+  - pip install --user awscli
+
 script:
   - npm run build
-
-before_deploy:
-  - pip install --user awscli
-  - aws s3 rm s3://$S3_BUCKET --recursive
-  - ls .
   - zip -r build-$TRAVIS_TAG.zip build
   - echo "Bundle SHA-256 checksum $(sha256sum build-$TRAVIS_TAG.zip)"
 
@@ -31,7 +31,7 @@ deploy:
     local_dir: build
     on:
       branch: develop
-    cache_control: 'max-age=$CACHE_MAX_AGE'
+    cache_control: "max-age=$CACHE_MAX_AGE"
 
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY_ID
@@ -42,7 +42,7 @@ deploy:
     local_dir: build
     on:
       branch: master
-    cache_control: 'max-age=$CACHE_MAX_AGE'
+    cache_control: "max-age=$CACHE_MAX_AGE"
 
   - provider: releases
     api_key: $GH_TOKEN
@@ -51,7 +51,8 @@ deploy:
     draft: true
     name: $TRAVIS_TAG
     on:
-      branch: master
+      tag: true
+      condition: $TRAVIS_TAG =~ ^\d{4}-\d{2}-\d{2}-\d+$
 
 after_deploy:
   - aws configure set preview.cloudfront true
