@@ -202,7 +202,7 @@ class Receipt extends React.Component {
           </MakeAnother>
           <ExplorerLink>
             <a href={explorerUrl.replace('{{hash}}', hash)} target="_blank">
-              View is Explorer
+              View in Explorer
             </a>
           </ExplorerLink>
         </Box>
