@@ -6,7 +6,7 @@ branches:
   only:
     - develop
     - master
-    - /^[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]+$/
+    - deploy-test
 
 env:
   global:
@@ -14,12 +14,9 @@ env:
 
 install:
   - npm ci
-  - pip install --user awscli
 
 script:
   - npm run build
-  - zip -r build-$TRAVIS_TAG.zip build
-  - echo "Bundle SHA-256 checksum $(sha256sum build-$TRAVIS_TAG.zip)"
 
 deploy:
   - provider: s3
@@ -44,15 +41,18 @@ deploy:
       branch: master
     cache_control: "max-age=$CACHE_MAX_AGE"
 
-  - provider: releases
-    api_key: $GH_TOKEN
-    file: build-$TRAVIS_TAG.zip
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: $S3_BUCKET
     skip_cleanup: true
-    draft: true
-    name: $TRAVIS_TAG
+    region: us-east-2
+    local_dir: build
     on:
-      condition: $TRAVIS_TAG =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]+$
+      branch: deploy-test
+    cache_control: "max-age=$CACHE_MAX_AGE"
 
 after_deploy:
+  - pip install --user awscli
   - aws configure set preview.cloudfront true
-  # - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+  - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
