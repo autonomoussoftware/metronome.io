@@ -13,7 +13,6 @@ import MetronomeStatus from './providers/MetronomeStatus'
 import WalletVersion from './providers/WalletVersion'
 import Rates from './providers/Rates'
 
-import DashboardPage from './components/dashboard/Dashboard'
 import ConverterPage from './components/converter/Converter'
 import AuctionPage from './components/auction/Auction'
 import WalletPage from './components/wallet/Wallet'
@@ -40,8 +39,6 @@ function getAppContent(content) {
   switch (content) {
     case 'home':
       return <HomePage />
-    case 'dashboard':
-      return <DashboardPage />
     case 'converter':
       return <ConverterPage />
     case 'auction':
