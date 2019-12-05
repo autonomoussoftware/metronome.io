@@ -16,7 +16,6 @@ module.exports = {
       'build/index.html',
       'buy/index.html',
       'converter/index.html',
-      'dashboard/index.html',
       'engage/index.html',
       'privacy/index.html',
       'roadmap/index.html',

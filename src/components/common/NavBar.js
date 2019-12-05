@@ -69,12 +69,6 @@ export default class NavBar extends React.Component {
             Auction
           </Link>
         </LinkContainer>
-        <Link
-          isActive={this.props.activePage === 'dashboard'}
-          href="../dashboard"
-        >
-          Dashboard
-        </Link>
       </Container>
     )
   }
