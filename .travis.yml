@@ -45,14 +45,13 @@ deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
-    bucket: "metronome.io"
+    bucket: $S3_BUCKET
     acl: public_read
     skip_cleanup: true
     region: us-east-2
     local_dir: build
     on:
       branch: deploy-test
-      # env: CLOUDFRONT_DISTRIBUTION_ID="E3KIV78A4Q6N7A"
       #    cache_control: "max-age=$CACHE_MAX_AGE"
 
 after_deploy:
