@@ -38,7 +38,7 @@ deploy:
     # Note CloudFront is not configured for max-age to be honored.
     cache_control: "max-age=$CACHE_MAX_AGE"
 
-  - provider: s3
+  - provider: script
     access_key_id: $AWS_ACCESS_KEY_ID
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: $S3_BUCKET
@@ -46,6 +46,7 @@ deploy:
     region: us-east-2
     local_dir: build
     acl: public_read
+    script: ~/.local/bin/aws s3 sync build s3://$S3_BUCKET --region us-east-2 --delete
     on:
       branch: master
     # Note CloudFront is not configured for max-age to be honored.
