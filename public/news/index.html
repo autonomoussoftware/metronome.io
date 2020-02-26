@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8" />
     <meta content="ie=edge" http-equiv="x-ua-compatible" />
-    <title>Metronome | Buy</title>
+    <title>Metronome | News</title>
     <link
       href="../dist/lib/bootstrap/css/bootstrap.min.css"
       rel="stylesheet"
@@ -33,7 +33,7 @@
       type="image/png"
     />
   </head>
-  <body class="buy">
+  <body class="latest-news">
     <!-- HEADER -->
     <header class="site-header" id="masthead">
       <!-- Dynamic content: Do not remove! -->
@@ -68,11 +68,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="/buy/"
-                  >Buy<span class="sr-only">(current)</span></a
-                >
-              </li>
+              <li class="nav-item"><a class="nav-link" href="/buy/">Buy</a></li>
               <li class="nav-item">
                 <a class="nav-link" href="/build/">Build</a>
               </li>
@@ -88,8 +84,10 @@
               <li class="nav-item">
                 <a class="nav-link" href="/about/">About</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/news/">News</a>
+              <li class="nav-item active">
+                <a class="nav-link" href="/news/"
+                  >News<span class="sr-only">(current)</span></a
+                >
               </li>
               <li class="nav-item dropdown">
                 <a
@@ -160,162 +158,134 @@
     </header>
     <!-- /HEADER -->
     <!-- PAGE -->
-    <section class="site-section intro" id="top">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 welcome">
-            <h1 class="page-title">Buy Metronome with ease.</h1>
-            <p>
-              Purchase via the Daily Auction or Autonomous Converter in the
-              Metronome Wallet, or through various third-party exchanges listed
-              below.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <div class="buy-page">
-      <section class="site-section buy-nav" id="buy-nav">
+    <div class="news-page">
+      <section class="site-section news-main" id="buy-nav">
         <div class="container">
-          <div class="row">
-            <div class="col-lg-6 mb-5 mb-lg-0">
-              <div class="buy-col">
+          <ul class="nav nav-tabs" id="newsTab" role="tablist">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                id="medium-posts"
+                data-toggle="tab"
+                href="#medium"
+                role="tab"
+                aria-controls="medium"
+                aria-selected="true"
+                >Medium Posts</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                id="latest-news"
+                data-toggle="tab"
+                href="#latest"
+                role="tab"
+                aria-controls="latest"
+                aria-selected="false"
+                >Latest News</a
+              >
+            </li>
+          </ul>
+          <div class="tab-content" id="newsTabContent">
+            <div
+              class="tab-pane fade show active"
+              id="medium"
+              role="tabpanel"
+              aria-labelledby="medium-posts"
+            >
+              <div id="content" class="row"></div>
+              <div class="medium-cta d-flex align-items-center">
                 <img
-                  alt="Auction countdown"
-                  src="../dist/images/buy-auction@2x.png"
-                  width="485"
-                  class="img-fluid"
+                  src="../dist/images/medium-logo@2x.png"
+                  alt="Medium Icon"
+                  width="141"
+                  height="141"
                 />
-                <h3 class="txt-dark">Buy MET via the Auction Contract</h3>
-                <p>
-                  Every day, the Auction Contract autonomously mints 2,880 MET,
-                  which are sold through a descending price auction with a
-                  starting price set at 2x the previous day’s auction closing
-                  price. The proceeds from these auctions stay
-                  <a
-                    href="https://medium.com/@MetronomeToken/on-metronome-author-retention-and-contract-behavior-73dad8f16494"
-                    target="_blank"
-                    >within the Metronome ecosystem</a
-                  >. Once the Daily Supply Lot starts, purchasers purchase at
-                  the price they deem fair via the
-                  <a
-                    href="https://medium.com/@MetronomeToken/how-to-purchase-metronome-from-the-metronome-wallet-51457f22239e"
-                    target="_blank"
-                    >Metronome Wallet</a
-                  >,
-                  <a
-                    href="https://medium.com/@MetronomeToken/how-to-purchase-metronome-from-the-auction-board-ed36672f8ff2"
-                    target="_blank"
-                    >Metamask or the smart contract address on the website</a
-                  >.
-                </p>
-                <a
-                  class="font-weight-bold reverse btn btn-dark"
-                  href="/auction/"
-                  >BUY MET &raquo;</a
-                >
+                <div class="cta-text">
+                  To view all posts, visit the
+                  <a href="https://medium.com/@MetronomeToken" target="_blank"
+                    >Metronome Medium &raquo;</a
+                  >
+                </div>
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="buy-col">
-                <img
-                  alt="Auction countdown"
-                  src="../dist/images/buy-convert@2x.png"
-                  width="485"
-                  class="img-fluid"
-                />
-                <h3 class="txt-dark">Convert ETH to MET Autonomously</h3>
-                <p>
-                  Sell MET or a chain’s underlying token to the Autonomous
-                  Converter at a
-                  <a
-                    href="https://github.com/autonomoussoftware/documentation/blob/master/owners_manual/owners_manual.md"
-                    target="_blank"
-                    >price determined by the current contents of the contract</a
-                  >. Interact with the Autonomous Converter through the
-                  <a href="/wallet/" title="Metronome Wallet"
-                    >Metronome Wallet</a
-                  >. The Converter tab displays the current price, current
-                  contents, and Buy button, allowing users to initiate selling
-                  an underlying token for MET or vice versa.
-                </p>
-                <a
-                  class="font-weight-bold reverse btn btn-dark"
-                  href="/converter/"
-                  >CONVERT ETH TO MET &raquo;</a
-                >
+            <div
+              class="tab-pane fade"
+              id="latest"
+              role="tabpanel"
+              aria-labelledby="latest-news"
+            >
+              <div class="row news-feed">
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="news-item">
+                    <img
+                      src="../dist/images/news-page-bloomberg@2x.png"
+                      alt="Bloomberg Logo"
+                      width="150"
+                      height="31"
+                    />
+                    <a
+                      href="https://www.bloomberg.com/news/articles/2017-10-24/bitcoin-pioneer-says-new-coin-to-work-on-multiple-blockchains"
+                      target="_blank"
+                    >
+                      Bitcoin Pioneer Says New Coin to Work on Many Blockchains
+                      &raquo;
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="news-item">
+                    <img
+                      src="../dist/images/news-page-reuters@2x.png"
+                      alt="Reuters Logo"
+                      width="186"
+                      height="43"
+                    />
+                    <a
+                      href="https://www.reuters.com/article/us-bloq-token-funding/u-s-blockchain-start-up-bloq-to-launch-bitcoin-like-token-idUSKBN1CT2G1"
+                      target="_blank"
+                    >
+                      U.S. Blockchain Start-up Bloq to Launch Bitcoin-Like Token
+                      &raquo;
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="news-item">
+                    <img
+                      src="../dist/images/news-page-american-banker@2x.png"
+                      alt="American Banker Logo"
+                      width="178"
+                      height="27"
+                    />
+                    <a
+                      href="hhttps://www.americanbanker.com/news/bitcoin-pioneers-cryptocurrency-alternative-allows-for-multiple-networks"
+                      target="_blank"
+                    >
+                      Bitcoin Pioneer Challenges Cryptocurrency Status Quo
+                      &raquo;
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="news-item">
+                    <img
+                      src="../dist/images/news-page-coindesk@2x.png"
+                      alt="Coindesk Logo"
+                      width="164"
+                      height="32"
+                    />
+                    <a
+                      href="https://www.coindesk.com/metronome-now-lets-users-move-tokens-between-blockchains"
+                      target="_blank"
+                    >
+                      Metronome Now Lets Users Move Tokens Between Blockchains
+                      &raquo;
+                    </a>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="site-section options" id="options">
-        <div class="container">
-          <div class="option third-party" id="third-party">
-            <div class="mb-4">
-              <h2 class="txt-dark font-weight-bold">
-                Access MET from Third Party Exchanges
-              </h2>
-              <p class="d-block mb-2">
-                See the list of
-                <a
-                  href="https://coinmarketcap.com/currencies/metronome/#markets"
-                  target="_blank"
-                  >third party exchanges</a
-                >
-                that have elected to support Metronome.
-              </p>
-            </div>
-            <div class="third-parties">
-              <a href="https://bilaxy.com/" target="_blank"
-                ><img
-                  alt="Bilaxy Icon"
-                  src="../dist/images/01-bilaxy-icon@2x.png"
-                  width="49"
-              /></a>
-              <a href="https://bittrex.com/" target="_blank"
-                ><img
-                  alt="Bittrex Icon"
-                  src="../dist/images/02-bittrex@2x.png"
-                  width="57"
-              /></a>
-              <a href="https://ddex.io/" target="_blank"
-                ><img
-                  alt="DDEX Icon"
-                  src="../dist/images/03-ddex-icon@2x.png"
-                  width="41"
-              /></a>
-
-              <a href="https://gate.io/" target="_blank"
-                ><img
-                  alt="Gate.io Icon"
-                  src="../dist/images/04-gate.io-logo@2x.png"
-                  width="52"
-              /></a>
-              <a href="https://www.hotbit.io/" target="_blank"
-                ><img
-                  alt="Hotbit Icon"
-                  src="../dist/images/05-hotbit-token@2x.png"
-                  width="56"
-              /></a>
-              <a href="https://idex.market" target="_blank"
-                ><img
-                  alt="IDEX Icon"
-                  src="../dist/images/06-idex-icon@2x.png"
-                  width="57"
-              /></a>
-              <a href="https://upbit.com/" target="_blank"
-                ><img
-                  alt="Upbit Icon"
-                  src="../dist/images/07-upbit@2x.png"
-                  width="57"
-              /></a>
-              <a href="https://yobit.net/" target="_blank"
-                ><img
-                  alt="Yobit Icon"
-                  src="../dist/images/08-yobit@2x.png"
-                  width="56"
-              /></a>
             </div>
           </div>
         </div>
@@ -532,6 +502,7 @@
     <!-- /FOOTER -->
     <!-- SCRIPTS -->
     <script src="../dist/js/main.js?cb=CACHEBUSTER_TIMESTAMP"></script>
+    <script src="../dist/lib/medium/mediumRSS.js"></script>
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=<%-htmlWebpackPlugin.options.gaTrackingId%>"
