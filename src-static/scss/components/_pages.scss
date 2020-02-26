@@ -1769,6 +1769,15 @@ body.latest-news {
 					}
 
 				}
+
+				@media(max-width: 767px) {
+					justify-content: center;
+
+					.nav-link {
+						border-radius: .25rem;
+						margin-bottom: 5px;
+					}
+				}
 			}
 
 			.blog-content {
@@ -1802,7 +1811,7 @@ body.latest-news {
 				margin-top: 80px;
 
 				.cta-text {
-					padding: 15px 15px 15px 40px;
+					padding: 15px 15px 15px 40px; 
 				}
 
 				@media(max-width: 480px) {
@@ -1815,7 +1824,7 @@ body.latest-news {
 					}
 					.cta-text {
 						padding: 10px 10px 10px 20px;
-						font-size: 16px;
+						font-size: 16px; 
 					}
 				}
 			}
@@ -1840,6 +1849,10 @@ body.latest-news {
 					}
 				}
 			}
+		}
+
+		@media(max-width: 991px) {
+			padding: 20px 0;
 		}
 	}
 }
