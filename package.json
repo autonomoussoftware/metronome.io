@@ -26,6 +26,7 @@
     "metronome-contracts": "2.4.0",
     "metronome-status": "file:lib/metronome-status-js",
     "p-retry": "2.0.0",
+    "p-series": "2.1.0",
     "promise-all-props": "1.0.1",
     "react": "16.4.2",
     "react-app-rewired": "1.5.2",

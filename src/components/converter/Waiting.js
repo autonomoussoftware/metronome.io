@@ -46,7 +46,7 @@ const Title = styled.h1`
   letter-spacing: 0.3px;
   text-align: center;
   color: rgb(51, 51, 53);
-  max-width: 200px;
+  max-width: 220px;
   text-align: center;
   margin: 8px auto 32px;
 `
@@ -64,7 +64,8 @@ const Note = styled.div`
 
 export default class Waiting extends React.Component {
   static propTypes = {
-    onRequestClose: PropTypes.func.isRequired
+    onRequestClose: PropTypes.func.isRequired,
+    message: PropTypes.string.isRequired
   }
 
   render() {
@@ -76,7 +77,7 @@ export default class Waiting extends React.Component {
           </CloseBtn>
         </Header>
         <METLoader size={44} />
-        <Title>Finish this Conversion in {web3Provider}</Title>
+        <Title>{this.props.message}</Title>
         <Note>
           Note: Do not change the network or general configuration of{' '}
           {web3Provider} while your conversion is completing.
