@@ -14,6 +14,7 @@ import WalletVersion from './providers/WalletVersion'
 import Rates from './providers/Rates'
 
 import ConverterPage from './components/converter/Converter'
+import RegisterToken from './components/RegisterToken'
 import AuctionPage from './components/auction/Auction'
 import WalletPage from './components/wallet/Wallet'
 import HomePage from './components/home/Home'
@@ -74,6 +75,7 @@ if (rootElement || marqueeElement) {
         )}
         <MetronomeStatus />
         <WalletVersion />
+        <RegisterToken />
         <ReactHint autoPosition events />
         <Rates />
       </React.Fragment>
