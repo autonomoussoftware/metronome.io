@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import BigNumber from 'bignumber.js'
 import PropTypes from 'prop-types'
 import debounce from 'lodash.debounce'
-import pSeries from 'p-series'
 import pRetry from 'p-retry'
 import styled from 'styled-components'
 import utils from 'web3-utils'
@@ -348,10 +347,8 @@ class ConvertMetForm extends Component {
 
         // Send in series to allow better gas estimation and interop with
         // MetaMask that seems unable to handle parallel transactions
-        return pSeries(promiEvents)
-          .then(receipts => {
-            showReceipt(receipts[receipts.length - 1])
-          })
+        return promiEvents
+          .reduce((p1, p2) => p1.then(() => p2()), Promise.resolve())
           .catch(function(err) {
             showError(`Something went wrong: ${err.message}`, err)
           })
