@@ -33,9 +33,7 @@ class RegisterToken extends React.Component {
             decimals: 18,
             address: metTokenAddress,
             symbol: 'MET',
-            image: `${
-              process.env.NODE_ENV === 'production' ? 'https' : 'http'
-            }://${window.location.host}/MET.svg`,
+            image: `${window.location.origin}/MET.svg`,
             id: Math.round(Math.random() * 100000)
           }
         }
