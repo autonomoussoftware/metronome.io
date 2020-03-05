@@ -4,11 +4,11 @@ import React from 'react'
 
 import withWeb3 from '../hocs/withWeb3'
 
-const LOCALSTORAGE_KEY = 'tokenIsRegistered'
-
 class RegisterToken extends React.Component {
   static propTypes = {
     metTokenAddress: PropTypes.string.isRequired,
+    address: PropTypes.string,
+    chainId: PropTypes.string,
     web3: PropTypes.shape({
       currentProvider: PropTypes.shape({
         sendAsync: PropTypes.func.isRequired
@@ -16,22 +16,35 @@ class RegisterToken extends React.Component {
     })
   }
 
-  componentDidMount() {
-    const { metTokenAddress, web3 } = this.props
+  getStorageKey = () =>
+    `isTokenRegistered-${this.props.chainId}-${this.props.address}`
 
-    // Avoid registering MET token if no MetaMask or if already registered
-    if (!web3 || window.localStorage.getItem(LOCALSTORAGE_KEY) === 'true') {
+  shouldRegisterToken = () =>
+    this.props.address &&
+    this.props.chainId &&
+    this.props.web3 &&
+    window.localStorage.getItem(this.getStorageKey()) !== 'true'
+
+  registerToken = () => {
+    // Avoid registering MET token if no MetaMask, not logged in to MM,
+    // incorrect network or if token is already registered.
+    if (
+      !this.props.address ||
+      !this.props.chainId ||
+      !this.props.web3 ||
+      window.localStorage.getItem(this.getStorageKey()) === 'true'
+    ) {
       return
     }
 
-    web3.currentProvider.sendAsync(
+    this.props.web3.currentProvider.sendAsync(
       {
         method: 'wallet_watchAsset',
         params: {
           type: 'ERC20',
           options: {
             decimals: 18,
-            address: metTokenAddress,
+            address: this.props.metTokenAddress,
             symbol: 'MET',
             image: `${window.location.origin}/MET.svg`,
             id: Math.round(Math.random() * 100000)
@@ -43,12 +56,25 @@ class RegisterToken extends React.Component {
         if (err) return console.warn(err)
 
         if (result) {
-          window.localStorage.setItem(LOCALSTORAGE_KEY, 'true')
+          window.localStorage.setItem(this.getStorageKey(), 'true')
           // eslint-disable-next-line no-console
           console.log('Token successfully registered on MetaMask.')
         }
       }
     )
+  }
+
+  componentDidMount() {
+    this.registerToken()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.chainId !== this.props.chainId ||
+      prevProps.address !== this.props.address
+    ) {
+      this.registerToken()
+    }
   }
 
   render() {
@@ -57,7 +83,10 @@ class RegisterToken extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  metTokenAddress: state.config.chains[state.chain.active].metTokenAddress
+  metTokenAddress: state.config.chains[state.chain.active].metTokenAddress,
+  chainId:
+    state.chain.active === state.wallet.chainId ? state.wallet.chainId : null,
+  address: state.wallet.address
 })
 
 export default connect(mapStateToProps)(withWeb3(RegisterToken))
