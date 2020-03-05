@@ -31,6 +31,7 @@ const customStyles = {
 
 class Modal extends React.Component {
   static propTypes = {
+    waitingMessage: PropTypes.string.isRequired,
     onRequestClose: PropTypes.func.isRequired,
     showStep: PropTypes.string,
     isOpen: PropTypes.bool.isRequired
@@ -44,7 +45,10 @@ class Modal extends React.Component {
         style={customStyles}
       >
         {this.props.showStep === 'waiting' && (
-          <Waiting onRequestClose={this.props.onRequestClose} />
+          <Waiting
+            onRequestClose={this.props.onRequestClose}
+            message={this.props.waitingMessage}
+          />
         )}
         {this.props.showStep === 'receipt' && (
           <Receipt onRequestClose={this.props.onRequestClose} />
@@ -55,6 +59,7 @@ class Modal extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  waitingMessage: state.convertPanel.waitingMessage,
   showStep: state.convertPanel.showStep,
   isOpen:
     state.convertPanel.showStep === 'receipt' ||

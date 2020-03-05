@@ -2,8 +2,10 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import React from 'react'
+import get from 'lodash/get'
 
 import EthValue from '../common/EthValue'
+import MetValue from '../common/MetValue'
 import arrow from '../../img/arrow-forward-24-px.svg'
 import metro from '../../img/metro-icon.svg'
 import close from '../../img/cancel.svg'
@@ -44,7 +46,6 @@ const Title = styled.h1`
   letter-spacing: 0.3px;
   text-align: center;
   color: rgb(51, 51, 53);
-  max-width: 200px;
   text-align: center;
   margin: 0 auto 24px;
 `
@@ -145,13 +146,23 @@ class Receipt extends React.Component {
       blockNumber: PropTypes.number.isRequired,
       blockHash: PropTypes.string.isRequired,
       gasUsed: PropTypes.number.isRequired,
-      logs: PropTypes.array.isRequired
+      events: PropTypes.shape({
+        ConvertEthToMet: PropTypes.shape({
+          returnValues: PropTypes.shape({
+            eth: PropTypes.string.isRequired,
+            met: PropTypes.string.isRequired
+          }).isRequired
+        }),
+        ConvertMetToEth: PropTypes.shape({
+          returnValues: PropTypes.shape({
+            eth: PropTypes.string.isRequired,
+            met: PropTypes.string.isRequired
+          }).isRequired
+        })
+      }).isRequired
     }).isRequired,
     explorerUrl: PropTypes.string.isRequired,
     tx: PropTypes.shape({
-      gasPrice: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
-      from: PropTypes.string.isRequired,
       hash: PropTypes.string.isRequired
     }).isRequired
   }
@@ -159,8 +170,8 @@ class Receipt extends React.Component {
   render() {
     const {
       explorerUrl,
-      receipt: { blockHash, blockNumber, transactionIndex },
-      tx: { hash, value }
+      receipt: { blockHash, blockNumber, transactionIndex, events },
+      tx: { hash }
     } = this.props
 
     return (
@@ -172,12 +183,34 @@ class Receipt extends React.Component {
             </CloseBtn>
           </Header>
           <SuccessIcon src={check} alt="" />
-          <Title>Purchase Complete</Title>
+          <Title>Conversion Complete</Title>
           <div>
             <Row>
               <Label>Amount Converted</Label>
               <Value>
-                <EthValue>{value}</EthValue>
+                {events.ConvertEthToMet ? (
+                  <EthValue>
+                    {get(events, 'ConvertEthToMet.returnValues.eth', '0')}
+                  </EthValue>
+                ) : (
+                  <MetValue>
+                    {get(events, 'ConvertMetToEth.returnValues.met', '0')}
+                  </MetValue>
+                )}
+              </Value>
+            </Row>
+            <Row>
+              <Label>Amount Obtained</Label>
+              <Value>
+                {events.ConvertEthToMet ? (
+                  <MetValue>
+                    {get(events, 'ConvertEthToMet.returnValues.met', '0')}
+                  </MetValue>
+                ) : (
+                  <EthValue>
+                    {get(events, 'ConvertMetToEth.returnValues.eth', '0')}
+                  </EthValue>
+                )}
               </Value>
             </Row>
             <Row>
@@ -220,12 +253,8 @@ class Receipt extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  defaultGasPrice: state.config.chains[state.chain.active].defaultGasPrice,
-  currentPrice: state.converter.status.currentPrice,
   explorerUrl: state.config.chains[state.chain.active].explorerUrl,
   receipt: state.convertPanel.receipt,
-  chainId: state.chain.active,
-  rates: state.rates,
   tx: state.convertPanel.ongoingTx
 })
 

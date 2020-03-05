@@ -251,18 +251,6 @@ const mapStateToProps = state => ({
   chainId: state.chain.active,
   rates: state.rates,
   tx: state.buyPanel.ongoingTx
-  // receipt: {
-  // transactionIndex: 12,
-  // blockNumber: 123987123,
-  // blockHash: '0x12386123',
-  // gasUsed: '123',
-  // logs: []
-  // },
-  // tx: {
-  // gasPrice: 12,
-  // from: '0x12222234567898765434567',
-  // hash: '0x123978123723712876123'
-  // }
 })
 
 export default connect(mapStateToProps)(Receipt)

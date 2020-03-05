@@ -10,6 +10,7 @@ BigNumber.config({ DECIMAL_PLACES })
 // Values are in ETH and MET, not wei and aMET
 const initialState = {
   eth: '0',
+  met: '0',
   wait: false,
   useMinimum: true,
   estimate: null,
@@ -20,11 +21,17 @@ const initialState = {
 const reducer = handleActions(
   {
     CLEAR_CONVERT_FORM: () => initialState,
+
     SHOW_CONVERT_RECEIPT: () => initialState,
 
     UPDATE_CONVERT_ETH: (state, { payload }) => ({
       ...state,
       eth: payload
+    }),
+
+    UPDATE_CONVERT_MET: (state, { payload }) => ({
+      ...state,
+      met: payload
     }),
 
     UPDATE_CONVERT_ESTIMATE_START: state => ({

@@ -11,13 +11,13 @@ import utils from 'web3-utils'
 
 import withProviderPermission from '../../hocs/withProviderPermission'
 import MinReturnCheckbox from './MinReturnCheckbox'
-import WalletInfo from '../../providers/WalletInfo'
+import ConvertToggle from './ConvertToggle'
 import ChainWarning from '../common/ChainWarning'
 import DollarValue from '../common/DollarValue'
+import WalletInfo from '../../providers/WalletInfo'
 import TextInput from '../common/TextInput'
 import withWeb3 from '../../hocs/withWeb3'
 import EthValue from '../common/EthValue'
-import MetValue from '../common/MetValue'
 import Portal from '../common/Portal'
 
 const Container = styled.div`
@@ -153,7 +153,7 @@ function throwIfNull(obj) {
   return obj
 }
 
-class ConvertForm extends Component {
+class ConvertMetForm extends Component {
   static propTypes = {
     updateEstimateSuccess: PropTypes.func.isRequired,
     updateEstimateFailure: PropTypes.func.isRequired,
@@ -167,6 +167,7 @@ class ConvertForm extends Component {
     estimateError: PropTypes.string,
     gasOverestimation: PropTypes.number.isRequired,
     converterAddress: PropTypes.string.isRequired,
+    metTokenAddress: PropTypes.string.isRequired,
     currentPrice: PropTypes.string.isRequired,
     showReceipt: PropTypes.func.isRequired,
     showWaiting: PropTypes.func.isRequired,
@@ -174,13 +175,15 @@ class ConvertForm extends Component {
     useMinimum: PropTypes.bool.isRequired,
     showError: PropTypes.func.isRequired,
     clearForm: PropTypes.func.isRequired,
-    updateEth: PropTypes.func.isRequired,
+    updateMet: PropTypes.func.isRequired,
     errorData: PropTypes.shape({
       hint: PropTypes.string,
       err: PropTypes.shape({
         message: PropTypes.string.isRequired
       })
     }),
+    metBalance: PropTypes.string,
+    onToggle: PropTypes.func.isRequired,
     estimate: PropTypes.string,
     chainId: PropTypes.string.isRequired,
     balance: PropTypes.string,
@@ -192,14 +195,20 @@ class ConvertForm extends Component {
         Contract: PropTypes.func.isRequired
       }).isRequired
     }),
-    eth: PropTypes.string.isRequired
+    met: PropTypes.string.isRequired
   }
 
   constructor(props) {
     super(props)
-    const abi = MetronomeContracts[props.chainId].AutonomousConverter.abi
-    this.contract = props.web3
-      ? new props.web3.eth.Contract(abi, props.converterAddress)
+    const converterAbi =
+      MetronomeContracts[props.chainId].AutonomousConverter.abi
+    this.converterContract = props.web3
+      ? new props.web3.eth.Contract(converterAbi, props.converterAddress)
+      : null
+
+    const tokenAbi = MetronomeContracts[props.chainId].METToken.abi
+    this.tokenContract = props.web3
+      ? new props.web3.eth.Contract(tokenAbi, props.metTokenAddress)
       : null
   }
 
@@ -216,97 +225,136 @@ class ConvertForm extends Component {
       estimate,
       address,
       web3,
-      eth
+      met
     } = this.props
 
     e.preventDefault()
 
-    if (!this.contract) return
+    if (!this.converterContract || !this.tokenContract) return
 
     const minReturn = useMinimum && typeof estimate === 'string' ? estimate : 1
 
-    const txObject = {
-      value: utils.toWei(eth.replace(',', '.')),
-      data: this.contract.methods.convertEthToMet(minReturn).encodeABI(),
-      from: address,
-      to: converterAddress
-    }
-
-    showWaiting()
+    const weiAmount = utils.toWei(met.replace(',', '.'))
 
     try {
-      window.gtag('event', 'Convert ETH to MET initiated', {
+      window.gtag('event', 'Convert MET to ETH initiated', {
         event_category: 'Convert'
       })
-      web3.eth
-        .estimateGas(txObject)
-        .then(gas =>
-          web3.eth.getGasPrice().then(gasPrice => ({
-            gasPrice,
-            gas: Math.round(gas * gasOverestimation)
-          }))
-        )
-        .then(gasData =>
-          web3.eth
-            .sendTransaction({ ...txObject, ...gasData })
-            .on('transactionHash', function(hash) {
-              showWaiting(hash)
-            })
-            .on('receipt', function(receipt) {
-              if (!receipt.status) {
-                window.gtag('event', 'Convert ETH to MET failed', {
-                  event_category: 'Convert'
-                })
-                showError(
-                  'Conversion reverted - Try again',
-                  new Error('Transaction status is falsy')
-                )
-                return
-              }
-              if (!receipt.logs.length) {
-                window.gtag('event', 'Convert ETH to MET failed', {
-                  event_category: 'Convert'
-                })
-                showError(
-                  'Conversion failed - Try again',
-                  new Error('Transaction logs missing')
-                )
-                return
-              }
 
-              const hash = receipt.transactionHash
-              pRetry(() => web3.eth.getTransaction(hash).then(throwIfNull), {
-                minTimeout: GET_TX_TIMEOUT,
-                retries: GET_TX_RETRIES
-              })
-                .catch(() => ({ from: address, hash }))
-                .then(function(tx) {
-                  window.gtag('event', 'Convert ETH to MET succeeded', {
-                    event_category: 'Convert'
-                  })
-                  storeTxData(tx)
-                  showReceipt(receipt)
-                  clearForm()
+      Promise.all([
+        this.tokenContract.methods.allowance(address, converterAddress).call(),
+        web3.eth.getGasPrice()
+      ]).then(([allowance, gasPrice]) => {
+        // Prepare the array to hold all the transactions to send
+        const txs = []
+
+        // If existing but insufficient allowance, reset it first
+        if (
+          utils.toBN(allowance).gtn(0) &&
+          utils.toBN(allowance).lt(utils.toBN(weiAmount))
+        ) {
+          txs.push({
+            tx: this.tokenContract.methods.approve(converterAddress, 0),
+            prompt: `Approval Cancellation required. Confirm in ${web3Provider}`,
+            waiting: 'Waiting for Approval Cancellation to be mined',
+            showReceipt: false
+          })
+        }
+
+        // If insufficient or no allowance, set it
+        if (utils.toBN(allowance).lt(utils.toBN(weiAmount))) {
+          txs.push({
+            tx: this.tokenContract.methods.approve(converterAddress, weiAmount),
+            prompt: `Confirm this Approval in ${web3Provider}`,
+            waiting: 'Waiting for Approval to be mined',
+            showReceipt: false
+          })
+        }
+
+        // Finally, enqueue conversion
+        txs.push({
+          tx: this.converterContract.methods.convertMetToEth(
+            weiAmount,
+            minReturn
+          ),
+          prompt: `Finish this Conversion in ${web3Provider}`,
+          waiting: 'Waiting for Conversion to be mined',
+          showReceipt: true
+        })
+
+        const promiEvents = txs.map((item, i) => () => {
+          showWaiting({ message: item.prompt })
+          return web3.eth.getTransactionCount(address, 'pending').then(nonce =>
+            item.tx.estimateGas({ from: address }).then(gas =>
+              item.tx
+                .send({
+                  from: address,
+                  nonce,
+                  gasPrice,
+                  gas: Math.ceil(gas * gasOverestimation)
                 })
-                .catch(function(err) {
-                  window.gtag('event', 'Convert ETH to MET failed', {
-                    event_category: 'Convert'
-                  })
-                  showError(
-                    `Something went wrong - Check your wallet or explorer for transaction ${hash}`,
-                    err
+                .on('transactionHash', function(hash) {
+                  showWaiting({ hash, message: item.waiting })
+                })
+                .on('receipt', function(receipt) {
+                  if (!receipt.status) {
+                    window.gtag('event', 'Convert MET to ETH failed', {
+                      event_category: 'Convert'
+                    })
+                    showError(
+                      'Conversion reverted - Try again',
+                      new Error('Transaction status is falsy')
+                    )
+                    return
+                  }
+
+                  const hash = receipt.transactionHash
+                  return pRetry(
+                    () => web3.eth.getTransaction(hash).then(throwIfNull),
+                    {
+                      minTimeout: GET_TX_TIMEOUT,
+                      retries: GET_TX_RETRIES
+                    }
                   )
+                    .catch(() => ({ from: address, hash }))
+                    .then(function(tx) {
+                      window.gtag('event', 'Convert MET to ETH succeeded', {
+                        event_category: 'Convert'
+                      })
+                      storeTxData(tx)
+                      if (item.showReceipt) showReceipt(receipt)
+                      clearForm()
+                    })
+                    .catch(function(err) {
+                      window.gtag('event', 'Convert MET to ETH failed', {
+                        event_category: 'Convert'
+                      })
+                      showError(
+                        `Something went wrong - Check your wallet or explorer for transaction ${hash}`,
+                        err
+                      )
+                    })
                 })
-            })
-            .on('error', function(err) {
-              window.gtag('event', 'Convert ETH to MET failed', {
-                event_category: 'Convert'
-              })
-              showError('Transaction error - Try again', err)
-            })
-        )
+                .on('error', function(err) {
+                  window.gtag('event', 'Convert MET to ETH failed', {
+                    event_category: 'Convert'
+                  })
+                  showError(`Something went wrong: ${err.message}`, err)
+                })
+            )
+          )
+        })
+
+        // Send in series to allow better gas estimation and interop with
+        // MetaMask that seems unable to handle parallel transactions
+        return promiEvents
+          .reduce((p1, p2) => p1.then(() => p2()), Promise.resolve())
+          .catch(function(err) {
+            showError(`Something went wrong: ${err.message}`, err)
+          })
+      })
     } catch (err) {
-      window.gtag('event', 'Convert ETH to MET failed', {
+      window.gtag('event', 'Convert MET to ETH failed', {
         event_category: 'Convert'
       })
       showError('Transaction could not be sent - Try again', err)
@@ -315,7 +363,7 @@ class ConvertForm extends Component {
 
   getEstimate = debounce(
     // eslint-disable-next-line
-    ethValue => {
+    metValue => {
       const {
         updateEstimateSuccess,
         updateEstimateFailure,
@@ -323,22 +371,22 @@ class ConvertForm extends Component {
         web3
       } = this.props
 
-      if (!this.contract) return
+      if (!this.converterContract) return
 
       updateEstimateStart()
 
       let weiValue
 
       try {
-        weiValue = web3.utils.toWei(ethValue.replace(',', '.'))
+        weiValue = web3.utils.toWei(metValue.replace(',', '.'))
       } catch (e) {
         updateEstimateFailure({ message: 'Invalid value' })
       }
 
       if (!weiValue) return
 
-      this.contract.methods
-        .getMetForEthResult(weiValue)
+      this.converterContract.methods
+        .getEthForMetResult(weiValue)
         .call()
         .then(updateEstimateSuccess)
         .catch(updateEstimateFailure)
@@ -347,14 +395,14 @@ class ConvertForm extends Component {
     { leading: true, trailing: true }
   )
 
-  componentWillUpdate({ currentPrice, eth }) {
+  componentWillUpdate({ currentPrice, met }) {
     // Recalculate estimate if amount or price changed
     if (
-      eth &&
-      new BigNumber(eth).gt(0) &&
-      (this.props.currentPrice !== currentPrice || this.props.eth !== eth)
+      met &&
+      new BigNumber(met).gt(0) &&
+      (this.props.currentPrice !== currentPrice || this.props.met !== met)
     ) {
-      this.getEstimate(eth)
+      this.getEstimate(met)
     }
   }
 
@@ -367,20 +415,23 @@ class ConvertForm extends Component {
       estimateError,
       currentPrice,
       useMinimum,
-      updateEth,
+      metBalance,
+      updateMet,
       errorData,
+      onToggle,
       estimate,
-      balance,
       address,
+      balance,
       symbol,
-      eth
+      met
     } = this.props
 
     const allowConversion =
-      new BigNumber(eth).gt(0) &&
+      new BigNumber(balance).gt(0) &&
+      new BigNumber(met).gt(0) &&
       address &&
       (!useMinimum || estimate) &&
-      new BigNumber(eth).lte(utils.fromWei(balance))
+      new BigNumber(met).lte(utils.fromWei(metBalance))
 
     function formatValue(value) {
       const bigValue = new BigNumber(value)
@@ -403,16 +454,17 @@ class ConvertForm extends Component {
         </Header>
 
         <Form onSubmit={this.sendTransaction}>
+          <ConvertToggle onToggle={onToggle} convertFrom="met" />
           <TextInput
             label="Amount"
             placeholder="0.00"
             autoFocus
             disabled={!currentPrice || !address}
-            onChange={e => updateEth(e.target.value)}
-            suffix={symbol}
-            value={formatValue(eth)}
+            onChange={e => updateMet(e.target.value)}
+            suffix="MET"
+            value={formatValue(met)}
             type="number"
-            id="coinAmount"
+            id="metAmount"
           />
 
           <EstimateContainer>
@@ -431,7 +483,7 @@ class ConvertForm extends Component {
                 <EstimateLabel>You will receive:</EstimateLabel>
                 <EstimateValue>
                   <EstimateMet>
-                    <MetValue>{estimate}</MetValue>
+                    <EthValue>{estimate}</EthValue>
                   </EstimateMet>
                 </EstimateValue>
               </React.Fragment>
@@ -444,7 +496,7 @@ class ConvertForm extends Component {
           <MinReturnCheckbox
             useMinimum={this.props.useMinimum}
             onToggle={this.props.onUseMinimumToggle}
-            label="Get expected MET amount or cancel"
+            label={`Get expected ${symbol} amount or cancel`}
           />
 
           {errorData &&
@@ -464,10 +516,12 @@ class ConvertForm extends Component {
                 ? `${web3Provider} permissions required`
                 : !address
                 ? 'You need to login to your wallet'
-                : !new BigNumber(eth).gt(0)
+                : !new BigNumber(met).gt(0)
                 ? 'Enter a valid amount'
-                : new BigNumber(eth).gt(utils.fromWei(balance))
+                : new BigNumber(met).gt(utils.fromWei(metBalance))
                 ? 'Insufficient funds'
+                : !new BigNumber(balance).gt(0)
+                ? 'Insufficient funds to pay for gas cost'
                 : undefined
             }
           >
@@ -491,7 +545,9 @@ const mapStateToProps = state => ({
   ...state.convertForm,
   gasOverestimation: state.config.chains[state.chain.active].gasOverestimation,
   converterAddress: state.config.chains[state.chain.active].converterAddress,
+  metTokenAddress: state.config.chains[state.chain.active].metTokenAddress,
   currentPrice: state.converter.status.currentPrice,
+  metBalance: state.wallet.metBalance,
   errorData: state.convertPanel.errorData,
   address: state.wallet.address,
   balance: state.wallet.balance,
@@ -505,7 +561,7 @@ const mapDispatchToProps = dispatch => ({
   showReceipt: payload => dispatch({ type: 'SHOW_CONVERT_RECEIPT', payload }),
   showWaiting: payload => dispatch({ type: 'SHOW_CONVERT_WAITING', payload }),
   storeTxData: payload => dispatch({ type: 'UPDATE_ONGOING_TX', payload }),
-  updateEth: payload => dispatch({ type: 'UPDATE_CONVERT_ETH', payload }),
+  updateMet: payload => dispatch({ type: 'UPDATE_CONVERT_MET', payload }),
   clearForm: () => dispatch({ type: 'CLEAR_CONVERT_FORM' }),
   updateEstimateStart: payload =>
     dispatch({ type: 'UPDATE_CONVERT_ESTIMATE_START', payload }),
@@ -519,4 +575,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withWeb3(withProviderPermission(ConvertForm)))
+)(withWeb3(withProviderPermission(ConvertMetForm)))
