@@ -50,7 +50,7 @@ class WalletInfo extends Component {
           payload.address
             ? Promise.all([
                 web3.eth.getBalance(payload.address),
-                this.contract
+                this.contract && payload.chainId === this.props.chainId
                   ? this.contract.methods.balanceOf(payload.address).call()
                   : Promise.resolve('0')
               ]).then(([balance, metBalance]) => ({
