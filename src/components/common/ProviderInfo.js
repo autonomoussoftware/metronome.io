@@ -8,6 +8,7 @@ import React from 'react'
 import MetaMask from '../../img/metamask.svg'
 import Cipher2x from '../../img/cipher@2x.png'
 import Cipher3x from '../../img/cipher@3x.png'
+import MetValue from '../common/MetValue'
 import EthValue from '../common/EthValue'
 import unknown from '../../img/unknown.svg'
 import Trust2x from '../../img/trust@2x.png'
@@ -49,8 +50,17 @@ const GetLabel = styled.span`
   margin-left: 8px;
 `
 
+const Separator = styled.span`
+  &:before {
+    content: ' | ';
+    display: inline-block;
+    margin: 0 6px;
+    color: #d1d1d1;
+  }
+`
+
 function ProviderInfo(props) {
-  const { provider, address, balance } = props
+  const { metBalance, provider, address, balance } = props
 
   const isWeb3Available = provider !== 'none'
 
@@ -82,9 +92,11 @@ function ProviderInfo(props) {
         ) : (
           <Label>Log into your web wallet</Label>
         )}
-        {balance && (
+        {(balance || metBalance) && (
           <Balance>
-            <EthValue>{balance}</EthValue>
+            {balance && <EthValue>{balance}</EthValue>}
+            <Separator />
+            {metBalance && <MetValue>{metBalance}</MetValue>}
           </Balance>
         )}
       </Info>
@@ -106,12 +118,14 @@ function ProviderInfo(props) {
 }
 
 ProviderInfo.propTypes = {
+  metBalance: PropTypes.string,
   provider: PropTypes.string.isRequired,
   address: PropTypes.string,
   balance: PropTypes.string
 }
 
 const mapStateToProps = state => ({
+  metBalance: state.wallet.metBalance,
   provider: detectProvider('web wallet'),
   address: state.wallet.address,
   balance: state.wallet.balance

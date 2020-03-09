@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import React from 'react'
 
+import ConvertEthForm from './ConvertEthForm'
+import ConvertMetForm from './ConvertMetForm'
 import ProviderInfo from '../common/ProviderInfo'
-import ConvertForm from './ConvertForm'
 import METLoader from '../common/METLoader'
 import NavBar from '../common/NavBar'
 import Modal from './Modal'
@@ -88,8 +89,17 @@ const LearnMore = styled.a`
 
 class ConverterPage extends React.Component {
   static propTypes = {
-    isLoading: PropTypes.bool.isRequired
+    isLoading: PropTypes.bool.isRequired,
+    clearForm: PropTypes.func.isRequired
   }
+
+  state = { convertFromEth: true }
+
+  toggleConversion = () =>
+    this.setState(
+      s => ({ convertFromEth: !s.convertFromEth }),
+      this.props.clearForm
+    )
 
   render() {
     return this.props.isLoading ? (
@@ -105,12 +115,16 @@ class ConverterPage extends React.Component {
             <Subtitle>GET METRONOME</Subtitle>
             <Title>Converter</Title>
             <Lead>
-              Convert ETH to MET via the Autonomous Converter Contract.
+              Convert ETH and MET via the Autonomous Converter Contract.
             </Lead>
             <LearnMore href="../buy">Learn more about The Converter</LearnMore>
           </Col>
           <Col>
-            <ConvertForm />
+            {this.state.convertFromEth ? (
+              <ConvertEthForm onToggle={this.toggleConversion} />
+            ) : (
+              <ConvertMetForm onToggle={this.toggleConversion} />
+            )}
             <DisclaimerMessage>
               By choosing “Review Conversion you are agreeing to our{' '}
               <a href="../privacy">disclaimer</a> and{' '}
@@ -132,4 +146,11 @@ const mapStateToProps = state => ({
       'number'
 })
 
-export default connect(mapStateToProps)(ConverterPage)
+const mapDispatchToProps = dispatch => ({
+  clearForm: () => dispatch({ type: 'CLEAR_CONVERT_FORM' })
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ConverterPage)

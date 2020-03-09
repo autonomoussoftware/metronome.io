@@ -2,6 +2,7 @@ import { handleActions } from 'redux-actions'
 
 const initialState = {
   permissionStatus: 'not-asked',
+  metBalance: null,
   address: null,
   balance: null,
   chainId: null

@@ -3,6 +3,7 @@ import { handleActions } from 'redux-actions'
 const initialState = {
   errorData: {},
   ongoingTx: { hash: '' },
+  waitingMessage: '',
   receipt: null,
   show: false,
   showStep: 'options'
@@ -21,6 +22,9 @@ const reducer = handleActions(
     }),
     SHOW_CONVERT_OPTIONS: state => ({
       ...state,
+      ongoingTx: { hash: '' },
+      waitingMessage: '',
+      receipt: null,
       showStep: 'options'
     }),
     SHOW_CONVERT_RECEIPT: (state, { payload }) => ({
@@ -35,8 +39,10 @@ const reducer = handleActions(
     SHOW_CONVERT_WAITING: (state, { payload }) => ({
       ...state,
       showStep: 'waiting',
+      errorData: {},
+      waitingMessage: payload.message || state.waitingMessage,
       ongoingTx: {
-        hash: payload || ''
+        hash: payload.hash || ''
       }
     }),
     SHOW_CONVERT_ERROR: (state, { payload }) => ({
