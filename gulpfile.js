@@ -111,6 +111,7 @@ function script() {
       'src-static/lib/bootstrap/js/popper.min.js',
       'src-static/lib/bootstrap/js/bootstrap.4.3.min.js',
       'src-static/lib/slick/slick.min.js',
+      'src-static/lib/dateformat/jquery-dateformat.min.js',
       'src-static/lib/raven.min.js',
       'src-static/js/main.js'
     ])

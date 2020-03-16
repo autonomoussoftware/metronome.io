@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
     <meta charset="utf-8" />
     <meta content="ie=edge" http-equiv="x-ua-compatible" />
-    <title>Metronome | Engage</title>
+    <title>Metronome | News</title>
     <link
       href="../dist/lib/bootstrap/css/bootstrap.min.css"
       rel="stylesheet"
@@ -33,10 +33,8 @@
       type="image/png"
     />
   </head>
-  <body class="engage">
+  <body class="latest-news">
     <!-- HEADER -->
-    <div class="white-half"></div>
-    <div class="gray-fade"></div>
     <header class="site-header" id="masthead">
       <!-- Dynamic content: Do not remove! -->
       <div id="marquee"></div>
@@ -74,10 +72,8 @@
               <li class="nav-item">
                 <a class="nav-link" href="/build/">Build</a>
               </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="/engage/"
-                  >Engage<span class="sr-only">(current)</span></a
-                >
+              <li class="nav-item">
+                <a class="nav-link" href="/engage/">Engage</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/wallet/">Wallet</a>
@@ -88,8 +84,10 @@
               <li class="nav-item">
                 <a class="nav-link" href="/about/">About</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/news/">News</a>
+              <li class="nav-item active">
+                <a class="nav-link" href="/news/"
+                  >News<span class="sr-only">(current)</span></a
+                >
               </li>
               <li class="nav-item dropdown">
                 <a
@@ -160,19 +158,139 @@
     </header>
     <!-- /HEADER -->
     <!-- PAGE -->
-    <section class="site-section intro pb-5 mb-4" id="top">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 welcome">
-            <h1 class="page-title">Thank You!!</h1>
-            <h3 class="font-italic mb-5">
-              We will be reaching out to you shortly.
-            </h3>
-            <p><a href="/engage/">&laquo; Back to Engage</a></p>
+    <div class="news-page">
+      <section class="site-section news-main" id="buy-nav">
+        <div class="container">
+          <ul class="nav nav-tabs" id="newsTab" role="tablist">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                id="medium-posts"
+                data-toggle="tab"
+                href="#medium"
+                role="tab"
+                aria-controls="medium"
+                aria-selected="true"
+                >Updates</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                id="latest-news"
+                data-toggle="tab"
+                href="#latest"
+                role="tab"
+                aria-controls="latest"
+                aria-selected="false"
+                >Press</a
+              >
+            </li>
+          </ul>
+          <div class="tab-content" id="newsTabContent">
+            <div
+              class="tab-pane fade show active"
+              id="medium"
+              role="tabpanel"
+              aria-labelledby="medium-posts"
+            >
+              <div id="content" class="row"></div>
+              <div class="medium-cta d-flex align-items-center">
+                <img
+                  src="../dist/images/medium-logo@2x.png"
+                  alt="Medium Icon"
+                  width="141"
+                  height="141"
+                />
+                <div class="cta-text">
+                  To view all posts, visit the
+                  <a href="https://medium.com/@MetronomeToken" target="_blank"
+                    >Metronome Medium &raquo;</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="latest"
+              role="tabpanel"
+              aria-labelledby="latest-news"
+            >
+              <div class="row news-feed">
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="news-item">
+                    <img
+                      src="../dist/images/news-page-bloomberg@2x.png"
+                      alt="Bloomberg Logo"
+                      width="150"
+                      height="31"
+                    />
+                    <a
+                      href="https://www.bloomberg.com/news/articles/2017-10-24/bitcoin-pioneer-says-new-coin-to-work-on-multiple-blockchains"
+                      target="_blank"
+                    >
+                      Bitcoin Pioneer Says New Coin to Work on Many Blockchains
+                      &raquo;
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="news-item">
+                    <img
+                      src="../dist/images/news-page-reuters@2x.png"
+                      alt="Reuters Logo"
+                      width="186"
+                      height="43"
+                    />
+                    <a
+                      href="https://www.reuters.com/article/us-bloq-token-funding/u-s-blockchain-start-up-bloq-to-launch-bitcoin-like-token-idUSKBN1CT2G1"
+                      target="_blank"
+                    >
+                      U.S. Blockchain Start-up Bloq to Launch Bitcoin-Like Token
+                      &raquo;
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="news-item">
+                    <img
+                      src="../dist/images/news-page-american-banker@2x.png"
+                      alt="American Banker Logo"
+                      width="178"
+                      height="27"
+                    />
+                    <a
+                      href="hhttps://www.americanbanker.com/news/bitcoin-pioneers-cryptocurrency-alternative-allows-for-multiple-networks"
+                      target="_blank"
+                    >
+                      Bitcoin Pioneer Challenges Cryptocurrency Status Quo
+                      &raquo;
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                  <div class="news-item">
+                    <img
+                      src="../dist/images/news-page-coindesk@2x.png"
+                      alt="Coindesk Logo"
+                      width="164"
+                      height="32"
+                    />
+                    <a
+                      href="https://www.coindesk.com/metronome-now-lets-users-move-tokens-between-blockchains"
+                      target="_blank"
+                    >
+                      Metronome Now Lets Users Move Tokens Between Blockchains
+                      &raquo;
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
     <!-- /PAGE -->
     <!-- FOOTER -->
     <footer class="site-footer" id="colophon">
@@ -370,7 +488,7 @@
         <div class="row copyright mt-5 ml-n1 mr-n1">
           <div class="col-md-9 mb-5 pl-0">
             <p>
-              Copyright &copy; Metronome. 2018-2019 All Rights Reserved. Site
+              Copyright &copy; 2018-2019 Metronome. All Rights Reserved. Site
               Design by
               <a href="https://thegrove.co" target="_blank">The Grove</a>
             </p>
@@ -384,6 +502,7 @@
     <!-- /FOOTER -->
     <!-- SCRIPTS -->
     <script src="../dist/js/main.js?cb=CACHEBUSTER_TIMESTAMP"></script>
+    <script src="../dist/lib/medium/mediumRSS.js"></script>
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=<%-htmlWebpackPlugin.options.gaTrackingId%>"
