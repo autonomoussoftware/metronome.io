@@ -21,6 +21,7 @@ module.exports = {
       'roadmap/index.html',
       'thank-you/index.html',
       'wallet/index.html',
+      'news/index.html',
       '404/index.html'
     ]
 

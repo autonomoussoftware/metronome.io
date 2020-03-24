@@ -471,6 +471,82 @@ body.home {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#B3A3F5', GradientType=0);
 
 }
+
+.exchanges {
+
+	padding-top: 100px;
+    padding-bottom: 15px;
+
+	.exch {
+		border-right: 2px dotted #B2B2B2;
+
+		@media(max-width:1199px) {
+			border: none !important;
+		}
+	}
+
+	h3 {
+		text-align: center;
+		font-size: 28px;
+		margin-bottom: 20px;
+	}
+
+	.exchange-icons {
+		max-width: 466px;
+		margin: 0 auto;
+	}
+
+	.wallets {
+		max-width: 466px;
+		margin: 0 auto;
+
+		.edge-wallet {
+			background-color: rgba(108,80,226,.25);
+			border-radius: 16px;
+			
+			a {
+				color: #6C50E2;
+				text-transform: uppercase;
+				font-size: 15px;
+				text-decoration: none;
+
+				strong {
+					margin-left: 15px;
+				}
+
+				&:hover {
+
+					strong {
+						color: #333335;
+						text-decoration: none;
+					}
+				}
+			}
+		}
+		.add-wallets {
+
+			.wallet {
+
+				a {
+					color: #333335;
+					font-size: 14px;
+					font-weight: 500;
+
+					strong {
+						margin-left: 10px;
+					}
+
+					&:hover {
+						color: #6C50E2;
+						text-decoration: none;
+					}
+				}
+			}
+		}
+	}
+
+
+}
 .process {
 	padding-top: 75px;
 	background: #eaeaea;
@@ -793,22 +869,28 @@ body.buy {
 			a {
 				display: flex;
 				align-items: center !important;
-				padding: 10px;
-				width: 80px;
-				height: 80px;
-				margin-right: 10px;
-				border-radius: 100%;
+				width: 65px;
+				height: 65px;
+				border-radius: 16px;
 				box-shadow: none;
 				position: relative;
 				text-align: center;
+				margin-right: 10px;
+				margin-bottom: 10px;
+
+				&:hover {
+					box-shadow: 0 0 2px 3px rgba(126,97,248,.5);
+				}
 
 				img {
 					display: block;
 					margin: 0 auto;
 				}
+
+
 			}
 			/* Animated circle thing */
-			a:hover {
+			/* a:hover {
 			  color: $purple;
 			}
 			a::before,
@@ -820,7 +902,7 @@ body.buy {
 			  height: 100%;
 			  top: 0;
 			  left: 0;
-			  border-radius: 100%;
+			  border-radius: 16px;
 			}
 			a::before {
 			  border: 2px solid transparent;
@@ -829,7 +911,7 @@ body.buy {
 			  border-top-color: $purple;
 			  border-right-color: $purple;
 			  border-bottom-color: $purple;
-			  transition: border-top-color 0.15s linear, border-right-color 0.15s linear 0.1s, border-bottom-color 0.15s linear 0.2s;
+			  //transition: border-top-color 0.15s linear, border-right-color 0.15s linear 0.1s, border-bottom-color 0.15s linear 0.2s;
 			}
 			a::after {
 			  border: 0 solid transparent;
@@ -838,9 +920,9 @@ body.buy {
 			  border-top: 2px solid $purple;
 			  border-left-width: 2px;
 			  border-right-width: 2px;
-			  transform: rotate(270deg);
-			  transition: transform 0.4s linear 0s, border-left-width 0s linear 0.35s;
-			}
+			  //transform: rotate(270deg);
+			  //transition: transform 0.4s linear 0s, border-left-width 0s linear 0.35s;
+			} */
 		}
 		@media (max-width: 767px) {
 			.option {
