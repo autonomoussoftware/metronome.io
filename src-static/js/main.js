@@ -183,6 +183,9 @@ $(document).ready(function($) {
 
 		$('.typed-cursor').text('');
 
-    }
+	}
+	
+	//Match Heights
+	$('.match').matchHeight();
 
 });
