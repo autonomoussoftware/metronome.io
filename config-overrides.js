@@ -19,6 +19,7 @@ module.exports = {
       'engage/index.html',
       'privacy/index.html',
       'roadmap/index.html',
+      'technology/index.html',
       'thank-you/index.html',
       'wallet/index.html',
       'news/index.html',
