@@ -492,7 +492,7 @@ body.home {
 	}
 
 	.exchange-icons {
-		max-width: 466px;
+		max-width: 400px;
 		margin: 0 auto;
 	}
 
@@ -1338,7 +1338,111 @@ body.wallet {
 
 
 }
-/*################################################################################### auction */
+/*################################################################################### TECHNOLOGY */
+body.technology {
+
+	h2 {
+		font-size: 34px;
+	}
+
+	.intro {
+		height: 457px;
+		overflow: visible;
+		padding: 117px 0 0;
+		background: none;
+		background-color: #fff;
+		position: relative;
+		z-index: 2;
+
+
+
+		img {
+			margin: 35px 0 0 67px;
+		}
+
+		p {
+			max-width: 480px;
+		}
+
+		@media(max-width:992px) {
+
+			height: auto;
+    		padding: 50px 0;
+			
+			img {
+				margin: 0;
+			}
+		}
+	}
+
+	.contracts {
+		background: #eaeaea;
+		background: -moz-linear-gradient( top, #eaeaea 0%, #ffffff 100%);
+		background: -webkit-linear-gradient( top, #eaeaea 0%, #ffffff 100%);
+		background: linear-gradient( to bottom, #eaeaea 0%, #ffffff 100%);
+		
+		.contract {
+			padding-top: 60px;
+
+			&:first-child {
+				padding-top: 120px;
+
+				@media(max-width:992px) {
+					padding-top: 80px;
+				}
+			}
+
+			h4 {
+				display: inline-block;
+				padding: 0 20px 15px 0;
+				margin-bottom: 20px;
+				border-bottom: 2px solid #D2D2D2;
+				font-size: 18px;
+			}
+
+			p {
+				max-width: 460px;
+			}
+		}
+
+		@media(max-width:992px) {
+
+			img {
+				max-width: 100%;
+				height: auto;
+			}
+		}
+	}
+
+	.chainhop {
+
+		.phase-img {
+			height: 267px;
+		}
+
+		h4 {
+			margin: 50px 0 15px;
+			font-weight: 500;
+		}
+
+		h3 {
+			max-width: 250px;
+		}
+
+		@media(max-width:768px) {
+
+			.phase-img {
+				height: auto;
+			}
+			
+			h4 {
+				margin: 15px 0;
+			}
+		}
+	}
+}
+
+/*################################################################################### AUCTION */
 
 .auction, .converter {
 	.site-section {
