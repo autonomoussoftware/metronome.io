@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="ie=edge" http-equiv="x-ua-compatible" />
-    <title>Metronome | Auction</title>
+    <title>Metronome | Technology</title>
     <link
       href="../dist/lib/bootstrap/css/bootstrap.min.css"
       rel="stylesheet"
@@ -32,28 +32,8 @@
       sizes="32x32"
       type="image/png"
     />
-    <style>
-      @keyframes loader {
-        0%,
-        100% {
-          transform: rotate(45deg);
-        }
-        50% {
-          transform: rotate(-45deg);
-        }
-      }
-      #loader {
-        display: block;
-        margin: 0 auto;
-        height: 200px;
-      }
-      #loader-line {
-        animation: loader 2s ease-in-out infinite;
-        transform-origin: 50% 85%;
-      }
-    </style>
   </head>
-  <body class="auction">
+  <body class="technology">
     <!-- HEADER -->
     <header class="site-header" id="masthead">
       <!-- Dynamic content: Do not remove! -->
@@ -88,11 +68,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="/buy/"
-                  >Buy<span class="sr-only">(current)</span></a
-                >
-              </li>
+              <li class="nav-item"><a class="nav-link" href="/buy/">Buy</a></li>
               <li class="nav-item">
                 <a class="nav-link" href="/build/">Build</a>
               </li>
@@ -102,8 +78,10 @@
               <li class="nav-item">
                 <a class="nav-link" href="/wallet/">Wallet</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/technology/">Technology</a>
+              <li class="nav-item active">
+                <a class="nav-link" href="/roadmap/"
+                  >Technology<span class="sr-only">(current)</span></a
+                >
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/about/">About</a>
@@ -180,39 +158,192 @@
     </header>
     <!-- /HEADER -->
     <!-- PAGE -->
-    <section class="site-section" id="top">
+    <section class="site-section intro" id="top">
       <div class="container">
         <div class="row">
-          <div class="col-12 welcome">
-            <!-- Dynamic content -->
-            <div content="auction" id="root">
-              <svg
-                height="88"
-                id="loader"
-                version="1.1"
-                viewbox="0 0 88 88"
-                width="88"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M75.2,78.5H12.8c-3.8,0-6.2-4.1-4.4-7.4l31.2-58.1c1.9-3.5,7-3.5,8.9,0l31.2,58.1C81.4,74.4,79,78.5,75.2,78.5z"
-                  fill="none"
-                  stroke="#7e61f8"
-                  stroke-width="5"
-                ></path>
-                <line
-                  id="loader-line"
-                  stroke="#7e61f8"
-                  stroke-linecap="round"
-                  stroke-width="5"
-                  x1="44"
-                  x2="44"
-                  y1="22.5"
-                  y2="78.5"
-                ></line>
-              </svg>
+          <div class="col-lg-6 col-md-7 welcome">
+            <h1 class="page-title">The Technology</h1>
+            <p>
+              Metronome is a fully autonomous cryptocurrency and monetary system
+              that is built to last. Metronome’s launch and behavior are
+              <b>wholly governed by a set of four smart contracts</b>.
+            </p>
+          </div>
+          <div class="col-lg-6 col-sm-5 col-7">
+            <img
+              src="../dist/images/technology-banner2x.png"
+              alt="Metronome contracts stacked in purple"
+              width="363"
+              height="349"
+              class="img-fluid"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="site-section contracts mb-5" id="contracts">
+      <div class="container">
+        <div class="row contract">
+          <div class="col-md-6">
+            <div class="contract-content">
+              <h4 class="txt-purple font-weight-500">Contract One</h4>
+              <h2 class="txt-dark font-weight-bold">Ledger Contract</h2>
+              <p>
+                Dictates Metronome’s overall behavior – This is an ERC20 token
+                standard with advanced payment features of subscriptions and
+                mass pay.
+              </p>
             </div>
-            <!-- /Dynamic content -->
+          </div>
+          <div class="col-sm-6 col-9">
+            <img
+              src="../dist/images/ledger-contract2x.png"
+              alt="centered met icon with avatars on either side"
+              class="contract-img"
+              width="508"
+              height="315"
+            />
+          </div>
+        </div>
+        <div class="row contract">
+          <div class="col-md-6">
+            <div class="contract-content">
+              <h4 class="txt-purple font-weight-500">Contract Two</h4>
+              <h2 class="txt-dark font-weight-bold">Auction Contract</h2>
+              <p>
+                Issues new MET daily — Each day, 2,880 MET is auctioned off via
+                a descending price auction, starting from double the previous
+                day’s closing price. As Metronome matures, this will adjust as
+                necessary to ensure a 2% annual inflation rate.
+              </p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-9">
+            <img
+              src="../dist/images/auction-contract2x.png"
+              alt="centered gavel with avatars on each side"
+              class="contract-img"
+              width="508"
+              height="314"
+            />
+          </div>
+        </div>
+        <div class="row contract">
+          <div class="col-md-6">
+            <div class="contract-content">
+              <h4 class="txt-purple font-weight-500">Contract Three</h4>
+              <h2 class="txt-dark font-weight-bold">Proceeds Contract</h2>
+              <p>
+                Retains all proceeds from the daily auctions — 100% of the daily
+                auction’s proceeds go to the Proceeds contract. The proceeds are
+                best thought of as a community asset, stored in a locked box.
+              </p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-9">
+            <img
+              src="../dist/images/proceeds-contract2x.png"
+              alt="abstract flowchart of transactions"
+              class="contract-img"
+              width="508"
+              height="315"
+            />
+          </div>
+        </div>
+        <div class="row contract">
+          <div class="col-md-6">
+            <div class="contract-content">
+              <h4 class="txt-purple font-weight-500">Contract Three</h4>
+              <h2 class="txt-dark font-weight-bold">
+                Autonomous<br />Converter Contract
+              </h2>
+              <p>
+                Provides on-chain conversion — Every 24 hours, the Proceeds
+                Contract sends 0.25% of its contents to the Autonomous Converter
+                Contract. When a user sends MET or its chain’s native token
+                (e.g., ETH, ETC) to the Autonomous Converter Contract, the
+                contract returns its counterpart at a rate determined by the
+                ratio of MET and the native token in the contract.
+              </p>
+            </div>
+          </div>
+          <div class="col-sm-6 col-9">
+            <img
+              src="../dist/images/ac-contract2x.png"
+              alt="centeres scale with avatars on each side"
+              class="contract-img"
+              width="508"
+              height="315"
+            />
+          </div>
+        </div>
+        <!-- .row -->
+      </div>
+      <!-- .container -->
+    </section>
+    <section class="site-section chainhop" id="chainhop">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col-1 d-none d-lg-block"></div>
+          <div class="col-lg-10 col-12 text-center">
+            <h2 class="txt-dark mb-4 font-weight-bold">
+              The World’s First Cryptocurrency Allowing Chainhops
+            </h2>
+            <p>
+              Portability empowers MET owners to choose the chain where they
+              hold their MET for whatever reason they desire, such as security,
+              fee optimization, and governance arbitrage. Currently, MET can be
+              ported between Ethereum and Ethereum Classic. Additional chain
+              support is under research and development.
+            </p>
+          </div>
+          <div class="col-1 d-none d-lg-block"></div>
+        </div>
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-4 col-md-6 col-9 text-center mb-lg-0 mb-5">
+            <div class="phase-img d-flex justify-content-center">
+              <img
+                src="../dist/images/phase-one2x.png"
+                alt="abstract flow chart beginning"
+                class="img-fluid mt-auto"
+                width="366"
+                height="266"
+              />
+            </div>
+            <h4 class="txt-purple text-uppercase">Phase One</h4>
+            <h3 class="txt-dark font-weight-bold mx-auto d-block">
+              Federated Network of Validators
+            </h3>
+          </div>
+          <div class="col-lg-4 col-md-6 col-9 text-center mb-lg-0 mb-5">
+            <div class="phase-img d-flex justify-content-center">
+              <img
+                src="../dist/images/phase-two2x.png"
+                alt="abstract flow chart middle"
+                class="img-fluid mt-auto"
+                width="366"
+                height="267"
+              />
+            </div>
+            <h4 class="txt-purple text-uppercase">Phase Two</h4>
+            <h3 class="txt-dark font-weight-bold mx-auto d-block">
+              Chain Attestors and Stake Weighting
+            </h3>
+          </div>
+          <div class="col-lg-4 col-md-6 col-9 text-center mb-lg-0 mb-5">
+            <div class="phase-img d-flex justify-content-center">
+              <img
+                src="../dist/images/phase-three2x.png"
+                alt="abstract flow chart end"
+                class="img-fluid mt-auto"
+                width="366"
+                height="188"
+              />
+            </div>
+            <h4 class="txt-purple text-uppercase">Phase Three</h4>
+            <h3 class="txt-dark font-weight-bold mx-auto d-block">
+              Fully Autonomous, Decentralized, Stake-Weighted Chainhops
+            </h3>
           </div>
         </div>
       </div>
