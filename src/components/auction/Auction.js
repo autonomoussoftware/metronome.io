@@ -63,7 +63,7 @@ const SecondaryTitle = styled.h3`
 `
 const AuctionProcessImage = styled.img`
   display: none;
-  @media (min-width: 992px) {
+  @media (min-width: 1200px) {
     display: block;
     width: 628px;
     height: 349px;
