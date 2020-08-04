@@ -17,9 +17,7 @@ const Container = styled.div`
 
 const Header = styled.div`
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-bottom: 48px;
+  justify-content: space-between;
 `
 
 const Row = styled.div`
@@ -35,14 +33,12 @@ const Row = styled.div`
 `
 
 const Col = styled.div`
-  max-width: 352px;
-
   & + & {
     margin-top: 64px;
 
     @media (min-width: 992px) {
       margin-top: 0;
-      margin-left: 118px;
+      margin-left: 60px;
     }
   }
 `
@@ -56,20 +52,31 @@ const Title = styled.h1`
   margin-top: 16px;
 `
 
-const Subtitle = styled.div`
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.8px;
-  color: rgb(98, 98, 98);
+const SecondaryTitle = styled.h3`
+  margin-top: 50px;
+  margin-bottom: 30px;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.3px;
+  color: #333335;
+`
+const AuctionProcessImage = styled.img`
+  display: none;
+  @media (min-width: 992px) {
+    display: block;
+    width: 628px;
+    height: 349px;
+  }
 `
 
 const Lead = styled.div`
-  margin-top: 8px;
+  margin-bottom: 30px;
   font-size: 20px;
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: 0.3px;
-  color: rgb(51, 51, 53);
+  color: #333335;
 `
 
 const CountdownContainer = styled.div`
@@ -78,14 +85,16 @@ const CountdownContainer = styled.div`
   padding: 16px 0;
   display: flex;
   align-items: center;
+  font-weight: 500;
 `
 
 const Label = styled.div`
   flex-grow: 1;
+  color: #333335;
+  font-weight: 700;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.3px;
-  color: rgb(98, 98, 98);
   padding-bottom: 21px;
   padding-right: 42px;
 `
@@ -109,13 +118,12 @@ const DisclaimerMessage = styled.div`
   margin-top: 16px;
 `
 
-const LearnMore = styled.a`
-  font-size: 16px;
-  margin-top: 24px;
-  display: inline-block;
-  line-height: 1.8;
-  letter-spacing: 0.3px;
-  color: rgb(126, 97, 248);
+const AuctionProcessContainer = styled.div`
+  @media (min-width: 992px) {
+    max-width: 688px;
+    padding-right: 60px;
+    border-right: 2px solid #d1d1d1;
+  }
 `
 
 const SupplyContainer = styled.div`
@@ -158,15 +166,89 @@ class AuctionsPage extends React.Component {
       <Container>
         <NavBar activePage="auction" />
         <Header>
+          <Title>Daily Auction</Title>
           <ProviderInfo />
         </Header>
+        <Lead>
+          Metronome has a daily supply of 2880 MET minted and auctioned.
+        </Lead>
         <Row>
           <Col>
-            <Subtitle>BUY METRONOME</Subtitle>
-            <Title>Daily Auction</Title>
-            <Lead>
-              Metronome has a daily supply of 2880 MET minted and auctioned.
-            </Lead>
+            <AuctionProcessContainer>
+              <AuctionProcessImage
+                alt="Auction process"
+                src="../dist/images/metronome-contracts-updated@2x.png"
+              />
+              <SecondaryTitle>
+                Purchase Metronome During the Daily Auction
+              </SecondaryTitle>
+              <p>
+                Metronome (MET) is more than a token — it’s an{' '}
+                <a
+                  href="https://medium.com/@MetronomeToken/metronome-defined-abaee7aab2e3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  entire monetary system built for DeFi
+                </a>
+                . The daily auction provides users with the opportunity to
+                purchase MET.
+              </p>
+              <p>
+                <a
+                  href="https://medium.com/@MetronomeToken/on-metronome-author-retention-and-contract-behavior-73dad8f16494"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  The proceeds from this daily auction stay within the ecosystem
+                </a>{' '}
+                in the form of the{' '}
+                <a
+                  href="https://medium.com/@MetronomeToken/contract-focus-pt-2-of-3-the-proceeds-contract-fb7801a9127c"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Proceeds contract
+                </a>
+                , which provides liquidity to the{' '}
+                <a
+                  href="https://medium.com/@MetronomeToken/contract-focus-pt-3-of-3-the-autonomous-converter-contract-d41b5141c49b"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  MET DEX
+                </a>
+                , where you can freely exchange ETH for MET and vice versa.
+              </p>
+              <SecondaryTitle>Here’s How It Works:</SecondaryTitle>
+              <p>
+                Every day, the Auction Contract autonomously mints 2,880 MET,
+                which are sold through a descending price auction with a
+                starting price set at 2x the previous day’s auction closing
+                price.
+              </p>
+              <p>
+                Once the Daily Supply Lot starts, purchasers purchase at the
+                price they deem fair via the{' '}
+                <a
+                  href="https://medium.com/@MetronomeToken/how-to-purchase-metronome-from-the-metronome-wallet-51457f22239e"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Metronome Wallet, Metamask or the smart contract address on
+                  the website
+                </a>
+                .
+              </p>
+            </AuctionProcessContainer>
+          </Col>
+          <Col>
+            <BuyForm />
+            <DisclaimerMessage>
+              By choosing “Review Purchase” you are agreeing to our{' '}
+              <a href="../privacy">disclaimer</a> and{' '}
+              <a href="../privacy">terms of service</a>.
+            </DisclaimerMessage>
             <CountdownContainer>
               <Label>
                 {this.props.isAuctionActive
@@ -197,15 +279,6 @@ class AuctionsPage extends React.Component {
                 on Twitter for <strong>auction updates</strong>.
               </DepletedMessage>
             )}
-            <LearnMore href="../buy">Learn more about The Auction</LearnMore>
-          </Col>
-          <Col>
-            <BuyForm />
-            <DisclaimerMessage>
-              By choosing “Review Purchase” you are agreeing to our{' '}
-              <a href="../privacy">disclaimer</a> and{' '}
-              <a href="../privacy">terms of service</a>.
-            </DisclaimerMessage>
           </Col>
         </Row>
         <Modal />
