@@ -11,7 +11,7 @@ class RegisterToken extends React.Component {
     chainId: PropTypes.string,
     web3: PropTypes.shape({
       currentProvider: PropTypes.shape({
-        sendAsync: PropTypes.func.isRequired
+        request: PropTypes.func.isRequired
       }).isRequired
     })
   }
@@ -37,7 +37,7 @@ class RegisterToken extends React.Component {
       return
     }
 
-    this.props.web3.currentProvider.sendAsync(
+    this.props.web3.currentProvider.request(
       {
         method: 'wallet_watchAsset',
         params: {
@@ -50,18 +50,14 @@ class RegisterToken extends React.Component {
             id: Math.round(Math.random() * 100000)
           }
         }
-      },
-      (err, { result }) => {
+      }).then(() => {
+        window.localStorage.setItem(this.getStorageKey(), 'true')
         // eslint-disable-next-line no-console
-        if (err) return console.warn(err)
+        console.log('Token successfully registered on MetaMask.')
+      }).catch(err =>
+        // eslint-disable-next-line no-console
+        console.warn(err))
 
-        if (result) {
-          window.localStorage.setItem(this.getStorageKey(), 'true')
-          // eslint-disable-next-line no-console
-          console.log('Token successfully registered on MetaMask.')
-        }
-      }
-    )
   }
 
   componentDidMount() {

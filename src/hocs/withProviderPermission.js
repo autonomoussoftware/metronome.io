@@ -33,10 +33,10 @@ function withProviderPermission(WrappedComponent) {
     askForPermission = () => {
       if (window.ethereum) {
         window.ethereum.autoRefreshOnNetworkChange = false
-        window.ethereum.on('networkChanged', () => window.location.reload())
+        window.ethereum.on('chainChanged', () => window.location.reload())
 
         window.ethereum
-          .enable()
+          .request({ method: 'eth_requestAccounts' })
           .then(() => this.props.updatePermissionStatus('granted'))
           .catch(() => this.props.updatePermissionStatus('denied'))
       }
