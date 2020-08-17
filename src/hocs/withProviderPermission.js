@@ -31,14 +31,14 @@ function withProviderPermission(WrappedComponent) {
     }
 
     askForPermission = () => {
-      if (window.ethereum) {
-        window.ethereum.autoRefreshOnNetworkChange = false
-        window.ethereum.on('chainChanged', () => window.location.reload())
-
+      try {
         window.ethereum
           .request({ method: 'eth_requestAccounts' })
           .then(() => this.props.updatePermissionStatus('granted'))
           .catch(() => this.props.updatePermissionStatus('denied'))
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.warn('Could not request user accounts', err.message)
       }
     }
 
