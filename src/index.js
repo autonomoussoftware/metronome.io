@@ -36,19 +36,12 @@ if (config.env === 'production' && window.Raven) {
 
 const store = createStore(getInitialState(config))
 
-function getAppContent(content) {
-  switch (content) {
-    case 'home':
-      return <HomePage />
-    case 'converter':
-      return <ConverterPage />
-    case 'auction':
-      return <AuctionPage />
-    case 'wallet':
-      return <WalletPage />
-    default:
-      return null
-  }
+try {
+  window.ethereum.autoRefreshOnNetworkChange = false
+  window.ethereum.on('chainChanged', () => window.location.reload())
+} catch (err) {
+  // eslint-disable-next-line no-console
+  console.warn('Could not configure Ethereumn provider', err.message)
 }
 
 const rootElement = document.getElementById('root')
@@ -68,7 +61,15 @@ if (rootElement || marqueeElement) {
             <Portal selector="#marquee">
               <Marquee />
             </Portal>
-            {getAppContent(rootContent)}
+            {rootContent === 'home' ? (
+              <HomePage />
+            ) : rootContent === 'converter' ? (
+              <ConverterPage />
+            ) : rootContent === 'auction' ? (
+              <AuctionPage />
+            ) : rootContent === 'wallet' ? (
+              <WalletPage />
+            ) : null}
           </React.Fragment>
         ) : (
           <Marquee />
