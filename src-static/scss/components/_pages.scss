@@ -367,7 +367,8 @@ body.home {
 	}
 }
 .news {
-	padding-top: 150px;
+	padding-top: 175px;
+	padding-bottom: 30px;
 	background: #eaeaea;
 	background: -moz-linear-gradient( top, #eaeaea 0%, #FFFFFF 50%, #FFFFFF 100%);
 	background: -webkit-linear-gradient( top, #eaeaea 0%, #FFFFFF 50%, #FFFFFF 100%);
@@ -424,6 +425,28 @@ body.home {
 		text-align: center;
 		margin-bottom: 15px;
 	}
+
+	.partner-block a {
+		display: block;
+		background-color: #EFEFEF;
+		text-align: center;
+		padding-top: 25px;
+
+		h5 {
+			font-size: 18px;
+			margin-bottom: 25px;
+			padding: 0 20px;
+			line-height: 1.4em;
+		}
+
+		&:hover {
+			text-decoration: none;
+
+			h5 {
+				color: #7e61f8;
+			}
+		}
+	}
 	.messari-content {
 		text-align: center;
 		font-weight: 700;
@@ -463,18 +486,11 @@ body.home {
 			}
 		}
 	}
-
-	background: transparent;
-	background: -moz-linear-gradient( bottom, #B3A3F5 0%, #FFFFFF 100%);
-	background: -webkit-linear-gradient( bottom, #B3A3F5 0%, #FFFFFF 100%);
-	background: linear-gradient( to top, #B3A3F5 0%, #FFFFFF 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#B3A3F5', GradientType=0);
-
 }
 
 .exchanges {
 
-	padding-top: 100px;
+	padding-top: 75px;
     padding-bottom: 15px;
 
 	.exch {
@@ -487,13 +503,28 @@ body.home {
 
 	h3 {
 		text-align: center;
-		font-size: 28px;
+		font-size: 18px;
 		margin-bottom: 20px;
 	}
 
 	.exchange-icons {
-		max-width: 400px;
-		margin: 0 auto;
+		margin: 0 auto 40px;
+
+		a {
+			display: flex;
+			align-items: center !important;
+			width: 60px;
+			height: 60px;
+			border-radius: 8px;
+			box-shadow: none;
+			position: relative;
+			text-align: center;
+			margin-bottom: 10px;
+
+			&:hover {
+				box-shadow: 0 0 2px 3px rgba(126,97,248,.5);
+			}
+		}
 	}
 
 	.wallets {
@@ -527,37 +558,33 @@ body.home {
 
 			.wallet {
 
-				width: 170px;
-				background-color: #EAEAEA;
-				border-radius: 16px;
-
 				a {
-					color: #333335;
-					font-size: 14px;
-					font-weight: 500 !important;
-
-					strong {
-						margin-left: 5px;
-					}
-
+					display: flex;
+					align-items: center !important;
+					width: 60px;
+					height: 60px;
+					border-radius: 8px;
+					box-shadow: none;
+					position: relative;
+					text-align: center;
+		
 					&:hover {
-						color: #6C50E2;
-						text-decoration: none;
+						box-shadow: 0 0 2px 3px rgba(126,97,248,.5);
 					}
 				}
 			}
 		}
 	}
-
-
 }
+
 .process {
 	padding-top: 75px;
-	background: #eaeaea;
+	margin-bottom: 100px;
+	/* background: #eaeaea;
 	background: -moz-linear-gradient( bottom, #eaeaea 0%, #FFFFFF 30%, #FFFFFF 100%);
 	background: -webkit-linear-gradient( bottom, #eaeaea 0%, #FFFFFF 30%, #FFFFFF 100%);
 	background: linear-gradient( to top, #eaeaea 0%, #FFFFFF 30%, #FFFFFF 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea', GradientType=0); */
 
 	.process-inner {
 		max-width: 1400px;
@@ -584,7 +611,7 @@ body.home {
 			h2,
 			h3 {
 				max-width: 300px;
-				margin: 40px 0 30px;
+				margin: 15px 0 30px;
 				text-align:center;
 				font-size: 25px;
 			}
@@ -873,9 +900,9 @@ body.buy {
 			a {
 				display: flex;
 				align-items: center !important;
-				width: 65px;
-				height: 65px;
-				border-radius: 16px;
+				width: 60px;
+				height: 60px;
+				border-radius: 8px;
 				box-shadow: none;
 				position: relative;
 				text-align: center;
