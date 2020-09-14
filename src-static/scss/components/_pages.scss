@@ -437,6 +437,15 @@ body.home {
 			margin-bottom: 25px;
 			padding: 0 20px;
 			line-height: 1.4em;
+
+			@media(min-width:992px) and (max-width:1199px) {
+				min-height: 50px;
+			}
+		}
+
+		img {
+			max-width: 100%;
+			height: auto !important;
 		}
 
 		&:hover {

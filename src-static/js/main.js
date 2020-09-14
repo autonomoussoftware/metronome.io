@@ -51,8 +51,10 @@ $(document).ready(function($) {
 			}
 		});
 
-	/* Handle resizing header on scroll */
-	$(window).resize(function() {
+	
+	$(window).resize(function() { /* Run these on page load and on a window resize */
+
+		// Handle resizing header on scroll
 		var navbar = $('.navbar')
 		var origOffsetY = navbar.offset().top
 
@@ -66,6 +68,10 @@ $(document).ready(function($) {
 			}
 		}
 		document.onscroll = scroll
+
+		//Match Heights
+		$('.match').matchHeight();
+
 	}).resize()
 
 
@@ -184,8 +190,5 @@ $(document).ready(function($) {
 		$('.typed-cursor').text('');
 
 	}
-	
-	//Match Heights
-	$('.match').matchHeight();
 
 });
